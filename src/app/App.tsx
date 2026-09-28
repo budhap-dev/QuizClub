@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Layout } from './Layout'
 import { Home } from '@/features/home/Home'
 
+const ManualBuilder = lazy(() => import('@/features/builder/ManualBuilder').then((m) => ({ default: m.ManualBuilder })))
 const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
 const PlaySetup = lazy(() => import('@/features/presenter/PlaySetup').then((m) => ({ default: m.PlaySetup })))
 const Stage = lazy(() => import('@/features/presenter/Stage').then((m) => ({ default: m.Stage })))
@@ -25,6 +26,8 @@ export default function App() {
         <Routes location={location} key={location.pathname}>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="create/manual" element={<ManualBuilder />} />
+            <Route path="create/manual/:id" element={<ManualBuilder />} />
             <Route path="quizzes" element={<MyQuizzes />} />
             <Route path="play" element={<PlaySetup />} />
             <Route path="settings" element={<Settings />} />
