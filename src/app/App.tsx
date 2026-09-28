@@ -9,6 +9,8 @@ const ManualBuilder = lazy(() => import('@/features/builder/ManualBuilder').then
 const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
 const PlaySetup = lazy(() => import('@/features/presenter/PlaySetup').then((m) => ({ default: m.PlaySetup })))
 const Stage = lazy(() => import('@/features/presenter/Stage').then((m) => ({ default: m.Stage })))
+const Games = lazy(() => import('@/features/games/Games').then((m) => ({ default: m.Games })))
+const GamePage = lazy(() => import('@/features/games/GamePage').then((m) => ({ default: m.GamePage })))
 const Settings = lazy(() => import('@/features/settings/Settings').then((m) => ({ default: m.Settings })))
 
 function Loading() {
@@ -32,6 +34,8 @@ export default function App() {
             <Route path="create/manual/:id" element={<ManualBuilder />} />
             <Route path="quizzes" element={<MyQuizzes />} />
             <Route path="play" element={<PlaySetup />} />
+            <Route path="games" element={<Games />} />
+            <Route path="games/:game" element={<GamePage />} />
             <Route path="settings" element={<Settings />} />
           </Route>
           {/* Stage is full-bleed, no layout chrome */}
