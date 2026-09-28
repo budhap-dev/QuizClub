@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Layout } from './Layout'
 import { Home } from '@/features/home/Home'
 
+const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
 const Settings = lazy(() => import('@/features/settings/Settings').then((m) => ({ default: m.Settings })))
 
 function Loading() {
@@ -22,6 +23,7 @@ export default function App() {
         <Routes location={location} key={location.pathname}>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="quizzes" element={<MyQuizzes />} />
             <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>
