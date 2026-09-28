@@ -1,6 +1,6 @@
 import { useSettingsStore } from '@/store/settingsStore'
 
-export type ThemeId = 'neon' | 'ocean' | 'sunset' | 'forest' | 'retro' | 'midnight' | 'candy'
+export type ThemeId = 'neon' | 'ocean' | 'sunset' | 'forest' | 'retro' | 'midnight' | 'candy' | 'daylight' | 'coastal' | 'sunrise' | 'lilac' | 'meadow'
 
 export interface ThemeMeta {
   id: ThemeId
@@ -21,6 +21,11 @@ export const THEMES: ThemeMeta[] = [
   { id: 'retro', name: 'Retro Arcade', description: 'Loud 80s neons on near-black', preview: { ink: '#0d0221', fg: '#ffffff', a: '#ff2e97', b: '#7b2cff', c: '#00f0ff', d: '#c8ff00' } },
   { id: 'midnight', name: 'Midnight Mono', description: 'Calm silver and slate, minimal colour', preview: { ink: '#0a0a0f', fg: '#f4f4f5', a: '#a1a1aa', b: '#9ca3af', c: '#d4d4d8', d: '#bbf7d0' } },
   { id: 'candy', name: 'Candy Pop', description: 'Light mode — bright accents on pastel pink', light: true, preview: { ink: '#fff4fa', fg: '#2d1240', a: '#ff3d8b', b: '#9333ea', c: '#0891b2', d: '#65a30d' } },
+  { id: 'daylight', name: 'Daylight', description: 'Light mode — crisp white with bold, professional accents', light: true, preview: { ink: '#f8fafc', fg: '#0f172a', a: '#db2777', b: '#6d28d9', c: '#0e7490', d: '#4d7c0f' } },
+  { id: 'coastal', name: 'Coastal', description: 'Light mode — sea blues and teals on pale aqua', light: true, preview: { ink: '#f0fafa', fg: '#0b3b3c', a: '#0369a1', b: '#0f766e', c: '#0891b2', d: '#4d7c0f' } },
+  { id: 'sunrise', name: 'Sunrise', description: 'Light mode — coral and amber on warm cream', light: true, preview: { ink: '#fff7ed', fg: '#431407', a: '#e11d48', b: '#ea580c', c: '#0d9488', d: '#65a30d' } },
+  { id: 'lilac', name: 'Lilac', description: 'Light mode — violet and fuchsia on soft lavender', light: true, preview: { ink: '#f5f3ff', fg: '#2e1065', a: '#c026d3', b: '#7c3aed', c: '#2563eb', d: '#16a34a' } },
+  { id: 'meadow', name: 'Meadow', description: 'Light mode — fresh greens on pale mint', light: true, preview: { ink: '#f0fdf4', fg: '#052e16', a: '#db2777', b: '#15803d', c: '#0891b2', d: '#65a30d' } },
 ]
 
 export const DEFAULT_THEME: ThemeId = 'neon'
