@@ -15,8 +15,8 @@ const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 const statusClass: Record<KeyStatus, string> = {
   correct: 'bg-mint text-ink',
   present: 'bg-sun text-ink',
-  absent: 'bg-white/5 text-white/30',
-  used: 'bg-white/5 text-white/30',
+  absent: 'bg-fg/5 text-fg/30',
+  used: 'bg-fg/5 text-fg/30',
 }
 
 export function OnScreenKeyboard({ onKey, statuses = {}, disabled, showEnter = true }: OnScreenKeyboardProps) {
@@ -29,7 +29,7 @@ export function OnScreenKeyboard({ onKey, statuses = {}, disabled, showEnter = t
       className={cn(
         'h-12 md:h-14 rounded-xl font-display font-bold text-base md:text-xl transition-colors select-none',
         wide ? 'px-3 md:px-4 min-w-14' : 'w-8 md:w-11',
-        statuses[k] ? statusClass[statuses[k]] : 'bg-white/15 hover:bg-white/25',
+        statuses[k] ? statusClass[statuses[k]] : 'bg-fg/15 hover:bg-fg/25',
         'disabled:cursor-not-allowed',
       )}
     >

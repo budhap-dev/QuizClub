@@ -21,7 +21,7 @@ export function Games() {
                 <h2 className="text-2xl font-bold mb-1" style={{ color: g.color }}>
                   {g.title}
                 </h2>
-                <p className="text-white/70 text-sm">{g.description}</p>
+                <p className="text-fg/70 text-sm">{g.description}</p>
               </Card>
             </Link>
           </motion.div>

@@ -21,7 +21,7 @@ export function EmojiPicker({ value, onChange, className }: EmojiPickerProps) {
           onClick={() => onChange(e)}
           className={cn(
             'w-10 h-10 rounded-xl text-xl flex items-center justify-center transition-transform hover:scale-110',
-            value === e ? 'bg-purple ring-2 ring-white' : 'bg-white/10',
+            value === e ? 'bg-purple ring-2 ring-fg' : 'bg-fg/10',
           )}
         >
           {e}

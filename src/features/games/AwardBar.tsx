@@ -19,8 +19,8 @@ export function AwardBar({ points = 10, reason = 'game', title = 'Award points' 
 
   if (teams.length === 0) {
     return (
-      <p className="text-center text-white/40 text-sm mt-4">
-        <Link to="/play" className="underline hover:text-white">
+      <p className="text-center text-fg/40 text-sm mt-4">
+        <Link to="/play" className="underline hover:text-fg">
           Add teams in Play
         </Link>{' '}
         to award points from games.
@@ -38,7 +38,7 @@ export function AwardBar({ points = 10, reason = 'game', title = 'Award points' 
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-3xl p-3 mt-4 flex flex-wrap items-center justify-center gap-2">
-      <span className="text-white/60 text-sm mr-1">
+      <span className="text-fg/60 text-sm mr-1">
         {title} (+{points}):
       </span>
       {teams.map((t) => (

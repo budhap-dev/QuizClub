@@ -110,7 +110,7 @@ export default function Hangman() {
               setCat(c)
               newGame(c)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-pink border-pink' : 'border-white/15 hover:bg-white/10')}
+            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-pink border-pink' : 'border-fg/15 hover:bg-fg/10')}
           >
             {c}
           </button>
@@ -121,7 +121,7 @@ export default function Hangman() {
         <Gallows wrong={wrong.length} lost={lost} />
 
         <div className="text-center">
-          <div className="text-sm text-white/50 mb-2 uppercase tracking-wider">{round.category}</div>
+          <div className="text-sm text-fg/50 mb-2 uppercase tracking-wider">{round.category}</div>
           <div className="flex flex-wrap justify-center gap-1.5 md:gap-2 mb-4">
             {round.word.w.split('').map((ch, i) =>
               ch === ' ' ? (
@@ -133,7 +133,7 @@ export default function Hangman() {
                   animate={{ rotateX: guessed.has(ch) || lost ? 0 : 0, scale: guessed.has(ch) ? [1, 1.2, 1] : 1 }}
                   className={cn(
                     'w-9 h-12 md:w-12 md:h-16 rounded-xl border-b-4 flex items-center justify-center font-display font-bold text-2xl md:text-4xl',
-                    guessed.has(ch) ? 'bg-mint/20 border-mint text-white' : lost ? 'bg-red/20 border-red text-red' : 'bg-white/10 border-white/40',
+                    guessed.has(ch) ? 'bg-mint/20 border-mint text-fg' : lost ? 'bg-red/20 border-red text-red' : 'bg-fg/10 border-fg/40',
                   )}
                 >
                   {guessed.has(ch) || lost ? ch : ''}
@@ -142,11 +142,11 @@ export default function Hangman() {
             )}
           </div>
 
-          <div className="flex justify-center items-center gap-2 mb-4 text-white/60 text-sm">
+          <div className="flex justify-center items-center gap-2 mb-4 text-fg/60 text-sm">
             <span>
               Wrong: <b className="text-red">{wrong.length}</b> / {MAX_WRONG}
             </span>
-            {wrong.length > 0 && <span className="tracking-widest text-white/40">{wrong.join(' ')}</span>}
+            {wrong.length > 0 && <span className="tracking-widest text-fg/40">{wrong.join(' ')}</span>}
           </div>
 
           <AnimatePresence mode="wait">

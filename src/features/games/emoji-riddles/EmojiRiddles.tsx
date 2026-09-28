@@ -101,7 +101,7 @@ export default function EmojiRiddles() {
               setI(0)
               setRevealed(false)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-purple border-purple' : 'border-white/15 hover:bg-white/10')}
+            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-purple border-purple' : 'border-fg/15 hover:bg-fg/10')}
           >
             {c}
           </button>
@@ -119,7 +119,7 @@ export default function EmojiRiddles() {
         </Button>
       </div>
 
-      <div className="text-white/50 text-sm mb-2 uppercase tracking-wider">
+      <div className="text-fg/50 text-sm mb-2 uppercase tracking-wider">
         {r.c} · {(i % list.length) + 1} / {list.length}
       </div>
 
@@ -150,7 +150,7 @@ export default function EmojiRiddles() {
               {r.a}
             </motion.div>
           ) : (
-            <motion.div key="q" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-2xl md:text-3xl text-white/60 font-display pt-4">
+            <motion.div key="q" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-2xl md:text-3xl text-fg/60 font-display pt-4">
               🤔 What is it?
             </motion.div>
           )}

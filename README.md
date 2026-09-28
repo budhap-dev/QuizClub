@@ -10,6 +10,7 @@ A colourful, animated quiz-night app built for the big screen. Present quizzes t
 - **Manual quiz maker** — slides, multiple choice, true/false and timed questions with images, points, timers and host notes. Drag to reorder, preview before saving.
 - **Built-in library** — Flag Guesser, Logo Quiz, Mental Maths (generated fresh each time), General Knowledge, Geography, Science, Literature, Movies, Sports, Music, History.
 - **Party games** — Cows & Bulls, Hangman, Wordle, Word Scramble, Emoji Riddles, Memory Match. Award points to teams from any game.
+- **Themes** — seven colour themes (Neon Night, Deep Ocean, Sunset, Forest, Retro Arcade, Midnight Mono and the light Candy Pop), switchable from the 🎨 button in the nav or on stage. Palettes live in `src/index.css`; the picker metadata in `src/app/theme.ts`.
 - Fully responsive: presenter on a laptop/TV, quiz-master controls work from a phone.
 
 ## Stack

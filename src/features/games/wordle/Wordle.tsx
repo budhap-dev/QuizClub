@@ -30,7 +30,7 @@ function evaluate(guess: string, secret: string): Status[] {
   return res
 }
 
-const tileClass: Record<Status, string> = { correct: 'bg-mint text-ink border-mint', present: 'bg-sun text-ink border-sun', absent: 'bg-white/10 text-white/60 border-white/10' }
+const tileClass: Record<Status, string> = { correct: 'bg-mint text-ink border-mint', present: 'bg-sun text-ink border-sun', absent: 'bg-fg/10 text-fg/60 border-fg/10' }
 
 export default function Wordle() {
   const [secret, setSecret] = useState(() => pick(WORDS))
@@ -115,7 +115,7 @@ export default function Wordle() {
         <Button size="sm" variant="secondary" onClick={() => reset()}>
           🔄 New word
         </Button>
-        <label className="text-sm text-white/60 flex items-center gap-2 cursor-pointer">
+        <label className="text-sm text-fg/60 flex items-center gap-2 cursor-pointer">
           <input type="checkbox" checked={strict} onChange={(e) => setStrict(e.target.checked)} className="accent-lime" /> Strict dictionary
         </label>
         {!over && rows.length > 0 && (
@@ -127,7 +127,7 @@ export default function Wordle() {
 
       {rows.length === 0 && !over && (
         <Card className="mb-4 flex flex-wrap items-center gap-2 justify-center">
-          <span className="text-sm text-white/60">Host: set a secret word (optional)</span>
+          <span className="text-sm text-fg/60">Host: set a secret word (optional)</span>
           <input type="password" maxLength={5} className="input !w-36 text-center tracking-widest uppercase" value={custom} onChange={(e) => setCustom(e.target.value)} placeholder="•••••" />
           <Button size="sm" onClick={setCustomSecret}>
             Set
@@ -138,7 +138,7 @@ export default function Wordle() {
       <div className="relative">
         <AnimatePresence>
           {toast && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute left-1/2 -translate-x-1/2 -top-2 z-10 bg-white text-ink font-bold px-4 py-2 rounded-xl shadow-lg">
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute left-1/2 -translate-x-1/2 -top-2 z-10 bg-fg text-ink font-bold px-4 py-2 rounded-xl shadow-lg">
               {toast}
             </motion.div>
           )}
@@ -162,7 +162,7 @@ export default function Wordle() {
                       transition={submitted ? { delay: c * 0.25, duration: 0.5 } : { duration: 0.15 }}
                       className={cn(
                         'w-12 h-12 md:w-16 md:h-16 rounded-xl border-2 flex items-center justify-center font-display font-bold text-2xl md:text-4xl',
-                        submitted && ev ? tileClass[ev[c]] : ch ? 'border-white/50' : 'border-white/15',
+                        submitted && ev ? tileClass[ev[c]] : ch ? 'border-fg/50' : 'border-fg/15',
                       )}
                       style={submitted ? { transitionDelay: `${c * 0.25 + 0.25}s` } : undefined}
                     >

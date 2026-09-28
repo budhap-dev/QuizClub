@@ -104,12 +104,12 @@ export default function Memory() {
               setSize(i)
               reset(i)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', size === i ? 'bg-mint text-ink border-mint' : 'border-white/15 hover:bg-white/10')}
+            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', size === i ? 'bg-mint text-ink border-mint' : 'border-fg/15 hover:bg-fg/10')}
           >
             {s.label}
           </button>
         ))}
-        <label className="text-sm text-white/60 flex items-center gap-2 cursor-pointer ml-2">
+        <label className="text-sm text-fg/60 flex items-center gap-2 cursor-pointer ml-2">
           <input
             type="checkbox"
             checked={teamMode}
@@ -141,7 +141,7 @@ export default function Memory() {
             <motion.div
               key={n}
               animate={{ scale: turn === i && !done ? 1.08 : 1 }}
-              className={cn('rounded-2xl px-4 py-2 font-display font-bold border-2', turn === i && !done ? 'bg-white/15' : 'opacity-60')}
+              className={cn('rounded-2xl px-4 py-2 font-display font-bold border-2', turn === i && !done ? 'bg-fg/15' : 'opacity-60')}
               style={{ borderColor: colors[i] }}
             >
               {n}: <span style={{ color: colors[i] }}>{teamScores[i]}</span>
@@ -176,7 +176,7 @@ export default function Memory() {
                 <div
                   className={cn(
                     'absolute inset-0 rounded-2xl flex items-center justify-center text-4xl md:text-5xl shadow-lg',
-                    c.matched ? 'bg-mint/30 ring-4 ring-mint' : 'bg-white/15',
+                    c.matched ? 'bg-mint/30 ring-4 ring-mint' : 'bg-fg/15',
                   )}
                   style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                 >

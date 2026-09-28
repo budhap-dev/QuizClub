@@ -110,7 +110,7 @@ export default function CowsBulls() {
       <AnimatePresence>
         {rules && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
-            <Card className="mb-4 text-white/80 text-sm md:text-base">
+            <Card className="mb-4 text-fg/80 text-sm md:text-base">
               A secret 4-digit number with no repeated digits is hidden. Each guess gets scored: <b className="text-sun">🐂 Bulls</b> = a correct digit in the correct
               place, <b className="text-cyan">🐄 Cows</b> = a correct digit in the wrong place. Four bulls wins!
             </Card>
@@ -120,7 +120,7 @@ export default function CowsBulls() {
 
       {guesses.length === 0 && !over && (
         <Card className="mb-4 flex flex-wrap items-center gap-2 justify-center">
-          <span className="text-sm text-white/60">Host: set a secret (optional)</span>
+          <span className="text-sm text-fg/60">Host: set a secret (optional)</span>
           <input type="password" inputMode="numeric" maxLength={4} className="input !w-32 text-center tracking-widest" value={custom} onChange={(e) => setCustom(e.target.value.replace(/\D/g, ''))} placeholder="••••" />
           <Button size="sm" onClick={setCustomSecret}>
             Set
@@ -135,7 +135,7 @@ export default function CowsBulls() {
             key={i}
             className={cn(
               'w-16 h-20 md:w-20 md:h-24 rounded-2xl flex items-center justify-center font-display font-bold text-4xl md:text-5xl border-4',
-              over ? 'bg-rainbow text-ink border-transparent' : current[i] ? 'bg-white/15 border-purple' : 'bg-white/5 border-white/15',
+              over ? 'bg-rainbow text-ink border-transparent' : current[i] ? 'bg-fg/15 border-purple' : 'bg-fg/5 border-fg/15',
             )}
           >
             {over ? secret[i] : (current[i] ?? '')}
@@ -159,7 +159,7 @@ export default function CowsBulls() {
               whileTap={{ scale: 0.9 }}
               onClick={() => press(d)}
               disabled={current.includes(d) || current.length >= 4}
-              className="h-14 md:h-16 rounded-2xl bg-white/15 hover:bg-white/25 disabled:opacity-25 font-display font-bold text-2xl md:text-3xl"
+              className="h-14 md:h-16 rounded-2xl bg-fg/15 hover:bg-fg/25 disabled:opacity-25 font-display font-bold text-2xl md:text-3xl"
             >
               {d}
             </motion.button>
@@ -184,7 +184,7 @@ export default function CowsBulls() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               className="glass rounded-2xl px-4 py-2 flex items-center gap-4"
             >
-              <span className="text-white/40 text-sm w-6 tabular-nums">{guesses.length - i}</span>
+              <span className="text-fg/40 text-sm w-6 tabular-nums">{guesses.length - i}</span>
               <span className="font-display font-bold text-2xl md:text-3xl tracking-[0.3em]">{g.value}</span>
               <span className="ml-auto font-display font-bold text-xl md:text-2xl text-sun">🐂 {g.bulls}</span>
               <span className="font-display font-bold text-xl md:text-2xl text-cyan">🐄 {g.cows}</span>

@@ -12,7 +12,7 @@ export function GamePage() {
       <div className="text-center py-20">
         <div className="text-6xl mb-3">🕹️</div>
         <h1 className="text-3xl font-bold mb-2">Game not found</h1>
-        <Link to="/games" className="underline text-white/70">
+        <Link to="/games" className="underline text-fg/70">
           Back to games
         </Link>
       </div>

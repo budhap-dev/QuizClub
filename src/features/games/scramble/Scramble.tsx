@@ -82,13 +82,13 @@ export default function Scramble() {
               setCat(c)
               newWord(c)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-cyan text-ink border-cyan' : 'border-white/15 hover:bg-white/10')}
+            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-cyan text-ink border-cyan' : 'border-fg/15 hover:bg-fg/10')}
           >
             {c}
           </button>
         ))}
       </div>
-      <div className="flex gap-2 justify-center items-center mb-6 text-sm text-white/60">
+      <div className="flex gap-2 justify-center items-center mb-6 text-sm text-fg/60">
         Timer:
         {TIMES.map((t) => (
           <button
@@ -98,7 +98,7 @@ export default function Scramble() {
               setRemaining(t)
               setRunning(false)
             }}
-            className={cn('px-2.5 py-1 rounded-lg font-semibold', duration === t ? 'bg-white/20 text-white' : 'hover:bg-white/10')}
+            className={cn('px-2.5 py-1 rounded-lg font-semibold', duration === t ? 'bg-fg/20 text-fg' : 'hover:bg-fg/10')}
           >
             {t}s
           </button>
@@ -107,7 +107,7 @@ export default function Scramble() {
       </div>
 
       {/* Timer bar */}
-      <div className="h-3 rounded-full bg-white/10 overflow-hidden mb-6 max-w-xl mx-auto">
+      <div className="h-3 rounded-full bg-fg/10 overflow-hidden mb-6 max-w-xl mx-auto">
         <motion.div className="h-full rounded-full" animate={{ width: `${pct}%`, background: barColor }} transition={{ duration: 0.9, ease: 'linear' }} />
       </div>
 

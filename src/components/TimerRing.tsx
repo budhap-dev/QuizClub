@@ -24,7 +24,7 @@ export function TimerRing({ total, remaining, size = 110, className }: TimerRing
       transition={urgent ? { repeat: Infinity, duration: 1 } : undefined}
     >
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} stroke="rgba(255,255,255,0.12)" strokeWidth={8} fill="none" />
+        <circle cx={size / 2} cy={size / 2} r={r} style={{ stroke: 'color-mix(in srgb, var(--color-fg) 12%, transparent)' }} strokeWidth={8} fill="none" />
         <motion.circle
           cx={size / 2}
           cy={size / 2}

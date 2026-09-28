@@ -12,7 +12,7 @@ export function Card({ className, glow, interactive, children, ...rest }: CardPr
       whileHover={interactive ? { y: -4, scale: 1.01 } : undefined}
       whileTap={interactive ? { scale: 0.98 } : undefined}
       className={cn('glass rounded-3xl p-5 md:p-6', interactive && 'cursor-pointer', className)}
-      style={glow ? { boxShadow: `0 10px 40px ${glow}55` } : undefined}
+      style={glow ? { boxShadow: `0 10px 40px color-mix(in srgb, ${glow} 35%, transparent)` } : undefined}
       {...rest}
     >
       {children}

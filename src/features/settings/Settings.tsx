@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Button, Card, PageHeader } from '@/components'
+import { Button, Card, PageHeader, ThemePicker } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -29,18 +29,24 @@ export function Settings() {
       <PageHeader title="Settings" emoji="⚙️" />
 
       <div className="grid md:grid-cols-2 gap-4">
+        <Card className="md:col-span-2">
+          <h2 className="text-xl font-bold mb-1">🎨 Theme</h2>
+          <p className="text-fg/60 text-sm mb-3">Changes everywhere instantly — including the presenter stage.</p>
+          <ThemePicker />
+        </Card>
+
         <Card>
           <h2 className="text-xl font-bold mb-3">Defaults</h2>
           <label className="block mb-3">
-            <span className="text-white/70 text-sm">Default timer (seconds)</span>
+            <span className="text-fg/70 text-sm">Default timer (seconds)</span>
             <input type="number" className="input mt-1" min={0} value={s.defaultTimeLimit} onChange={(e) => s.setDefaultTimeLimit(+e.target.value)} />
           </label>
           <label className="block mb-3">
-            <span className="text-white/70 text-sm">Default points per question</span>
+            <span className="text-fg/70 text-sm">Default points per question</span>
             <input type="number" className="input mt-1" min={1} value={s.defaultPoints} onChange={(e) => s.setDefaultPoints(+e.target.value)} />
           </label>
           <label className="block mb-3">
-            <span className="text-white/70 text-sm">Score +/− step on stage</span>
+            <span className="text-fg/70 text-sm">Score +/− step on stage</span>
             <input type="number" className="input mt-1" min={1} value={s.scoreStep} onChange={(e) => s.setScoreStep(+e.target.value)} />
           </label>
           <label className="flex items-center gap-3 mt-2 cursor-pointer">
@@ -51,14 +57,14 @@ export function Settings() {
 
         <Card>
           <h2 className="text-xl font-bold mb-1">AI generator</h2>
-          <p className="text-white/60 text-sm mb-3">
+          <p className="text-fg/60 text-sm mb-3">
             Quizzes are generated on the server, so no API key is needed here. If the host has set an access code, enter it below.
           </p>
           <label className="block">
-            <span className="text-white/70 text-sm">Access code (optional)</span>
+            <span className="text-fg/70 text-sm">Access code (optional)</span>
             <input type="password" className="input mt-1" value={s.aiAccessCode} onChange={(e) => s.setAiAccessCode(e.target.value)} placeholder="••••••" />
           </label>
-          <p className="text-white/40 text-xs mt-3">Google sign-in is coming later and will replace the access code.</p>
+          <p className="text-fg/40 text-xs mt-3">Google sign-in is coming later and will replace the access code.</p>
         </Card>
 
         <Card>

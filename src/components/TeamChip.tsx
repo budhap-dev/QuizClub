@@ -27,7 +27,7 @@ export function TeamChip({ team, size = 'md', showScore = true, className, onCli
       className={cn(
         'inline-flex items-center rounded-full font-display font-semibold border-2 transition-colors',
         onClick ? 'cursor-pointer' : 'cursor-default',
-        active ? 'text-ink' : 'text-white',
+        active ? 'text-ink' : 'text-fg',
         sizes[size],
         className,
       )}
