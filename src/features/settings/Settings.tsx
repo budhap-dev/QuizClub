@@ -5,6 +5,7 @@ import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { downloadJson, readJsonFile } from '@/utils'
 import type { Quiz } from '@/types'
+import { VaultCard } from '@/features/vault/VaultCard'
 
 export function Settings() {
   const s = useSettingsStore()
@@ -34,6 +35,8 @@ export function Settings() {
           <p className="text-fg/60 text-sm mb-3">Changes everywhere instantly — including the presenter stage.</p>
           <ThemePicker />
         </Card>
+
+        <VaultCard className="md:col-span-2" />
 
         <Card>
           <h2 className="text-xl font-bold mb-3">Defaults</h2>
