@@ -149,7 +149,7 @@ export function ManualBuilder() {
       {/* Quiz meta */}
       <Card className="mb-4">
         <div className="flex gap-3 items-start flex-wrap">
-          <button type="button" onClick={() => setEmojiOpen(true)} className="w-16 h-16 rounded-2xl bg-white/10 text-4xl hover:bg-white/20 shrink-0" title="Pick an emoji">
+          <button type="button" onClick={() => setEmojiOpen(true)} className="w-16 h-16 rounded-2xl bg-fg/10 text-4xl hover:bg-fg/20 shrink-0" title="Pick an emoji">
             {quiz.emoji}
           </button>
           <div className="flex-1 min-w-52 space-y-2">
@@ -184,12 +184,12 @@ export function ManualBuilder() {
                   onClick={() => setSelected(q.id)}
                   className={cn(
                     'rounded-xl px-3 py-2 flex items-center gap-2 cursor-grab active:cursor-grabbing border-2 transition-colors',
-                    selected === q.id ? 'bg-white/15 border-purple' : 'bg-white/5 border-transparent hover:bg-white/10',
+                    selected === q.id ? 'bg-fg/15 border-purple' : 'bg-fg/5 border-transparent hover:bg-fg/10',
                   )}
                 >
-                  <span className="text-white/40 text-xs w-5 tabular-nums">{i + 1}</span>
+                  <span className="text-fg/40 text-xs w-5 tabular-nums">{i + 1}</span>
                   <span>{typeEmoji[q.type]}</span>
-                  <span className="flex-1 truncate text-sm">{q.text || <i className="text-white/40">Untitled</i>}</span>
+                  <span className="flex-1 truncate text-sm">{q.text || <i className="text-fg/40">Untitled</i>}</span>
                   {problems[i] && <span title={problems[i]!}>⚠️</span>}
                 </Reorder.Item>
               ))}
@@ -209,7 +209,7 @@ export function ManualBuilder() {
               🖼️ Slide
             </Button>
           </div>
-          <p className="text-xs text-white/40 mt-2">Drag to reorder.</p>
+          <p className="text-xs text-fg/40 mt-2">Drag to reorder.</p>
         </Card>
 
         {/* Editor */}
@@ -232,7 +232,7 @@ export function ManualBuilder() {
               <QuestionEditor question={current} onChange={(q) => setQuestions(quiz.questions.map((x) => (x.id === q.id ? q : x)))} />
             </motion.div>
           ) : (
-            <div className="text-center py-16 text-white/60">
+            <div className="text-center py-16 text-fg/60">
               <div className="text-5xl mb-3">✏️</div>
               Add a question to start building.
             </div>

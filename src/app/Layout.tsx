@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Blobs } from '@/components'
+import { Blobs, ThemeButton } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
 import { cn } from '@/utils'
 
@@ -33,11 +33,11 @@ export function Layout() {
                 to={n.to}
                 className={cn(
                   'relative px-3 py-1.5 rounded-xl text-sm md:text-base font-semibold whitespace-nowrap transition-colors',
-                  active ? 'text-white' : 'text-white/60 hover:text-white',
+                  active ? 'text-fg' : 'text-fg/60 hover:text-fg',
                 )}
               >
                 {active && (
-                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-xl bg-white/15" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />
+                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-xl bg-fg/15" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />
                 )}
                 <span className="relative">
                   <span className="md:hidden">{n.emoji}</span>
@@ -48,9 +48,10 @@ export function Layout() {
               </Link>
             )
           })}
+          <ThemeButton />
           <button
             onClick={() => setMuted(!muted)}
-            className="px-2 py-1.5 rounded-xl text-lg hover:bg-white/10"
+            className="px-2 py-1.5 rounded-xl text-lg hover:bg-fg/10"
             title={muted ? 'Unmute sounds' : 'Mute sounds'}
             aria-label="Toggle sound"
           >

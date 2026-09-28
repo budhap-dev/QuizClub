@@ -22,7 +22,7 @@ export function Scoreboard({ teams, title = 'Scoreboard' }: ScoreboardProps) {
       >
         {title}
       </motion.h1>
-      {sorted.length === 0 && <p className="text-white/60 text-2xl">No teams yet — add some in Play setup.</p>}
+      {sorted.length === 0 && <p className="text-fg/60 text-2xl">No teams yet — add some in Play setup.</p>}
       <div className="w-full min-h-0 overflow-y-auto no-scrollbar space-y-[clamp(0.4rem,1.2vh,0.75rem)]">
         {sorted.map((t, i) => (
           <motion.div
@@ -33,11 +33,11 @@ export function Scoreboard({ teams, title = 'Scoreboard' }: ScoreboardProps) {
             transition={{ delay: i * 0.08, type: 'spring', stiffness: 300, damping: 25 }}
             className="glass rounded-3xl px-3 md:px-4 py-[clamp(0.4rem,1.4vh,1rem)] flex items-center gap-3 md:gap-4"
           >
-            <div className="w-10 md:w-14 text-[clamp(1.25rem,4vh,2.25rem)] text-center font-display font-bold text-white/60">{medals[i] ?? i + 1}</div>
+            <div className="w-10 md:w-14 text-[clamp(1.25rem,4vh,2.25rem)] text-center font-display font-bold text-fg/60">{medals[i] ?? i + 1}</div>
             <div className="text-[clamp(1.5rem,4.5vh,3rem)]">{t.emoji}</div>
             <div className="flex-1 min-w-0">
               <div className="font-display font-bold text-[clamp(1.1rem,3.2vh,1.9rem)] truncate">{t.name}</div>
-              <div className="h-[clamp(0.5rem,1.4vh,1rem)] rounded-full bg-white/10 mt-1 overflow-hidden">
+              <div className="h-[clamp(0.5rem,1.4vh,1rem)] rounded-full bg-fg/10 mt-1 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
                   style={{ background: t.color }}

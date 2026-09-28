@@ -61,7 +61,7 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
             key={t.id}
             type="button"
             onClick={() => q.type !== t.id && onChange(convertType(q, t.id))}
-            className={cn('px-3 py-2 rounded-xl text-sm font-semibold border-2 transition-colors', q.type === t.id ? 'bg-purple border-purple' : 'border-white/15 hover:bg-white/10')}
+            className={cn('px-3 py-2 rounded-xl text-sm font-semibold border-2 transition-colors', q.type === t.id ? 'bg-purple border-purple' : 'border-fg/15 hover:bg-fg/10')}
           >
             {t.emoji} {t.label}
           </button>
@@ -70,14 +70,14 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
 
       {/* Prompt */}
       <label className="block">
-        <span className="text-sm text-white/70">{q.type === 'slide' ? 'Slide title' : 'Question'}</span>
+        <span className="text-sm text-fg/70">{q.type === 'slide' ? 'Slide title' : 'Question'}</span>
         <textarea className="input mt-1 min-h-20 text-lg" value={q.text} onChange={(e) => patch({ text: e.target.value })} placeholder={q.type === 'slide' ? 'Round 1: Geography' : 'What is the capital of…?'} />
       </label>
 
       {/* Image */}
       <div className="flex gap-3 items-start">
         <div className="flex-1">
-          <span className="text-sm text-white/70">Image (URL or upload)</span>
+          <span className="text-sm text-fg/70">Image (URL or upload)</span>
           <div className="flex gap-2 mt-1">
             <input className="input" value={q.imageUrl?.startsWith('data:') ? '(uploaded image)' : (q.imageUrl ?? '')} onChange={(e) => patch({ imageUrl: e.target.value || undefined })} placeholder="https://…" />
             <Button type="button" variant="secondary" size="sm" onClick={() => fileRef.current?.click()}>
@@ -91,13 +91,13 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
             <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => void onImageFile(e.target.files?.[0])} />
           </div>
         </div>
-        {q.imageUrl && <img src={q.imageUrl} alt="" className="h-20 w-28 object-contain rounded-xl bg-white/10" referrerPolicy="no-referrer" />}
+        {q.imageUrl && <img src={q.imageUrl} alt="" className="h-20 w-28 object-contain rounded-xl bg-fg/10" referrerPolicy="no-referrer" />}
       </div>
 
       {/* Type-specific */}
       {q.type === 'slide' && (
         <label className="block">
-          <span className="text-sm text-white/70">Body text</span>
+          <span className="text-sm text-fg/70">Body text</span>
           <textarea className="input mt-1 min-h-24" value={q.body ?? ''} onChange={(e) => patch({ body: e.target.value } as Partial<Question>)} placeholder="Rules, fun facts, a welcome message…" />
         </label>
       )}
@@ -106,7 +106,7 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
 
       {q.type === 'truefalse' && (
         <div>
-          <span className="text-sm text-white/70">Correct answer</span>
+          <span className="text-sm text-fg/70">Correct answer</span>
           <div className="grid grid-cols-2 gap-2 mt-1">
             {[true, false].map((v) => (
               <button
@@ -115,7 +115,7 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
                 onClick={() => patch({ answer: v } as Partial<Question>)}
                 className={cn(
                   'rounded-2xl py-3 font-display font-bold text-xl border-2 transition-colors',
-                  q.answer === v ? (v ? 'bg-mint text-ink border-mint' : 'bg-red border-red') : 'border-white/15 hover:bg-white/10',
+                  q.answer === v ? (v ? 'bg-mint text-ink border-mint' : 'bg-red border-red') : 'border-fg/15 hover:bg-fg/10',
                 )}
               >
                 {v ? '✔ TRUE' : '✘ FALSE'}
@@ -127,7 +127,7 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
 
       {q.type === 'timed' && (
         <label className="block">
-          <span className="text-sm text-white/70">Answer (revealed when time is up)</span>
+          <span className="text-sm text-fg/70">Answer (revealed when time is up)</span>
           <input className="input mt-1" value={q.answer} onChange={(e) => patch({ answer: e.target.value } as Partial<Question>)} placeholder="Paris" />
         </label>
       )}
@@ -136,18 +136,18 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
       {q.type !== 'slide' && (
         <div className="grid grid-cols-2 gap-3">
           <label className="block">
-            <span className="text-sm text-white/70">Points</span>
+            <span className="text-sm text-fg/70">Points</span>
             <input type="number" min={0} className="input mt-1" value={q.points} onChange={(e) => patch({ points: Math.max(0, +e.target.value) })} />
           </label>
           <label className="block">
-            <span className="text-sm text-white/70">Timer (seconds, 0 = none)</span>
+            <span className="text-sm text-fg/70">Timer (seconds, 0 = none)</span>
             <input type="number" min={0} className="input mt-1" value={q.timeLimit ?? 0} onChange={(e) => patch({ timeLimit: Math.max(0, +e.target.value) })} />
           </label>
         </div>
       )}
 
       <label className="block">
-        <span className="text-sm text-white/70">Quiz master note (hidden from the screen)</span>
+        <span className="text-sm text-fg/70">Quiz master note (hidden from the screen)</span>
         <input className="input mt-1" value={q.hostNote ?? ''} onChange={(e) => patch({ hostNote: e.target.value || undefined })} placeholder="Fun fact, accepted alternatives…" />
       </label>
     </div>
@@ -171,21 +171,21 @@ function McqOptions({ q, onChange }: { q: McqQuestion; onChange: (q: Question) =
 
   return (
     <div>
-      <span className="text-sm text-white/70">Options — click the letter to mark the correct one</span>
+      <span className="text-sm text-fg/70">Options — click the letter to mark the correct one</span>
       <div className="space-y-2 mt-1">
         {q.options.map((opt, i) => (
           <div key={i} className="flex gap-2 items-center">
             <button
               type="button"
               onClick={() => onChange({ ...q, correctIndex: i })}
-              className={cn('w-10 h-10 rounded-xl font-display font-bold shrink-0 transition-colors', q.correctIndex === i ? 'bg-mint text-ink' : 'bg-white/10 hover:bg-white/20')}
+              className={cn('w-10 h-10 rounded-xl font-display font-bold shrink-0 transition-colors', q.correctIndex === i ? 'bg-mint text-ink' : 'bg-fg/10 hover:bg-fg/20')}
               title="Mark as correct"
             >
               {OPTION_LABELS[i]}
             </button>
             <input className="input" value={opt} onChange={(e) => setOption(i, e.target.value)} placeholder={`Option ${OPTION_LABELS[i]}`} />
             <input className="input !w-32 hidden md:block" value={q.optionImages?.[i] ?? ''} onChange={(e) => setOptionImage(i, e.target.value)} placeholder="img URL" title="Optional image URL for this option" />
-            <button type="button" onClick={() => removeAt(i)} className="text-white/40 hover:text-red px-1" aria-label="Remove option" disabled={q.options.length <= 2}>
+            <button type="button" onClick={() => removeAt(i)} className="text-fg/40 hover:text-red px-1" aria-label="Remove option" disabled={q.options.length <= 2}>
               ✕
             </button>
           </div>

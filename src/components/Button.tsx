@@ -13,9 +13,10 @@ interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
 }
 
 const variants: Record<Variant, string> = {
+  // primary/danger sit on saturated gradients, so their text stays white in every theme
   primary: 'bg-gradient-to-r from-pink to-purple text-white shadow-lg shadow-purple/40 hover:shadow-purple/60',
-  secondary: 'bg-white/10 border border-white/20 text-white hover:bg-white/20',
-  ghost: 'bg-transparent text-white/80 hover:bg-white/10 hover:text-white',
+  secondary: 'bg-fg/10 border border-fg/20 text-fg hover:bg-fg/20',
+  ghost: 'bg-transparent text-fg/80 hover:bg-fg/10 hover:text-fg',
   danger: 'bg-gradient-to-r from-red to-orange text-white shadow-lg shadow-red/40',
   success: 'bg-gradient-to-r from-mint to-lime text-ink shadow-lg shadow-mint/40',
 }

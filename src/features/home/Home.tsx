@@ -5,10 +5,10 @@ import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 
 const tiles = [
-  { to: '/play', emoji: '🎬', title: 'Present a Quiz', text: 'Pick a quiz, add teams and go live on the big screen.', color: '#ff4d8d' },
-  { to: '/create/ai', emoji: '✨', title: 'AI Quiz Generator', text: 'Describe a topic and get a ready-to-play quiz in seconds.', color: '#a855f7' },
-  { to: '/create/manual', emoji: '🛠️', title: 'Manual Quiz Maker', text: 'Slides, MCQs, true/false and timed questions — your way.', color: '#22d3ee' },
-  { to: '/games', emoji: '🎮', title: 'Party Games', text: 'Cows & Bulls, Hangman, Wordle and more crowd pleasers.', color: '#a3e635' },
+  { to: '/play', emoji: '🎬', title: 'Present a Quiz', text: 'Pick a quiz, add teams and go live on the big screen.', color: 'var(--color-pink)' },
+  { to: '/create/ai', emoji: '✨', title: 'AI Quiz Generator', text: 'Describe a topic and get a ready-to-play quiz in seconds.', color: 'var(--color-purple)' },
+  { to: '/create/manual', emoji: '🛠️', title: 'Manual Quiz Maker', text: 'Slides, MCQs, true/false and timed questions — your way.', color: 'var(--color-cyan)' },
+  { to: '/games', emoji: '🎮', title: 'Party Games', text: 'Cows & Bulls, Hangman, Wordle and more crowd pleasers.', color: 'var(--color-lime)' },
 ]
 
 const container = { show: { transition: { staggerChildren: 0.08 } } }
@@ -32,7 +32,7 @@ export function Home() {
         <h1 className="text-5xl md:text-7xl font-bold leading-tight">
           Welcome to <span className="text-gradient">QuizClub</span>
         </h1>
-        <p className="text-white/70 text-lg md:text-xl mt-3 max-w-xl mx-auto">
+        <p className="text-fg/70 text-lg md:text-xl mt-3 max-w-xl mx-auto">
           Colourful quizzes and games, built for the big screen and for cheering crowds.
         </p>
       </motion.div>
@@ -68,7 +68,7 @@ export function Home() {
                   <h2 className="text-2xl font-bold mb-1" style={{ color: t.color }}>
                     {t.title}
                   </h2>
-                  <p className="text-white/70">{t.text}</p>
+                  <p className="text-fg/70">{t.text}</p>
                 </div>
               </Card>
             </Link>
@@ -76,8 +76,8 @@ export function Home() {
         ))}
       </motion.div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-8 text-center text-white/50">
-        <Link to="/quizzes" className="underline underline-offset-4 hover:text-white">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-8 text-center text-fg/50">
+        <Link to="/quizzes" className="underline underline-offset-4 hover:text-fg">
           {quizCount === 0 ? 'No saved quizzes yet — create one!' : `${quizCount} saved ${quizCount === 1 ? 'quiz' : 'quizzes'} in your library`}
         </Link>
       </motion.div>

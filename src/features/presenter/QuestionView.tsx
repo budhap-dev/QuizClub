@@ -71,7 +71,7 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
           <img
             src={q.imageUrl}
             alt=""
-            className="max-h-[38vh] md:max-h-full max-w-full rounded-3xl shadow-2xl object-contain bg-white/5 p-2"
+            className="max-h-[38vh] md:max-h-full max-w-full rounded-3xl shadow-2xl object-contain bg-fg/5 p-2"
             referrerPolicy="no-referrer"
           />
         </motion.div>
@@ -83,7 +83,7 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-[clamp(1.1rem,3.2vh,1.9rem)] text-white/80 text-center max-w-4xl whitespace-pre-line stage-text min-h-0 overflow-y-auto no-scrollbar"
+          className="text-[clamp(1.1rem,3.2vh,1.9rem)] text-fg/80 text-center max-w-4xl whitespace-pre-line stage-text min-h-0 overflow-y-auto no-scrollbar"
         >
           {q.body}
         </motion.p>
@@ -107,13 +107,13 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
                   'relative rounded-3xl px-[clamp(0.75rem,2vw,1.5rem)] py-[clamp(0.5rem,1.8vh,1.5rem)] text-left flex items-center gap-[clamp(0.5rem,1.5vw,1rem)] border-4 transition-all duration-500 bg-gradient-to-br',
                   OPTION_COLORS[i % OPTION_COLORS.length],
                   dim && 'opacity-25 grayscale',
-                  correct ? 'border-white shadow-[0_0_60px_rgba(255,255,255,0.5)]' : 'border-transparent',
+                  correct ? 'border-fg shadow-[0_0_60px_color-mix(in_srgb,var(--color-fg)_50%,transparent)]' : 'border-transparent',
                 )}
               >
                 <span className="font-display font-bold text-[clamp(1.25rem,3.5vh,2.25rem)] bg-black/25 rounded-2xl w-[clamp(2.5rem,7vh,4rem)] h-[clamp(2.5rem,7vh,4rem)] flex items-center justify-center shrink-0">
                   {OPTION_LABELS[i]}
                 </span>
-                {q.optionImages?.[i] && <img src={q.optionImages[i]} alt="" className="h-[clamp(3rem,10vh,6rem)] rounded-xl object-contain bg-white/20" />}
+                {q.optionImages?.[i] && <img src={q.optionImages[i]} alt="" className="h-[clamp(3rem,10vh,6rem)] rounded-xl object-contain bg-fg/20" />}
                 <span className="font-display font-semibold text-[clamp(1.05rem,3vh,1.9rem)] leading-tight stage-text">{opt}</span>
                 {correct && (
                   <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="ml-auto text-[clamp(1.5rem,4vh,3rem)]">
@@ -142,7 +142,7 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
                   'rounded-3xl py-[clamp(1.25rem,6vh,3.5rem)] text-center font-display font-bold text-[clamp(1.75rem,6vh,3.75rem)] border-4 transition-all duration-500',
                   v ? 'bg-gradient-to-br from-mint to-lime text-ink' : 'bg-gradient-to-br from-red to-orange text-white',
                   dim && 'opacity-25 grayscale',
-                  correct ? 'border-white shadow-[0_0_60px_rgba(255,255,255,0.5)] scale-105' : 'border-transparent',
+                  correct ? 'border-fg shadow-[0_0_60px_color-mix(in_srgb,var(--color-fg)_50%,transparent)] scale-105' : 'border-transparent',
                 )}
               >
                 {v ? '✔ TRUE' : '✘ FALSE'}
@@ -165,7 +165,7 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
               {q.answer}
             </motion.div>
           ) : (
-            <motion.div key="thinking" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[clamp(1.25rem,4vh,2.25rem)] text-white/60 font-display text-center shrink-0">
+            <motion.div key="thinking" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[clamp(1.25rem,4vh,2.25rem)] text-fg/60 font-display text-center shrink-0">
               {timer?.running ? '⏳ Answers in, teams!' : '✍️ Write your answer…'}
             </motion.div>
           )}

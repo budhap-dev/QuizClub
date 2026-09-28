@@ -45,7 +45,7 @@ export function MyQuizzes() {
       {quizzes.length === 0 && (
         <Card className="text-center py-14">
           <div className="text-6xl mb-3">🗂️</div>
-          <p className="text-white/70 mb-4">Nothing here yet. Build one by hand or let AI do the heavy lifting.</p>
+          <p className="text-fg/70 mb-4">Nothing here yet. Build one by hand or let AI do the heavy lifting.</p>
           <div className="flex gap-2 justify-center">
             <Button onClick={() => navigate('/create/ai')}>✨ AI generator</Button>
             <Button variant="secondary" onClick={() => navigate('/create/manual')}>
@@ -64,12 +64,12 @@ export function MyQuizzes() {
                   <div className="text-4xl">{q.emoji}</div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display font-bold text-xl leading-tight">{q.title}</h3>
-                    <div className="text-xs text-white/50 mt-1">
+                    <div className="text-xs text-fg/50 mt-1">
                       {q.questions.length} questions · {q.source === 'ai' ? '✨ AI' : '🛠️ Manual'} · {new Date(q.updatedAt).toLocaleDateString()}
                     </div>
                   </div>
                 </div>
-                {q.description && <p className="text-sm text-white/60 line-clamp-2 mb-3">{q.description}</p>}
+                {q.description && <p className="text-sm text-fg/60 line-clamp-2 mb-3">{q.description}</p>}
                 <div className="mt-auto flex flex-wrap gap-1.5">
                   <Button
                     size="sm"

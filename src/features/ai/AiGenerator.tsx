@@ -101,7 +101,7 @@ export function AiGenerator() {
                 key={c.id}
                 type="button"
                 onClick={() => set('category', c.id)}
-                className={cn('rounded-xl py-2 px-1 text-sm font-semibold border-2 transition-colors', form.category === c.id ? 'bg-purple border-purple' : 'border-white/10 hover:bg-white/10')}
+                className={cn('rounded-xl py-2 px-1 text-sm font-semibold border-2 transition-colors', form.category === c.id ? 'bg-purple border-purple' : 'border-fg/10 hover:bg-fg/10')}
               >
                 <div className="text-xl">{c.emoji}</div>
                 {c.label}
@@ -110,13 +110,13 @@ export function AiGenerator() {
           </div>
 
           <label className="block mb-4">
-            <span className="text-sm text-white/70">Topic or instructions</span>
+            <span className="text-sm text-fg/70">Topic or instructions</span>
             <textarea className="input mt-1 min-h-20" placeholder={`e.g. ${catMeta.hint}`} value={form.topic} onChange={(e) => set('topic', e.target.value)} maxLength={200} />
           </label>
 
           <div className="grid grid-cols-2 gap-3 mb-4">
             <label className="block">
-              <span className="text-sm text-white/70">Difficulty</span>
+              <span className="text-sm text-fg/70">Difficulty</span>
               <select className="input mt-1" value={form.difficulty} onChange={(e) => set('difficulty', e.target.value as AiQuizRequest['difficulty'])}>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
@@ -125,7 +125,7 @@ export function AiGenerator() {
               </select>
             </label>
             <label className="block">
-              <span className="text-sm text-white/70">Audience</span>
+              <span className="text-sm text-fg/70">Audience</span>
               <select className="input mt-1" value={form.audience} onChange={(e) => set('audience', e.target.value as AiQuizRequest['audience'])}>
                 <option value="kids">Kids</option>
                 <option value="adults">Adults</option>
@@ -134,21 +134,21 @@ export function AiGenerator() {
             </label>
           </div>
 
-          <label className="flex items-center gap-3 mb-4 text-sm text-white/70">
+          <label className="flex items-center gap-3 mb-4 text-sm text-fg/70">
             Questions
             <input type="range" min={3} max={30} value={form.count} onChange={(e) => set('count', +e.target.value)} className="accent-pink flex-1" />
-            <span className="font-bold text-white w-8 text-right">{form.count}</span>
+            <span className="font-bold text-fg w-8 text-right">{form.count}</span>
           </label>
 
           <div className="mb-5">
-            <span className="text-sm text-white/70">Question types</span>
+            <span className="text-sm text-fg/70">Question types</span>
             <div className="flex flex-wrap gap-2 mt-1">
               {TYPES.map((t) => (
                 <button
                   key={t.id}
                   type="button"
                   onClick={() => toggleType(t.id)}
-                  className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', form.types.includes(t.id) ? 'bg-cyan/80 text-ink border-cyan' : 'border-white/10 hover:bg-white/10')}
+                  className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', form.types.includes(t.id) ? 'bg-cyan/80 text-ink border-cyan' : 'border-fg/10 hover:bg-fg/10')}
                 >
                   {t.label}
                 </button>
@@ -163,7 +163,7 @@ export function AiGenerator() {
           {error && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-3 rounded-2xl bg-red/20 border border-red/40 p-3 text-sm">
               <div className="font-semibold">Couldn't generate</div>
-              <div className="text-white/80">{error}</div>
+              <div className="text-fg/80">{error}</div>
               <div className="mt-2 flex gap-2 flex-wrap">
                 <Button size="sm" variant="secondary" onClick={fallback}>
                   Use built-in {catMeta.label} questions instead
@@ -186,7 +186,7 @@ export function AiGenerator() {
                   🪄
                 </motion.div>
                 <AnimatePresence mode="wait">
-                  <motion.p key={line} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="text-white/70 font-display text-lg">
+                  <motion.p key={line} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="text-fg/70 font-display text-lg">
                     {LOADING_LINES[line]}
                   </motion.p>
                 </AnimatePresence>
@@ -197,7 +197,7 @@ export function AiGenerator() {
                   <div className="text-4xl">{result.emoji}</div>
                   <div className="flex-1 min-w-0">
                     <input className="input font-display font-bold text-lg !py-1.5" value={result.title} onChange={(e) => setResult({ ...result, title: e.target.value })} />
-                    <p className="text-sm text-white/60 mt-1">{result.description}</p>
+                    <p className="text-sm text-fg/60 mt-1">{result.description}</p>
                   </div>
                 </div>
                 <div className="space-y-2 max-h-[46vh] overflow-y-auto pr-1 mb-4">
@@ -242,7 +242,7 @@ export function AiGenerator() {
                 </div>
               </motion.div>
             ) : (
-              <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-full flex flex-col items-center justify-center text-center py-16 text-white/50">
+              <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-full flex flex-col items-center justify-center text-center py-16 text-fg/50">
                 <div className="text-6xl mb-3 animate-float">🤖</div>
                 <p>Your generated quiz will appear here for review.</p>
                 <p className="text-xs mt-2">Powered by Claude on the server — no key needed in the browser.</p>
@@ -258,14 +258,14 @@ export function AiGenerator() {
 function PreviewRow({ q, i, onRemove }: { q: Question; i: number; onRemove: () => void }) {
   const badge: Record<Question['type'], string> = { slide: '🖼️', mcq: '🔠', truefalse: '✅', timed: '⏱️' }
   return (
-    <motion.div layout initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="rounded-2xl bg-white/5 p-3 flex gap-3">
-      <div className="text-white/40 text-sm w-6 tabular-nums pt-0.5">{i + 1}</div>
+    <motion.div layout initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="rounded-2xl bg-fg/5 p-3 flex gap-3">
+      <div className="text-fg/40 text-sm w-6 tabular-nums pt-0.5">{i + 1}</div>
       <div className="flex-1 min-w-0">
         <div className="font-semibold">
           {badge[q.type]} {q.text}
         </div>
         {q.type === 'mcq' && (
-          <div className="text-xs text-white/60 mt-1 flex flex-wrap gap-x-3">
+          <div className="text-xs text-fg/60 mt-1 flex flex-wrap gap-x-3">
             {q.options.map((o, j) => (
               <span key={j} className={cn(j === q.correctIndex && 'text-lime font-bold')}>
                 {OPTION_LABELS[j]}. {o}
@@ -275,9 +275,9 @@ function PreviewRow({ q, i, onRemove }: { q: Question; i: number; onRemove: () =
         )}
         {q.type === 'truefalse' && <div className="text-xs text-lime font-bold mt-1">{q.answer ? 'TRUE' : 'FALSE'}</div>}
         {q.type === 'timed' && <div className="text-xs text-lime font-bold mt-1">→ {q.answer}</div>}
-        {q.imageUrl && <img src={q.imageUrl} alt="" className="h-10 mt-1 rounded bg-white/10 p-0.5" referrerPolicy="no-referrer" />}
+        {q.imageUrl && <img src={q.imageUrl} alt="" className="h-10 mt-1 rounded bg-fg/10 p-0.5" referrerPolicy="no-referrer" />}
       </div>
-      <button onClick={onRemove} className="text-white/30 hover:text-red self-start" aria-label="Remove question">
+      <button onClick={onRemove} className="text-fg/30 hover:text-red self-start" aria-label="Remove question">
         ✕
       </button>
     </motion.div>

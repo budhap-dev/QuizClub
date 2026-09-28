@@ -31,7 +31,7 @@ export function Podium({ teams }: { teams: Team[] }) {
         🏆 Final Results
       </motion.h1>
       {first && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }} className="text-[clamp(1.1rem,3.2vh,1.9rem)] text-white/80 mb-[clamp(1rem,4vh,2.5rem)]">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }} className="text-[clamp(1.1rem,3.2vh,1.9rem)] text-fg/80 mb-[clamp(1rem,4vh,2.5rem)]">
           Congratulations, <b style={{ color: first.color }}>{first.name}</b>!
         </motion.p>
       )}

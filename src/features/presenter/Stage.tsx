@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Button, TeamChip, party } from '@/components'
+import { Button, TeamChip, ThemeButton, party } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import type { Quiz, StagePhase, Team } from '@/types'
@@ -147,7 +147,7 @@ export function Stage({ preview }: StageProps) {
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 text-center">
         <div className="text-6xl">🤷</div>
         <h1 className="text-3xl font-bold">Nothing to present</h1>
-        <p className="text-white/60">Pick a quiz and add teams first.</p>
+        <p className="text-fg/60">Pick a quiz and add teams first.</p>
         <Button onClick={() => navigate('/play')}>Go to Play setup</Button>
       </div>
     )
@@ -165,26 +165,27 @@ export function Stage({ preview }: StageProps) {
     // Locked to the viewport on md+ so a slide never needs scrolling; phones may scroll.
     <div className="min-h-dvh md:h-dvh md:overflow-hidden flex flex-col select-none">
       {/* Progress bar */}
-      <div className="h-1.5 bg-white/10 shrink-0">
+      <div className="h-1.5 bg-fg/10 shrink-0">
         <motion.div className="h-full bg-rainbow" animate={{ width: `${progress}%` }} transition={{ duration: 0.5 }} />
       </div>
 
       {/* Top bar */}
       <div className="flex items-center gap-2 px-3 md:px-5 py-2 text-sm shrink-0">
-        <button onClick={exit} className="glass rounded-xl px-3 py-1.5 hover:bg-white/20" title="Exit">
+        <button onClick={exit} className="glass rounded-xl px-3 py-1.5 hover:bg-fg/20" title="Exit">
           ✕ {preview ? 'Close preview' : 'Exit'}
         </button>
-        <div className="font-display font-bold text-white/70 truncate">
+        <div className="font-display font-bold text-fg/70 truncate">
           {quiz.emoji} {quiz.title}
         </div>
-        <div className="ml-auto font-display font-bold tabular-nums text-white/70">
+        <div className="ml-auto font-display font-bold tabular-nums text-fg/70">
           {phase === 'podium' ? 'Results' : `${index + 1} / ${total}`}
         </div>
         {preview && <span className="bg-sun text-ink font-bold px-2 py-0.5 rounded-lg">PREVIEW</span>}
-        <button onClick={toggleFullscreen} className="glass rounded-xl px-3 py-1.5 hover:bg-white/20 hidden sm:block" title="Fullscreen (F)">
+        <ThemeButton className="glass !px-3 text-base" />
+        <button onClick={toggleFullscreen} className="glass rounded-xl px-3 py-1.5 hover:bg-fg/20 hidden sm:block" title="Fullscreen (F)">
           ⛶
         </button>
-        <button onClick={() => setDrawer(true)} className="glass rounded-xl px-3 py-1.5 hover:bg-white/20" title="Quiz master panel (H)">
+        <button onClick={() => setDrawer(true)} className="glass rounded-xl px-3 py-1.5 hover:bg-fg/20" title="Quiz master panel (H)">
           🎛️
         </button>
       </div>
@@ -221,7 +222,7 @@ export function Stage({ preview }: StageProps) {
             exit={{ y: 40, opacity: 0 }}
             className="px-4 pb-1 flex flex-wrap items-center justify-center gap-2 shrink-0"
           >
-            <span className="text-white/60 text-sm mr-2">Who got it? (+{question.points})</span>
+            <span className="text-fg/60 text-sm mr-2">Who got it? (+{question.points})</span>
             {teams.map((t) => (
               <TeamChip key={t.id} team={t} onClick={() => awardTeam(t)} active={awarded.has(t.id)} />
             ))}
@@ -245,7 +246,7 @@ export function Stage({ preview }: StageProps) {
           </Button>
         )}
         {phase !== 'podium' && (
-          <Button variant="secondary" onClick={() => setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')} className={cn(phase === 'scoreboard' && 'ring-2 ring-white')}>
+          <Button variant="secondary" onClick={() => setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')} className={cn(phase === 'scoreboard' && 'ring-2 ring-fg')}>
             🏆 Scores
           </Button>
         )}

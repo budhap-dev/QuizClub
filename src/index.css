@@ -1,12 +1,18 @@
 @import 'tailwindcss';
 
+/*
+ * Colour tokens. Utilities reference these as CSS variables, so a theme is just
+ * a `:root[data-theme=…]` block that overrides them (see the Themes section).
+ * `fg` is the text/glass colour on the page background; `ink` is the page itself.
+ * mint/lime = success, red = danger, sun = warning — themes keep those recognisable.
+ */
 @theme {
   --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   --color-ink: #12082e;
   --color-ink-soft: #1c1150;
-  --color-paper: #fff9f2;
+  --color-fg: #ffffff;
 
   --color-pink: #ff4d8d;
   --color-purple: #a855f7;
@@ -43,6 +49,88 @@
   }
 }
 
+/* ───────── Themes (keep previews in src/app/theme.ts in sync) ───────── */
+:root[data-theme='ocean'] {
+  --color-ink: #061a2e;
+  --color-ink-soft: #0b2a47;
+  --color-pink: #38bdf8;
+  --color-purple: #6366f1;
+  --color-violet: #4338ca;
+  --color-cyan: #2dd4bf;
+  --color-lime: #86efac;
+  --color-sun: #fde047;
+  --color-orange: #fb923c;
+  --color-mint: #34d399;
+  --color-red: #fb7185;
+}
+:root[data-theme='sunset'] {
+  --color-ink: #2b0a1e;
+  --color-ink-soft: #3d1230;
+  --color-pink: #fb7185;
+  --color-purple: #f97316;
+  --color-violet: #be123c;
+  --color-cyan: #fbbf24;
+  --color-lime: #fde047;
+  --color-sun: #fcd34d;
+  --color-orange: #f97316;
+  --color-mint: #4ade80;
+  --color-red: #ef4444;
+}
+:root[data-theme='forest'] {
+  --color-ink: #071f16;
+  --color-ink-soft: #0e3325;
+  --color-pink: #34d399;
+  --color-purple: #10b981;
+  --color-violet: #047857;
+  --color-cyan: #a3e635;
+  --color-lime: #d9f99d;
+  --color-sun: #fbbf24;
+  --color-orange: #fb923c;
+  --color-mint: #6ee7b7;
+  --color-red: #f87171;
+}
+:root[data-theme='retro'] {
+  --color-ink: #0d0221;
+  --color-ink-soft: #1a0b3d;
+  --color-pink: #ff2e97;
+  --color-purple: #7b2cff;
+  --color-violet: #4a00b0;
+  --color-cyan: #00f0ff;
+  --color-lime: #c8ff00;
+  --color-sun: #ffe600;
+  --color-orange: #ff7a00;
+  --color-mint: #00ff9d;
+  --color-red: #ff3355;
+}
+:root[data-theme='midnight'] {
+  --color-ink: #0a0a0f;
+  --color-ink-soft: #16161f;
+  --color-fg: #f4f4f5;
+  --color-pink: #a1a1aa;
+  --color-purple: #9ca3af;
+  --color-violet: #3f3f46;
+  --color-cyan: #d4d4d8;
+  --color-lime: #bbf7d0;
+  --color-sun: #fde68a;
+  --color-orange: #fdba74;
+  --color-mint: #6ee7b7;
+  --color-red: #fca5a5;
+}
+:root[data-theme='candy'] {
+  --color-ink: #fff4fa;
+  --color-ink-soft: #ffe3f1;
+  --color-fg: #2d1240;
+  --color-pink: #ff3d8b;
+  --color-purple: #9333ea;
+  --color-violet: #6d28d9;
+  --color-cyan: #0891b2;
+  --color-lime: #65a30d;
+  --color-sun: #f59e0b;
+  --color-orange: #f97316;
+  --color-mint: #059669;
+  --color-red: #e11d48;
+}
+
 :root {
   color-scheme: dark;
 }
@@ -54,15 +142,16 @@ html, body, #root {
 body {
   margin: 0;
   font-family: var(--font-body);
-  color: white;
-  background: var(--color-ink);
+  color: var(--color-fg);
+  background-color: var(--color-ink);
   background-image:
-    radial-gradient(circle at 15% 10%, rgba(168, 85, 247, 0.35), transparent 40%),
-    radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.25), transparent 40%),
-    radial-gradient(circle at 50% 90%, rgba(255, 77, 141, 0.3), transparent 45%);
+    radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--color-purple) 35%, transparent), transparent 40%),
+    radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--color-cyan) 25%, transparent), transparent 40%),
+    radial-gradient(circle at 50% 90%, color-mix(in srgb, var(--color-pink) 30%, transparent), transparent 45%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1, h2, h3, .font-display {
@@ -71,11 +160,11 @@ h1, h2, h3, .font-display {
 
 /* Glassy card used across the app */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: color-mix(in srgb, var(--color-fg) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-fg) 14%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
 }
 
 .text-gradient {
@@ -101,17 +190,17 @@ h1, h2, h3, .font-display {
   width: 100%;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 2px solid rgba(255, 255, 255, 0.14);
-  color: white;
+  background: color-mix(in srgb, var(--color-fg) 8%, transparent);
+  border: 2px solid color-mix(in srgb, var(--color-fg) 14%, transparent);
+  color: var(--color-fg);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
   font-size: 1rem;
 }
-.input::placeholder { color: rgba(255, 255, 255, 0.4); }
+.input::placeholder { color: color-mix(in srgb, var(--color-fg) 40%, transparent); }
 .input:focus {
   border-color: var(--color-purple);
-  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-purple) 25%, transparent);
 }
 select.input option { color: black; }
 
