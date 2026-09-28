@@ -5,6 +5,8 @@ import { Layout } from './Layout'
 import { Home } from '@/features/home/Home'
 
 const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
+const PlaySetup = lazy(() => import('@/features/presenter/PlaySetup').then((m) => ({ default: m.PlaySetup })))
+const Stage = lazy(() => import('@/features/presenter/Stage').then((m) => ({ default: m.Stage })))
 const Settings = lazy(() => import('@/features/settings/Settings').then((m) => ({ default: m.Settings })))
 
 function Loading() {
@@ -24,8 +26,12 @@ export default function App() {
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="quizzes" element={<MyQuizzes />} />
+            <Route path="play" element={<PlaySetup />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          {/* Stage is full-bleed, no layout chrome */}
+          <Route path="play/stage" element={<Stage />} />
+          <Route path="preview/:id" element={<Stage preview />} />
         </Routes>
       </AnimatePresence>
     </Suspense>
