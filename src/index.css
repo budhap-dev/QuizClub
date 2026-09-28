@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+
+  --color-ink: #12082e;
+  --color-ink-soft: #1c1150;
+  --color-paper: #fff9f2;
+
+  --color-pink: #ff4d8d;
+  --color-purple: #a855f7;
+  --color-violet: #6d28d9;
+  --color-cyan: #22d3ee;
+  --color-lime: #a3e635;
+  --color-sun: #fbbf24;
+  --color-orange: #fb923c;
+  --color-mint: #34d399;
+  --color-red: #f43f5e;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-pop: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-wiggle: wiggle 0.6s ease-in-out;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(3deg); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-6deg); }
+    75% { transform: rotate(6deg); }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: white;
+  background: var(--color-ink);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(168, 85, 247, 0.35), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.25), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255, 77, 141, 0.3), transparent 45%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Glassy card used across the app */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-pink), var(--color-purple), var(--color-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-rainbow {
+  background: linear-gradient(120deg, var(--color-pink), var(--color-purple), var(--color-cyan), var(--color-lime));
+  background-size: 300% 300%;
+  animation: rainbow 8s ease infinite;
+}
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  color: white;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 1rem;
+}
+.input::placeholder { color: rgba(255, 255, 255, 0.4); }
+.input:focus {
+  border-color: var(--color-purple);
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.25);
+}
+select.input option { color: black; }
+
+/* Hide scrollbars but keep scrolling */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Fullscreen presenter helper */
+.stage-text {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
