@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { themeColor } from '@/app/theme'
 import { cn } from '@/utils'
 
 interface TimerRingProps {
@@ -8,29 +9,29 @@ interface TimerRingProps {
   className?: string
 }
 
-/** Circular countdown that shifts from green → amber → red. */
+/** Circular countdown that shifts from green → amber → red (in the theme's own accents). */
 export function TimerRing({ total, remaining, size = 110, className }: TimerRingProps) {
-  const r = size / 2 - 8
+  const r = size / 2 - 7
   const circ = 2 * Math.PI * r
   const frac = total > 0 ? Math.max(0, remaining / total) : 0
-  const color = frac > 0.5 ? '#34d399' : frac > 0.25 ? '#fbbf24' : '#f43f5e'
+  const color = frac > 0.5 ? themeColor('mint', '#34d399') : frac > 0.25 ? themeColor('sun', '#fbbf24') : themeColor('red', '#f43f5e')
   const urgent = remaining <= 5 && remaining > 0
 
   return (
     <motion.div
       className={cn('relative shrink-0', className)}
       style={{ width: size, height: size }}
-      animate={urgent ? { scale: [1, 1.08, 1] } : { scale: 1 }}
+      animate={urgent ? { scale: [1, 1.05, 1] } : { scale: 1 }}
       transition={urgent ? { repeat: Infinity, duration: 1 } : undefined}
     >
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} style={{ stroke: 'color-mix(in srgb, var(--color-fg) 12%, transparent)' }} strokeWidth={8} fill="none" />
+        <circle cx={size / 2} cy={size / 2} r={r} style={{ stroke: 'color-mix(in srgb, var(--color-fg) 12%, transparent)' }} strokeWidth={6} fill="none" />
         <motion.circle
           cx={size / 2}
           cy={size / 2}
           r={r}
           stroke={color}
-          strokeWidth={8}
+          strokeWidth={6}
           strokeLinecap="round"
           fill="none"
           strokeDasharray={circ}
@@ -38,10 +39,7 @@ export function TimerRing({ total, remaining, size = 110, className }: TimerRing
           transition={{ duration: 0.9, ease: 'linear' }}
         />
       </svg>
-      <div
-        className="absolute inset-0 flex items-center justify-center font-display font-bold tabular-nums"
-        style={{ fontSize: size * 0.34, color }}
-      >
+      <div className="absolute inset-0 flex items-center justify-center font-display font-semibold tabular-nums" style={{ fontSize: size * 0.32, color }}>
         {Math.ceil(remaining)}
       </div>
     </motion.div>

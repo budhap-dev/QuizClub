@@ -19,9 +19,10 @@ export function EmojiPicker({ value, onChange, className }: EmojiPickerProps) {
           key={e}
           type="button"
           onClick={() => onChange(e)}
+          aria-pressed={value === e}
           className={cn(
-            'w-10 h-10 rounded-xl text-xl flex items-center justify-center transition-transform hover:scale-110',
-            value === e ? 'bg-purple ring-2 ring-fg' : 'bg-fg/10',
+            'w-10 h-10 rounded-lg text-xl flex items-center justify-center transition-colors',
+            value === e ? 'bg-purple/25 ring-2 ring-purple' : 'bg-fg/8 hover:bg-fg/14',
           )}
         >
           {e}

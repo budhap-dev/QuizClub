@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Cloud, Eye, EyeOff, KeyRound, Loader2, Lock, LockOpen, RefreshCw, Trash2 } from 'lucide-react'
 import { Button, Card } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { cn } from '@/utils'
@@ -65,8 +66,10 @@ export function VaultCard({ className }: { className?: string }) {
 
   return (
     <Card className={className}>
-      <h2 className="text-xl font-bold mb-1">☁️ Cloud vault</h2>
-      <p className="text-fg/60 text-sm mb-3">
+      <h2 className="text-lg font-semibold mb-1 flex items-center gap-2">
+        <Cloud size={18} className="text-cyan" /> Cloud vault
+      </h2>
+      <p className="text-fg/60 text-sm mb-4">
         Keep your quizzes in sync across devices without an account. The library is encrypted in this browser with a passphrase — the server only ever stores
         scrambled data, so only someone with the passphrase can see your questions.
       </p>
@@ -75,21 +78,37 @@ export function VaultCard({ className }: { className?: string }) {
         {!unlocked ? (
           <motion.form key="locked" onSubmit={unlock} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
             <div className="flex gap-2">
-              <input
-                data-testid="vault-passphrase"
-                type={show ? 'text' : 'password'}
-                className="input"
-                placeholder="Passphrase — use the same one on every device"
-                value={pass}
-                onChange={(e) => setPass(e.target.value)}
-                autoComplete="off"
-                minLength={MIN_PASSPHRASE}
-              />
-              <Button type="button" variant="ghost" onClick={() => setShow((s) => !s)} title={show ? 'Hide' : 'Show'}>
-                {show ? '🙈' : '👁️'}
-              </Button>
+              <div className="relative flex-1">
+                <input
+                  data-testid="vault-passphrase"
+                  type={show ? 'text' : 'password'}
+                  className="input pr-10"
+                  placeholder="Passphrase — use the same one on every device"
+                  value={pass}
+                  onChange={(e) => setPass(e.target.value)}
+                  autoComplete="off"
+                  minLength={MIN_PASSPHRASE}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShow((s) => !s)}
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg flex items-center justify-center text-fg/50 hover:text-fg hover:bg-fg/10 transition-colors"
+                  title={show ? 'Hide passphrase' : 'Show passphrase'}
+                  aria-label={show ? 'Hide passphrase' : 'Show passphrase'}
+                >
+                  {show ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
               <Button data-testid="vault-unlock" type="submit" disabled={pass.length < MIN_PASSPHRASE || busy}>
-                {busy ? '🔑 Deriving key…' : '🔓 Unlock'}
+                {busy ? (
+                  <>
+                    <Loader2 className="animate-spin" /> Deriving key…
+                  </>
+                ) : (
+                  <>
+                    <LockOpen /> Unlock
+                  </>
+                )}
               </Button>
             </div>
             <p className="text-fg/40 text-xs">
@@ -101,7 +120,7 @@ export function VaultCard({ className }: { className?: string }) {
         ) : (
           <motion.div key="unlocked" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
             <div className="flex items-center gap-2 text-sm" data-testid="vault-status">
-              <span className={cn('w-2.5 h-2.5 rounded-full shrink-0', dot[vault.status])} />
+              <span className={cn('w-2 h-2 rounded-full shrink-0', dot[vault.status])} />
               <span className={cn(vault.status === 'error' && 'text-red', (vault.status === 'offline' || vault.status === 'unconfigured') && 'text-sun')}>
                 {statusText}
               </span>
@@ -120,23 +139,25 @@ export function VaultCard({ className }: { className?: string }) {
 
             <div className="flex flex-wrap gap-2">
               <Button data-testid="vault-sync" size="sm" variant="secondary" onClick={() => void syncNow()} disabled={vault.status === 'syncing'}>
-                🔄 Sync now
+                <RefreshCw className={cn(vault.status === 'syncing' && 'animate-spin')} /> Sync now
               </Button>
               <Button data-testid="vault-lock" size="sm" variant="secondary" onClick={lockVault}>
-                🔒 Lock this device
+                <Lock /> Lock this device
               </Button>
               <Button
                 size="sm"
                 variant="ghost"
-                className="text-red"
+                className="text-fg/60 hover:text-red"
                 onClick={() => {
                   if (confirm('Delete the cloud copy of your library? Quizzes on this device are kept.')) void deleteVault()
                 }}
               >
-                🗑️ Delete cloud copy
+                <Trash2 /> Delete cloud copy
               </Button>
             </div>
-            <p className="text-fg/40 text-xs">Locking forgets the key on this device only; your quizzes stay here and in the cloud.</p>
+            <p className="text-fg/40 text-xs flex items-center gap-1.5">
+              <KeyRound size={12} /> Locking forgets the key on this device only; your quizzes stay here and in the cloud.
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Download, Settings as SettingsIcon, Upload } from 'lucide-react'
 import { Button, Card, PageHeader, ThemePicker } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
 import { useQuizStore } from '@/store/quizStore'
@@ -27,19 +28,19 @@ export function Settings() {
 
   return (
     <div>
-      <PageHeader title="Settings" emoji="⚙️" />
+      <PageHeader title="Settings" icon={<SettingsIcon />} />
 
       <div className="grid md:grid-cols-2 gap-4">
         <Card className="md:col-span-2">
-          <h2 className="text-xl font-bold mb-1">🎨 Theme</h2>
-          <p className="text-fg/60 text-sm mb-3">Changes everywhere instantly — including the presenter stage.</p>
+          <h2 className="text-lg font-semibold mb-1">Theme</h2>
+          <p className="text-fg/60 text-sm mb-4">Changes everywhere instantly — including the presenter stage.</p>
           <ThemePicker />
         </Card>
 
         <VaultCard className="md:col-span-2" />
 
         <Card>
-          <h2 className="text-xl font-bold mb-3">Defaults</h2>
+          <h2 className="text-lg font-semibold mb-4">Defaults</h2>
           <label className="block mb-3">
             <span className="text-fg/70 text-sm">Default timer (seconds)</span>
             <input type="number" className="input mt-1" min={0} value={s.defaultTimeLimit} onChange={(e) => s.setDefaultTimeLimit(+e.target.value)} />
@@ -52,15 +53,15 @@ export function Settings() {
             <span className="text-fg/70 text-sm">Score +/− step on stage</span>
             <input type="number" className="input mt-1" min={1} value={s.scoreStep} onChange={(e) => s.setScoreStep(+e.target.value)} />
           </label>
-          <label className="flex items-center gap-3 mt-2 cursor-pointer">
-            <input type="checkbox" checked={s.muted} onChange={(e) => s.setMuted(e.target.checked)} className="w-5 h-5 accent-purple" />
+          <label className="flex items-center gap-3 mt-2 cursor-pointer text-sm">
+            <input type="checkbox" checked={s.muted} onChange={(e) => s.setMuted(e.target.checked)} className="w-4 h-4 accent-purple" />
             <span>Mute sound effects</span>
           </label>
         </Card>
 
         <Card>
-          <h2 className="text-xl font-bold mb-1">AI generator</h2>
-          <p className="text-fg/60 text-sm mb-3">
+          <h2 className="text-lg font-semibold mb-1">AI generator</h2>
+          <p className="text-fg/60 text-sm mb-4">
             Quizzes are generated on the server, so no API key is needed here. If the host has set an access code, enter it below.
           </p>
           <label className="block">
@@ -71,22 +72,22 @@ export function Settings() {
         </Card>
 
         <Card>
-          <h2 className="text-xl font-bold mb-3">Backup</h2>
+          <h2 className="text-lg font-semibold mb-4">Backup</h2>
           <div className="flex flex-wrap gap-2">
             <Button variant="secondary" onClick={() => downloadJson(`quizclub-${new Date().toISOString().slice(0, 10)}.json`, quizzes)} disabled={quizzes.length === 0}>
-              ⬇️ Export all quizzes
+              <Download /> Export all quizzes
             </Button>
             <Button variant="secondary" onClick={() => fileRef.current?.click()}>
-              ⬆️ Import JSON
+              <Upload /> Import JSON
             </Button>
             <input ref={fileRef} type="file" accept="application/json" hidden onChange={(e) => void onImport(e.target.files?.[0])} />
           </div>
         </Card>
 
         <Card>
-          <h2 className="text-xl font-bold mb-3">Reset</h2>
+          <h2 className="text-lg font-semibold mb-4">Reset</h2>
           <div className="flex flex-wrap gap-2">
-            <Button variant="danger" onClick={() => confirm('Remove all teams?') && clearTeams()}>
+            <Button variant="secondary" className="text-red" onClick={() => confirm('Remove all teams?') && clearTeams()}>
               Clear teams
             </Button>
             <Button

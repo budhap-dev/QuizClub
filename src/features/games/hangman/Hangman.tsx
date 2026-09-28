@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Eye, Lightbulb, RefreshCw } from 'lucide-react'
 import { Button, party } from '@/components'
 import { cn, pick } from '@/utils'
 import { sfx } from '@/utils/sounds'
@@ -110,7 +111,11 @@ export default function Hangman() {
               setCat(c)
               newGame(c)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-pink border-pink' : 'border-fg/15 hover:bg-fg/10')}
+            aria-pressed={cat === c}
+            className={cn(
+              'px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors',
+              cat === c ? 'bg-pink/18 border-pink text-fg' : 'border-fg/12 text-fg/75 hover:bg-fg/8 hover:text-fg',
+            )}
           >
             {c}
           </button>
@@ -132,7 +137,7 @@ export default function Hangman() {
                   initial={false}
                   animate={{ rotateX: guessed.has(ch) || lost ? 0 : 0, scale: guessed.has(ch) ? [1, 1.2, 1] : 1 }}
                   className={cn(
-                    'w-9 h-12 md:w-12 md:h-16 rounded-xl border-b-4 flex items-center justify-center font-display font-bold text-2xl md:text-4xl',
+                    'w-9 h-12 md:w-12 md:h-16 rounded-lg border-b-4 flex items-center justify-center font-display font-semibold text-2xl md:text-4xl',
                     guessed.has(ch) ? 'bg-mint/20 border-mint text-fg' : lost ? 'bg-red/20 border-red text-red' : 'bg-fg/10 border-fg/40',
                   )}
                 >
@@ -152,16 +157,18 @@ export default function Hangman() {
           <AnimatePresence mode="wait">
             {over ? (
               <motion.div key="over" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="mb-4">
-                <div className="text-3xl md:text-4xl font-display font-bold">{won ? '🎉 Got it!' : `💀 It was "${round.word.w}"`}</div>
+                <div className="text-2xl md:text-3xl font-display font-semibold">{won ? 'Got it!' : `It was "${round.word.w}"`}</div>
                 {won && <AwardBar points={10} reason="hangman" />}
               </motion.div>
             ) : (
               <motion.div key="hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-4 min-h-8">
                 {hint ? (
-                  <span className="text-sun font-semibold">💡 {round.word.hint}</span>
+                  <span className="text-sun font-medium inline-flex items-center gap-1.5">
+                    <Lightbulb size={16} /> {round.word.hint}
+                  </span>
                 ) : (
                   <Button size="sm" variant="ghost" onClick={() => setHint(true)}>
-                    💡 Show hint
+                    <Lightbulb /> Show hint
                   </Button>
                 )}
               </motion.div>
@@ -170,11 +177,11 @@ export default function Hangman() {
 
           <div className="flex justify-center gap-2 mb-4">
             <Button size="sm" variant="secondary" onClick={() => newGame()}>
-              🔄 New word
+              <RefreshCw /> New word
             </Button>
             {!over && (
-              <Button size="sm" variant="danger" onClick={() => setGuessed(new Set([...guessed, ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter((l) => !letters.has(l)).slice(0, MAX_WRONG)]))}>
-                👀 Reveal
+              <Button size="sm" variant="secondary" onClick={() => setGuessed(new Set([...guessed, ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter((l) => !letters.has(l)).slice(0, MAX_WRONG)]))}>
+                <Eye /> Reveal
               </Button>
             )}
           </div>
@@ -197,22 +204,22 @@ function Gallows({ wrong, lost }: { wrong: number; lost: boolean }) {
       )}
     </AnimatePresence>
   )
-  const stroke = lost ? '#f43f5e' : '#fbbf24'
+  const stroke = lost ? 'var(--color-red)' : 'var(--color-sun)'
   return (
     <svg viewBox="0 0 200 240" className="w-48 md:w-56 mx-auto drop-shadow-lg">
       {/* Gallows base — always visible */}
-      <motion.path d="M20 220 H120 M50 220 V20 H130 V45" stroke="#a855f7" strokeWidth={8} strokeLinecap="round" fill="none" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1 }} />
-      {part(1, <motion.circle cx={130} cy={70} r={22} stroke={stroke} strokeWidth={6} fill="none" />)}
-      {part(2, <motion.path d="M130 92 V150" stroke={stroke} strokeWidth={6} strokeLinecap="round" />)}
-      {part(3, <motion.path d="M130 105 L100 130" stroke={stroke} strokeWidth={6} strokeLinecap="round" />)}
-      {part(4, <motion.path d="M130 105 L160 130" stroke={stroke} strokeWidth={6} strokeLinecap="round" />)}
-      {part(5, <motion.path d="M130 150 L105 195" stroke={stroke} strokeWidth={6} strokeLinecap="round" />)}
-      {part(6, <motion.path d="M130 150 L155 195" stroke={stroke} strokeWidth={6} strokeLinecap="round" />)}
+      <motion.path d="M20 220 H120 M50 220 V20 H130 V45" style={{ stroke: 'var(--color-purple)' }} strokeWidth={8} strokeLinecap="round" fill="none" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1 }} />
+      {part(1, <motion.circle cx={130} cy={70} r={22} style={{ stroke }} strokeWidth={6} fill="none" />)}
+      {part(2, <motion.path d="M130 92 V150" style={{ stroke }} strokeWidth={6} strokeLinecap="round" />)}
+      {part(3, <motion.path d="M130 105 L100 130" style={{ stroke }} strokeWidth={6} strokeLinecap="round" />)}
+      {part(4, <motion.path d="M130 105 L160 130" style={{ stroke }} strokeWidth={6} strokeLinecap="round" />)}
+      {part(5, <motion.path d="M130 150 L105 195" style={{ stroke }} strokeWidth={6} strokeLinecap="round" />)}
+      {part(6, <motion.path d="M130 150 L155 195" style={{ stroke }} strokeWidth={6} strokeLinecap="round" />)}
       {part(7, (
         <>
-          <motion.path d="M120 62 l6 6 m0 -6 l-6 6" stroke={stroke} strokeWidth={3} />
-          <motion.path d="M134 62 l6 6 m0 -6 l-6 6" stroke={stroke} strokeWidth={3} />
-          <motion.path d="M120 82 q10 -8 20 0" stroke={stroke} strokeWidth={3} fill="none" />
+          <motion.path d="M120 62 l6 6 m0 -6 l-6 6" style={{ stroke }} strokeWidth={3} />
+          <motion.path d="M134 62 l6 6 m0 -6 l-6 6" style={{ stroke }} strokeWidth={3} />
+          <motion.path d="M120 82 q10 -8 20 0" style={{ stroke }} strokeWidth={3} fill="none" />
         </>
       ))}
     </svg>

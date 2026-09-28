@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Eye, Shuffle, SkipForward } from 'lucide-react'
 import { Button } from '@/components'
 import { cn, shuffle } from '@/utils'
 import { sfx } from '@/utils/sounds'
@@ -101,7 +102,11 @@ export default function EmojiRiddles() {
               setI(0)
               setRevealed(false)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-purple border-purple' : 'border-fg/15 hover:bg-fg/10')}
+            aria-pressed={cat === c}
+            className={cn(
+              'px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors',
+              cat === c ? 'bg-purple/18 border-purple text-fg' : 'border-fg/12 text-fg/75 hover:bg-fg/8 hover:text-fg',
+            )}
           >
             {c}
           </button>
@@ -115,7 +120,7 @@ export default function EmojiRiddles() {
             setRevealed(false)
           }}
         >
-          🔀 Shuffle
+          <Shuffle /> Shuffle
         </Button>
       </div>
 
@@ -126,11 +131,11 @@ export default function EmojiRiddles() {
       <AnimatePresence mode="wait">
         <motion.div
           key={r.e + i}
-          initial={{ opacity: 0, scale: 0.7, rotate: -4 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          exit={{ opacity: 0, scale: 0.7, rotate: 4 }}
-          transition={{ type: 'spring', stiffness: 250, damping: 18 }}
-          className="glass rounded-[2.5rem] py-12 md:py-20 px-6 mb-6"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+          className="glass rounded-2xl py-12 md:py-20 px-6 mb-6"
         >
           <div className="text-7xl md:text-9xl leading-none tracking-wider">{r.e}</div>
         </motion.div>
@@ -145,13 +150,13 @@ export default function EmojiRiddles() {
               animate={{ rotateX: 0, opacity: 1 }}
               exit={{ rotateX: 90, opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="bg-rainbow text-ink rounded-3xl px-8 py-5 inline-block font-display font-bold text-3xl md:text-5xl"
+              className="bg-brand text-on-accent rounded-2xl px-8 py-5 inline-block font-display font-semibold text-3xl md:text-5xl shadow-lg"
             >
               {r.a}
             </motion.div>
           ) : (
             <motion.div key="q" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-2xl md:text-3xl text-fg/60 font-display pt-4">
-              🤔 What is it?
+              What is it?
             </motion.div>
           )}
         </AnimatePresence>
@@ -159,7 +164,7 @@ export default function EmojiRiddles() {
 
       <div className="flex flex-wrap justify-center gap-2">
         <Button variant="secondary" onClick={() => go(-1)}>
-          ← Prev
+          <ChevronLeft /> Prev
         </Button>
         {!revealed ? (
           <Button
@@ -168,13 +173,15 @@ export default function EmojiRiddles() {
               sfx.reveal()
             }}
           >
-            👀 Reveal answer
+            <Eye /> Reveal answer
           </Button>
         ) : (
-          <Button onClick={() => go(1)}>Next →</Button>
+          <Button onClick={() => go(1)}>
+            Next <ChevronRight />
+          </Button>
         )}
         <Button variant="secondary" onClick={() => go(1)}>
-          Skip →
+          <SkipForward /> Skip
         </Button>
       </div>
 

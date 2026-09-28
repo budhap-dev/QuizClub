@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { Gamepad2, Loader2 } from 'lucide-react'
 import { PageHeader } from '@/components'
 import { gameById } from './registry'
 
@@ -10,9 +11,11 @@ export function GamePage() {
   if (!meta) {
     return (
       <div className="text-center py-20">
-        <div className="text-6xl mb-3">🕹️</div>
-        <h1 className="text-3xl font-bold mb-2">Game not found</h1>
-        <Link to="/games" className="underline text-fg/70">
+        <div className="w-14 h-14 rounded-2xl bg-fg/8 text-fg/50 flex items-center justify-center mx-auto mb-4">
+          <Gamepad2 size={26} />
+        </div>
+        <h1 className="text-2xl font-semibold mb-2">Game not found</h1>
+        <Link to="/games" className="underline underline-offset-4 text-fg/70 hover:text-fg">
           Back to games
         </Link>
       </div>
@@ -22,10 +25,12 @@ export function GamePage() {
   const Game = meta.component
   return (
     <div>
-      <PageHeader title={meta.title} emoji={meta.emoji} back="/games" />
+      <PageHeader title={meta.title} icon={meta.emoji} color={meta.color} back="/games" />
       <Suspense
         fallback={
-          <div className="py-20 text-center text-5xl animate-wiggle">{meta.emoji}</div>
+          <div className="py-20 flex justify-center" role="status" aria-label="Loading">
+            <Loader2 className="animate-spin text-fg/50" size={28} />
+          </div>
         }
       >
         <Game />

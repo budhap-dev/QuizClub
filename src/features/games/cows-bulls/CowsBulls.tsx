@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Delete, Eye, HelpCircle, RefreshCw } from 'lucide-react'
 import { Button, Card, party } from '@/components'
 import { cn, shuffle } from '@/utils'
 import { sfx } from '@/utils/sounds'
@@ -95,14 +96,14 @@ export default function CowsBulls() {
     <div className="max-w-3xl mx-auto">
       <div className="flex flex-wrap gap-2 justify-center mb-4">
         <Button size="sm" variant="secondary" onClick={() => reset()}>
-          🔄 New game
+          <RefreshCw /> New game
         </Button>
-        <Button size="sm" variant="secondary" onClick={() => setRules((r) => !r)}>
-          ❓ Rules
+        <Button size="sm" variant="secondary" onClick={() => setRules((r) => !r)} aria-expanded={rules}>
+          <HelpCircle /> Rules
         </Button>
         {!over && guesses.length > 0 && (
-          <Button size="sm" variant="danger" onClick={() => setRevealed(true)}>
-            👀 Reveal
+          <Button size="sm" variant="secondary" onClick={() => setRevealed(true)}>
+            <Eye /> Reveal
           </Button>
         )}
       </div>
@@ -111,8 +112,8 @@ export default function CowsBulls() {
         {rules && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
             <Card className="mb-4 text-fg/80 text-sm md:text-base">
-              A secret 4-digit number with no repeated digits is hidden. Each guess gets scored: <b className="text-sun">🐂 Bulls</b> = a correct digit in the correct
-              place, <b className="text-cyan">🐄 Cows</b> = a correct digit in the wrong place. Four bulls wins!
+              A secret 4-digit number with no repeated digits is hidden. Each guess gets scored: <b className="text-sun">Bulls</b> = a correct digit in the correct
+              place, <b className="text-cyan">Cows</b> = a correct digit in the wrong place. Four bulls wins.
             </Card>
           </motion.div>
         )}
@@ -134,8 +135,8 @@ export default function CowsBulls() {
           <div
             key={i}
             className={cn(
-              'w-16 h-20 md:w-20 md:h-24 rounded-2xl flex items-center justify-center font-display font-bold text-4xl md:text-5xl border-4',
-              over ? 'bg-rainbow text-ink border-transparent' : current[i] ? 'bg-fg/15 border-purple' : 'bg-fg/5 border-fg/15',
+              'w-16 h-20 md:w-20 md:h-24 rounded-xl flex items-center justify-center font-display font-semibold text-4xl md:text-5xl border-2 transition-colors',
+              over ? 'bg-brand text-on-accent border-transparent shadow-lg' : current[i] ? 'bg-fg/12 border-purple' : 'bg-fg/5 border-fg/15',
             )}
           >
             {over ? secret[i] : (current[i] ?? '')}
@@ -145,7 +146,7 @@ export default function CowsBulls() {
 
       {over && (
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center mb-4">
-          <div className="text-3xl md:text-4xl font-display font-bold">{won ? `🎉 Cracked in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}!` : `The number was ${secret}`}</div>
+          <div className="text-2xl md:text-3xl font-display font-semibold">{won ? `Cracked in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}` : `The number was ${secret}`}</div>
           {won && <AwardBar points={10} reason="cows-bulls" />}
         </motion.div>
       )}
@@ -159,16 +160,16 @@ export default function CowsBulls() {
               whileTap={{ scale: 0.9 }}
               onClick={() => press(d)}
               disabled={current.includes(d) || current.length >= 4}
-              className="h-14 md:h-16 rounded-2xl bg-fg/15 hover:bg-fg/25 disabled:opacity-25 font-display font-bold text-2xl md:text-3xl"
+              className="h-14 md:h-16 rounded-xl bg-fg/10 border border-fg/8 hover:bg-fg/16 disabled:opacity-25 font-display font-semibold text-2xl md:text-3xl transition-colors"
             >
               {d}
             </motion.button>
           ))}
-          <Button variant="ghost" className="col-span-2" onClick={() => press('Backspace')} disabled={!current}>
-            ⌫
+          <Button variant="secondary" className="col-span-2" onClick={() => press('Backspace')} disabled={!current} aria-label="Backspace">
+            <Delete />
           </Button>
           <Button className="col-span-3" onClick={submit} disabled={current.length !== 4}>
-            Guess ↵
+            Guess
           </Button>
         </div>
       )}
@@ -182,12 +183,18 @@ export default function CowsBulls() {
               layout
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="glass rounded-2xl px-4 py-2 flex items-center gap-4"
+              className="glass rounded-xl px-4 py-2 flex items-center gap-4"
             >
               <span className="text-fg/40 text-sm w-6 tabular-nums">{guesses.length - i}</span>
-              <span className="font-display font-bold text-2xl md:text-3xl tracking-[0.3em]">{g.value}</span>
-              <span className="ml-auto font-display font-bold text-xl md:text-2xl text-sun">🐂 {g.bulls}</span>
-              <span className="font-display font-bold text-xl md:text-2xl text-cyan">🐄 {g.cows}</span>
+              <span className="font-display font-semibold text-2xl md:text-3xl tracking-[0.3em]">{g.value}</span>
+              <span className="ml-auto font-display font-semibold text-xl md:text-2xl text-sun tabular-nums">
+                <span className="text-[11px] uppercase tracking-wider text-fg/50 font-medium mr-1.5">Bulls</span>
+                {g.bulls}
+              </span>
+              <span className="font-display font-semibold text-xl md:text-2xl text-cyan tabular-nums">
+                <span className="text-[11px] uppercase tracking-wider text-fg/50 font-medium mr-1.5">Cows</span>
+                {g.cows}
+              </span>
             </motion.div>
           ))}
         </AnimatePresence>

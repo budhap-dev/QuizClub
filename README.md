@@ -1,6 +1,6 @@
 # 🎉 QuizClub
 
-A colourful, animated quiz-night app built for the big screen. Present quizzes to a room, keep score for teams, and fill the gaps with party games.
+A colourful quiz-night app with a clean, presentable look, built for the big screen. Present quizzes to a room, keep score for teams, and fill the gaps with party games.
 
 ## Features
 
@@ -11,12 +11,12 @@ A colourful, animated quiz-night app built for the big screen. Present quizzes t
 - **Built-in library** — Flag Guesser, Logo Quiz, Mental Maths (generated fresh each time), General Knowledge, Geography, Science, Literature, Movies, Sports, Music, History.
 - **Party games** — Cows & Bulls, Hangman, Wordle, Word Scramble, Emoji Riddles, Memory Match. Award points to teams from any game.
 - **Cloud vault** — sync your quiz library across devices with no account: pick a passphrase in Settings, and the library is encrypted in the browser (PBKDF2 + AES-GCM) and stored as ciphertext in Upstash Redis via `api/vault.ts`. Enter the same passphrase on another device to pull it down. Deletions carry across (tombstones), the newest edit wins, and the server can't read anything.
-- **Themes** — seven colour themes (Neon Night, Deep Ocean, Sunset, Forest, Retro Arcade, Midnight Mono and the light Candy Pop), switchable from the 🎨 button in the nav or on stage. Palettes live in `src/index.css`; the picker metadata in `src/app/theme.ts`.
+- **Themes** — seven colour themes (Neon Night, Deep Ocean, Sunset, Forest, Retro Arcade, Midnight Mono and the light Candy Pop), switchable from the palette button in the nav or on stage. Palettes live in `src/index.css`; the picker metadata in `src/app/theme.ts`.
 - Fully responsive: presenter on a laptop/TV, quiz-master controls work from a phone.
 
 ## Stack
 
-React 18 · Vite · TypeScript · Tailwind CSS v4 · Framer Motion · Zustand · Vercel serverless (`/api`) · Claude API
+React 18 · Vite · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide icons · Zustand · Vercel serverless (`/api`) · Claude API
 
 ## Getting started
 

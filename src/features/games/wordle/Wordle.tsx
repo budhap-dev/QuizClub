@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Eye, RefreshCw } from 'lucide-react'
 import { Button, Card, party } from '@/components'
 import { cn, pick } from '@/utils'
 import { sfx } from '@/utils/sounds'
@@ -113,14 +114,14 @@ export default function Wordle() {
     <div className="max-w-2xl mx-auto">
       <div className="flex flex-wrap gap-2 justify-center items-center mb-4">
         <Button size="sm" variant="secondary" onClick={() => reset()}>
-          🔄 New word
+          <RefreshCw /> New word
         </Button>
         <label className="text-sm text-fg/60 flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" checked={strict} onChange={(e) => setStrict(e.target.checked)} className="accent-lime" /> Strict dictionary
+          <input type="checkbox" checked={strict} onChange={(e) => setStrict(e.target.checked)} className="accent-purple" /> Strict dictionary
         </label>
         {!over && rows.length > 0 && (
-          <Button size="sm" variant="danger" onClick={() => setRevealed(true)}>
-            👀 Reveal
+          <Button size="sm" variant="secondary" onClick={() => setRevealed(true)}>
+            <Eye /> Reveal
           </Button>
         )}
       </div>
@@ -138,7 +139,7 @@ export default function Wordle() {
       <div className="relative">
         <AnimatePresence>
           {toast && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute left-1/2 -translate-x-1/2 -top-2 z-10 bg-fg text-ink font-bold px-4 py-2 rounded-xl shadow-lg">
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute left-1/2 -translate-x-1/2 -top-2 z-10 bg-fg text-ink font-semibold text-sm px-3 py-1.5 rounded-lg shadow-lg">
               {toast}
             </motion.div>
           )}
@@ -161,7 +162,7 @@ export default function Wordle() {
                       animate={submitted ? { rotateX: [0, 90, 0] } : ch ? { scale: [1, 1.1, 1] } : {}}
                       transition={submitted ? { delay: c * 0.25, duration: 0.5 } : { duration: 0.15 }}
                       className={cn(
-                        'w-12 h-12 md:w-16 md:h-16 rounded-xl border-2 flex items-center justify-center font-display font-bold text-2xl md:text-4xl',
+                        'w-12 h-12 md:w-16 md:h-16 rounded-lg border-2 flex items-center justify-center font-display font-semibold text-2xl md:text-4xl',
                         submitted && ev ? tileClass[ev[c]] : ch ? 'border-fg/50' : 'border-fg/15',
                       )}
                       style={submitted ? { transitionDelay: `${c * 0.25 + 0.25}s` } : undefined}
@@ -179,7 +180,7 @@ export default function Wordle() {
       <AnimatePresence>
         {over && (
           <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: won ? 1.3 : 0 }} className="text-center mb-4">
-            <div className="text-3xl md:text-4xl font-display font-bold">{won ? `🎉 Solved in ${rows.length}/6!` : `The word was ${secret}`}</div>
+            <div className="text-2xl md:text-3xl font-display font-semibold">{won ? `Solved in ${rows.length}/6` : `The word was ${secret}`}</div>
             {won && <AwardBar points={Math.max(5, 35 - rows.length * 5)} reason="wordle" />}
           </motion.div>
         )}

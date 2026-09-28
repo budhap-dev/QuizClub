@@ -19,8 +19,8 @@ export function AwardBar({ points = 10, reason = 'game', title = 'Award points' 
 
   if (teams.length === 0) {
     return (
-      <p className="text-center text-fg/40 text-sm mt-4">
-        <Link to="/play" className="underline hover:text-fg">
+      <p className="text-center text-fg/45 text-sm mt-4">
+        <Link to="/play" className="underline underline-offset-4 hover:text-fg">
           Add teams in Play
         </Link>{' '}
         to award points from games.
@@ -37,7 +37,7 @@ export function AwardBar({ points = 10, reason = 'game', title = 'Award points' 
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-3xl p-3 mt-4 flex flex-wrap items-center justify-center gap-2">
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-2xl p-3 mt-4 flex flex-wrap items-center justify-center gap-2">
       <span className="text-fg/60 text-sm mr-1">
         {title} (+{points}):
       </span>
@@ -50,11 +50,11 @@ export function AwardBar({ points = 10, reason = 'game', title = 'Award points' 
               .map((p) => (
                 <motion.span
                   key={p.id}
-                  initial={{ opacity: 1, y: 0, scale: 0.8 }}
-                  animate={{ opacity: 0, y: -40, scale: 1.4 }}
+                  initial={{ opacity: 1, y: 0, scale: 0.9 }}
+                  animate={{ opacity: 0, y: -32, scale: 1.2 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.9 }}
-                  className="absolute left-1/2 -translate-x-1/2 -top-2 font-display font-bold text-lime pointer-events-none"
+                  className="absolute left-1/2 -translate-x-1/2 -top-2 font-display font-semibold text-lime pointer-events-none"
                 >
                   +{points}
                 </motion.span>

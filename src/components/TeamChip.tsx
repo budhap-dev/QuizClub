@@ -14,34 +14,33 @@ interface TeamChipProps {
 export function TeamChip({ team, size = 'md', showScore = true, className, onClick, active }: TeamChipProps) {
   const sizes = {
     sm: 'text-sm px-3 py-1 gap-1.5',
-    md: 'text-base px-4 py-2 gap-2',
-    lg: 'text-xl md:text-2xl px-6 py-3 gap-3',
+    md: 'text-[0.9375rem] px-3.5 py-1.5 gap-2',
+    lg: 'text-lg md:text-xl px-5 py-2.5 gap-2.5',
   }
   return (
     <motion.button
       type="button"
       layout
       onClick={onClick}
-      whileHover={onClick ? { scale: 1.05 } : undefined}
-      whileTap={onClick ? { scale: 0.95 } : undefined}
+      whileTap={onClick ? { scale: 0.97 } : undefined}
       className={cn(
-        'inline-flex items-center rounded-full font-display font-semibold border-2 transition-colors',
+        'inline-flex items-center rounded-full font-semibold border transition-colors',
         onClick ? 'cursor-pointer' : 'cursor-default',
         active ? 'text-ink' : 'text-fg',
         sizes[size],
         className,
       )}
       style={{
-        borderColor: team.color,
-        background: active ? team.color : `${team.color}33`,
+        borderColor: active ? team.color : `color-mix(in srgb, ${team.color} 55%, transparent)`,
+        background: active ? team.color : `color-mix(in srgb, ${team.color} 16%, transparent)`,
       }}
     >
       <span>{team.emoji}</span>
       <span className="truncate max-w-[10rem]">{team.name}</span>
       {showScore && (
         <span
-          className="ml-1 rounded-full px-2 py-0.5 text-sm font-bold tabular-nums"
-          style={{ background: active ? 'rgba(0,0,0,0.15)' : team.color, color: active ? '#12082e' : '#12082e' }}
+          className="ml-0.5 rounded-full px-2 py-0.5 text-xs font-bold tabular-nums"
+          style={{ background: active ? 'rgba(0,0,0,0.15)' : team.color, color: 'var(--color-ink)' }}
         >
           {team.score}
         </span>

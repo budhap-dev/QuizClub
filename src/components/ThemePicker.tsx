@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
 import { THEMES } from '@/app/theme'
 import { useSettingsStore } from '@/store/settingsStore'
 import { cn } from '@/utils'
@@ -19,30 +19,28 @@ export function ThemePicker({ compact, className }: ThemePickerProps) {
       {THEMES.map((t) => {
         const active = t.id === theme
         return (
-          <motion.button
+          <button
             key={t.id}
             type="button"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
             onClick={() => {
               setTheme(t.id)
               sfx.click()
             }}
             aria-pressed={active}
-            className={cn('rounded-2xl p-3 text-left border-2 transition-colors shadow-lg', active ? 'border-fg' : 'border-transparent hover:border-fg/40')}
+            className={cn('rounded-xl p-3 text-left border transition-colors', active ? 'border-fg' : 'border-fg/15 hover:border-fg/40')}
             style={{ background: t.preview.ink, color: t.preview.fg }}
           >
-            <div
-              className="h-8 rounded-xl mb-2"
-              style={{ background: `linear-gradient(120deg, ${t.preview.a}, ${t.preview.b}, ${t.preview.c}, ${t.preview.d})` }}
-            />
+            <div className="h-6 rounded-lg mb-2.5 flex overflow-hidden">
+              {[t.preview.a, t.preview.b, t.preview.c, t.preview.d].map((c, i) => (
+                <span key={i} className="flex-1" style={{ background: c }} />
+              ))}
+            </div>
             <div className="flex items-center gap-1.5">
-              <span>{t.emoji}</span>
-              <span className="font-display font-bold text-sm truncate">{t.name}</span>
-              {active && <span className="ml-auto text-xs">✓</span>}
+              <span className="font-semibold text-sm truncate">{t.name}</span>
+              {active && <Check size={14} className="ml-auto shrink-0" />}
             </div>
             {!compact && <div className="text-xs opacity-70 mt-0.5 leading-snug">{t.description}</div>}
-          </motion.button>
+          </button>
         )
       })}
     </div>

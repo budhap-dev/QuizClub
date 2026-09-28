@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { Eye, MonitorPlay, Play, Plus } from 'lucide-react'
 import { Button, Card, EmojiPicker, Modal, PageHeader, TeamChip } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -10,6 +11,13 @@ import { PACKS } from '@/features/library/packs'
 import { makeQuiz } from '@/features/library/helpers'
 
 type Tab = 'library' | QuizSource
+
+const StepTitle = ({ n, children }: { n: number; children: React.ReactNode }) => (
+  <h2 className="text-lg font-semibold flex items-center gap-2.5">
+    <span className="w-6 h-6 rounded-full bg-purple/20 text-purple text-xs font-bold flex items-center justify-center tabular-nums">{n}</span>
+    {children}
+  </h2>
+)
 
 export function PlaySetup() {
   const navigate = useNavigate()
@@ -36,22 +44,24 @@ export function PlaySetup() {
     navigate('/play/stage')
   }
 
-  const tabs: { id: Tab; label: string; emoji: string }[] = [
-    { id: 'library', label: 'Built-in', emoji: '🎁' },
-    { id: 'ai', label: 'AI quizzes', emoji: '✨' },
-    { id: 'manual', label: 'My quizzes', emoji: '🛠️' },
+  const tabs: { id: Tab; label: string }[] = [
+    { id: 'library', label: 'Built-in' },
+    { id: 'ai', label: 'AI quizzes' },
+    { id: 'manual', label: 'My quizzes' },
   ]
 
   return (
     <div>
-      <PageHeader title="Present a Quiz" emoji="🎬" subtitle="Step 1: pick a quiz · Step 2: add teams · Step 3: go live" />
+      <PageHeader title="Present a Quiz" icon={<MonitorPlay />} color="var(--color-pink)" subtitle="Pick a quiz, add teams, then go live." />
 
-      <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4 lg:gap-6">
         {/* ─── Quiz picker ─── */}
-        <Card>
+        <Card className="min-w-0">
           <div className="flex items-center gap-2 mb-4 flex-wrap">
-            <h2 className="text-xl font-bold mr-auto">1 · Choose a quiz</h2>
-            <div className="flex gap-1 bg-fg/5 rounded-2xl p-1">
+            <div className="mr-auto">
+              <StepTitle n={1}>Choose a quiz</StepTitle>
+            </div>
+            <div className="flex gap-0.5 bg-fg/6 border border-fg/10 rounded-lg p-0.5">
               {tabs.map((t) => (
                 <button
                   key={t.id}
@@ -59,9 +69,9 @@ export function PlaySetup() {
                     setTab(t.id)
                     setSelected(null)
                   }}
-                  className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold transition-colors', tab === t.id ? 'bg-purple text-fg' : 'text-fg/60 hover:text-fg')}
+                  className={cn('px-3 py-1.5 rounded-md text-sm font-medium transition-colors', tab === t.id ? 'bg-fg/12 text-fg' : 'text-fg/60 hover:text-fg')}
                 >
-                  {t.emoji} {t.label}
+                  {t.label}
                 </button>
               ))}
             </div>
@@ -71,27 +81,30 @@ export function PlaySetup() {
             <>
               <label className="flex items-center gap-3 mb-4 text-sm text-fg/70">
                 Questions per round
-                <input type="range" min={5} max={30} step={5} value={count} onChange={(e) => setCount(+e.target.value)} className="accent-pink flex-1" />
-                <span className="font-bold text-fg w-8 text-right">{count}</span>
+                <input type="range" min={5} max={30} step={5} value={count} onChange={(e) => setCount(+e.target.value)} className="accent-purple flex-1" />
+                <span className="font-semibold text-fg w-8 text-right tabular-nums">{count}</span>
               </label>
-              <div className="grid sm:grid-cols-2 gap-3 max-h-[26rem] overflow-y-auto pr-1">
+              <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
                 {PACKS.map((p) => {
                   const active = selected?.title === p.title
                   return (
-                    <motion.button
+                    <button
                       key={p.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.97 }}
                       onClick={() => chooseLibrary(p.id)}
-                      className={cn('text-left rounded-2xl p-4 border-2 transition-colors', active ? 'bg-fg/15' : 'bg-fg/5 hover:bg-fg/10')}
-                      style={{ borderColor: active ? p.color : 'transparent' }}
+                      aria-pressed={active}
+                      className={cn('text-left rounded-xl p-3 border transition-colors flex gap-3 items-start', active ? 'bg-fg/12' : 'bg-fg/5 hover:bg-fg/10 border-transparent')}
+                      style={active ? { borderColor: p.color } : undefined}
                     >
-                      <div className="text-3xl mb-1">{p.emoji}</div>
-                      <div className="font-display font-bold" style={{ color: p.color }}>
-                        {p.title}
-                      </div>
-                      <div className="text-xs text-fg/60 line-clamp-2">{p.description}</div>
-                    </motion.button>
+                      <span className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0" style={{ background: `color-mix(in srgb, ${p.color} 18%, transparent)` }}>
+                        {p.emoji}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-semibold text-sm" style={{ color: p.color }}>
+                          {p.title}
+                        </span>
+                        <span className="block text-xs text-fg/60 line-clamp-2 mt-0.5">{p.description}</span>
+                      </span>
+                    </button>
                   )
                 })}
               </div>
@@ -99,29 +112,30 @@ export function PlaySetup() {
           )}
 
           {tab !== 'library' && (
-            <div className="grid sm:grid-cols-2 gap-3 max-h-[26rem] overflow-y-auto pr-1">
+            <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
               {savedByTab.length === 0 && (
-                <div className="col-span-full text-center py-10 text-fg/60">
+                <div className="col-span-full text-center py-10 text-fg/60 text-sm">
                   No {tab === 'ai' ? 'AI-generated' : 'manual'} quizzes yet.{' '}
-                  <button className="underline" onClick={() => navigate(tab === 'ai' ? '/create/ai' : '/create/manual')}>
-                    Create one →
+                  <button className="underline underline-offset-4 hover:text-fg" onClick={() => navigate(tab === 'ai' ? '/create/ai' : '/create/manual')}>
+                    Create one
                   </button>
                 </div>
               )}
               {savedByTab.map((q) => {
                 const active = selected?.id === q.id
                 return (
-                  <motion.button
+                  <button
                     key={q.id}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
                     onClick={() => setSelected(q)}
-                    className={cn('text-left rounded-2xl p-4 border-2 transition-colors', active ? 'bg-fg/15 border-purple' : 'bg-fg/5 hover:bg-fg/10 border-transparent')}
+                    aria-pressed={active}
+                    className={cn('text-left rounded-xl p-3 border transition-colors flex gap-3 items-start', active ? 'bg-fg/12 border-purple' : 'bg-fg/5 hover:bg-fg/10 border-transparent')}
                   >
-                    <div className="text-3xl mb-1">{q.emoji}</div>
-                    <div className="font-display font-bold">{q.title}</div>
-                    <div className="text-xs text-fg/60">{q.questions.length} questions</div>
-                  </motion.button>
+                    <span className="w-10 h-10 rounded-lg bg-fg/8 flex items-center justify-center text-xl shrink-0">{q.emoji}</span>
+                    <span className="min-w-0">
+                      <span className="block font-semibold text-sm truncate">{q.title}</span>
+                      <span className="block text-xs text-fg/60 mt-0.5">{q.questions.length} questions</span>
+                    </span>
+                  </button>
                 )
               })}
             </div>
@@ -129,10 +143,10 @@ export function PlaySetup() {
         </Card>
 
         {/* ─── Teams ─── */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 lg:gap-6 min-w-0">
           <Card>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold">2 · Teams & players</h2>
+              <StepTitle n={2}>Teams & players</StepTitle>
               {teams.some((t) => t.score !== 0) && (
                 <Button size="sm" variant="ghost" onClick={resetScores}>
                   Reset scores
@@ -148,14 +162,14 @@ export function PlaySetup() {
               }}
             >
               <input className="input" placeholder="Team or player name" value={newTeam} onChange={(e) => setNewTeam(e.target.value)} maxLength={24} />
-              <Button type="submit" variant="success">
-                Add
+              <Button type="submit" variant="secondary">
+                <Plus /> Add
               </Button>
             </form>
-            <div className="flex flex-wrap gap-2 min-h-12">
+            <div className="flex flex-wrap gap-2 min-h-10">
               <AnimatePresence>
                 {teams.map((t) => (
-                  <motion.div key={t.id} layout initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                  <motion.div key={t.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
                     <TeamChip team={t} onClick={() => setEditing(t.id)} showScore={false} />
                   </motion.div>
                 ))}
@@ -164,9 +178,9 @@ export function PlaySetup() {
             </div>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple/40 to-pink/30">
-            <h2 className="text-xl font-bold mb-1">3 · Go live</h2>
-            <p className="text-fg/70 text-sm mb-4">
+          <Card tint="var(--color-purple)">
+            <StepTitle n={3}>Go live</StepTitle>
+            <p className="text-fg/70 text-sm mt-1 mb-4">
               {selected ? (
                 <>
                   <b className="text-fg">{selected.title}</b> · {selected.questions.length} slides
@@ -177,15 +191,15 @@ export function PlaySetup() {
             </p>
             <div className="flex gap-2 flex-wrap">
               <Button size="lg" onClick={go} disabled={!selected}>
-                ▶️ Start presenting
+                <Play fill="currentColor" /> Start presenting
               </Button>
               {selected && selected.source !== 'library' && (
                 <Button size="lg" variant="secondary" onClick={() => navigate(`/preview/${selected.id}`)}>
-                  👁️ Preview
+                  <Eye /> Preview
                 </Button>
               )}
             </div>
-            <p className="text-fg/40 text-xs mt-3">Tip: press F on stage for fullscreen. Use → / ← to move, Space to reveal.</p>
+            <p className="text-fg/45 text-xs mt-3">Tip: press F on stage for fullscreen. Use → / ← to move, Space to reveal.</p>
           </Card>
         </div>
       </div>
@@ -201,9 +215,10 @@ export function PlaySetup() {
                   <button
                     key={c}
                     onClick={() => updateTeam(editingTeam.id, { color: c })}
-                    className={cn('w-9 h-9 rounded-full border-4', editingTeam.color === c ? 'border-fg' : 'border-transparent')}
+                    className={cn('w-8 h-8 rounded-full transition-shadow', editingTeam.color === c ? 'ring-2 ring-fg ring-offset-2 ring-offset-ink-soft' : 'hover:ring-2 hover:ring-fg/40')}
                     style={{ background: c }}
                     aria-label={`Colour ${c}`}
+                    aria-pressed={editingTeam.color === c}
                   />
                 ))}
               </div>
@@ -214,7 +229,8 @@ export function PlaySetup() {
             </div>
             <div className="flex justify-between pt-2">
               <Button
-                variant="danger"
+                variant="secondary"
+                className="text-red"
                 size="sm"
                 onClick={() => {
                   removeTeam(editingTeam.id)

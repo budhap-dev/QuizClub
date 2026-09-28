@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
+import { X } from 'lucide-react'
 import { cn } from '@/utils'
 
 interface ModalProps {
@@ -30,20 +31,24 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
         >
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            initial={{ y: 60, opacity: 0, scale: 0.96 }}
+            initial={{ y: 24, opacity: 0, scale: 0.98 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 60, opacity: 0, scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            exit={{ y: 24, opacity: 0, scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
             className={cn(
-              'glass w-full sm:max-w-lg max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl p-6 bg-ink-soft/90',
+              'glass w-full sm:max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 bg-ink-soft/95',
               className,
             )}
           >
             {title && (
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-display font-bold">{title}</h2>
-                <button onClick={onClose} className="text-fg/60 hover:text-fg text-2xl leading-none px-2" aria-label="Close">
-                  ×
+                <h2 className="text-lg font-semibold">{title}</h2>
+                <button
+                  onClick={onClose}
+                  className="w-8 h-8 -mr-1 rounded-lg flex items-center justify-center text-fg/60 hover:text-fg hover:bg-fg/10 transition-colors"
+                  aria-label="Close"
+                >
+                  <X size={18} />
                 </button>
               </div>
             )}
