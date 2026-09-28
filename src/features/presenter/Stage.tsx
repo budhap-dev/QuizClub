@@ -162,14 +162,15 @@ export function Stage({ preview }: StageProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col select-none">
+    // Locked to the viewport on md+ so a slide never needs scrolling; phones may scroll.
+    <div className="min-h-dvh md:h-dvh md:overflow-hidden flex flex-col select-none">
       {/* Progress bar */}
-      <div className="h-1.5 bg-white/10">
+      <div className="h-1.5 bg-white/10 shrink-0">
         <motion.div className="h-full bg-rainbow" animate={{ width: `${progress}%` }} transition={{ duration: 0.5 }} />
       </div>
 
       {/* Top bar */}
-      <div className="flex items-center gap-2 px-3 md:px-5 py-2 text-sm">
+      <div className="flex items-center gap-2 px-3 md:px-5 py-2 text-sm shrink-0">
         <button onClick={exit} className="glass rounded-xl px-3 py-1.5 hover:bg-white/20" title="Exit">
           ✕ {preview ? 'Close preview' : 'Exit'}
         </button>
@@ -191,15 +192,15 @@ export function Stage({ preview }: StageProps) {
       {/* Main area */}
       <AnimatePresence mode="wait">
         {phase === 'podium' ? (
-          <motion.div key="podium" className="flex-1 flex" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.div key="podium" className="flex-1 min-h-0 flex" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Podium teams={teams} />
           </motion.div>
         ) : phase === 'scoreboard' ? (
-          <motion.div key="board" className="flex-1 flex" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }}>
+          <motion.div key="board" className="flex-1 min-h-0 flex" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }}>
             <Scoreboard teams={teams} />
           </motion.div>
         ) : (
-          <motion.div key={question.id} className="flex-1 flex" initial={{ opacity: 0, x: 80 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -80 }} transition={{ duration: 0.3 }}>
+          <motion.div key={question.id} className="flex-1 min-h-0 flex" initial={{ opacity: 0, x: 80 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -80 }} transition={{ duration: 0.3 }}>
             <QuestionView
               question={question}
               revealed={revealed}
@@ -218,7 +219,7 @@ export function Stage({ preview }: StageProps) {
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 40, opacity: 0 }}
-            className="px-4 pb-2 flex flex-wrap items-center justify-center gap-2"
+            className="px-4 pb-1 flex flex-wrap items-center justify-center gap-2 shrink-0"
           >
             <span className="text-white/60 text-sm mr-2">Who got it? (+{question.points})</span>
             {teams.map((t) => (
@@ -229,7 +230,7 @@ export function Stage({ preview }: StageProps) {
       </AnimatePresence>
 
       {/* Bottom controls */}
-      <div className="px-3 md:px-5 py-3 flex items-center gap-2 flex-wrap justify-center">
+      <div className="px-3 md:px-5 py-2 flex items-center gap-2 flex-wrap justify-center shrink-0">
         <Button variant="secondary" onClick={prev} disabled={index === 0 && phase !== 'podium'}>
           ← Back
         </Button>
