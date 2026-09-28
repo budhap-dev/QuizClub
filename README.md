@@ -10,6 +10,7 @@ A colourful, animated quiz-night app built for the big screen. Present quizzes t
 - **Manual quiz maker** — slides, multiple choice, true/false and timed questions with images, points, timers and host notes. Drag to reorder, preview before saving.
 - **Built-in library** — Flag Guesser, Logo Quiz, Mental Maths (generated fresh each time), General Knowledge, Geography, Science, Literature, Movies, Sports, Music, History.
 - **Party games** — Cows & Bulls, Hangman, Wordle, Word Scramble, Emoji Riddles, Memory Match. Award points to teams from any game.
+- **Cloud vault** — sync your quiz library across devices with no account: pick a passphrase in Settings, and the library is encrypted in the browser (PBKDF2 + AES-GCM) and stored as ciphertext in Upstash Redis via `api/vault.ts`. Enter the same passphrase on another device to pull it down. Deletions carry across (tombstones), the newest edit wins, and the server can't read anything.
 - **Themes** — seven colour themes (Neon Night, Deep Ocean, Sunset, Forest, Retro Arcade, Midnight Mono and the light Candy Pop), switchable from the 🎨 button in the nav or on stage. Palettes live in `src/index.css`; the picker metadata in `src/app/theme.ts`.
 - Fully responsive: presenter on a laptop/TV, quiz-master controls work from a phone.
 
@@ -30,8 +31,12 @@ To run the AI endpoint locally, use the Vercel CLI in a second terminal (`vercel
 ## Deploying (Vercel)
 
 1. Import the repo in Vercel — the framework preset is detected automatically.
-2. Add environment variables: `ANTHROPIC_API_KEY` (required), optionally `ANTHROPIC_MODEL` and `AI_ACCESS_CODE`.
-3. Deploy. The API key never reaches the browser.
+2. **Storage → Create → Upstash Redis** (free tier) and connect it to the project; this adds `KV_REST_API_URL` / `KV_REST_API_TOKEN` for the cloud vault.
+3. Add `ANTHROPIC_API_KEY` for the AI generator (optional: `ANTHROPIC_MODEL`, `AI_ACCESS_CODE`, `VAULT_RATE_LIMIT`).
+4. Deploy. Secrets never reach the browser.
+5. On the live site: Settings → Cloud vault → choose a passphrase → your quizzes upload. Repeat with the same passphrase on any other device.
+
+Local development with the API: `npm i -g vercel`, `vercel link`, `vercel env pull .env`, then `vercel dev` in one terminal and `npm run dev` in another (Vite proxies `/api` to it).
 
 ## Project layout
 

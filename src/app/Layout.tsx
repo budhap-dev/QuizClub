@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Blobs, ThemeButton } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
+import { VaultBadge } from '@/features/vault/VaultBadge'
 import { cn } from '@/utils'
 
 const nav = [
@@ -48,6 +49,7 @@ export function Layout() {
               </Link>
             )
           })}
+          <VaultBadge />
           <ThemeButton />
           <button
             onClick={() => setMuted(!muted)}
