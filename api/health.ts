@@ -22,7 +22,13 @@ export default function handler(_req: VercelRequest, res: VercelResponse) {
       ai: Boolean(process.env.ANTHROPIC_API_KEY),
       vault: Boolean((process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL) && (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN)),
     },
-    customEnv: keys.filter((k) => !PLATFORM.test(k)).sort(),
+    // Value lengths only: enough to tell "set" from "present but empty" without exposing anything.
+    customEnv: Object.fromEntries(
+      keys
+        .filter((k) => !PLATFORM.test(k))
+        .sort()
+        .map((k) => [k, (process.env[k] ?? '').length]),
+    ),
     encryptedEnvBundle: Boolean(process.env.VERCEL_ENCRYPTED_ENV_CONTENT),
     totalEnvKeys: keys.length,
   })
