@@ -13,30 +13,30 @@ interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
 }
 
 const variants: Record<Variant, string> = {
-  // primary/danger sit on saturated gradients, so their text stays white in every theme
-  primary: 'bg-gradient-to-r from-pink to-purple text-white shadow-lg shadow-purple/40 hover:shadow-purple/60',
-  secondary: 'bg-fg/10 border border-fg/20 text-fg hover:bg-fg/20',
-  ghost: 'bg-transparent text-fg/80 hover:bg-fg/10 hover:text-fg',
-  danger: 'bg-gradient-to-r from-red to-orange text-white shadow-lg shadow-red/40',
-  success: 'bg-gradient-to-r from-mint to-lime text-ink shadow-lg shadow-mint/40',
+  // Solid accents; `on-accent` keeps the label legible on every theme's purple/red/mint.
+  primary: 'bg-purple text-on-accent shadow-sm shadow-purple/30 hover:brightness-110',
+  secondary: 'bg-fg/8 border border-fg/12 text-fg hover:bg-fg/14 hover:border-fg/20',
+  ghost: 'bg-transparent text-fg/75 hover:bg-fg/8 hover:text-fg',
+  danger: 'bg-red text-on-accent hover:brightness-110',
+  success: 'bg-mint text-ink hover:brightness-105',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'text-sm px-3 py-1.5 rounded-xl',
-  md: 'text-base px-5 py-2.5 rounded-2xl',
-  lg: 'text-lg px-7 py-3.5 rounded-2xl',
-  xl: 'text-xl md:text-2xl px-9 py-4 rounded-3xl',
+  sm: 'text-[0.8125rem] px-3 py-1.5 rounded-lg gap-1.5 [&_svg]:size-3.5',
+  md: 'text-sm px-4 py-2.5 rounded-xl gap-2 [&_svg]:size-4',
+  lg: 'text-base px-6 py-3 rounded-xl gap-2 [&_svg]:size-[1.125rem]',
+  xl: 'text-lg md:text-xl px-8 py-4 rounded-2xl gap-2.5 [&_svg]:size-5',
 }
 
 export function Button({ variant = 'primary', size = 'md', className, silent, onClick, children, ...rest }: ButtonProps) {
   return (
     <motion.button
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
       className={cn(
-        'font-display font-semibold inline-flex items-center justify-center gap-2 select-none cursor-pointer',
-        'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 transition-shadow',
+        'font-semibold inline-flex items-center justify-center select-none cursor-pointer whitespace-nowrap',
+        'transition-[background-color,border-color,filter,box-shadow] duration-150',
+        'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:brightness-100',
         variants[variant],
         sizes[size],
         className,

@@ -4,15 +4,18 @@
  * Colour tokens. Utilities reference these as CSS variables, so a theme is just
  * a `:root[data-theme=…]` block that overrides them (see the Themes section).
  * `fg` is the text/glass colour on the page background; `ink` is the page itself.
+ * `on-accent` is the text colour that sits on a solid accent (primary buttons,
+ * the brand gradient) — white on most themes, ink where the accents are pale.
  * mint/lime = success, red = danger, sun = warning — themes keep those recognisable.
  */
 @theme {
-  --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
-  --font-body: 'Nunito', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 
   --color-ink: #12082e;
   --color-ink-soft: #1c1150;
   --color-fg: #ffffff;
+  --color-on-accent: #ffffff;
 
   --color-pink: #ff4d8d;
   --color-purple: #a855f7;
@@ -23,30 +26,6 @@
   --color-orange: #fb923c;
   --color-mint: #34d399;
   --color-red: #f43f5e;
-
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-spin-slow: spin 14s linear infinite;
-  --animate-pop: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  --animate-shimmer: shimmer 2.5s linear infinite;
-  --animate-wiggle: wiggle 0.6s ease-in-out;
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-18px) rotate(3deg); }
-  }
-  @keyframes pop {
-    0% { transform: scale(0.6); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-6deg); }
-    75% { transform: rotate(6deg); }
-  }
 }
 
 /* ───────── Themes (keep previews in src/app/theme.ts in sync) ───────── */
@@ -66,6 +45,7 @@
 :root[data-theme='sunset'] {
   --color-ink: #2b0a1e;
   --color-ink-soft: #3d1230;
+  --color-on-accent: #2b0a1e;
   --color-pink: #fb7185;
   --color-purple: #f97316;
   --color-violet: #be123c;
@@ -79,6 +59,7 @@
 :root[data-theme='forest'] {
   --color-ink: #071f16;
   --color-ink-soft: #0e3325;
+  --color-on-accent: #071f16;
   --color-pink: #34d399;
   --color-purple: #10b981;
   --color-violet: #047857;
@@ -106,6 +87,7 @@
   --color-ink: #0a0a0f;
   --color-ink-soft: #16161f;
   --color-fg: #f4f4f5;
+  --color-on-accent: #0a0a0f;
   --color-pink: #a1a1aa;
   --color-purple: #9ca3af;
   --color-violet: #3f3f46;
@@ -116,6 +98,11 @@
   --color-mint: #6ee7b7;
   --color-red: #fca5a5;
 }
+/*
+ * Light themes. Accents are the darker (600/700) shades so they still read as
+ * text on the page and carry white `on-accent` text on solid buttons, and `fg`
+ * is a deep tint of the background hue rather than pure black.
+ */
 :root[data-theme='candy'] {
   --color-ink: #fff4fa;
   --color-ink-soft: #ffe3f1;
@@ -129,6 +116,76 @@
   --color-orange: #f97316;
   --color-mint: #059669;
   --color-red: #e11d48;
+}
+:root[data-theme='daylight'] {
+  --color-ink: #f8fafc;
+  --color-ink-soft: #e2e8f0;
+  --color-fg: #0f172a;
+  --color-pink: #db2777;
+  --color-purple: #6d28d9;
+  --color-violet: #4c1d95;
+  --color-cyan: #0e7490;
+  --color-lime: #4d7c0f;
+  --color-sun: #d97706;
+  --color-orange: #ea580c;
+  --color-mint: #047857;
+  --color-red: #dc2626;
+}
+:root[data-theme='coastal'] {
+  --color-ink: #f0fafa;
+  --color-ink-soft: #d5f0ee;
+  --color-fg: #0b3b3c;
+  --color-pink: #0369a1;
+  --color-purple: #0f766e;
+  --color-violet: #134e4a;
+  --color-cyan: #0891b2;
+  --color-lime: #4d7c0f;
+  --color-sun: #d97706;
+  --color-orange: #ea580c;
+  --color-mint: #059669;
+  --color-red: #e11d48;
+}
+:root[data-theme='sunrise'] {
+  --color-ink: #fff7ed;
+  --color-ink-soft: #fde8cf;
+  --color-fg: #431407;
+  --color-pink: #e11d48;
+  --color-purple: #ea580c;
+  --color-violet: #9a3412;
+  --color-cyan: #0d9488;
+  --color-lime: #65a30d;
+  --color-sun: #d97706;
+  --color-orange: #f97316;
+  --color-mint: #059669;
+  --color-red: #dc2626;
+}
+:root[data-theme='lilac'] {
+  --color-ink: #f5f3ff;
+  --color-ink-soft: #e4dcfb;
+  --color-fg: #2e1065;
+  --color-pink: #c026d3;
+  --color-purple: #7c3aed;
+  --color-violet: #5b21b6;
+  --color-cyan: #2563eb;
+  --color-lime: #16a34a;
+  --color-sun: #d97706;
+  --color-orange: #ea580c;
+  --color-mint: #059669;
+  --color-red: #e11d48;
+}
+:root[data-theme='meadow'] {
+  --color-ink: #f0fdf4;
+  --color-ink-soft: #d9f5e2;
+  --color-fg: #052e16;
+  --color-pink: #db2777;
+  --color-purple: #15803d;
+  --color-violet: #14532d;
+  --color-cyan: #0891b2;
+  --color-lime: #65a30d;
+  --color-sun: #ca8a04;
+  --color-orange: #ea580c;
+  --color-mint: #059669;
+  --color-red: #dc2626;
 }
 
 :root {
@@ -144,10 +201,11 @@ body {
   font-family: var(--font-body);
   color: var(--color-fg);
   background-color: var(--color-ink);
+  /* A quiet colour wash in the theme's accents — enough to feel warm, not enough to compete with content. */
   background-image:
-    radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--color-purple) 35%, transparent), transparent 40%),
-    radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--color-cyan) 25%, transparent), transparent 40%),
-    radial-gradient(circle at 50% 90%, color-mix(in srgb, var(--color-pink) 30%, transparent), transparent 45%);
+    radial-gradient(ellipse 70% 55% at 12% 0%, color-mix(in srgb, var(--color-purple) 22%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 92% 8%, color-mix(in srgb, var(--color-cyan) 14%, transparent), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 105%, color-mix(in srgb, var(--color-pink) 16%, transparent), transparent 70%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -156,53 +214,71 @@ body {
 
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 
-/* Glassy card used across the app */
-.glass {
-  background: color-mix(in srgb, var(--color-fg) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-fg) 14%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
+:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 2px;
 }
 
-.text-gradient {
-  background: linear-gradient(90deg, var(--color-pink), var(--color-purple), var(--color-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+/* Component classes live in the components layer so Tailwind utilities can override them. */
+@layer components {
+  /* Translucent surface used for cards, the nav and modals */
+  .glass {
+    background: color-mix(in srgb, var(--color-fg) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-fg) 10%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.14);
+  }
 
-.bg-rainbow {
-  background: linear-gradient(120deg, var(--color-pink), var(--color-purple), var(--color-cyan), var(--color-lime));
-  background-size: 300% 300%;
-  animation: rainbow 8s ease infinite;
-}
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+  /* Brand gradient — reserved for the wordmark, a few headline moments and the stage progress bar. */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--color-pink), var(--color-purple), var(--color-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-brand {
+    background: linear-gradient(120deg, var(--color-pink), var(--color-purple));
+  }
 
-/* Inputs */
-.input {
-  width: 100%;
-  border-radius: 1rem;
-  padding: 0.75rem 1rem;
-  background: color-mix(in srgb, var(--color-fg) 8%, transparent);
-  border: 2px solid color-mix(in srgb, var(--color-fg) 14%, transparent);
-  color: var(--color-fg);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  font-size: 1rem;
+  /* Inputs */
+  .input {
+    width: 100%;
+    border-radius: 0.75rem;
+    padding: 0.625rem 0.875rem;
+    background: color-mix(in srgb, var(--color-fg) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-fg) 14%, transparent);
+    color: var(--color-fg);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+    font-size: 0.9375rem;
+  }
+  .input::placeholder { color: color-mix(in srgb, var(--color-fg) 40%, transparent); }
+  .input:hover { border-color: color-mix(in srgb, var(--color-fg) 22%, transparent); }
+  .input:focus {
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-purple) 22%, transparent);
+  }
+  select.input option { color: black; }
+
+  /* Small pill used for option/type chips */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--color-fg) 10%, transparent);
+    color: color-mix(in srgb, var(--color-fg) 75%, transparent);
+  }
 }
-.input::placeholder { color: color-mix(in srgb, var(--color-fg) 40%, transparent); }
-.input:focus {
-  border-color: var(--color-purple);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-purple) 25%, transparent);
-}
-select.input option { color: black; }
 
 /* Hide scrollbars but keep scrolling */
 .no-scrollbar::-webkit-scrollbar { display: none; }

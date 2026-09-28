@@ -1,27 +1,31 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { Gamepad2 } from 'lucide-react'
 import { Card, PageHeader } from '@/components'
 import { GAMES } from './registry'
 
-const container = { show: { transition: { staggerChildren: 0.08 } } }
-const item = { hidden: { opacity: 0, y: 24, scale: 0.95 }, show: { opacity: 1, y: 0, scale: 1 } }
+const container = { show: { transition: { staggerChildren: 0.06 } } }
+const item = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
 
 export function Games() {
   return (
     <div>
-      <PageHeader title="Party Games" emoji="🎮" subtitle="Quick crowd-pleasers for between rounds. Award points to your teams from any game." />
+      <PageHeader
+        title="Party Games"
+        icon={<Gamepad2 />}
+        color="var(--color-lime)"
+        subtitle="Quick crowd-pleasers for between rounds. Award points to your teams from any game."
+      />
       <motion.div variants={container} initial="hidden" animate="show" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {GAMES.map((g) => (
           <motion.div key={g.id} variants={item}>
             <Link to={`/games/${g.id}`} className="block h-full">
-              <Card interactive glow={g.color} className="h-full">
-                <motion.div className="text-6xl mb-3" whileHover={{ rotate: [0, -12, 12, 0], transition: { duration: 0.5 } }}>
+              <Card interactive tint={g.color} className="h-full">
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl mb-4" style={{ background: `color-mix(in srgb, ${g.color} 18%, transparent)` }}>
                   {g.emoji}
-                </motion.div>
-                <h2 className="text-2xl font-bold mb-1" style={{ color: g.color }}>
-                  {g.title}
-                </h2>
-                <p className="text-fg/70 text-sm">{g.description}</p>
+                </div>
+                <h2 className="text-lg font-semibold mb-1">{g.title}</h2>
+                <p className="text-fg/65 text-sm leading-relaxed">{g.description}</p>
               </Card>
             </Link>
           </motion.div>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, Reorder, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
+import { AlertTriangle, Copy, Eye, PenLine, Play, Plus, Save, Trash2 } from 'lucide-react'
 import { Button, Card, EmojiPicker, Modal, PageHeader } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -24,7 +25,7 @@ const CATEGORIES: { id: QuizCategory; label: string }[] = [
   { id: 'logos', label: 'Logos' },
 ]
 
-const typeEmoji: Record<Question['type'], string> = { slide: '🖼️', mcq: '🔠', truefalse: '✅', timed: '⏱️' }
+const TYPE_LABEL: Record<Question['type'], string> = { slide: 'Slide', mcq: 'MCQ', truefalse: 'T / F', timed: 'Timed' }
 
 function blankQuiz(): Quiz {
   const now = Date.now()
@@ -111,7 +112,8 @@ export function ManualBuilder() {
     <div>
       <PageHeader
         title={existing ? 'Edit Quiz' : 'Manual Quiz Maker'}
-        emoji="🛠️"
+        icon={<PenLine />}
+        color="var(--color-cyan)"
         back="/quizzes"
         subtitle={dirty ? 'Unsaved changes' : undefined}
         actions={
@@ -125,7 +127,7 @@ export function ManualBuilder() {
                 navigate(`/preview/${s.id}`)
               }}
             >
-              👁️ Preview
+              <Eye /> Preview
             </Button>
             <Button
               variant="secondary"
@@ -137,10 +139,10 @@ export function ManualBuilder() {
                 navigate('/play/stage')
               }}
             >
-              ▶️ Present
+              <Play /> Present
             </Button>
             <Button size="sm" disabled={!canSave} onClick={() => save()}>
-              💾 Save
+              <Save /> Save
             </Button>
           </>
         }
@@ -149,11 +151,17 @@ export function ManualBuilder() {
       {/* Quiz meta */}
       <Card className="mb-4">
         <div className="flex gap-3 items-start flex-wrap">
-          <button type="button" onClick={() => setEmojiOpen(true)} className="w-16 h-16 rounded-2xl bg-fg/10 text-4xl hover:bg-fg/20 shrink-0" title="Pick an emoji">
+          <button
+            type="button"
+            onClick={() => setEmojiOpen(true)}
+            className="w-[5.5rem] h-[5.5rem] rounded-xl bg-fg/8 border border-fg/10 text-3xl hover:bg-fg/14 transition-colors shrink-0"
+            title="Pick an emoji"
+            aria-label="Pick an emoji"
+          >
             {quiz.emoji}
           </button>
           <div className="flex-1 min-w-52 space-y-2">
-            <input className="input text-xl font-display font-bold" placeholder="Quiz title" value={quiz.title} onChange={(e) => update({ title: e.target.value })} />
+            <input className="input text-lg font-semibold" placeholder="Quiz title" value={quiz.title} onChange={(e) => update({ title: e.target.value })} />
             <input className="input" placeholder="Short description (optional)" value={quiz.description ?? ''} onChange={(e) => update({ description: e.target.value })} />
           </div>
           <select className="input !w-auto" value={quiz.category} onChange={(e) => update({ category: e.target.value as QuizCategory })}>
@@ -166,74 +174,75 @@ export function ManualBuilder() {
         </div>
       </Card>
 
-      <div className="grid md:grid-cols-[18rem_1fr] gap-4">
+      {/* min-w-0 lets each card shrink below its content's min-content width on phones */}
+      <div className="grid grid-cols-1 md:grid-cols-[18rem_1fr] gap-4">
         {/* Question list */}
-        <Card className="md:max-h-[70vh] md:overflow-y-auto">
+        <Card className="min-w-0 md:max-h-[70vh] md:overflow-y-auto">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-bold">Questions ({quiz.questions.length})</h2>
+            <h2 className="font-semibold">Questions ({quiz.questions.length})</h2>
           </div>
-          <Reorder.Group axis="y" values={quiz.questions} onReorder={setQuestions} className="space-y-1.5">
+          <Reorder.Group axis="y" values={quiz.questions} onReorder={setQuestions} className="space-y-1">
             <AnimatePresence initial={false}>
               {quiz.questions.map((q, i) => (
                 <Reorder.Item
                   key={q.id}
                   value={q}
-                  initial={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, x: -6 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
+                  exit={{ opacity: 0, x: 6 }}
                   onClick={() => setSelected(q.id)}
                   className={cn(
-                    'rounded-xl px-3 py-2 flex items-center gap-2 cursor-grab active:cursor-grabbing border-2 transition-colors',
-                    selected === q.id ? 'bg-fg/15 border-purple' : 'bg-fg/5 border-transparent hover:bg-fg/10',
+                    'rounded-lg px-2.5 py-2 flex items-center gap-2 cursor-grab active:cursor-grabbing border transition-colors',
+                    selected === q.id ? 'bg-fg/12 border-purple' : 'bg-fg/5 border-transparent hover:bg-fg/10',
                   )}
                 >
-                  <span className="text-fg/40 text-xs w-5 tabular-nums">{i + 1}</span>
-                  <span>{typeEmoji[q.type]}</span>
+                  <span className="text-fg/40 text-xs w-4 tabular-nums">{i + 1}</span>
+                  <span className="chip">{TYPE_LABEL[q.type]}</span>
                   <span className="flex-1 truncate text-sm">{q.text || <i className="text-fg/40">Untitled</i>}</span>
-                  {problems[i] && <span title={problems[i]!}>⚠️</span>}
+                  {problems[i] && <AlertTriangle size={14} className="text-sun shrink-0" aria-label={problems[i]!} />}
                 </Reorder.Item>
               ))}
             </AnimatePresence>
           </Reorder.Group>
           <div className="mt-3 grid grid-cols-2 gap-1.5">
             <Button size="sm" variant="secondary" onClick={() => addQuestion('mcq')}>
-              🔠 MCQ
+              <Plus /> MCQ
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('truefalse')}>
-              ✅ T / F
+              <Plus /> T / F
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('timed')}>
-              ⏱️ Timed
+              <Plus /> Timed
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('slide')}>
-              🖼️ Slide
+              <Plus /> Slide
             </Button>
           </div>
           <p className="text-xs text-fg/40 mt-2">Drag to reorder.</p>
         </Card>
 
         {/* Editor */}
-        <Card>
+        <Card className="min-w-0">
           {current ? (
-            <motion.div key={current.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.div key={current.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="font-bold text-lg">
-                  Question {quiz.questions.findIndex((q) => q.id === current.id) + 1}
-                </h2>
+                <h2 className="font-semibold">Question {quiz.questions.findIndex((q) => q.id === current.id) + 1}</h2>
                 <div className="flex gap-1">
                   <Button size="sm" variant="ghost" onClick={() => duplicateQuestion(current.id)}>
-                    ⧉ Duplicate
+                    <Copy /> Duplicate
                   </Button>
-                  <Button size="sm" variant="ghost" className="text-red" onClick={() => removeQuestion(current.id)}>
-                    🗑️ Delete
+                  <Button size="sm" variant="ghost" className="text-fg/60 hover:text-red" onClick={() => removeQuestion(current.id)}>
+                    <Trash2 /> Delete
                   </Button>
                 </div>
               </div>
               <QuestionEditor question={current} onChange={(q) => setQuestions(quiz.questions.map((x) => (x.id === q.id ? q : x)))} />
             </motion.div>
           ) : (
-            <div className="text-center py-16 text-fg/60">
-              <div className="text-5xl mb-3">✏️</div>
+            <div className="text-center py-16 text-fg/60 text-sm">
+              <div className="w-12 h-12 rounded-xl bg-fg/8 text-fg/50 flex items-center justify-center mx-auto mb-4">
+                <PenLine size={22} />
+              </div>
               Add a question to start building.
             </div>
           )}

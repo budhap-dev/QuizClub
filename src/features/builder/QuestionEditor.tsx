@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Check, Plus, Upload, X } from 'lucide-react'
 import { Button } from '@/components'
 import type { McqQuestion, Question, QuestionType } from '@/types'
 import { cn, OPTION_LABELS } from '@/utils'
@@ -8,11 +9,11 @@ interface QuestionEditorProps {
   onChange: (q: Question) => void
 }
 
-const TYPES: { id: QuestionType; label: string; emoji: string }[] = [
-  { id: 'slide', label: 'Slide', emoji: '🖼️' },
-  { id: 'mcq', label: 'Multiple choice', emoji: '🔠' },
-  { id: 'truefalse', label: 'True / False', emoji: '✅' },
-  { id: 'timed', label: 'Timed answer', emoji: '⏱️' },
+const TYPES: { id: QuestionType; label: string }[] = [
+  { id: 'slide', label: 'Slide' },
+  { id: 'mcq', label: 'Multiple choice' },
+  { id: 'truefalse', label: 'True / False' },
+  { id: 'timed', label: 'Timed answer' },
 ]
 
 /** Convert a question to another type while keeping shared fields. */
@@ -55,15 +56,19 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
   return (
     <div className="space-y-4">
       {/* Type selector */}
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex gap-1.5 flex-wrap">
         {TYPES.map((t) => (
           <button
             key={t.id}
             type="button"
             onClick={() => q.type !== t.id && onChange(convertType(q, t.id))}
-            className={cn('px-3 py-2 rounded-xl text-sm font-semibold border-2 transition-colors', q.type === t.id ? 'bg-purple border-purple' : 'border-fg/15 hover:bg-fg/10')}
+            aria-pressed={q.type === t.id}
+            className={cn(
+              'px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors',
+              q.type === t.id ? 'bg-purple/18 border-purple text-fg' : 'border-fg/12 text-fg/75 hover:bg-fg/8 hover:text-fg',
+            )}
           >
-            {t.emoji} {t.label}
+            {t.label}
           </button>
         ))}
       </div>
@@ -71,7 +76,7 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
       {/* Prompt */}
       <label className="block">
         <span className="text-sm text-fg/70">{q.type === 'slide' ? 'Slide title' : 'Question'}</span>
-        <textarea className="input mt-1 min-h-20 text-lg" value={q.text} onChange={(e) => patch({ text: e.target.value })} placeholder={q.type === 'slide' ? 'Round 1: Geography' : 'What is the capital of…?'} />
+        <textarea className="input mt-1 min-h-20 text-base" value={q.text} onChange={(e) => patch({ text: e.target.value })} placeholder={q.type === 'slide' ? 'Round 1: Geography' : 'What is the capital of…?'} />
       </label>
 
       {/* Image */}
@@ -80,18 +85,18 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
           <span className="text-sm text-fg/70">Image (URL or upload)</span>
           <div className="flex gap-2 mt-1">
             <input className="input" value={q.imageUrl?.startsWith('data:') ? '(uploaded image)' : (q.imageUrl ?? '')} onChange={(e) => patch({ imageUrl: e.target.value || undefined })} placeholder="https://…" />
-            <Button type="button" variant="secondary" size="sm" onClick={() => fileRef.current?.click()}>
-              📁
+            <Button type="button" variant="secondary" size="sm" onClick={() => fileRef.current?.click()} title="Upload image" aria-label="Upload image">
+              <Upload />
             </Button>
             {q.imageUrl && (
-              <Button type="button" variant="ghost" size="sm" onClick={() => patch({ imageUrl: undefined })}>
-                ✕
+              <Button type="button" variant="ghost" size="sm" onClick={() => patch({ imageUrl: undefined })} title="Remove image" aria-label="Remove image">
+                <X />
               </Button>
             )}
             <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => void onImageFile(e.target.files?.[0])} />
           </div>
         </div>
-        {q.imageUrl && <img src={q.imageUrl} alt="" className="h-20 w-28 object-contain rounded-xl bg-fg/10" referrerPolicy="no-referrer" />}
+        {q.imageUrl && <img src={q.imageUrl} alt="" className="h-20 w-28 object-contain rounded-lg bg-fg/8 border border-fg/10" referrerPolicy="no-referrer" />}
       </div>
 
       {/* Type-specific */}
@@ -108,19 +113,24 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
         <div>
           <span className="text-sm text-fg/70">Correct answer</span>
           <div className="grid grid-cols-2 gap-2 mt-1">
-            {[true, false].map((v) => (
-              <button
-                key={String(v)}
-                type="button"
-                onClick={() => patch({ answer: v } as Partial<Question>)}
-                className={cn(
-                  'rounded-2xl py-3 font-display font-bold text-xl border-2 transition-colors',
-                  q.answer === v ? (v ? 'bg-mint text-ink border-mint' : 'bg-red border-red') : 'border-fg/15 hover:bg-fg/10',
-                )}
-              >
-                {v ? '✔ TRUE' : '✘ FALSE'}
-              </button>
-            ))}
+            {[true, false].map((v) => {
+              const on = q.answer === v
+              const Icon = v ? Check : X
+              return (
+                <button
+                  key={String(v)}
+                  type="button"
+                  onClick={() => patch({ answer: v } as Partial<Question>)}
+                  aria-pressed={on}
+                  className={cn(
+                    'rounded-xl py-3 font-semibold border transition-colors flex items-center justify-center gap-2',
+                    on ? (v ? 'bg-mint/18 border-mint text-mint' : 'bg-red/18 border-red text-red') : 'border-fg/12 text-fg/70 hover:bg-fg/8 hover:text-fg',
+                  )}
+                >
+                  <Icon size={16} strokeWidth={2.5} /> {v ? 'True' : 'False'}
+                </button>
+              )
+            })}
           </div>
         </div>
       )}
@@ -178,22 +188,32 @@ function McqOptions({ q, onChange }: { q: McqQuestion; onChange: (q: Question) =
             <button
               type="button"
               onClick={() => onChange({ ...q, correctIndex: i })}
-              className={cn('w-10 h-10 rounded-xl font-display font-bold shrink-0 transition-colors', q.correctIndex === i ? 'bg-mint text-ink' : 'bg-fg/10 hover:bg-fg/20')}
+              aria-pressed={q.correctIndex === i}
+              className={cn(
+                'w-10 h-10 rounded-lg font-semibold shrink-0 transition-colors border',
+                q.correctIndex === i ? 'bg-mint text-ink border-mint' : 'bg-fg/8 border-fg/10 hover:bg-fg/14',
+              )}
               title="Mark as correct"
             >
               {OPTION_LABELS[i]}
             </button>
             <input className="input" value={opt} onChange={(e) => setOption(i, e.target.value)} placeholder={`Option ${OPTION_LABELS[i]}`} />
             <input className="input !w-32 hidden md:block" value={q.optionImages?.[i] ?? ''} onChange={(e) => setOptionImage(i, e.target.value)} placeholder="img URL" title="Optional image URL for this option" />
-            <button type="button" onClick={() => removeAt(i)} className="text-fg/40 hover:text-red px-1" aria-label="Remove option" disabled={q.options.length <= 2}>
-              ✕
+            <button
+              type="button"
+              onClick={() => removeAt(i)}
+              className="w-8 h-8 rounded-md flex items-center justify-center text-fg/40 hover:text-red hover:bg-fg/8 disabled:opacity-30 disabled:hover:text-fg/40 transition-colors shrink-0"
+              aria-label="Remove option"
+              disabled={q.options.length <= 2}
+            >
+              <X size={14} />
             </button>
           </div>
         ))}
       </div>
       {q.options.length < 6 && (
         <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={add}>
-          ＋ Add option
+          <Plus /> Add option
         </Button>
       )}
     </div>

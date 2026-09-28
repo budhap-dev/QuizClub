@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Check, ChevronRight, Eye, Pause, Play, Shuffle, SkipForward } from 'lucide-react'
 import { Button, party } from '@/components'
+import { themeColor } from '@/app/theme'
 import { cn, pick, shuffle } from '@/utils'
 import { sfx } from '@/utils/sounds'
 import { AwardBar } from '../AwardBar'
@@ -70,7 +72,7 @@ export default function Scramble() {
   }
 
   const pct = (remaining / duration) * 100
-  const barColor = pct > 50 ? '#34d399' : pct > 25 ? '#fbbf24' : '#f43f5e'
+  const barColor = pct > 50 ? themeColor('mint', '#34d399') : pct > 25 ? themeColor('sun', '#fbbf24') : themeColor('red', '#f43f5e')
 
   return (
     <div className="max-w-3xl mx-auto text-center">
@@ -82,7 +84,11 @@ export default function Scramble() {
               setCat(c)
               newWord(c)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', cat === c ? 'bg-cyan text-ink border-cyan' : 'border-fg/15 hover:bg-fg/10')}
+            aria-pressed={cat === c}
+            className={cn(
+              'px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors',
+              cat === c ? 'bg-cyan/18 border-cyan text-fg' : 'border-fg/12 text-fg/75 hover:bg-fg/8 hover:text-fg',
+            )}
           >
             {c}
           </button>
@@ -98,7 +104,8 @@ export default function Scramble() {
               setRemaining(t)
               setRunning(false)
             }}
-            className={cn('px-2.5 py-1 rounded-lg font-semibold', duration === t ? 'bg-fg/20 text-fg' : 'hover:bg-fg/10')}
+            aria-pressed={duration === t}
+            className={cn('px-2.5 py-1 rounded-md font-medium transition-colors', duration === t ? 'bg-fg/15 text-fg' : 'hover:bg-fg/10')}
           >
             {t}s
           </button>
@@ -117,12 +124,12 @@ export default function Scramble() {
           {(state === 'play' || state === 'timeup' ? scrambled : word).split('').map((ch, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20, rotate: -10 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
-              transition={{ delay: i * 0.05, type: 'spring', stiffness: 300 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.04, type: 'spring', stiffness: 300, damping: 24 }}
               className={cn(
-                'w-12 h-14 md:w-16 md:h-20 rounded-2xl flex items-center justify-center font-display font-bold text-3xl md:text-5xl shadow-lg',
-                state === 'correct' || state === 'revealed' ? 'bg-rainbow text-ink' : ch === ' ' ? 'opacity-0' : 'bg-gradient-to-br from-cyan to-purple',
+                'w-12 h-14 md:w-16 md:h-20 rounded-xl flex items-center justify-center font-display font-semibold text-3xl md:text-5xl border',
+                state === 'correct' || state === 'revealed' ? 'bg-brand text-on-accent border-transparent shadow-lg' : ch === ' ' ? 'opacity-0' : 'bg-cyan/14 border-cyan/45 text-fg',
               )}
             >
               {ch}
@@ -131,36 +138,46 @@ export default function Scramble() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="text-5xl md:text-7xl font-display font-bold tabular-nums mb-4" style={{ color: barColor }}>
+      <div className="text-5xl md:text-7xl font-display font-semibold tabular-nums mb-4" style={{ color: barColor }}>
         {remaining}
       </div>
 
       {state === 'play' && (
         <div className="flex flex-wrap gap-2 justify-center">
           <Button variant={running ? 'secondary' : 'success'} onClick={() => setRunning((r) => !r)}>
-            {running ? '⏸ Pause' : '▶️ Start'}
+            {running ? (
+              <>
+                <Pause /> Pause
+              </>
+            ) : (
+              <>
+                <Play fill="currentColor" /> Start
+              </>
+            )}
           </Button>
-          <Button onClick={correct}>✅ Correct!</Button>
+          <Button onClick={correct}>
+            <Check /> Correct
+          </Button>
           <Button variant="secondary" onClick={() => setScrambled(scramble(word))}>
-            🔀 Re-scramble
+            <Shuffle /> Re-scramble
           </Button>
-          <Button variant="danger" onClick={() => setState('revealed')}>
-            👀 Reveal
+          <Button variant="secondary" onClick={() => setState('revealed')}>
+            <Eye /> Reveal
           </Button>
           <Button variant="ghost" onClick={() => newWord()}>
-            ⏭ Skip
+            <SkipForward /> Skip
           </Button>
         </div>
       )}
 
       {state !== 'play' && (
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-          <div className="text-2xl md:text-3xl font-display font-bold mb-2">
-            {state === 'correct' ? '🎉 Correct!' : state === 'timeup' ? `⏰ Time's up! It was ${word}` : `It was ${word}`}
+          <div className="text-2xl md:text-3xl font-display font-semibold mb-2">
+            {state === 'correct' ? 'Correct!' : state === 'timeup' ? `Time's up — it was ${word}` : `It was ${word}`}
           </div>
           {state === 'correct' && <AwardBar points={10} reason="scramble" />}
           <Button className="mt-4" onClick={() => newWord()}>
-            Next word →
+            Next word <ChevronRight />
           </Button>
         </motion.div>
       )}

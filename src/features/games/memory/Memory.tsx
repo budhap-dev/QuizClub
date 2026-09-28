@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { HelpCircle, RefreshCw } from 'lucide-react'
 import { Button, party } from '@/components'
 import { useSessionStore } from '@/store/sessionStore'
 import { cn, sample, shuffle } from '@/utils'
@@ -104,7 +105,11 @@ export default function Memory() {
               setSize(i)
               reset(i)
             }}
-            className={cn('px-3 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors', size === i ? 'bg-mint text-ink border-mint' : 'border-fg/15 hover:bg-fg/10')}
+            aria-pressed={size === i}
+            className={cn(
+              'px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors',
+              size === i ? 'bg-mint/18 border-mint text-fg' : 'border-fg/12 text-fg/75 hover:bg-fg/8 hover:text-fg',
+            )}
           >
             {s.label}
           </button>
@@ -117,16 +122,16 @@ export default function Memory() {
               setTeamMode(e.target.checked)
               reset()
             }}
-            className="accent-mint"
+            className="accent-purple"
           />
           2 teams take turns
         </label>
         <Button size="sm" variant="secondary" onClick={() => reset()}>
-          🔄 New game
+          <RefreshCw /> New game
         </Button>
       </div>
 
-      <div className="flex justify-center gap-6 mb-4 font-display font-bold text-lg md:text-xl">
+      <div className="flex justify-center gap-6 mb-4 font-display font-semibold text-base md:text-lg">
         <span>
           Moves: <b className="text-sun">{moves}</b>
         </span>
@@ -141,11 +146,11 @@ export default function Memory() {
             <motion.div
               key={n}
               animate={{ scale: turn === i && !done ? 1.08 : 1 }}
-              className={cn('rounded-2xl px-4 py-2 font-display font-bold border-2', turn === i && !done ? 'bg-fg/15' : 'opacity-60')}
+              className={cn('rounded-xl px-4 py-2 font-semibold border', turn === i && !done ? 'bg-fg/12' : 'opacity-60')}
               style={{ borderColor: colors[i] }}
             >
               {n}: <span style={{ color: colors[i] }}>{teamScores[i]}</span>
-              {turn === i && !done && <span className="ml-2">👈</span>}
+              {turn === i && !done && <span className="ml-2 text-[11px] uppercase tracking-wider opacity-70">turn</span>}
             </motion.div>
           ))}
         </div>
@@ -170,13 +175,13 @@ export default function Memory() {
                 transition={{ duration: 0.45 }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple to-pink flex items-center justify-center text-3xl shadow-lg" style={{ backfaceVisibility: 'hidden' }}>
-                  ❓
+                <div className="absolute inset-0 rounded-xl bg-brand text-on-accent flex items-center justify-center shadow-md" style={{ backfaceVisibility: 'hidden' }}>
+                  <HelpCircle className="w-[38%] h-[38%] opacity-90" />
                 </div>
                 <div
                   className={cn(
-                    'absolute inset-0 rounded-2xl flex items-center justify-center text-4xl md:text-5xl shadow-lg',
-                    c.matched ? 'bg-mint/30 ring-4 ring-mint' : 'bg-fg/15',
+                    'absolute inset-0 rounded-xl flex items-center justify-center text-4xl md:text-5xl shadow-md',
+                    c.matched ? 'bg-mint/25 ring-2 ring-mint' : 'bg-fg/12 border border-fg/10',
                   )}
                   style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                 >
@@ -191,8 +196,8 @@ export default function Memory() {
       <AnimatePresence>
         {done && (
           <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="mt-6">
-            <div className="text-3xl md:text-4xl font-display font-bold">
-              {teamMode ? (winner === null ? '🤝 It’s a tie!' : `🏆 ${names[winner]} wins!`) : `🎉 Done in ${moves} moves · ${seconds}s`}
+            <div className="text-2xl md:text-3xl font-display font-semibold">
+              {teamMode ? (winner === null ? 'It’s a tie!' : `${names[winner]} wins!`) : `Done in ${moves} moves · ${seconds}s`}
             </div>
             <AwardBar points={10} reason="memory" />
           </motion.div>

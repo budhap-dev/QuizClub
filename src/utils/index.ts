@@ -83,11 +83,12 @@ export const TEAM_EMOJIS = ['🦁', '🐯', '🐸', '🦊', '🐼', '🦄', '�
 
 export const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F']
 
+/** One theme accent per answer slot; the stage tints the tile with it and fills it on reveal. */
 export const OPTION_COLORS = [
-  'from-pink to-red',
-  'from-purple to-violet',
-  'from-cyan to-blue-500',
-  'from-lime to-mint',
-  'from-sun to-orange',
-  'from-mint to-cyan',
+  'var(--color-pink)',
+  'var(--color-purple)',
+  'var(--color-cyan)',
+  'var(--color-lime)',
+  'var(--color-sun)',
+  'var(--color-mint)',
 ]
