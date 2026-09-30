@@ -9,6 +9,8 @@ interface QuestionViewProps {
   revealed: boolean
   timer?: { total: number; remaining: number; running: boolean }
   onToggleTimer?: () => void
+  /** Option the host tapped (for true/false, 0 = True, 1 = False). */
+  picked?: number | null
   onOption?: (i: number) => void
 }
 
@@ -24,18 +26,37 @@ const optionAnim: Variants = {
   show: showAt,
 }
 
-/** Tinted tile that fills with its accent when it is the correct answer. */
-const tileStyle = (color: string, correct: boolean) =>
+/**
+ * Tinted tile in its option colour. On reveal the correct answer turns success green (whatever its
+ * own colour) and a wrong pick turns red, so right and wrong never look alike.
+ */
+const tileStyle = (color: string, correct: boolean, wrong = false) =>
   correct
-    ? { background: color, borderColor: 'var(--color-fg)' }
-    : { background: `color-mix(in srgb, ${color} 14%, transparent)`, borderColor: `color-mix(in srgb, ${color} 45%, transparent)` }
+    ? { background: 'var(--color-mint)', borderColor: 'var(--color-fg)' }
+    : wrong
+      ? { background: 'color-mix(in srgb, var(--color-red) 24%, transparent)', borderColor: 'var(--color-red)' }
+      : { background: `color-mix(in srgb, ${color} 14%, transparent)`, borderColor: `color-mix(in srgb, ${color} 45%, transparent)` }
+
+/** A short side-to-side shake for a wrong pick. */
+const shake = (i: number): TargetAndTransition => ({ ...showAt(i), x: [0, -10, 10, -6, 6, 0], transition: { duration: 0.45 } })
+
+const WrongMark = () => (
+  <motion.span
+    initial={{ scale: 0 }}
+    animate={{ scale: 1 }}
+    className="shrink-0 rounded-full bg-red text-on-accent w-[clamp(2rem,5vh,3rem)] h-[clamp(2rem,5vh,3rem)] flex items-center justify-center"
+    aria-label="Wrong answer"
+  >
+    <X className="w-[60%] h-[60%]" strokeWidth={3} />
+  </motion.span>
+)
 
 /**
  * Everything here is sized with clamp(…vh…) so a question, its image and its
  * options always fit the stage height without scrolling. The image is the only
  * flexible item: it takes whatever space is left after the prompt and answers.
  */
-export function QuestionView({ question, revealed, timer, onToggleTimer, onOption }: QuestionViewProps) {
+export function QuestionView({ question, revealed, timer, onToggleTimer, picked, onOption }: QuestionViewProps) {
   const q = question
   const hasTimer = timer && timer.total > 0 && q.type !== 'slide'
 
@@ -100,16 +121,18 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
           {q.options.map((opt, i) => {
             const color = OPTION_COLORS[i % OPTION_COLORS.length]
             const correct = revealed && i === q.correctIndex
-            const dim = revealed && i !== q.correctIndex
+            const wrong = revealed && picked === i && !correct
+            const dim = revealed && !correct && !wrong
             return (
               <motion.button
                 key={q.id + '-' + i}
                 custom={i}
                 variants={optionAnim}
                 initial="hidden"
-                animate={correct ? { ...showAt(i), scale: [1, 1.03, 1], transition: { duration: 0.5 } } : 'show'}
+                animate={correct ? { ...showAt(i), scale: [1, 1.03, 1], transition: { duration: 0.5 } } : wrong ? shake(i) : 'show'}
                 onClick={() => onOption?.(i)}
-                style={tileStyle(color, correct)}
+                aria-pressed={picked === i}
+                style={tileStyle(color, correct, wrong)}
                 className={cn(
                   'relative rounded-2xl px-[clamp(0.75rem,2vw,1.5rem)] py-[clamp(0.5rem,1.8vh,1.25rem)] text-left flex items-center gap-[clamp(0.5rem,1.5vw,1rem)] border transition-all duration-500',
                   correct ? 'text-ink shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-fg)_25%,transparent)]' : 'text-fg',
@@ -122,7 +145,7 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
                     'font-display font-semibold text-[clamp(1.1rem,3.2vh,2rem)] rounded-xl w-[clamp(2.25rem,6.5vh,3.5rem)] h-[clamp(2.25rem,6.5vh,3.5rem)] flex items-center justify-center shrink-0',
                     correct ? 'bg-ink/15 text-ink' : 'text-ink',
                   )}
-                  style={correct ? undefined : { background: color }}
+                  style={correct ? undefined : { background: wrong ? 'var(--color-red)' : color }}
                 >
                   {OPTION_LABELS[i]}
                 </span>
@@ -137,6 +160,11 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
                     <Check className="w-[60%] h-[60%]" strokeWidth={3} />
                   </motion.span>
                 )}
+                {wrong && (
+                  <span className="ml-auto">
+                    <WrongMark />
+                  </span>
+                )}
               </motion.button>
             )
           })}
@@ -148,19 +176,23 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
           {[true, false].map((v, i) => {
             const color = v ? 'var(--color-mint)' : 'var(--color-red)'
             const correct = revealed && v === q.answer
-            const dim = revealed && v !== q.answer
+            const wrong = revealed && picked === i && !correct
+            const dim = revealed && !correct && !wrong
             const Icon = v ? Check : X
             return (
-              <motion.div
+              <motion.button
                 key={q.id + String(v)}
                 custom={i}
                 variants={optionAnim}
                 initial="hidden"
-                animate="show"
-                style={tileStyle(color, correct)}
+                animate={wrong ? shake(i) : 'show'}
+                onClick={() => onOption?.(i)}
+                aria-pressed={picked === i}
+                style={tileStyle(color, correct, wrong)}
                 className={cn(
-                  'rounded-2xl py-[clamp(1.25rem,6vh,3.5rem)] flex items-center justify-center gap-[clamp(0.5rem,1.5vw,1rem)] font-display font-semibold text-[clamp(1.5rem,5.5vh,3.5rem)] border transition-all duration-500',
+                  'relative rounded-2xl py-[clamp(1.25rem,6vh,3.5rem)] flex items-center justify-center gap-[clamp(0.5rem,1.5vw,1rem)] font-display font-semibold text-[clamp(1.5rem,5.5vh,3.5rem)] border transition-all duration-500',
                   correct ? 'text-ink shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-fg)_25%,transparent)] scale-[1.03]' : 'text-fg',
+                  !revealed && 'hover:brightness-125',
                   dim && 'opacity-30 grayscale',
                 )}
               >
@@ -171,7 +203,12 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, onOptio
                   <Icon className="w-[60%] h-[60%]" strokeWidth={3} />
                 </span>
                 {v ? 'True' : 'False'}
-              </motion.div>
+                {wrong && (
+                  <span className="absolute top-2 right-2">
+                    <WrongMark />
+                  </span>
+                )}
+              </motion.button>
             )
           })}
         </div>
