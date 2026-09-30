@@ -36,7 +36,7 @@ const quizSchema = {
       items: {
         type: 'object',
         additionalProperties: false,
-        required: ['type', 'text', 'points', 'timeLimit', 'hostNote'],
+        required: ['type', 'text', 'points', 'timeLimit', 'explanation', 'hostNote'],
         properties: {
           type: { type: 'string', enum: [...QUESTION_TYPES] },
           text: { type: 'string', description: 'The question prompt, or the slide title' },
@@ -46,7 +46,8 @@ const quizSchema = {
           answer: { type: ['boolean', 'string'], description: 'true/false for truefalse; short text for timed' },
           points: { type: 'integer' },
           timeLimit: { type: 'integer', description: 'Seconds; 0 for slides' },
-          hostNote: { type: 'string', description: 'A one-line fun fact or explanation for the quiz master' },
+          explanation: { type: 'string', description: 'Shown to everyone after the answer is revealed: why the answer is right, or a closely related fact. Empty for slides.' },
+          hostNote: { type: 'string', description: 'Private tip for the quiz master only: accepted alternative answers or pronunciation. Empty string if none.' },
           flagCode: { type: 'string', description: 'ISO 3166-1 alpha-2 country code if the question is about a flag' },
           logoSlug: { type: 'string', description: 'simpleicons.org slug if the question is about a brand logo' },
         },
@@ -94,7 +95,8 @@ Rules:
 - truefalse: answer is a boolean. Make roughly half true and half false.
 - timed: an open question with a short text answer; timeLimit 20–45.
 - points: 5 for easy, 10 for medium, 15 for hard. timeLimit: 10–30 seconds for mcq/truefalse.
-- hostNote: one short sentence with a fun fact or clarification.
+- explanation: one sentence (under 120 characters) shown on screen after the reveal. Explain why the answer is right or add a closely related fact; for a false statement, say what is true. Don't just repeat the answer.
+- hostNote: private guidance for the quiz master only, such as accepted alternative answers; an empty string if there is nothing to add.
 - If a question is about a country's flag, set flagCode and phrase the question as "Which country does this flag belong to?".
 - If a question is about a brand logo, set logoSlug (lowercase simpleicons slug) and phrase it as "Which brand is this logo?".
 - Keep question text under 140 characters so it fits on screen.

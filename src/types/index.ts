@@ -25,8 +25,10 @@ export interface QuestionBase {
   points: number
   /** Seconds for the countdown. 0/undefined = no timer. */
   timeLimit?: number
-  /** Private note shown only to the quiz master. */
+  /** Private note shown only to the quiz master (accepted alternatives, pronunciation…). */
   hostNote?: string
+  /** Shown to everyone once the answer is revealed: why it's right, or a related fact. */
+  explanation?: string
 }
 
 export interface SlideQuestion extends QuestionBase {

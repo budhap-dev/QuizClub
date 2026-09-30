@@ -1,5 +1,6 @@
+import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion, type TargetAndTransition, type Variants } from 'framer-motion'
-import { Check, X } from 'lucide-react'
+import { Check, Lightbulb, X } from 'lucide-react'
 import type { Question } from '@/types'
 import { cn, OPTION_COLORS, OPTION_LABELS } from '@/utils'
 import { TimerRing } from '@/components'
@@ -51,6 +52,61 @@ const WrongMark = () => (
   </motion.span>
 )
 
+/** Text of the correct answer, e.g. "B · Mars" or "True". */
+function correctText(q: Question): string | null {
+  if (q.type === 'mcq') return `${OPTION_LABELS[q.correctIndex] ?? ''} · ${q.options[q.correctIndex] ?? ''}`
+  if (q.type === 'truefalse') return q.answer ? 'True' : 'False'
+  return null
+}
+
+/**
+ * After the reveal: a verdict when an answer was tapped ("Correct!" / "Not quite — the answer is B · Mars")
+ * and the question's explanation. Renders nothing when there's neither.
+ */
+function AnswerPanel({ q, picked }: { q: Question; picked?: number | null }) {
+  const tapped = picked !== null && picked !== undefined && (q.type === 'mcq' || q.type === 'truefalse')
+  const right = tapped && (q.type === 'mcq' ? picked === q.correctIndex : q.type === 'truefalse' && (picked === 0) === q.answer)
+  if (!tapped && !q.explanation) return null
+  const tone = !tapped ? 'var(--color-sun)' : right ? 'var(--color-mint)' : 'var(--color-red)'
+  return <PanelBody key={q.id + '-panel'} tone={tone} tapped={tapped} right={right} q={q} />
+}
+
+function PanelBody({ q, tone, tapped, right }: { q: Question; tone: string; tapped: boolean; right: boolean }) {
+  const ref = useRef<HTMLDivElement>(null)
+  // On short screens the panel can land below the fold: bring it into view once it has animated in.
+  useEffect(() => {
+    const id = window.setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 450)
+    return () => window.clearTimeout(id)
+  }, [])
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0, transition: { delay: 0.35, type: 'spring', stiffness: 260, damping: 26 } }}
+      className="w-full max-w-4xl shrink-0 rounded-2xl border px-[clamp(0.875rem,2vw,1.5rem)] py-[clamp(0.5rem,1.6vh,1rem)] flex items-start gap-[clamp(0.625rem,1.5vw,1rem)]"
+      style={{ background: `color-mix(in srgb, ${tone} 12%, transparent)`, borderColor: `color-mix(in srgb, ${tone} 40%, transparent)` }}
+      role="status"
+      data-testid="answer-panel"
+    >
+      <span
+        className="shrink-0 rounded-xl w-[clamp(2rem,5vh,2.75rem)] h-[clamp(2rem,5vh,2.75rem)] flex items-center justify-center"
+        style={{ background: `color-mix(in srgb, ${tone} 22%, transparent)`, color: tone }}
+        aria-hidden
+      >
+        {!tapped ? <Lightbulb className="w-[55%] h-[55%]" /> : right ? <Check className="w-[60%] h-[60%]" strokeWidth={3} /> : <X className="w-[60%] h-[60%]" strokeWidth={3} />}
+      </span>
+      <div className="min-w-0 flex-1 stage-text">
+        {tapped && (
+          <div className="font-display font-semibold text-[clamp(1.05rem,2.8vh,1.6rem)] leading-tight" style={{ color: tone }}>
+            {right ? 'Correct!' : `Not quite — the answer is ${correctText(q)}`}
+          </div>
+        )}
+        {q.explanation && <p className={cn('text-fg/85 text-[clamp(0.95rem,2.4vh,1.35rem)] leading-snug', tapped && 'mt-0.5')}>{q.explanation}</p>}
+      </div>
+    </motion.div>
+  )
+}
+
 /**
  * Everything here is sized with clamp(…vh…) so a question, its image and its
  * options always fit the stage height without scrolling. The image is the only
@@ -61,7 +117,8 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
   const hasTimer = timer && timer.total > 0 && q.type !== 'slide'
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 py-[clamp(0.5rem,1.5vh,1.5rem)] gap-[clamp(0.5rem,2vh,1.5rem)]">
+    // Scrolls only when it must (phones with the answer panel open); safe centring keeps the top reachable.
+    <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col items-center justify-center-safe w-full max-w-6xl mx-auto px-4 py-[clamp(0.5rem,1.5vh,1.5rem)] gap-[clamp(0.5rem,2vh,1.5rem)]">
       {/* Prompt */}
       <motion.div
         key={q.id + '-prompt'}
@@ -233,6 +290,8 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
           )}
         </AnimatePresence>
       )}
+
+      {revealed && q.type !== 'slide' && <AnswerPanel q={q} picked={picked} />}
     </div>
   )
 }

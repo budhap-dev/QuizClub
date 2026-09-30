@@ -14,6 +14,7 @@ interface RawAiQuestion {
   points?: number
   timeLimit?: number
   hostNote?: string
+  explanation?: string
   flagCode?: string
   logoSlug?: string
 }
@@ -59,6 +60,7 @@ function normalise(raw: RawAiQuiz, req: AiQuizRequest): Quiz {
       points: Math.max(0, Math.round(Number(r.points) || 10)),
       timeLimit: Math.max(0, Math.round(Number(r.timeLimit) || 0)) || undefined,
       hostNote: r.hostNote?.trim() || undefined,
+      explanation: r.type === 'slide' ? undefined : r.explanation?.trim() || undefined,
     }
     switch (r.type) {
       case 'slide':

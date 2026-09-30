@@ -25,6 +25,21 @@ export interface RawTimed {
   note?: string
 }
 
+/**
+ * Authors write one `note` per question. Clauses (split on ";") that start with "Accept" or "Also accept"
+ * are guidance for the quiz master and stay private; the rest is the explanation shown after the reveal.
+ */
+export function splitNote(note?: string): { hostNote?: string; explanation?: string } {
+  const clauses = (note ?? '').split(';').map((c) => c.trim()).filter(Boolean)
+  const isHost = (c: string) => /^(also\s+)?accept\b/i.test(c)
+  const sentence = (parts: string[]) => {
+    if (!parts.length) return undefined
+    const t = parts.join('; ')
+    return t[0].toUpperCase() + t.slice(1) + (/[.!?]$/.test(t) ? '' : '.')
+  }
+  return { hostNote: sentence(clauses.filter(isHost)), explanation: sentence(clauses.filter((c) => !isHost(c))) }
+}
+
 export function mcq(raw: RawMcq, points = DEFAULT_POINTS, time = DEFAULT_TIME): McqQuestion {
   // Shuffle options so the correct one isn't always in the same slot.
   const order = shuffle(raw.options.map((_, i) => i))
@@ -35,18 +50,18 @@ export function mcq(raw: RawMcq, points = DEFAULT_POINTS, time = DEFAULT_TIME): 
     options: order.map((i) => raw.options[i]),
     correctIndex: order.indexOf(raw.answer),
     imageUrl: raw.image,
-    hostNote: raw.note,
+    ...splitNote(raw.note),
     points,
     timeLimit: time,
   }
 }
 
 export function tf(raw: RawTf, points = DEFAULT_POINTS, time = 15): TrueFalseQuestion {
-  return { id: uid('q'), type: 'truefalse', text: raw.q, answer: raw.answer, hostNote: raw.note, points, timeLimit: time }
+  return { id: uid('q'), type: 'truefalse', text: raw.q, answer: raw.answer, ...splitNote(raw.note), points, timeLimit: time }
 }
 
 export function timed(raw: RawTimed, points = DEFAULT_POINTS): TimedQuestion {
-  return { id: uid('q'), type: 'timed', text: raw.q, answer: raw.answer, hostNote: raw.note, points, timeLimit: raw.time ?? 30 }
+  return { id: uid('q'), type: 'timed', text: raw.q, answer: raw.answer, ...splitNote(raw.note), points, timeLimit: raw.time ?? 30 }
 }
 
 export function slide(text: string, body?: string, imageUrl?: string): SlideQuestion {
