@@ -1,6 +1,7 @@
 export { Button } from './Button'
 export { Card } from './Card'
 export { Modal } from './Modal'
+export { DialogHost, alertDialog, confirmDialog } from './Dialog'
 export { TimerRing } from './TimerRing'
 export { TeamChip } from './TeamChip'
 export { PageHeader } from './PageHeader'

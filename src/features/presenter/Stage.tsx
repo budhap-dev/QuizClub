@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Check, ChevronLeft, ChevronRight, Eye, Maximize2, MonitorOff, Pause, SlidersHorizontal, Timer, Trophy, X } from 'lucide-react'
-import { Button, TeamChip, ThemeButton, party } from '@/components'
+import { Button, TeamChip, ThemeButton, confirmDialog, party } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import type { Quiz, StagePhase, Team } from '@/types'
@@ -158,9 +158,16 @@ export function Stage({ preview }: StageProps) {
     )
   }
 
-  const exit = () => {
-    if (preview) navigate(-1)
-    else if (confirm('End this quiz session?')) {
+  const exit = async () => {
+    if (preview) return navigate(-1)
+    const ok = await confirmDialog({
+      title: 'End this quiz?',
+      message: 'The session closes and you return to Play setup. Teams stay for the next quiz.',
+      confirmLabel: 'End quiz',
+      cancelLabel: 'Keep presenting',
+      tone: 'danger',
+    })
+    if (ok) {
       store.end()
       navigate('/play')
     }

@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
+import { DialogHost } from '@/components'
 import { Layout } from './Layout'
 import { Home } from '@/features/home/Home'
 
@@ -25,25 +26,28 @@ function Loading() {
 export default function App() {
   const location = useLocation()
   return (
-    <Suspense fallback={<Loading />}>
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="create/ai" element={<AiGenerator />} />
-            <Route path="create/manual" element={<ManualBuilder />} />
-            <Route path="create/manual/:id" element={<ManualBuilder />} />
-            <Route path="quizzes" element={<MyQuizzes />} />
-            <Route path="play" element={<PlaySetup />} />
-            <Route path="games" element={<Games />} />
-            <Route path="games/:game" element={<GamePage />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-          {/* Stage is full-bleed, no layout chrome */}
-          <Route path="play/stage" element={<Stage />} />
-          <Route path="preview/:id" element={<Stage preview />} />
-        </Routes>
-      </AnimatePresence>
-    </Suspense>
+    <>
+      <Suspense fallback={<Loading />}>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="create/ai" element={<AiGenerator />} />
+              <Route path="create/manual" element={<ManualBuilder />} />
+              <Route path="create/manual/:id" element={<ManualBuilder />} />
+              <Route path="quizzes" element={<MyQuizzes />} />
+              <Route path="play" element={<PlaySetup />} />
+              <Route path="games" element={<Games />} />
+              <Route path="games/:game" element={<GamePage />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+            {/* Stage is full-bleed, no layout chrome */}
+            <Route path="play/stage" element={<Stage />} />
+            <Route path="preview/:id" element={<Stage preview />} />
+          </Routes>
+        </AnimatePresence>
+      </Suspense>
+      <DialogHost />
+    </>
   )
 }

@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { Copy, Download, Eye, Library, PenLine, Pencil, Play, Plus, Sparkles, Trash2, Upload } from 'lucide-react'
-import { Button, Card, PageHeader } from '@/components'
+import { Button, Card, PageHeader, alertDialog, confirmDialog } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { downloadJson, readJsonFile } from '@/utils'
@@ -20,7 +20,7 @@ export function MyQuizzes() {
       const data = await readJsonFile<Quiz[] | Quiz>(file)
       importMany(Array.isArray(data) ? data : [data])
     } catch {
-      alert('That file is not a valid QuizClub export.')
+      void alertDialog({ title: 'Import failed', message: 'That file is not a valid QuizClub export.', tone: 'danger' })
     }
   }
 
@@ -110,7 +110,7 @@ export function MyQuizzes() {
                     size="sm"
                     variant="ghost"
                     className="text-fg/60 hover:text-red ml-auto"
-                    onClick={() => confirm(`Delete "${q.title}"?`) && remove(q.id)}
+                    onClick={async () => (await confirmDialog({ title: `Delete "${q.title}"?`, message: 'This cannot be undone.', confirmLabel: 'Delete', tone: 'danger' })) && remove(q.id)}
                     title="Delete"
                     aria-label="Delete"
                   >
