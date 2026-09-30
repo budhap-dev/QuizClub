@@ -44,6 +44,10 @@ Local development with the API: `npm i -g vercel`, `vercel link`, `vercel env pu
 
 Each area is a JSON file in `src/features/bank/data/` (format in that folder's README). Add or edit quizzes there, then run `npm run check:bank` to validate structure, lengths, answer indexes and duplicate questions. Each area aims for one easy, two medium and one hard quiz (the kids area is all easy); hard quizzes are worth 15 points a question, the rest 10.
 
+## Share card and icons
+
+Links to the site show a preview card (`public/og-image.png`, 1200×630) through the Open Graph and Twitter tags in `index.html`. The card and the app icons are HTML in `scripts/share-assets/`; after editing them, run `node scripts/share-assets/render.mjs` (needs Google Chrome) to re-render the PNGs in `public/`. The tags point at the production address, so update them if the domain changes. Chat apps cache previews: WhatsApp and Slack can take a while to show a new card for a link they have already seen.
+
 ## Project layout
 
 ```
