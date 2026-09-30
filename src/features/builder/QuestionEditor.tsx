@@ -18,7 +18,7 @@ const TYPES: { id: QuestionType; label: string }[] = [
 
 /** Convert a question to another type while keeping shared fields. */
 export function convertType(q: Question, type: QuestionType): Question {
-  const base = { id: q.id, text: q.text, imageUrl: q.imageUrl, points: q.points || 10, timeLimit: q.timeLimit, hostNote: q.hostNote }
+  const base = { id: q.id, text: q.text, imageUrl: q.imageUrl, points: q.points || 10, timeLimit: q.timeLimit, hostNote: q.hostNote, explanation: q.explanation }
   switch (type) {
     case 'slide':
       return { ...base, type, points: 0, body: '' }
@@ -156,9 +156,22 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
         </div>
       )}
 
+      {q.type !== 'slide' && (
+        <label className="block">
+          <span className="text-sm text-fg/70">Explanation (shown on screen after the answer is revealed)</span>
+          <textarea
+            className="input mt-1 min-h-16"
+            value={q.explanation ?? ''}
+            onChange={(e) => patch({ explanation: e.target.value || undefined })}
+            placeholder="Why the answer is right, or a fun fact about it"
+            maxLength={240}
+          />
+        </label>
+      )}
+
       <label className="block">
         <span className="text-sm text-fg/70">Quiz master note (hidden from the screen)</span>
-        <input className="input mt-1" value={q.hostNote ?? ''} onChange={(e) => patch({ hostNote: e.target.value || undefined })} placeholder="Fun fact, accepted alternatives…" />
+        <input className="input mt-1" value={q.hostNote ?? ''} onChange={(e) => patch({ hostNote: e.target.value || undefined })} placeholder="Accepted alternatives, pronunciation…" />
       </label>
     </div>
   )

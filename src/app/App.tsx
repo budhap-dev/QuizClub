@@ -1,12 +1,11 @@
 import { Suspense, lazy } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
 import { DialogHost } from '@/components'
 import { Layout } from './Layout'
 import { Home } from '@/features/home/Home'
 
-const AiGenerator = lazy(() => import('@/features/ai/AiGenerator').then((m) => ({ default: m.AiGenerator })))
 const ManualBuilder = lazy(() => import('@/features/builder/ManualBuilder').then((m) => ({ default: m.ManualBuilder })))
 const QuizBank = lazy(() => import('@/features/bank/QuizBank').then((m) => ({ default: m.QuizBank })))
 const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
@@ -33,7 +32,6 @@ export default function App() {
           <Routes location={location} key={location.pathname}>
             <Route element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="create/ai" element={<AiGenerator />} />
               <Route path="create/manual" element={<ManualBuilder />} />
               <Route path="create/manual/:id" element={<ManualBuilder />} />
               <Route path="quizzes" element={<MyQuizzes />} />
@@ -46,6 +44,8 @@ export default function App() {
             {/* Stage is full-bleed, no layout chrome */}
             <Route path="play/stage" element={<Stage />} />
             <Route path="preview/:id" element={<Stage preview />} />
+            {/* Unknown or retired addresses (e.g. the old /create/ai) go home instead of a blank page. */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AnimatePresence>
       </Suspense>

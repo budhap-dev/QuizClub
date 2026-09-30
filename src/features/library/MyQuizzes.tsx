@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { BookOpen, Copy, Download, Eye, Library, PenLine, Pencil, Play, Plus, Sparkles, Trash2, Upload } from 'lucide-react'
+import { BookOpen, Copy, Download, Eye, Library, PenLine, Pencil, Play, Plus, Trash2, Upload } from 'lucide-react'
 import { Button, Card, LevelBadge, LevelSelect, PageHeader, alertDialog, confirmDialog } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -61,9 +61,6 @@ export function MyQuizzes() {
           <div className="flex gap-2 justify-center flex-wrap">
             <Button onClick={() => navigate('/quizzes/bank')}>
               <BookOpen /> Browse the quiz bank
-            </Button>
-            <Button variant="secondary" onClick={() => navigate('/create/ai')}>
-              <Sparkles /> AI generator
             </Button>
             <Button variant="secondary" onClick={() => navigate('/create/manual')}>
               <PenLine /> Manual builder

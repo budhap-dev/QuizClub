@@ -25,8 +25,10 @@ export interface QuestionBase {
   points: number
   /** Seconds for the countdown. 0/undefined = no timer. */
   timeLimit?: number
-  /** Private note shown only to the quiz master. */
+  /** Private note shown only to the quiz master (accepted alternatives, pronunciation…). */
   hostNote?: string
+  /** Shown to everyone once the answer is revealed: why it's right, or a related fact. */
+  explanation?: string
 }
 
 export interface SlideQuestion extends QuestionBase {
@@ -58,6 +60,7 @@ export interface TimedQuestion extends QuestionBase {
 
 export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQuestion
 
+/** 'ai' remains for quizzes saved while the AI generator existed. */
 export type QuizSource = 'manual' | 'ai' | 'library'
 
 export type Difficulty = 'easy' | 'medium' | 'hard'
@@ -103,19 +106,3 @@ export interface Session {
   startedAt: number
 }
 
-export interface AiQuizRequest {
-  topic: string
-  category: QuizCategory
-  difficulty: Difficulty | 'mixed'
-  count: number
-  types: QuestionType[]
-  audience: 'kids' | 'adults' | 'mixed'
-  language?: string
-}
-
-export interface AiQuizResponse {
-  title: string
-  description: string
-  emoji: string
-  questions: Question[]
-}

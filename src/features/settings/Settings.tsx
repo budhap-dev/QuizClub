@@ -61,18 +61,6 @@ export function Settings() {
         </Card>
 
         <Card>
-          <h2 className="text-lg font-semibold mb-1">AI generator</h2>
-          <p className="text-fg/60 text-sm mb-4">
-            Quizzes are generated on the server, so no API key is needed here. If the host has set an access code, enter it below.
-          </p>
-          <label className="block">
-            <span className="text-fg/70 text-sm">Access code (optional)</span>
-            <input type="password" className="input mt-1" value={s.aiAccessCode} onChange={(e) => s.setAiAccessCode(e.target.value)} placeholder="••••••" />
-          </label>
-          <p className="text-fg/40 text-xs mt-3">Google sign-in is coming later and will replace the access code.</p>
-        </Card>
-
-        <Card>
           <h2 className="text-lg font-semibold mb-4">Backup</h2>
           <div className="flex flex-wrap gap-2">
             <Button variant="secondary" onClick={() => downloadJson(`quizclub-${new Date().toISOString().slice(0, 10)}.json`, quizzes)} disabled={quizzes.length === 0}>

@@ -6,12 +6,12 @@ import { Button, Card, EmojiPicker, LevelBadge, LevelSelect, Modal, PageHeader, 
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { cn, TEAM_COLORS } from '@/utils'
-import type { Difficulty, Quiz, QuizSource } from '@/types'
+import type { Difficulty, Quiz } from '@/types'
 import { PACKS } from '@/features/library/packs'
 import { makeQuiz } from '@/features/library/helpers'
 import { searchBank, toQuiz, useBank } from '@/features/bank/bank'
 
-type Tab = 'library' | 'bank' | QuizSource
+type Tab = 'library' | 'bank' | 'mine'
 
 const StepTitle = ({ n, children }: { n: number; children: React.ReactNode }) => (
   <h2 className="text-lg font-semibold flex items-center gap-2.5">
@@ -36,7 +36,9 @@ export function PlaySetup() {
   const bank = useBank()
   const bankHits = useMemo(() => (bank.quizzes ? searchBank(bank.quizzes, { query: bankQuery, difficulty: level }) : []), [bank.quizzes, bankQuery, level])
 
-  const savedByTab = useMemo(() => saved.filter((q) => q.source === tab && (!level || q.difficulty === level)), [saved, tab, level])
+  // Everything the user has saved: built by hand, copied from the bank, or from the old AI generator.
+  const mine = useMemo(() => saved.filter((q) => q.source !== 'library'), [saved])
+  const mineShown = useMemo(() => mine.filter((q) => !level || q.difficulty === level), [mine, level])
   const editingTeam = teams.find((t) => t.id === editing)
 
   const [packPick, setPackPick] = useState<string | null>(null)
@@ -60,8 +62,7 @@ export function PlaySetup() {
   const tabs: { id: Tab; label: string }[] = [
     { id: 'library', label: 'Built-in' },
     { id: 'bank', label: 'Quiz bank' },
-    { id: 'ai', label: 'AI quizzes' },
-    { id: 'manual', label: 'My quizzes' },
+    { id: 'mine', label: 'My quizzes' },
   ]
 
   return (
@@ -181,20 +182,20 @@ export function PlaySetup() {
             </>
           )}
 
-          {(tab === 'ai' || tab === 'manual') && (
+          {tab === 'mine' && (
             <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
-              {savedByTab.length === 0 && level && saved.some((q) => q.source === tab) && (
-                <div className="col-span-full text-center py-10 text-fg/60 text-sm">No {tab === 'ai' ? 'AI-generated' : 'manual'} quizzes at this level.</div>
+              {mineShown.length === 0 && level && mine.length > 0 && (
+                <div className="col-span-full text-center py-10 text-fg/60 text-sm">None of your quizzes are at this level.</div>
               )}
-              {!saved.some((q) => q.source === tab) && (
+              {mine.length === 0 && (
                 <div className="col-span-full text-center py-10 text-fg/60 text-sm">
-                  No {tab === 'ai' ? 'AI-generated' : 'manual'} quizzes yet.{' '}
-                  <button className="underline underline-offset-4 hover:text-fg" onClick={() => navigate(tab === 'ai' ? '/create/ai' : '/create/manual')}>
+                  No quizzes of your own yet.{' '}
+                  <button className="underline underline-offset-4 hover:text-fg" onClick={() => navigate('/create/manual')}>
                     Create one
                   </button>
                 </div>
               )}
-              {savedByTab.map((q) => {
+              {mineShown.map((q) => {
                 const active = selected?.id === q.id
                 return (
                   <button

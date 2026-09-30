@@ -82,6 +82,12 @@ export function HostDrawer({ open, onClose, question, preview }: HostDrawerProps
                     <div className="text-fg/80 text-sm">{question.hostNote}</div>
                   </>
                 )}
+                {question.explanation && (
+                  <>
+                    <div className="text-[11px] uppercase tracking-wider text-fg/50 font-medium mt-3">Shown after the reveal</div>
+                    <div className="text-fg/80 text-sm">{question.explanation}</div>
+                  </>
+                )}
               </div>
             )}
 

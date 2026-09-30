@@ -6,10 +6,9 @@ A colourful quiz app for classrooms, offices and parties, with a clean, presenta
 
 - **Presenter mode** — full-screen stage with animated questions, countdown timer, reveal, live scoreboard and a confetti podium. Keyboard shortcuts: `→` next, `←` back, `Space` reveal, `T` timer, `S` scoreboard, `F` fullscreen, `H` quiz-master panel.
 - **Teams & scoring** — add teams or individual players, tap who got it right after each reveal, or use the +/− panel with undo.
-- **AI quiz generator** — describe a topic, pick difficulty, audience and question types; Claude builds the quiz server-side.
 - **Manual quiz maker** — slides, multiple choice, true/false and timed questions with images, points, timers and host notes. Drag to reorder, preview before saving.
 - **Quiz bank** — 72 ready-made quizzes (720 questions) across 18 areas (general knowledge, geography, India, history, science, space, nature, literature, words, maths, movies, music, sports, technology, food, mythology, art, kids). Search titles, tags and question text, filter by area and level, view every answer, then present as-is or copy to My Quizzes to edit. Also pickable from Play setup.
-- **Levels** — every quiz can be Easy, Medium or Hard. Bank quizzes come rated, AI quizzes take the level you asked for, and you set it for your own in the builder. My Quizzes, the bank and Play setup all filter by level.
+- **Levels** — every quiz can be Easy, Medium or Hard. Bank quizzes come rated, and you set it for your own in the builder. My Quizzes, the bank and Play setup all filter by level.
 - **Built-in library** — Flag Guesser, Logo Quiz, Mental Maths (generated fresh each time), General Knowledge, Geography, Science, Literature, Movies, Sports, Music, History.
 - **Party games** — Cows & Bulls, Hangman, Wordle, Word Scramble, Emoji Riddles, Memory Match. Award points to teams from any game.
 - **Cloud vault** — sync your quiz library across devices with no account: pick a passphrase in Settings, and the library is encrypted in the browser (PBKDF2 + AES-GCM) and stored as ciphertext in Upstash Redis via `api/vault.ts`. Enter the same passphrase on another device to pull it down. Deletions carry across (tombstones), the newest edit wins, and the server can't read anything.
@@ -18,23 +17,23 @@ A colourful quiz app for classrooms, offices and parties, with a clean, presenta
 
 ## Stack
 
-React 18 · Vite · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide icons · Zustand · Vercel serverless (`/api`) · Claude API
+React 18 · Vite · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide icons · Zustand · Vercel serverless (`/api`)
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env      # add ANTHROPIC_API_KEY for the AI generator
+cp .env.example .env      # cloud-vault settings, only needed to run /api locally
 npm run dev               # SPA on http://localhost:5173
 ```
 
-To run the AI endpoint locally, use the Vercel CLI in a second terminal (`vercel dev` serves `/api` on port 3000 and Vite proxies to it). Without it, the AI screen offers a built-in-library fallback.
+To run the cloud-vault API locally, use the Vercel CLI in a second terminal (`vercel dev` serves `/api` on port 3000 and Vite proxies to it). Everything else works without it.
 
 ## Deploying (Vercel)
 
 1. Import the repo in Vercel — the framework preset is detected automatically.
 2. **Storage → Create → Upstash Redis** (free tier) and connect it to the project; this adds `KV_REST_API_URL` / `KV_REST_API_TOKEN` for the cloud vault.
-3. Add `ANTHROPIC_API_KEY` for the AI generator (optional: `ANTHROPIC_MODEL`, `AI_ACCESS_CODE`, `VAULT_RATE_LIMIT`).
+3. Optional: `VAULT_RATE_LIMIT` (vault requests per IP per minute, default 60).
 4. Deploy. Secrets never reach the browser.
 5. On the live site: Settings → Cloud vault → choose a passphrase → your quizzes upload. Repeat with the same passphrase on any other device.
 
@@ -56,7 +55,6 @@ src/
   app/                  routes + layout
   components/           shared UI (Button, Card, Modal, TimerRing, TeamChip…)
   features/
-    ai/                 AI generator screen + client
     bank/               quiz bank: data/*.json (one file per area), loader, search, page
     builder/            manual quiz maker
     games/              party games
@@ -71,5 +69,4 @@ src/
 
 ## Roadmap
 
-- Google sign-in (replaces the optional access code for the AI generator)
 - Shared/cloud quiz library
