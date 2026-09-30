@@ -1,0 +1,85 @@
+{
+  "area": "sports",
+  "quizzes": [
+    {
+      "slug": "cricket-classics",
+      "title": "Howzat! Cricket Classics",
+      "emoji": "🏏",
+      "difficulty": "easy",
+      "tags": ["cricket", "world cup", "india"],
+      "description": "World Cup glory, legendary players and the basics of the gentleman's game.",
+      "questions": [
+        { "type": "mcq", "q": "Which country won the 2011 ICC Cricket World Cup?", "options": ["India", "Sri Lanka", "Australia", "Pakistan"], "answer": 0, "note": "MS Dhoni sealed the final with a six at Mumbai's Wankhede Stadium." },
+        { "type": "mcq", "q": "How many players does each team have on the field in a cricket match?", "options": ["10", "11", "12", "9"], "answer": 1, "note": "A cricket pitch is 22 yards long between the two sets of stumps." },
+        { "type": "tf", "q": "India won the first ever Cricket World Cup in 1975.", "answer": false, "note": "False: the West Indies won in 1975; India's first title came in 1983." },
+        { "type": "timed", "q": "Which Indian batting legend is nicknamed the 'Master Blaster'?", "answer": "Sachin Tendulkar", "note": "Accept 'Sachin' or 'Tendulkar'; he played 200 Test matches." },
+        { "type": "mcq", "q": "Who captained India to victory in the 1983 Cricket World Cup?", "options": ["Sunil Gavaskar", "Mohinder Amarnath", "Kapil Dev", "Ravi Shastri"], "answer": 2, "note": "India beat the mighty West Indies in the final at Lord's." },
+        { "type": "mcq", "q": "How many legal deliveries make up a standard over?", "options": ["5", "8", "4", "6"], "answer": 3, "note": "Eight-ball overs were once used in Australia and New Zealand." },
+        { "type": "tf", "q": "A six is scored when the ball clears the boundary without bouncing.", "answer": true, "note": "If the ball bounces before crossing the rope, it's a four." },
+        { "type": "mcq", "q": "In which year did India win the first ICC T20 World Cup?", "options": ["2007", "2009", "2005", "2011"], "answer": 0, "note": "India beat Pakistan in the final in Johannesburg." },
+        { "type": "timed", "q": "What is it called when a batter is out for zero on the very first ball they face?", "answer": "Golden duck", "note": "Out for zero on any later ball is simply called a 'duck'." },
+        { "type": "mcq", "q": "Which Indian bowler took all 10 wickets in a Test innings against Pakistan in 1999?", "options": ["Harbhajan Singh", "Anil Kumble", "Javagal Srinath", "Kapil Dev"], "answer": 1, "note": "England's Jim Laker was the first to do it, in 1956." }
+      ]
+    },
+    {
+      "slug": "football-fever",
+      "title": "Football Fever",
+      "emoji": "⚽",
+      "difficulty": "medium",
+      "tags": ["football", "world cup", "clubs"],
+      "description": "World Cup history, famous goals and legendary clubs of the beautiful game.",
+      "questions": [
+        { "type": "mcq", "q": "Which country hosted and won the first FIFA World Cup in 1930?", "options": ["Brazil", "Italy", "Uruguay", "Argentina"], "answer": 2, "note": "Uruguay beat neighbours Argentina 4–2 in the final in Montevideo." },
+        { "type": "tf", "q": "A standard football match has two halves of 45 minutes each.", "answer": true, "note": "Referees add stoppage time for injuries and other delays." },
+        { "type": "mcq", "q": "Diego Maradona's 'Hand of God' goal in 1986 was scored against which team?", "options": ["West Germany", "Belgium", "Italy", "England"], "answer": 3, "note": "Minutes later he scored the 'Goal of the Century' in the same match." },
+        { "type": "timed", "q": "Which Brazilian legend, known by one name, won three FIFA World Cups as a player?", "answer": "Pelé", "note": "Accept 'Pele'; he won in 1958, 1962 and 1970." },
+        { "type": "mcq", "q": "Which country won the 2014 FIFA World Cup in Brazil?", "options": ["Germany", "Argentina", "Brazil", "Netherlands"], "answer": 0, "note": "Mario Götze scored the extra-time winner against Argentina." },
+        { "type": "mcq", "q": "Which English club is nicknamed 'The Red Devils'?", "options": ["Liverpool", "Manchester United", "Arsenal", "Chelsea"], "answer": 1, "note": "Manchester United's Old Trafford is nicknamed the 'Theatre of Dreams'." },
+        { "type": "tf", "q": "A goalkeeper may handle the ball anywhere on the pitch.", "answer": false, "note": "False: keepers may only handle the ball inside their own penalty area." },
+        { "type": "mcq", "q": "Which Indian city is home to the historic rival clubs Mohun Bagan and East Bengal?", "options": ["Goa", "Kochi", "Kolkata", "Bengaluru"], "answer": 2, "note": "Their fierce rivalry is known as the Kolkata Derby." },
+        { "type": "timed", "q": "Which country won the 2022 FIFA World Cup in Qatar?", "answer": "Argentina", "note": "They beat France on penalties after a 3–3 draw in the final." },
+        { "type": "mcq", "q": "Which country won the European Championship, Euro 2016, held in France?", "options": ["France", "Germany", "Spain", "Portugal"], "answer": 3, "note": "Eder's extra-time goal beat the hosts 1–0 in the final." }
+      ]
+    },
+    {
+      "slug": "olympic-glory",
+      "title": "Olympic Glory",
+      "emoji": "🏅",
+      "difficulty": "medium",
+      "tags": ["olympics", "athletics", "india"],
+      "description": "Legendary champions, host cities and India's proudest Olympic moments.",
+      "questions": [
+        { "type": "mcq", "q": "Which city hosted the first modern Olympic Games in 1896?", "options": ["Athens", "Paris", "London", "Rome"], "answer": 0, "note": "Paris followed as host of the 1900 Games." },
+        { "type": "timed", "q": "Which Jamaican sprinter won the Olympic 100 m title in 2008, 2012 and 2016?", "answer": "Usain Bolt", "note": "Accept 'Bolt'; he ran 9.58 seconds at the 2009 World Championships." },
+        { "type": "mcq", "q": "How many interlocking rings appear on the Olympic flag?", "options": ["6", "5", "4", "7"], "answer": 1, "note": "Pierre de Coubertin designed the rings in 1913." },
+        { "type": "tf", "q": "Neeraj Chopra won gold in the javelin throw at the Tokyo Olympics.", "answer": true, "note": "It was India's first Olympic gold in athletics; the Games were held in 2021." },
+        { "type": "mcq", "q": "How often are the Summer Olympic Games usually held?", "options": ["Every 2 years", "Every 3 years", "Every 4 years", "Every 5 years"], "answer": 2, "note": "The Tokyo 2020 Games were the exception, held a year late in 2021." },
+        { "type": "mcq", "q": "In which team sport did India win six Olympic golds in a row?", "options": ["Wrestling", "Shooting", "Boxing", "Field hockey"], "answer": 3, "note": "India won field hockey gold at every Games from 1928 to 1956." },
+        { "type": "mcq", "q": "Karnam Malleswari became India's first female Olympic medallist in 2000 in which sport?", "options": ["Weightlifting", "Boxing", "Badminton", "Wrestling"], "answer": 0, "note": "She won bronze at the Sydney Games." },
+        { "type": "tf", "q": "Olympic gold medals are made of solid gold.", "answer": false, "note": "False: they are mostly silver, plated with at least 6 grams of gold." },
+        { "type": "timed", "q": "Which American swimmer won eight gold medals at the 2008 Beijing Olympics?", "answer": "Michael Phelps", "note": "Accept 'Phelps'; he beat Mark Spitz's 1972 haul of seven golds at one Games." },
+        { "type": "mcq", "q": "Which city hosted the 2016 Summer Olympics?", "options": ["Buenos Aires", "Rio de Janeiro", "Madrid", "São Paulo"], "answer": 1, "note": "It was the first Olympic Games held in South America." }
+      ]
+    },
+    {
+      "slug": "courts-and-boards",
+      "title": "Aces, Birdies & Checkmates",
+      "emoji": "🎾",
+      "difficulty": "hard",
+      "tags": ["tennis", "chess", "golf", "rules"],
+      "description": "Tennis history, rules of the game and legends across courts, greens and boards.",
+      "questions": [
+        { "type": "mcq", "q": "Who beat John McEnroe in the famous five-set Wimbledon final of 1980?", "options": ["Jimmy Connors", "Ivan Lendl", "Björn Borg", "Boris Becker"], "answer": 2, "note": "It was Borg's fifth Wimbledon title in a row." },
+        { "type": "mcq", "q": "Which Grand Slam tennis tournament is played on clay courts?", "options": ["Wimbledon", "US Open", "Australian Open", "French Open"], "answer": 3, "note": "It is held at Stade Roland-Garros in Paris." },
+        { "type": "tf", "q": "Leander Paes won a bronze medal in men's singles tennis at the 1996 Atlanta Olympics.", "answer": true, "note": "It was India's first individual Olympic medal since 1952." },
+        { "type": "timed", "q": "Which Grand Slam tournament is played at the All England Club in London?", "answer": "Wimbledon", "note": "Players must wear almost entirely white clothing there." },
+        { "type": "mcq", "q": "In chess, which piece can move only diagonally?", "options": ["Bishop", "Rook", "Knight", "Queen"], "answer": 0, "note": "Each player starts with one light-squared and one dark-squared bishop." },
+        { "type": "tf", "q": "In golf, an 'eagle' means finishing a hole one stroke under par.", "answer": false, "note": "False: one under is a birdie; an eagle is two under par." },
+        { "type": "mcq", "q": "How many players does each team have on court in indoor volleyball?", "options": ["5", "6", "7", "9"], "answer": 1, "note": "Beach volleyball is played in teams of two." },
+        { "type": "mcq", "q": "Which Indian shuttler won Olympic silver at Rio 2016 and bronze at Tokyo 2020?", "options": ["Saina Nehwal", "Jwala Gutta", "P. V. Sindhu", "Ashwini Ponnappa"], "answer": 2, "note": "Saina Nehwal had earlier won bronze at London 2012." },
+        { "type": "timed", "q": "Who became India's first chess grandmaster in 1988?", "answer": "Viswanathan Anand", "note": "Accept 'Anand' or 'Vishy'; he later became world champion." },
+        { "type": "mcq", "q": "How many points is the black ball worth in snooker?", "options": ["6", "5", "10", "7"], "answer": 3, "note": "A maximum 147 break means taking all 15 reds with blacks, then every colour." }
+      ]
+    }
+  ]
+}

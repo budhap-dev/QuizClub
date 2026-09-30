@@ -1,0 +1,85 @@
+{
+  "area": "geography",
+  "quizzes": [
+    {
+      "slug": "world-capitals",
+      "title": "Capital Cities",
+      "emoji": "🏙️",
+      "difficulty": "easy",
+      "tags": ["capitals", "countries", "cities"],
+      "description": "Match the country to its capital in this friendly world tour.",
+      "questions": [
+        { "type": "mcq", "q": "What is the capital of Japan?", "options": ["Tokyo", "Osaka", "Kyoto", "Seoul"], "answer": 0, "note": "Kyoto was the imperial capital for more than a thousand years before Tokyo." },
+        { "type": "tf", "q": "Sydney is the capital of Australia.", "answer": false, "note": "The capital is Canberra, purpose-built as a compromise between Sydney and Melbourne." },
+        { "type": "mcq", "q": "What is the capital of Canada?", "options": ["Toronto", "Ottawa", "Vancouver", "Montreal"], "answer": 1, "note": "Queen Victoria chose Ottawa as the capital in 1857." },
+        { "type": "timed", "q": "What is the capital of Italy?", "answer": "Rome", "note": "Vatican City, the world's smallest country, sits inside Rome." },
+        { "type": "mcq", "q": "What is the capital of Egypt?", "options": ["Alexandria", "Giza", "Cairo", "Luxor"], "answer": 2, "note": "The Pyramids of Giza stand on the edge of greater Cairo." },
+        { "type": "mcq", "q": "What is the capital of Germany?", "options": ["Munich", "Hamburg", "Frankfurt", "Berlin"], "answer": 3, "note": "Bonn was the capital of West Germany before reunification." },
+        { "type": "tf", "q": "Madrid is the capital of Spain.", "answer": true, "note": "Madrid sits almost exactly in the centre of Spain." },
+        { "type": "mcq", "q": "What is the capital of Brazil?", "options": ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"], "answer": 0, "note": "Brasília was purpose-built and replaced Rio as capital in 1960." },
+        { "type": "timed", "q": "What is the capital of Russia?", "answer": "Moscow", "note": "The Kremlin, Russia's seat of government, is in the heart of Moscow." },
+        { "type": "mcq", "q": "What is the capital of Kenya?", "options": ["Mombasa", "Nairobi", "Kampala", "Addis Ababa"], "answer": 1, "note": "Kampala is Uganda's capital and Addis Ababa is Ethiopia's." }
+      ]
+    },
+    {
+      "slug": "rivers-and-mountains",
+      "title": "Peaks & Rivers",
+      "emoji": "⛰️",
+      "difficulty": "medium",
+      "tags": ["rivers", "mountains", "landscape"],
+      "description": "From the Alps to the Amazon, test your knowledge of great rivers and mountains.",
+      "questions": [
+        { "type": "mcq", "q": "Which river flows through Baghdad?", "options": ["Euphrates", "Jordan", "Tigris", "Nile"], "answer": 2, "note": "The Tigris and Euphrates together defined ancient Mesopotamia." },
+        { "type": "mcq", "q": "In which country is Mount Kilimanjaro?", "options": ["Kenya", "Uganda", "Ethiopia", "Tanzania"], "answer": 3, "note": "It is Africa's highest mountain." },
+        { "type": "tf", "q": "The Amazon River flows into the Atlantic Ocean.", "answer": true, "note": "It carries more water than any other river on Earth." },
+        { "type": "timed", "q": "Which Russian mountain range is traditionally seen as the boundary between Europe and Asia?", "answer": "Urals", "note": "Accept Ural Mountains." },
+        { "type": "mcq", "q": "Which river flows through Paris?", "options": ["Seine", "Loire", "Rhône", "Thames"], "answer": 0, "note": "The banks of the Seine in Paris are a UNESCO World Heritage Site." },
+        { "type": "mcq", "q": "The Matterhorn sits on the border between Switzerland and which country?", "options": ["France", "Italy", "Austria", "Germany"], "answer": 1, "note": "In Italy the mountain is known as Monte Cervino." },
+        { "type": "tf", "q": "The River Rhine flows into the Mediterranean Sea.", "answer": false, "note": "The Rhine empties into the North Sea through the Netherlands." },
+        { "type": "mcq", "q": "Mount Everest lies on the border between Nepal and which country?", "options": ["India", "Bhutan", "China", "Pakistan"], "answer": 2, "note": "The northern side of Everest is in Tibet, an autonomous region of China." },
+        { "type": "timed", "q": "What is the longest river in Europe?", "answer": "Volga", "note": "The Volga flows entirely through Russia into the Caspian Sea." },
+        { "type": "mcq", "q": "Which of these capital cities lies on the River Danube?", "options": ["Prague", "Warsaw", "Bern", "Budapest"], "answer": 3, "note": "Vienna, Bratislava and Belgrade also stand on the Danube." }
+      ]
+    },
+    {
+      "slug": "oceans-and-islands",
+      "title": "Seas & Isles",
+      "emoji": "🏝️",
+      "difficulty": "medium",
+      "tags": ["oceans", "islands", "seas"],
+      "description": "Dive into the world's oceans, seas, straits and island nations.",
+      "questions": [
+        { "type": "mcq", "q": "What is the largest ocean on Earth?", "options": ["Atlantic", "Pacific", "Indian", "Arctic"], "answer": 1, "note": "The Pacific covers more area than all of Earth's land put together." },
+        { "type": "mcq", "q": "Not counting continental Australia, what is the world's largest island?", "options": ["Greenland", "New Guinea", "Borneo", "Madagascar"], "answer": 0, "note": "Greenland is an autonomous territory within the Kingdom of Denmark." },
+        { "type": "tf", "q": "Madagascar lies off the east coast of Africa.", "answer": true, "note": "Most of its wildlife, including lemurs, is found nowhere else on Earth." },
+        { "type": "timed", "q": "What is the smallest of the world's five oceans?", "answer": "Arctic", "note": "Accept Arctic Ocean; much of it is covered by sea ice." },
+        { "type": "mcq", "q": "The Galápagos Islands belong to which country?", "options": ["Peru", "Chile", "Colombia", "Ecuador"], "answer": 3, "note": "Their wildlife helped inspire Charles Darwin's theory of evolution." },
+        { "type": "mcq", "q": "Which body of water is so salty that people float in it with ease?", "options": ["Red Sea", "Caspian Sea", "Dead Sea", "Black Sea"], "answer": 2, "note": "Its shore is the lowest point on dry land on Earth." },
+        { "type": "tf", "q": "Tasmania is an island state of New Zealand.", "answer": false, "note": "Tasmania is a state of Australia." },
+        { "type": "timed", "q": "Which US state is made up entirely of islands in the Pacific Ocean?", "answer": "Hawaii", "note": "It became the 50th US state in 1959." },
+        { "type": "mcq", "q": "The Strait of Gibraltar links the Atlantic Ocean with which sea?", "options": ["Red Sea", "Mediterranean Sea", "North Sea", "Baltic Sea"], "answer": 1, "note": "At its narrowest it is only about 14 km wide." },
+        { "type": "mcq", "q": "Which ocean lies between the east coast of Africa and the west coast of Australia?", "options": ["Indian", "Atlantic", "Pacific", "Southern"], "answer": 0, "note": "It is the only ocean named after a country." }
+      ]
+    },
+    {
+      "slug": "borders-and-neighbours",
+      "title": "Borders & Neighbours",
+      "emoji": "🗺️",
+      "difficulty": "hard",
+      "tags": ["borders", "countries", "landlocked"],
+      "description": "Enclaves, landlocked nations and shared frontiers for true map lovers.",
+      "questions": [
+        { "type": "mcq", "q": "Which country is completely surrounded by South Africa?", "options": ["Eswatini", "Botswana", "Namibia", "Lesotho"], "answer": 3, "note": "Lesotho is the only country whose entire territory lies above 1,000 metres." },
+        { "type": "mcq", "q": "Which two countries share the world's longest international border?", "options": ["Russia and China", "Russia and Kazakhstan", "Canada and the USA", "Chile and Argentina"], "answer": 2, "note": "It runs for nearly 9,000 km, including the Alaska section." },
+        { "type": "tf", "q": "Paraguay has a coastline on the Pacific Ocean.", "answer": false, "note": "Paraguay is landlocked, as is its neighbour Bolivia." },
+        { "type": "mcq", "q": "Which small country lies between Spain and France in the Pyrenees?", "options": ["Portugal", "Andorra", "Monaco", "Belgium"], "answer": 1, "note": "Andorra's capital, Andorra la Vella, is the highest capital city in Europe." },
+        { "type": "timed", "q": "Apart from Vatican City, which country is entirely surrounded by Italy?", "answer": "San Marino", "note": "San Marino claims to be the world's oldest surviving republic." },
+        { "type": "mcq", "q": "Which of these countries does not share a border with Brazil?", "options": ["Chile", "Peru", "Colombia", "Venezuela"], "answer": 0, "note": "Chile and Ecuador are the only South American countries not bordering Brazil." },
+        { "type": "tf", "q": "Kazakhstan is the largest landlocked country in the world.", "answer": true, "note": "It is also the ninth-largest country overall." },
+        { "type": "mcq", "q": "The Khyber Pass links Pakistan with which country?", "options": ["Iran", "India", "Tajikistan", "Afghanistan"], "answer": 3, "note": "For centuries it was a key route for traders and invading armies." },
+        { "type": "timed", "q": "Which country lies on both sides of the Bosporus strait?", "answer": "Turkey", "note": "Accept Türkiye; the Bosporus splits Istanbul between Europe and Asia." },
+        { "type": "mcq", "q": "Which country borders both the Caspian Sea and the Persian Gulf?", "options": ["Iraq", "Kazakhstan", "Iran", "Saudi Arabia"], "answer": 2, "note": "Iran is the only country with coastlines on both." }
+      ]
+    }
+  ]
+}

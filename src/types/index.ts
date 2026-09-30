@@ -60,6 +60,8 @@ export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQu
 
 export type QuizSource = 'manual' | 'ai' | 'library'
 
+export type Difficulty = 'easy' | 'medium' | 'hard'
+
 export interface Quiz {
   id: string
   title: string
@@ -67,6 +69,8 @@ export interface Quiz {
   category: QuizCategory
   emoji: string
   source: QuizSource
+  /** How hard the quiz is; unset for older quizzes and ones the author hasn't rated. */
+  difficulty?: Difficulty
   questions: Question[]
   createdAt: number
   updatedAt: number
@@ -102,7 +106,7 @@ export interface Session {
 export interface AiQuizRequest {
   topic: string
   category: QuizCategory
-  difficulty: 'easy' | 'medium' | 'hard' | 'mixed'
+  difficulty: Difficulty | 'mixed'
   count: number
   types: QuestionType[]
   audience: 'kids' | 'adults' | 'mixed'

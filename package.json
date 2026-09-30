@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "check:bank": "node scripts/check-bank.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.128.0",

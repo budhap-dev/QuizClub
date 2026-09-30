@@ -8,6 +8,7 @@ import { Home } from '@/features/home/Home'
 
 const AiGenerator = lazy(() => import('@/features/ai/AiGenerator').then((m) => ({ default: m.AiGenerator })))
 const ManualBuilder = lazy(() => import('@/features/builder/ManualBuilder').then((m) => ({ default: m.ManualBuilder })))
+const QuizBank = lazy(() => import('@/features/bank/QuizBank').then((m) => ({ default: m.QuizBank })))
 const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
 const PlaySetup = lazy(() => import('@/features/presenter/PlaySetup').then((m) => ({ default: m.PlaySetup })))
 const Stage = lazy(() => import('@/features/presenter/Stage').then((m) => ({ default: m.Stage })))
@@ -36,6 +37,7 @@ export default function App() {
               <Route path="create/manual" element={<ManualBuilder />} />
               <Route path="create/manual/:id" element={<ManualBuilder />} />
               <Route path="quizzes" element={<MyQuizzes />} />
+              <Route path="quizzes/bank" element={<QuizBank />} />
               <Route path="play" element={<PlaySetup />} />
               <Route path="games" element={<Games />} />
               <Route path="games/:game" element={<GamePage />} />

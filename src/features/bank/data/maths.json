@@ -1,0 +1,85 @@
+{
+  "area": "maths",
+  "quizzes": [
+    {
+      "slug": "quick-fire-sums",
+      "title": "Quick-Fire Sums",
+      "emoji": "➕",
+      "difficulty": "easy",
+      "tags": ["arithmetic", "mental maths", "numbers"],
+      "description": "Warm up the room with fast mental arithmetic everyone can have a go at.",
+      "questions": [
+        { "type": "mcq", "q": "What is 7 × 8?", "options": ["54", "56", "63", "48"], "answer": 1, "note": "A handy memory trick: 5, 6, 7, 8 — 56 = 7 × 8." },
+        { "type": "timed", "q": "What is 18 + 27?", "answer": "45", "note": "Accept 'forty-five'; 18 + 20 = 38, then add 7." },
+        { "type": "mcq", "q": "What is 144 ÷ 12?", "options": ["12", "11", "14", "13"], "answer": 0, "note": "144 is also called a 'gross', meaning twelve dozen." },
+        { "type": "tf", "q": "Half of 250 is 125.", "answer": true, "note": "125 is also 5 × 5 × 5." },
+        { "type": "mcq", "q": "What is 25% of 80?", "options": ["16", "25", "20", "40"], "answer": 2, "note": "25% is a quarter, so just divide 80 by 4." },
+        { "type": "mcq", "q": "What is 1,000 − 357?", "options": ["743", "653", "633", "643"], "answer": 3, "note": "Check it: 643 + 357 = 1,000." },
+        { "type": "tf", "q": "9 × 9 = 72.", "answer": false, "note": "9 × 9 = 81; 72 is 9 × 8." },
+        { "type": "mcq", "q": "How many minutes are there in three and a half hours?", "options": ["180", "210", "230", "350"], "answer": 1, "note": "3 hours is 180 minutes, plus 30 more makes 210." },
+        { "type": "timed", "q": "What is 11 × 11?", "answer": "121", "note": "Accept 'one hundred and twenty-one'; 11 × 11 × 11 = 1,331." },
+        { "type": "mcq", "q": "What is 0.5 + 0.25?", "options": ["0.3", "0.55", "0.7", "0.75"], "answer": 3, "note": "A half plus a quarter makes three quarters." }
+      ]
+    },
+    {
+      "slug": "shape-up",
+      "title": "Shape Up",
+      "emoji": "📐",
+      "difficulty": "medium",
+      "tags": ["geometry", "shapes", "angles"],
+      "description": "Sides, angles, faces and circles — a tour of everyday geometry.",
+      "questions": [
+        { "type": "mcq", "q": "How many sides does a nonagon have?", "options": ["7", "8", "9", "10"], "answer": 2, "note": "'Nona' comes from the Latin word for ninth." },
+        { "type": "mcq", "q": "How many edges does a cube have?", "options": ["8", "12", "6", "24"], "answer": 1, "note": "A cube has 6 faces, 12 edges and 8 corners (vertices)." },
+        { "type": "tf", "q": "A square is a special type of rectangle.", "answer": true, "note": "A square is a rectangle whose four sides are all equal." },
+        { "type": "timed", "q": "What is the area, in square centimetres, of a rectangle 8 cm long and 5 cm wide?", "answer": "40", "note": "Accept '40 cm²'; area of a rectangle is length × width." },
+        { "type": "mcq", "q": "What is the name for a triangle whose three sides are all different lengths?", "options": ["Isosceles", "Equilateral", "Scalene", "Equiangular"], "answer": 2, "note": "An isosceles triangle has at least two equal sides." },
+        { "type": "mcq", "q": "What do the interior angles of any quadrilateral add up to?", "options": ["360°", "180°", "540°", "270°"], "answer": 0, "note": "Any quadrilateral splits into two triangles, and 2 × 180° = 360°." },
+        { "type": "tf", "q": "A circle has exactly two lines of symmetry.", "answer": false, "note": "A circle has infinitely many lines of symmetry — every diameter is one." },
+        { "type": "mcq", "q": "What is a straight line from the centre of a circle to its edge called?", "options": ["Diameter", "Chord", "Tangent", "Radius"], "answer": 3, "note": "The diameter is twice the length of the radius." },
+        { "type": "timed", "q": "How many faces does a triangular prism have?", "answer": "5", "note": "Accept 'five'; two triangular ends and three rectangular sides." },
+        { "type": "mcq", "q": "A right-angled triangle has shorter sides of 3 and 4. How long is the longest side?", "options": ["5", "6", "7", "25"], "answer": 0, "note": "By Pythagoras: 3² + 4² = 9 + 16 = 25, and √25 = 5." }
+      ]
+    },
+    {
+      "slug": "minds-behind-maths",
+      "title": "Minds Behind Maths",
+      "emoji": "🎓",
+      "difficulty": "medium",
+      "tags": ["mathematicians", "history", "india"],
+      "description": "The great thinkers, from ancient Greece and India to the modern day, who shaped mathematics.",
+      "questions": [
+        { "type": "mcq", "q": "Which Indian mathematician is famously linked with the 'taxicab number' 1729?", "options": ["Aryabhata", "Srinivasa Ramanujan", "Brahmagupta", "Bhaskara II"], "answer": 1, "note": "1729 is the smallest number that is the sum of two cubes in two different ways." },
+        { "type": "tf", "q": "Euclid is often called the 'Father of Geometry'.", "answer": true, "note": "His book Elements was used to teach geometry for more than 2,000 years." },
+        { "type": "mcq", "q": "Which Greek thinker is said to have shouted 'Eureka!' in his bath?", "options": ["Archimedes", "Euclid", "Pythagoras", "Aristotle"], "answer": 0, "note": "The story comes from the Roman writer Vitruvius, writing centuries later." },
+        { "type": "timed", "q": "India's first satellite, launched in 1975, was named after which ancient mathematician?", "answer": "Aryabhata", "note": "Aryabhata lived in the 5th and 6th centuries CE." },
+        { "type": "mcq", "q": "Who developed calculus independently of Isaac Newton?", "options": ["René Descartes", "Leonhard Euler", "Gottfried Leibniz", "Blaise Pascal"], "answer": 2, "note": "Much of today's calculus notation, such as dx and the ∫ sign, comes from Leibniz." },
+        { "type": "mcq", "q": "Who was the first woman to win the Fields Medal?", "options": ["Emmy Noether", "Ada Lovelace", "Sophie Germain", "Maryam Mirzakhani"], "answer": 3, "note": "The Iranian mathematician Maryam Mirzakhani won it in 2014." },
+        { "type": "mcq", "q": "Ada Lovelace wrote famous notes about a machine designed by whom?", "options": ["Alan Turing", "Charles Babbage", "John von Neumann", "Blaise Pascal"], "answer": 1, "note": "Her notes on the Analytical Engine are often called the first computer program." },
+        { "type": "tf", "q": "The Fields Medal in mathematics is awarded every year.", "answer": false, "note": "It is awarded every four years, to mathematicians under 40." },
+        { "type": "timed", "q": "The number e, about 2.718, is named after which Swiss mathematician?", "answer": "Euler", "note": "Accept 'Leonhard Euler'; e is often called Euler's number." },
+        { "type": "mcq", "q": "Which mathematician gave his name to the number triangle where each entry is the sum of the two above?", "options": ["Fibonacci", "Fermat", "Descartes", "Pascal"], "answer": 3, "note": "The triangle was studied centuries earlier in India, Persia and China." }
+      ]
+    },
+    {
+      "slug": "patterns-and-puzzles",
+      "title": "Patterns & Puzzles",
+      "emoji": "🧩",
+      "difficulty": "hard",
+      "tags": ["puzzles", "sequences", "logic"],
+      "description": "Crack the sequences, spot the primes and outsmart the classic brain-teasers.",
+      "questions": [
+        { "type": "mcq", "q": "What comes next: 1, 1, 2, 3, 5, 8, 13, …?", "options": ["18", "20", "21", "26"], "answer": 2, "note": "In the Fibonacci sequence each number is the sum of the two before: 8 + 13 = 21." },
+        { "type": "mcq", "q": "What is the next prime number after 89?", "options": ["97", "91", "93", "99"], "answer": 0, "note": "91 = 7 × 13 and 93 = 3 × 31, so neither is prime." },
+        { "type": "tf", "q": "The number 1 is a prime number.", "answer": false, "note": "A prime has exactly two distinct factors, 1 and itself, so 1 does not count." },
+        { "type": "timed", "q": "What comes next: 2, 6, 12, 20, 30, …?", "answer": "42", "note": "Each term is n × (n + 1), so the next is 6 × 7; the gaps grow by 2 each time." },
+        { "type": "mcq", "q": "A bat and a ball cost 110 coins in total. The bat costs 100 coins more than the ball. What does the ball cost?", "options": ["5 coins", "10 coins", "15 coins", "1 coin"], "answer": 0, "note": "Many say 10, but then the bat would cost 110 and the total would be 120." },
+        { "type": "mcq", "q": "How many prime numbers are there between 1 and 20?", "options": ["6", "7", "8", "9"], "answer": 2, "note": "They are 2, 3, 5, 7, 11, 13, 17 and 19." },
+        { "type": "mcq", "q": "What comes next: 1, 8, 27, 64, …?", "options": ["100", "125", "128", "216"], "answer": 1, "note": "These are cube numbers: 5 × 5 × 5 = 125." },
+        { "type": "timed", "q": "What is the smallest positive whole number divisible by 2, 3, 4, 5 and 6?", "answer": "60", "note": "Accept 'sixty'; it is the lowest common multiple of those numbers." },
+        { "type": "tf", "q": "Adding up all the whole numbers from 1 to 10 gives 55.", "answer": true, "note": "Quick method: 10 × 11 ÷ 2 = 55." },
+        { "type": "mcq", "q": "Counting squares of every size, how many squares are there on an 8 × 8 chessboard?", "options": ["64", "144", "256", "204"], "answer": 3, "note": "Add the square numbers 1 + 4 + 9 + … + 64 to get 204." }
+      ]
+    }
+  ]
+}

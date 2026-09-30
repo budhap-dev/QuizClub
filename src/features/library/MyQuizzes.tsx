@@ -1,18 +1,26 @@
-import { useRef } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { Copy, Download, Eye, Library, PenLine, Pencil, Play, Plus, Sparkles, Trash2, Upload } from 'lucide-react'
-import { Button, Card, PageHeader, alertDialog, confirmDialog } from '@/components'
+import { BookOpen, Copy, Download, Eye, Library, PenLine, Pencil, Play, Plus, Sparkles, Trash2, Upload } from 'lucide-react'
+import { Button, Card, LevelBadge, LevelSelect, PageHeader, alertDialog, confirmDialog } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { downloadJson, readJsonFile } from '@/utils'
-import type { Quiz } from '@/types'
+import type { Difficulty, Quiz } from '@/types'
+import { QuizzesTabs } from './QuizzesTabs'
 
 export function MyQuizzes() {
   const navigate = useNavigate()
   const { quizzes, remove, duplicate, importMany } = useQuizStore()
   const start = useSessionStore((s) => s.start)
   const fileRef = useRef<HTMLInputElement>(null)
+  const [level, setLevel] = useState<Difficulty | undefined>()
+  const shown = useMemo(() => (level ? quizzes.filter((q) => q.difficulty === level) : quizzes), [quizzes, level])
+  const levelCounts = useMemo(() => {
+    const c = { all: quizzes.length, easy: 0, medium: 0, hard: 0 }
+    for (const q of quizzes) if (q.difficulty) c[q.difficulty]++
+    return c
+  }, [quizzes])
 
   const onImport = async (file?: File) => {
     if (!file) return
@@ -42,15 +50,19 @@ export function MyQuizzes() {
           </>
         }
       />
+      <QuizzesTabs />
 
       {quizzes.length === 0 && (
         <Card className="text-center py-14">
           <div className="w-12 h-12 rounded-xl bg-fg/8 text-fg/50 flex items-center justify-center mx-auto mb-4">
             <Library size={22} />
           </div>
-          <p className="text-fg/70 mb-5">Nothing here yet. Build one by hand or let AI do the heavy lifting.</p>
-          <div className="flex gap-2 justify-center">
-            <Button onClick={() => navigate('/create/ai')}>
+          <p className="text-fg/70 mb-5">Nothing here yet. Copy one from the quiz bank, build one by hand, or let AI do the heavy lifting.</p>
+          <div className="flex gap-2 justify-center flex-wrap">
+            <Button onClick={() => navigate('/quizzes/bank')}>
+              <BookOpen /> Browse the quiz bank
+            </Button>
+            <Button variant="secondary" onClick={() => navigate('/create/ai')}>
               <Sparkles /> AI generator
             </Button>
             <Button variant="secondary" onClick={() => navigate('/create/manual')}>
@@ -60,9 +72,20 @@ export function MyQuizzes() {
         </Card>
       )}
 
+      {quizzes.length > 0 && <LevelSelect label="Level" noneLabel="All levels" noneShort="All" value={level} onChange={setLevel} counts={levelCounts} className="mb-5" />}
+      {quizzes.length > 0 && shown.length === 0 && (
+        <Card className="text-center py-10 text-fg/65 text-sm">
+          No quizzes at this level yet. Set a quiz's level in the builder, or{' '}
+          <button type="button" className="underline underline-offset-4 hover:text-fg" onClick={() => navigate(`/quizzes/bank?level=${level}`)}>
+            browse {level} quizzes in the bank
+          </button>
+          .
+        </Card>
+      )}
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <AnimatePresence>
-          {quizzes.map((q) => (
+          {shown.map((q) => (
             <motion.div key={q.id} layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.97 }}>
               <Card className="h-full flex flex-col">
                 <div className="flex items-start gap-3 mb-2">
@@ -70,6 +93,7 @@ export function MyQuizzes() {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-base leading-snug truncate">{q.title}</h3>
                     <div className="text-xs text-fg/50 mt-1 flex items-center gap-1.5 flex-wrap">
+                      {q.difficulty && <LevelBadge level={q.difficulty} />}
                       <span className="chip">{q.source === 'ai' ? 'AI' : 'Manual'}</span>
                       <span>{q.questions.length} questions</span>
                       <span aria-hidden>·</span>

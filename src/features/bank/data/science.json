@@ -1,0 +1,85 @@
+{
+  "area": "science",
+  "quizzes": [
+    {
+      "slug": "human-body-basics",
+      "title": "Body Basics",
+      "emoji": "🫀",
+      "difficulty": "easy",
+      "tags": ["human body", "biology", "anatomy"],
+      "description": "A friendly tour of the bones, organs and blood that keep us going.",
+      "questions": [
+        { "type": "mcq", "q": "What is the largest organ of the human body?", "options": ["Liver", "Skin", "Brain", "Lungs"], "answer": 1, "note": "The liver is the largest internal organ, but the skin is the largest overall." },
+        { "type": "tf", "q": "A typical adult human skeleton has 206 bones.", "answer": true, "note": "Babies start with around 300 bones, many of which fuse together as they grow." },
+        { "type": "mcq", "q": "Which organ pumps blood around the body?", "options": ["Heart", "Kidney", "Liver", "Stomach"], "answer": 0, "note": "An adult heart beats roughly 100,000 times a day." },
+        { "type": "timed", "q": "What is the hardest substance in the human body?", "answer": "Tooth enamel", "note": "Accept \"enamel\"; it coats the crown of every tooth." },
+        { "type": "mcq", "q": "What is the longest bone in the human body?", "options": ["Tibia", "Humerus", "Femur", "Fibula"], "answer": 2, "note": "The femur, or thigh bone, is also the strongest bone in the body." },
+        { "type": "mcq", "q": "Which blood cells contain haemoglobin and carry oxygen?", "options": ["White blood cells", "Platelets", "Stem cells", "Red blood cells"], "answer": 3, "note": "Haemoglobin is rich in iron, which is what makes blood look red." },
+        { "type": "tf", "q": "The human heart has three chambers.", "answer": false, "note": "It has four: two atria on top and two ventricles below." },
+        { "type": "mcq", "q": "Tiny air sacs called alveoli are found in which organs?", "options": ["Lungs", "Kidneys", "Liver", "Intestines"], "answer": 0, "note": "Alveoli are where oxygen passes into the blood and carbon dioxide passes out." },
+        { "type": "timed", "q": "What dome-shaped muscle below the lungs helps you breathe?", "answer": "Diaphragm", "note": "Hiccups are caused by sudden involuntary spasms of the diaphragm." },
+        { "type": "mcq", "q": "How many teeth does a typical adult have, including wisdom teeth?", "options": ["28", "30", "32", "36"], "answer": 2, "note": "Children have 20 baby teeth before their adult teeth come through." }
+      ]
+    },
+    {
+      "slug": "elements-and-compounds",
+      "title": "Elementary, My Dear",
+      "emoji": "⚗️",
+      "difficulty": "medium",
+      "tags": ["chemistry", "elements", "periodic table"],
+      "description": "Symbols, gases, metals and the table that organises them all.",
+      "questions": [
+        { "type": "mcq", "q": "What is the chemical symbol for iron?", "options": ["Ir", "Fe", "In", "I"], "answer": 1, "note": "Fe comes from ferrum, the Latin word for iron." },
+        { "type": "mcq", "q": "Which element has the atomic number 1?", "options": ["Helium", "Oxygen", "Carbon", "Hydrogen"], "answer": 3, "note": "Hydrogen is the lightest and most abundant element in the universe." },
+        { "type": "tf", "q": "Diamond and graphite are both made of pure carbon.", "answer": true, "note": "The difference is how the carbon atoms are arranged." },
+        { "type": "timed", "q": "Which element has the chemical symbol Fe?", "answer": "Iron", "note": "Fe comes from the Latin word for iron, ferrum." },
+        { "type": "mcq", "q": "What is the most abundant gas in Earth's atmosphere?", "options": ["Nitrogen", "Oxygen", "Carbon dioxide", "Argon"], "answer": 0, "note": "Nitrogen makes up about 78% of the air; oxygen is about 21%." },
+        { "type": "mcq", "q": "Which of these metals is a liquid at room temperature?", "options": ["Lead", "Tin", "Mercury", "Sodium"], "answer": 2, "note": "Mercury's symbol, Hg, comes from its old name hydrargyrum, meaning liquid silver." },
+        { "type": "tf", "q": "The noble gases include neon, argon and chlorine.", "answer": false, "note": "Chlorine is a halogen; helium, neon, argon, krypton and xenon are noble gases." },
+        { "type": "mcq", "q": "What is the pH of pure water at 25 °C?", "options": ["0", "7", "10", "14"], "answer": 1, "note": "A pH of 7 is neutral; lower is acidic and higher is alkaline." },
+        { "type": "timed", "q": "Sodium chloride is better known by what everyday name?", "answer": "Salt", "note": "Accept \"table salt\"." },
+        { "type": "mcq", "q": "Who published a famous early periodic table in 1869?", "options": ["Marie Curie", "John Dalton", "Niels Bohr", "Dmitri Mendeleev"], "answer": 3, "note": "Mendeleev left gaps for elements that hadn't been discovered yet, and predicted their properties." }
+      ]
+    },
+    {
+      "slug": "great-inventions",
+      "title": "Eureka Moments",
+      "emoji": "💡",
+      "difficulty": "medium",
+      "tags": ["inventions", "inventors", "history"],
+      "description": "The people behind the breakthroughs that changed everyday life.",
+      "questions": [
+        { "type": "mcq", "q": "Who invented the World Wide Web?", "options": ["Bill Gates", "Steve Jobs", "Tim Berners-Lee", "Alan Turing"], "answer": 2, "note": "He proposed it in 1989 while working at CERN in Switzerland." },
+        { "type": "mcq", "q": "Who built the first electric battery, the voltaic pile, in 1800?", "options": ["Michael Faraday", "Alessandro Volta", "André-Marie Ampère", "Georg Ohm"], "answer": 1, "note": "The unit of electrical potential, the volt, is named after him." },
+        { "type": "tf", "q": "The Wright brothers made their first powered flight in France.", "answer": false, "note": "It was near Kitty Hawk, North Carolina, USA, in December 1903." },
+        { "type": "timed", "q": "Which German introduced movable-type printing to Europe around 1440?", "answer": "Johannes Gutenberg", "note": "Accept \"Gutenberg\"; his most famous work is the Gutenberg Bible." },
+        { "type": "mcq", "q": "In which year did the Wright brothers make their first powered flight?", "options": ["1903", "1899", "1908", "1911"], "answer": 0, "note": "The very first flight lasted just 12 seconds and covered about 37 metres." },
+        { "type": "mcq", "q": "Who developed the first smallpox vaccine in 1796?", "options": ["Louis Pasteur", "Joseph Lister", "Robert Koch", "Edward Jenner"], "answer": 3, "note": "The word vaccine comes from vacca, Latin for cow, after the cowpox Jenner used." },
+        { "type": "timed", "q": "Which inventor of dynamite left his fortune to fund famous annual prizes?", "answer": "Alfred Nobel", "note": "Accept \"Nobel\"; the first Nobel Prizes were awarded in 1901." },
+        { "type": "mcq", "q": "Which machine did James Watt famously improve in the 18th century?", "options": ["Steam engine", "Telescope", "Printing press", "Telegraph"], "answer": 0, "note": "The unit of power, the watt, is named after him." },
+        { "type": "tf", "q": "Wilhelm Röntgen discovered X-rays.", "answer": true, "note": "He discovered them in 1895 and won the first Nobel Prize in Physics in 1901." },
+        { "type": "mcq", "q": "Which prolific inventor created the phonograph in 1877?", "options": ["Nikola Tesla", "George Westinghouse", "Alexander Graham Bell", "Thomas Edison"], "answer": 3, "note": "Edison held more than 1,000 US patents." }
+      ]
+    },
+    {
+      "slug": "physics-forces-and-light",
+      "title": "May the Force Be With You",
+      "emoji": "🧲",
+      "difficulty": "hard",
+      "tags": ["physics", "forces", "light", "units"],
+      "description": "Units, particles, light and the laws that make the universe tick.",
+      "questions": [
+        { "type": "mcq", "q": "What is the SI unit of force?", "options": ["Joule", "Newton", "Watt", "Pascal"], "answer": 1, "note": "One newton is roughly the weight of a small apple." },
+        { "type": "mcq", "q": "Roughly how fast does light travel in a vacuum?", "options": ["About 30,000 km/s", "About 150,000 km/s", "About 3,000,000 km/s", "About 300,000 km/s"], "answer": 3, "note": "The exact figure is 299,792,458 metres per second." },
+        { "type": "tf", "q": "Sound travels faster in water than in air.", "answer": true, "note": "It is over four times faster in water than in air." },
+        { "type": "timed", "q": "What is the SI unit of electrical resistance?", "answer": "Ohm", "note": "Named after German physicist Georg Ohm; its symbol is the Greek letter omega." },
+        { "type": "mcq", "q": "Which colour of visible light has the longest wavelength?", "options": ["Violet", "Blue", "Red", "Green"], "answer": 2, "note": "Violet has the shortest wavelength of the visible colours." },
+        { "type": "mcq", "q": "What temperature is absolute zero in degrees Celsius?", "options": ["-273.15 °C", "-100 °C", "-373.15 °C", "-459.67 °C"], "answer": 0, "note": "Absolute zero is 0 kelvin, or -459.67 °F." },
+        { "type": "tf", "q": "In a vacuum, a heavy object falls faster than a light one.", "answer": false, "note": "Without air resistance, all objects fall with the same acceleration." },
+        { "type": "mcq", "q": "Which scientist discovered the electron in 1897?", "options": ["Ernest Rutherford", "J. J. Thomson", "Niels Bohr", "James Chadwick"], "answer": 1, "note": "James Chadwick discovered the neutron later, in 1932." },
+        { "type": "timed", "q": "The unit of frequency, one cycle per second, is named after which physicist?", "answer": "Hertz", "note": "Heinrich Hertz was the first to prove radio waves exist." },
+        { "type": "mcq", "q": "What is the bending of light as it passes from one material to another called?", "options": ["Reflection", "Diffraction", "Refraction", "Dispersion"], "answer": 2, "note": "Refraction is why a straw looks bent in a glass of water." }
+      ]
+    }
+  ]
+}

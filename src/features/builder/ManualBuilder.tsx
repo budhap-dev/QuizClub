@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, Reorder, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AlertTriangle, Copy, Eye, PenLine, Play, Plus, Save, Trash2 } from 'lucide-react'
-import { Button, Card, EmojiPicker, Modal, PageHeader } from '@/components'
+import { Button, Card, EmojiPicker, LevelSelect, Modal, PageHeader } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSettingsStore } from '@/store/settingsStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -171,6 +171,10 @@ export function ManualBuilder() {
               </option>
             ))}
           </select>
+        </div>
+        <div className="flex items-center gap-3 flex-wrap mt-3">
+          <span className="text-sm text-fg/60">Level</span>
+          <LevelSelect label="Quiz level" noneLabel="Not set" value={quiz.difficulty} onChange={(difficulty) => update({ difficulty })} />
         </div>
       </Card>
 

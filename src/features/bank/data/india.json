@@ -1,0 +1,85 @@
+{
+  "area": "india",
+  "quizzes": [
+    {
+      "slug": "know-your-india",
+      "title": "Know Your India",
+      "emoji": "🇮🇳",
+      "difficulty": "easy",
+      "tags": ["states", "symbols", "geography"],
+      "description": "National symbols, state capitals and famous places from across India.",
+      "questions": [
+        { "type": "mcq", "q": "What is the national animal of India?", "options": ["Tiger", "Lion", "Elephant", "Leopard"], "answer": 0, "note": "The tiger replaced the lion as the national animal in 1973." },
+        { "type": "tf", "q": "The Tropic of Capricorn passes through India.", "answer": false, "note": "It is the Tropic of Cancer that crosses India, through eight states." },
+        { "type": "mcq", "q": "What is the capital of Karnataka?", "options": ["Mysuru", "Bengaluru", "Mangaluru", "Hubballi"], "answer": 1, "note": "Bengaluru is often called the Silicon Valley of India." },
+        { "type": "timed", "q": "Which Indian state is known as God's Own Country?", "answer": "Kerala", "note": "The slogan comes from a Kerala Tourism campaign." },
+        { "type": "mcq", "q": "What is the national flower of India?", "options": ["Rose", "Marigold", "Lotus", "Jasmine"], "answer": 2, "note": "The lotus grows in muddy water yet blooms clean, a symbol of purity." },
+        { "type": "mcq", "q": "The Sundarbans mangrove forest lies in which Indian state?", "options": ["Odisha", "Assam", "Andhra Pradesh", "West Bengal"], "answer": 3, "note": "It is home to the Royal Bengal tiger and extends into Bangladesh." },
+        { "type": "tf", "q": "The Ashoka Chakra on India's national flag has 24 spokes.", "answer": true, "note": "The chakra is navy blue and sits in the centre of the white band." },
+        { "type": "mcq", "q": "Which city is known as the Pink City?", "options": ["Jaipur", "Jodhpur", "Udaipur", "Bikaner"], "answer": 0, "note": "Jodhpur is the Blue City and Udaipur the City of Lakes." },
+        { "type": "timed", "q": "What is the capital of Maharashtra?", "answer": "Mumbai", "note": "Nagpur hosts the state legislature's winter session." },
+        { "type": "mcq", "q": "Which is the largest Indian state by area?", "options": ["Maharashtra", "Rajasthan", "Madhya Pradesh", "Uttar Pradesh"], "answer": 1, "note": "Rajasthan has been the largest since Chhattisgarh was carved out of Madhya Pradesh in 2000." }
+      ]
+    },
+    {
+      "slug": "festivals-and-traditions",
+      "title": "Festivals & Traditions",
+      "emoji": "🪔",
+      "difficulty": "medium",
+      "tags": ["festivals", "culture", "dance"],
+      "description": "Harvest festivals, classical dance and celebrations from every corner of India.",
+      "questions": [
+        { "type": "mcq", "q": "Onam is mainly celebrated in which state?", "options": ["Tamil Nadu", "Karnataka", "Kerala", "Goa"], "answer": 2, "note": "Onam welcomes the legendary King Mahabali back to his land." },
+        { "type": "mcq", "q": "Which harvest festival is celebrated in Tamil Nadu in mid-January?", "options": ["Onam", "Bihu", "Baisakhi", "Pongal"], "answer": 3, "note": "Pongal is named after the sweet rice dish cooked to mark it." },
+        { "type": "tf", "q": "Durga Puja in Kolkata is on UNESCO's list of Intangible Cultural Heritage.", "answer": true, "note": "It was added to the list in 2021." },
+        { "type": "mcq", "q": "Bharatanatyam is a classical dance form from which state?", "options": ["Tamil Nadu", "Kerala", "Odisha", "Andhra Pradesh"], "answer": 0, "note": "Kathakali comes from Kerala, Odissi from Odisha and Kuchipudi from Andhra Pradesh." },
+        { "type": "timed", "q": "Which spring festival is famous for people throwing coloured powder and water?", "answer": "Holi", "note": "Holi celebrates the arrival of spring and the victory of good over evil." },
+        { "type": "mcq", "q": "Bihu is the most important festival of which state?", "options": ["Manipur", "Assam", "Nagaland", "Meghalaya"], "answer": 1, "note": "Assam celebrates three Bihus a year; Rongali Bihu marks the new year in April." },
+        { "type": "tf", "q": "Eid al-Fitr marks the beginning of the holy month of Ramadan.", "answer": false, "note": "Eid al-Fitr marks the end of Ramadan's month of fasting." },
+        { "type": "mcq", "q": "The Hornbill Festival is held every December in which state?", "options": ["Mizoram", "Arunachal Pradesh", "Nagaland", "Sikkim"], "answer": 2, "note": "It is held at Kisama near Kohima and showcases all of Nagaland's tribes." },
+        { "type": "timed", "q": "Which festival celebrates the bond of siblings with a thread tied on a brother's wrist?", "answer": "Raksha Bandhan", "note": "Accept Rakhi." },
+        { "type": "mcq", "q": "Which festival also marks the founding of the Khalsa by Guru Gobind Singh in 1699?", "options": ["Gurpurab", "Lohri", "Hola Mohalla", "Vaisakhi"], "answer": 3, "note": "Vaisakhi is also a spring harvest festival in Punjab." }
+      ]
+    },
+    {
+      "slug": "sporting-india",
+      "title": "Sporting India",
+      "emoji": "🏏",
+      "difficulty": "medium",
+      "tags": ["sport", "cricket", "olympics"],
+      "description": "Historic wins and sporting legends from cricket, hockey, athletics and more.",
+      "questions": [
+        { "type": "mcq", "q": "In which year did India first win the men's Cricket World Cup?", "options": ["1987", "1983", "1979", "1992"], "answer": 1, "note": "Kapil Dev's team beat the West Indies in the final at Lord's." },
+        { "type": "mcq", "q": "Who was India's first individual Olympic gold medallist?", "options": ["Abhinav Bindra", "Neeraj Chopra", "Leander Paes", "Rajyavardhan Rathore"], "answer": 0, "note": "He won the 10 m air rifle event at Beijing 2008." },
+        { "type": "tf", "q": "Sachin Tendulkar was the first man to score a double century in a one-day international.", "answer": true, "note": "He made 200 not out against South Africa in Gwalior in 2010." },
+        { "type": "timed", "q": "Which Indian hockey legend is known as The Wizard?", "answer": "Dhyan Chand", "note": "National Sports Day, 29 August, marks his birthday." },
+        { "type": "mcq", "q": "Neeraj Chopra won Olympic gold at Tokyo 2020 in which event?", "options": ["Shot put", "Discus", "Long jump", "Javelin"], "answer": 3, "note": "It was India's first Olympic gold in athletics." },
+        { "type": "mcq", "q": "Viswanathan Anand became a world champion in which sport?", "options": ["Carrom", "Badminton", "Chess", "Snooker"], "answer": 2, "note": "In 1988 he became India's first grandmaster." },
+        { "type": "tf", "q": "The Indian Premier League (IPL) was first played in 2012.", "answer": false, "note": "The first IPL season was played in 2008." },
+        { "type": "mcq", "q": "Who won India's first Olympic medal in badminton?", "options": ["P. V. Sindhu", "Saina Nehwal", "Jwala Gutta", "Prakash Padukone"], "answer": 1, "note": "She won bronze in women's singles at London 2012." },
+        { "type": "timed", "q": "Which Manipuri boxer, a six-time world champion, won Olympic bronze in 2012?", "answer": "Mary Kom", "note": "Accept M. C. Mary Kom." },
+        { "type": "mcq", "q": "What was sprinter Milkha Singh's famous nickname?", "options": ["The Flying Sikh", "The Iron Man", "The Wall", "The Bullet"], "answer": 0, "note": "The film Bhaag Milkha Bhaag (2013) tells his story." }
+      ]
+    },
+    {
+      "slug": "history-and-heritage",
+      "title": "History & Heritage",
+      "emoji": "📜",
+      "difficulty": "hard",
+      "tags": ["history", "empires", "freedom struggle", "monuments"],
+      "description": "Ancient empires, great temples and the road to independence.",
+      "questions": [
+        { "type": "mcq", "q": "Who founded the Maurya Empire?", "options": ["Ashoka", "Bindusara", "Bimbisara", "Chandragupta Maurya"], "answer": 3, "note": "He was guided by his adviser Chanakya, also known as Kautilya." },
+        { "type": "mcq", "q": "In which year did the Jallianwala Bagh massacre take place in Amritsar?", "options": ["1905", "1942", "1919", "1930"], "answer": 2, "note": "It happened on 13 April 1919, the day of Baisakhi." },
+        { "type": "tf", "q": "Gandhi's Dandi March of 1930 was a protest against the British salt tax.", "answer": true, "note": "He walked about 385 km from Sabarmati Ashram to the coast at Dandi." },
+        { "type": "mcq", "q": "Babur's victory in which 1526 battle founded the Mughal Empire?", "options": ["Battle of Plassey", "First Battle of Panipat", "Battle of Haldighati", "Battle of Talikota"], "answer": 1, "note": "Babur defeated Ibrahim Lodi, the last Delhi Sultan." },
+        { "type": "timed", "q": "The Chinese pilgrim Xuanzang studied at which famous ancient university in Bihar?", "answer": "Nalanda", "note": "The ruins of Nalanda Mahavihara are a UNESCO World Heritage Site." },
+        { "type": "mcq", "q": "Who was the first Indian to serve as Governor-General of independent India?", "options": ["C. Rajagopalachari", "Rajendra Prasad", "Vallabhbhai Patel", "Jawaharlal Nehru"], "answer": 0, "note": "He was also the last Governor-General before India became a republic." },
+        { "type": "tf", "q": "The Constitution of India came into effect on 15 August 1947.", "answer": false, "note": "It came into effect on 26 January 1950, now Republic Day." },
+        { "type": "mcq", "q": "Which Chola king built the Brihadeeswarar Temple at Thanjavur?", "options": ["Rajendra Chola I", "Karikala Chola", "Kulothunga Chola I", "Raja Raja Chola I"], "answer": 3, "note": "The temple was completed around 1010 and is a UNESCO World Heritage Site." },
+        { "type": "timed", "q": "Who chaired the Drafting Committee of India's Constitution?", "answer": "B. R. Ambedkar", "note": "Accept Ambedkar or Babasaheb Ambedkar." },
+        { "type": "mcq", "q": "The 1757 Battle of Plassey was fought against which Nawab of Bengal?", "options": ["Mir Jafar", "Tipu Sultan", "Siraj ud-Daulah", "Shuja-ud-Daula"], "answer": 2, "note": "Mir Jafar's betrayal helped Robert Clive's East India Company win." }
+      ]
+    }
+  ]
+}

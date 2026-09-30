@@ -1,0 +1,85 @@
+{
+  "area": "words",
+  "quizzes": [
+    {
+      "slug": "spell-it-right",
+      "title": "Spell It Right",
+      "emoji": "✏️",
+      "difficulty": "easy",
+      "tags": ["spelling", "grammar", "vocabulary"],
+      "description": "Tricky spellings, plurals and the building blocks of English grammar.",
+      "questions": [
+        { "type": "mcq", "q": "Which is the correct spelling?", "options": ["Neccessary", "Necessary", "Necesary", "Neccesary"], "answer": 1, "note": "A handy memory aid: one Collar and two Sleeves." },
+        { "type": "mcq", "q": "What is the plural of 'mouse' when talking about the animal?", "options": ["Mouses", "Meese", "Mice", "Mousen"], "answer": 2, "note": "The same pattern turns 'louse' into 'lice'." },
+        { "type": "tf", "q": "The five-letter word 'queue' contains four vowels.", "answer": true, "note": "Remove the last four letters and it still sounds the same: 'Q'." },
+        { "type": "mcq", "q": "What is the opposite of 'ancient'?", "options": ["Modern", "Old", "Antique", "Historic"], "answer": 0, "note": "'Old', 'antique' and 'historic' are all close in meaning to 'ancient'." },
+        { "type": "timed", "q": "How many letters are there in the English alphabet?", "answer": "26", "note": "Accept 'twenty-six'; E is the most commonly used letter in English." },
+        { "type": "mcq", "q": "Which word is the verb in 'The cat sleeps on the mat'?", "options": ["Cat", "On", "Mat", "Sleeps"], "answer": 3, "note": "Verbs are often called 'doing words'." },
+        { "type": "tf", "q": "An adjective is a word used to describe an action.", "answer": false, "note": "Adjectives describe nouns; words that tell us how an action is done are adverbs." },
+        { "type": "mcq", "q": "Which of these words means the same as 'happy'?", "options": ["Joyful", "Gloomy", "Weary", "Anxious"], "answer": 0, "note": "Words with the same meaning are called synonyms." },
+        { "type": "timed", "q": "What is the past tense of the verb 'go'?", "answer": "Went", "note": "'Went' was originally the past tense of the old verb 'wend'." },
+        { "type": "mcq", "q": "Which is the correct spelling?", "options": ["Seperate", "Separete", "Separate", "Seprate"], "answer": 2, "note": "Remember: there's 'a rat' in sep-a-r-ate." }
+      ]
+    },
+    {
+      "slug": "where-words-come-from",
+      "title": "Where Words Come From",
+      "emoji": "🏛️",
+      "difficulty": "medium",
+      "tags": ["etymology", "origins", "history"],
+      "description": "Everyday English words with surprising roots in other languages and real people.",
+      "questions": [
+        { "type": "mcq", "q": "The German word 'kindergarten' literally means what?", "options": ["Little school", "Children's garden", "Play house", "Child's room"], "answer": 1, "note": "Friedrich Fröbel coined the term for his early-years school in 1840." },
+        { "type": "timed", "q": "The word 'robot' was introduced in a 1920 play by which Czech writer?", "answer": "Karel Čapek", "note": "Accept 'Čapek' or 'Capek'; the play was R.U.R., and the word came from 'robota', forced labour." },
+        { "type": "mcq", "q": "The word 'shampoo' comes into English from which language?", "options": ["French", "Arabic", "Hindi", "Portuguese"], "answer": 2, "note": "It comes from 'chāmpo', meaning to press or massage." },
+        { "type": "mcq", "q": "'Quarantine' comes from the Italian for how many days?", "options": ["Ten", "Twenty", "Thirty", "Forty"], "answer": 3, "note": "Ships arriving in Venice during plague outbreaks were kept isolated for 40 days." },
+        { "type": "tf", "q": "The word 'tsunami' comes from Japanese words meaning 'harbour wave'.", "answer": true, "note": "In Japanese, 'tsu' means harbour and 'nami' means wave." },
+        { "type": "mcq", "q": "The word 'muscle' comes from a Latin word meaning what?", "options": ["Little mouse", "Strong arm", "Small rope", "Hard stone"], "answer": 0, "note": "A flexing muscle was thought to look like a mouse moving under the skin." },
+        { "type": "mcq", "q": "The verb 'to boycott' is named after Charles Boycott. Who was he?", "options": ["A French general", "A US senator", "A land agent in Ireland", "A London shopkeeper"], "answer": 2, "note": "In 1880, his neighbours in County Mayo refused to have any dealings with him." },
+        { "type": "tf", "q": "The word 'algebra' comes from Greek.", "answer": false, "note": "It comes from Arabic 'al-jabr', from a 9th-century book by al-Khwarizmi." },
+        { "type": "timed", "q": "The word 'disaster' comes from Italian and literally means 'bad ___'. Fill in the gap.", "answer": "Star", "note": "It reflects the old belief that the stars and planets shaped people's fate." },
+        { "type": "mcq", "q": "The word 'safari' comes from Swahili. What does it mean?", "options": ["Wild animal", "Grassland", "Hunting party", "Journey"], "answer": 3, "note": "Swahili borrowed it from the Arabic 'safar', also meaning journey." }
+      ]
+    },
+    {
+      "slug": "idioms-and-sayings",
+      "title": "Say What? Idioms",
+      "emoji": "💬",
+      "difficulty": "medium",
+      "tags": ["idioms", "phrases", "meanings"],
+      "description": "Colourful everyday phrases that mean something very different from what they say.",
+      "questions": [
+        { "type": "mcq", "q": "If something 'costs an arm and a leg', it is…", "options": ["Very expensive", "Dangerous", "Painful", "Hard to find"], "answer": 0, "note": "A similar phrase is 'to cost a fortune'." },
+        { "type": "mcq", "q": "What does it mean to 'let the cat out of the bag'?", "options": ["Cause chaos", "Reveal a secret", "Set someone free", "Start a fight"], "answer": 1, "note": "A close relative is 'to spill the beans'." },
+        { "type": "tf", "q": "To 'bite the bullet' means to face something unpleasant with courage.", "answer": true, "note": "It is used when accepting something difficult that cannot be avoided." },
+        { "type": "timed", "q": "Complete the proverb: 'Don't count your ___ before they hatch.'", "answer": "Chickens", "note": "It warns against relying on something good before it has actually happened." },
+        { "type": "mcq", "q": "Someone who is 'under the weather' is…", "options": ["Outdoors", "Very busy", "Feeling unwell", "Running late"], "answer": 2, "note": "It usually means mildly ill rather than seriously ill." },
+        { "type": "mcq", "q": "What does 'once in a blue moon' mean?", "options": ["At night", "Every month", "Very suddenly", "Very rarely"], "answer": 3, "note": "In one modern sense, a blue moon is the second full moon in a calendar month." },
+        { "type": "tf", "q": "Actors say 'break a leg' to wish each other bad luck.", "answer": false, "note": "It means good luck; saying 'good luck' backstage is traditionally thought to be unlucky." },
+        { "type": "mcq", "q": "In a mystery story, what is a 'red herring'?", "options": ["A rare event", "A misleading clue", "A lucky find", "An angry person"], "answer": 1, "note": "A real red herring is a strong-smelling smoked fish." },
+        { "type": "timed", "q": "Complete the idiom for a heavy downpour: 'It's raining cats and ___.'", "answer": "Dogs", "note": "Its origin is uncertain; no single explanation is widely accepted." },
+        { "type": "mcq", "q": "If you 'hit the nail on the head', you…", "options": ["Are exactly right", "Make a mistake", "Work very hard", "Lose your temper"], "answer": 0, "note": "Another way to say it is 'spot on'." }
+      ]
+    },
+    {
+      "slug": "tongues-of-the-world",
+      "title": "Tongues of the World",
+      "emoji": "🌍",
+      "difficulty": "hard",
+      "tags": ["languages", "world", "scripts"],
+      "description": "Scripts, speakers and surprising facts about the languages people speak around the globe.",
+      "questions": [
+        { "type": "mcq", "q": "Which language has the most native speakers in the world?", "options": ["English", "Spanish", "Hindi", "Mandarin Chinese"], "answer": 3, "note": "Spanish is second for native speakers; English has the most speakers in total." },
+        { "type": "mcq", "q": "What is the official language of Brazil?", "options": ["Spanish", "Portuguese", "Italian", "French"], "answer": 1, "note": "Brazil has more Portuguese speakers than all other countries combined." },
+        { "type": "tf", "q": "Basque, spoken in parts of Spain and France, is not related to any other living language.", "answer": true, "note": "Linguists call a language like this a 'language isolate'." },
+        { "type": "mcq", "q": "How many official languages does the United Nations have?", "options": ["Four", "Five", "Six", "Eight"], "answer": 2, "note": "They are Arabic, Chinese, English, French, Russian and Spanish." },
+        { "type": "timed", "q": "Which country has the most living languages, with more than 800?", "answer": "Papua New Guinea", "note": "Accept 'PNG'; it has around 840 living languages." },
+        { "type": "mcq", "q": "The Cyrillic alphabet is used to write which of these languages?", "options": ["Greek", "Russian", "Georgian", "Armenian"], "answer": 1, "note": "The alphabet is named in honour of Saint Cyril, a 9th-century Byzantine missionary." },
+        { "type": "mcq", "q": "Which of these languages is written from right to left?", "options": ["Hebrew", "Hindi", "Greek", "Thai"], "answer": 0, "note": "Arabic, Persian and Urdu are also written from right to left." },
+        { "type": "tf", "q": "Japanese is written using just one writing system.", "answer": false, "note": "Japanese mixes kanji with two syllabaries, hiragana and katakana." },
+        { "type": "timed", "q": "In which ancient language were the Vedas composed?", "answer": "Sanskrit", "note": "Accept 'Vedic Sanskrit'; the Rigveda is one of the oldest Indo-European texts." },
+        { "type": "mcq", "q": "Besides hieroglyphs and Demotic, the Rosetta Stone carries text in which language?", "options": ["Latin", "Aramaic", "Hebrew", "Ancient Greek"], "answer": 3, "note": "Jean-François Champollion announced his decipherment of hieroglyphs in 1822." }
+      ]
+    }
+  ]
+}

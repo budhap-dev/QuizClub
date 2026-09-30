@@ -8,6 +8,8 @@ A colourful quiz-night app with a clean, presentable look, built for the big scr
 - **Teams & scoring** — add teams or individual players, tap who got it right after each reveal, or use the +/− panel with undo.
 - **AI quiz generator** — describe a topic, pick difficulty, audience and question types; Claude builds the quiz server-side.
 - **Manual quiz maker** — slides, multiple choice, true/false and timed questions with images, points, timers and host notes. Drag to reorder, preview before saving.
+- **Quiz bank** — 72 ready-made quizzes (720 questions) across 18 areas (general knowledge, geography, India, history, science, space, nature, literature, words, maths, movies, music, sports, technology, food, mythology, art, kids). Search titles, tags and question text, filter by area and level, view every answer, then present as-is or copy to My Quizzes to edit. Also pickable from Play setup.
+- **Levels** — every quiz can be Easy, Medium or Hard. Bank quizzes come rated, AI quizzes take the level you asked for, and you set it for your own in the builder. My Quizzes, the bank and Play setup all filter by level.
 - **Built-in library** — Flag Guesser, Logo Quiz, Mental Maths (generated fresh each time), General Knowledge, Geography, Science, Literature, Movies, Sports, Music, History.
 - **Party games** — Cows & Bulls, Hangman, Wordle, Word Scramble, Emoji Riddles, Memory Match. Award points to teams from any game.
 - **Cloud vault** — sync your quiz library across devices with no account: pick a passphrase in Settings, and the library is encrypted in the browser (PBKDF2 + AES-GCM) and stored as ciphertext in Upstash Redis via `api/vault.ts`. Enter the same passphrase on another device to pull it down. Deletions carry across (tombstones), the newest edit wins, and the server can't read anything.
@@ -38,6 +40,10 @@ To run the AI endpoint locally, use the Vercel CLI in a second terminal (`vercel
 
 Local development with the API: `npm i -g vercel`, `vercel link`, `vercel env pull .env`, then `vercel dev` in one terminal and `npm run dev` in another (Vite proxies `/api` to it).
 
+## Adding to the quiz bank
+
+Each area is a JSON file in `src/features/bank/data/` (format in that folder's README). Add or edit quizzes there, then run `npm run check:bank` to validate structure, lengths, answer indexes and duplicate questions. Each area aims for one easy, two medium and one hard quiz (the kids area is all easy); hard quizzes are worth 15 points a question, the rest 10.
+
 ## Project layout
 
 ```
@@ -47,6 +53,7 @@ src/
   components/           shared UI (Button, Card, Modal, TimerRing, TeamChip…)
   features/
     ai/                 AI generator screen + client
+    bank/               quiz bank: data/*.json (one file per area), loader, search, page
     builder/            manual quiz maker
     games/              party games
     home/               landing page
