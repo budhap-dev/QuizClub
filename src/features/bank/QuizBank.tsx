@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { BookOpen, Copy, Eye, Loader2, Play, Search, Sparkles, X } from 'lucide-react'
-import { Button, Card, LEVELS, LevelBadge, LevelSelect, PageHeader } from '@/components'
+import { BookOpen, Check, ChevronDown, Copy, Eye, Loader2, Play, Search, Sparkles, X } from 'lucide-react'
+import { Button, Card, LEVELS, LevelBadge, LevelSelect, Modal, PageHeader } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { cn } from '@/utils'
@@ -17,6 +17,7 @@ export function QuizBank() {
   const { quizzes, error } = useBank()
   const [params, setParams] = useSearchParams()
   const [viewing, setViewing] = useState<BankQuiz | null>(null)
+  const [pickingArea, setPickingArea] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
 
   // Search and filters live in the URL so Back returns to the same results.
@@ -61,6 +62,7 @@ export function QuizBank() {
     return c
   }, [quizzes])
   const areas = AREAS.filter((a) => counts[a.id])
+  const current = areas.find((a) => a.id === area)
   const filtered = !!(query || area || level)
 
   const present = (b: BankQuiz) => {
@@ -110,8 +112,27 @@ export function QuizBank() {
         )}
       </div>
 
-      {/* Filters: areas scroll sideways on phones */}
-      <div className="flex gap-1.5 overflow-x-auto no-scrollbar -mx-4 px-4 pb-1 mb-2">
+      {/* Areas: one picker button that opens a sheet on phones, wrapping chips from sm up */}
+      <div className="sm:hidden flex gap-2 mb-2">
+        <button
+          type="button"
+          onClick={() => setPickingArea(true)}
+          className="flex-1 min-w-0 flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-fg/12 bg-fg/6 text-left active:bg-fg/10"
+          aria-haspopup="dialog"
+        >
+          <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: current?.color ?? 'color-mix(in srgb, var(--color-fg) 35%, transparent)' }} aria-hidden />
+          <span className="text-fg/50 text-sm">Area</span>
+          <span className="font-medium truncate">{current?.label ?? 'All areas'}</span>
+          <span className="text-fg/40 text-sm tabular-nums ml-auto">{current ? counts[current.id] : quizzes?.length}</span>
+          <ChevronDown size={16} className="text-fg/50 shrink-0" />
+        </button>
+        {current && (
+          <button type="button" onClick={() => setParam('area')} className="w-11 shrink-0 rounded-xl border border-fg/12 bg-fg/6 flex items-center justify-center text-fg/60 active:bg-fg/10" aria-label="Show all areas">
+            <X size={16} />
+          </button>
+        )}
+      </div>
+      <div className="hidden sm:flex flex-wrap gap-1.5 mb-2">
         <button type="button" className={chip(!area)} onClick={() => setParam('area')} aria-pressed={!area}>
           All areas
         </button>
@@ -211,6 +232,40 @@ export function QuizBank() {
           </Link>
         </p>
       )}
+
+      <Modal open={pickingArea} onClose={() => setPickingArea(false)} title="Choose an area">
+        <div className="grid grid-cols-2 gap-2" role="listbox" aria-label="Areas">
+          {[undefined, ...areas].map((a) => {
+            const active = (a?.id ?? undefined) === area
+            return (
+              <button
+                key={a?.id ?? 'all'}
+                type="button"
+                role="option"
+                aria-selected={active}
+                onClick={() => {
+                  setParam('area', a?.id)
+                  setPickingArea(false)
+                }}
+                className={cn(
+                  'flex items-center gap-2.5 rounded-xl border px-3 py-3 text-left text-sm transition-colors',
+                  !a && 'col-span-2',
+                  active ? 'bg-fg/12 border-fg/25 font-semibold' : 'bg-fg/5 border-fg/8 active:bg-fg/10',
+                )}
+                style={active && a ? { borderColor: a.color } : undefined}
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
+                  style={{ background: a?.color ?? 'color-mix(in srgb, var(--color-fg) 35%, transparent)' }}
+                  aria-hidden
+                />
+                <span className="flex-1 min-w-0 leading-tight">{a?.label ?? 'All areas'}</span>
+                {active ? <Check size={15} className="shrink-0" /> : <span className="text-fg/40 tabular-nums text-xs">{a ? counts[a.id] : quizzes?.length}</span>}
+              </button>
+            )
+          })}
+        </div>
+      </Modal>
 
       <BankQuizSheet quiz={viewing} onClose={() => setViewing(null)} onPresent={present} onCopy={copy} />
     </div>
