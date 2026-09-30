@@ -6,6 +6,7 @@ import { Modal, ThemePicker } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
 import { useVaultStore, type VaultStatus } from '@/features/vault/vaultStore'
 import { cn } from '@/utils'
+import { useScrollLock } from '@/utils/scrollLock'
 import { NAV, isActive } from './nav'
 
 /** Button size and the gap kept from the screen edges (px). */
@@ -54,10 +55,6 @@ const dot: Record<VaultStatus, string> = {
   error: 'bg-red',
 }
 
-const list: Variants = {
-  open: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } },
-  closed: { transition: { staggerChildren: 0.02, staggerDirection: -1 } },
-}
 
 /**
  * Phone navigation: a floating button the user can drag anywhere; it snaps to the nearest side and
@@ -81,6 +78,7 @@ export function FloatingMenu() {
   const fab = useRef<HTMLButtonElement>(null)
   const [anchor, setAnchor] = useState({ side: 'right' as Side, up: true, offset: 0 })
   const menuId = useId()
+  useScrollLock(open)
 
   // Keep the button on screen when the phone rotates or the browser bar resizes the viewport.
   useEffect(() => {
@@ -124,9 +122,14 @@ export function FloatingMenu() {
     setOpen((o) => !o)
   }
 
+  // Items cascade outwards from the button: bottom-up when the menu opens upwards.
+  const list: Variants = {
+    open: { transition: { staggerChildren: 0.03, delayChildren: 0.03, staggerDirection: anchor.up ? -1 : 1 } },
+    closed: {},
+  }
   const item: Variants = {
-    closed: { opacity: 0, y: anchor.up ? 10 : -10, scale: 0.96 },
-    open: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 520, damping: 32 } },
+    closed: { opacity: 0, y: anchor.up ? 8 : -8 },
+    open: { opacity: 1, y: 0, transition: { duration: 0.18, ease: 'easeOut' } },
   }
   const origin = `${anchor.up ? 'bottom' : 'top'} ${anchor.side}`
   const utility = 'flex-1 h-11 rounded-xl flex items-center justify-center gap-2 text-sm font-medium text-fg/75 hover:text-fg hover:bg-fg/10 transition-colors'
@@ -137,10 +140,10 @@ export function FloatingMenu() {
         {open && (
           <motion.div
             key="backdrop"
-            className="fixed inset-0 z-40 bg-black/35 backdrop-blur-[2px]"
+            className="fixed inset-0 z-40 bg-black/45 touch-none"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.18 } }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
             onClick={() => setOpen(false)}
           />
         )}
@@ -149,18 +152,19 @@ export function FloatingMenu() {
             key="menu"
             id={menuId}
             aria-label="Main"
-            className="nav-surface fixed z-40 w-64 max-w-[calc(100vw-2rem)] rounded-2xl p-2 overflow-y-auto"
+            className="fixed z-40 w-64 max-w-[calc(100vw-2rem)] rounded-2xl p-2 overflow-y-auto overscroll-contain bg-ink-soft border border-fg/12 shadow-2xl shadow-black/40"
             style={{
               [anchor.side]: EDGE,
               [anchor.up ? 'bottom' : 'top']: anchor.offset,
               maxHeight: `calc(100dvh - ${anchor.offset + EDGE}px)`,
               transformOrigin: origin,
+              willChange: 'transform, opacity',
             }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 420, damping: 30 } }}
-            exit={{ opacity: 0, scale: 0.85, transition: { duration: 0.14 } }}
+            initial={{ opacity: 0, scale: 0.94, y: anchor.up ? 12 : -12 }}
+            animate={{ opacity: 1, scale: 1, y: 0, transition: { duration: 0.2, ease: [0.2, 0.8, 0.2, 1] } }}
+            exit={{ opacity: 0, scale: 0.96, y: anchor.up ? 8 : -8, transition: { duration: 0.14, ease: 'easeIn' } }}
           >
-            <motion.ul variants={list} initial="closed" animate="open" exit="closed" className="space-y-0.5">
+            <motion.ul variants={list} initial="closed" animate="open" className="space-y-0.5">
               {NAV.map(({ to, label, Icon, color }) => {
                 const active = isActive(to, pathname)
                 return (
