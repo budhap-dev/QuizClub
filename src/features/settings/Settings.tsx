@@ -12,6 +12,7 @@ export function Settings() {
   const s = useSettingsStore()
   const quizzes = useQuizStore((q) => q.quizzes)
   const importMany = useQuizStore((q) => q.importMany)
+  const clearAll = useQuizStore((q) => q.clearAll)
   const clearTeams = useSessionStore((q) => q.clearTeams)
   const fileRef = useRef<HTMLInputElement>(null)
 
@@ -93,9 +94,7 @@ export function Settings() {
             <Button
               variant="danger"
               onClick={() => {
-                if (confirm('Delete ALL saved quizzes? This cannot be undone.')) {
-                  useQuizStore.setState({ quizzes: [] })
-                }
+                if (confirm('Delete ALL saved quizzes? This cannot be undone.')) clearAll()
               }}
             >
               Delete all quizzes

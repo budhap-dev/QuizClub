@@ -11,6 +11,8 @@ interface Library {
 interface QuizState extends Library {
   upsert: (quiz: Quiz) => void
   remove: (id: string) => void
+  /** Delete every quiz, leaving tombstones so cloud-vault sync doesn't bring them back. */
+  clearAll: () => void
   duplicate: (id: string) => Quiz | undefined
   get: (id: string) => Quiz | undefined
   importMany: (quizzes: Quiz[]) => number
@@ -35,6 +37,13 @@ export const useQuizStore = create<QuizState>()(
           }
         }),
       remove: (id) => set((s) => ({ quizzes: s.quizzes.filter((q) => q.id !== id), deleted: { ...s.deleted, [id]: Date.now() } })),
+      clearAll: () =>
+        set((s) => {
+          const now = Date.now()
+          const deleted = { ...s.deleted }
+          for (const q of s.quizzes) deleted[q.id] = now
+          return { quizzes: [], deleted }
+        }),
       duplicate: (id) => {
         const src = get().quizzes.find((q) => q.id === id)
         if (!src) return undefined
