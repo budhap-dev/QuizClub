@@ -64,17 +64,20 @@ export default function Hangman() {
   const [round, setRound] = useState(() => pickWord('Random'))
   const [guessed, setGuessed] = useState<Set<string>>(new Set())
   const [hint, setHint] = useState(false)
+  const [revealed, setRevealed] = useState(false)
 
   const letters = useMemo(() => new Set(round.word.w.replace(/[^A-Z]/g, '').split('')), [round])
   const wrong = [...guessed].filter((l) => !letters.has(l))
   const won = [...letters].every((l) => guessed.has(l))
   const lost = wrong.length >= MAX_WRONG
-  const over = won || lost
+  const over = won || lost || revealed
+  const showAll = lost || revealed
 
   const newGame = (c = cat) => {
     setRound(pickWord(c))
     setGuessed(new Set())
     setHint(false)
+    setRevealed(false)
   }
 
   const guess = useCallback(
@@ -135,13 +138,13 @@ export default function Hangman() {
                 <motion.div
                   key={i}
                   initial={false}
-                  animate={{ rotateX: guessed.has(ch) || lost ? 0 : 0, scale: guessed.has(ch) ? [1, 1.2, 1] : 1 }}
+                  animate={{ scale: guessed.has(ch) ? [1, 1.2, 1] : 1 }}
                   className={cn(
                     'w-9 h-12 md:w-12 md:h-16 rounded-lg border-b-4 flex items-center justify-center font-display font-semibold text-2xl md:text-4xl',
-                    guessed.has(ch) ? 'bg-mint/20 border-mint text-fg' : lost ? 'bg-red/20 border-red text-red' : 'bg-fg/10 border-fg/40',
+                    guessed.has(ch) ? 'bg-mint/20 border-mint text-fg' : showAll ? 'bg-red/20 border-red text-red' : 'bg-fg/10 border-fg/40',
                   )}
                 >
-                  {guessed.has(ch) || lost ? ch : ''}
+                  {guessed.has(ch) || showAll ? ch : ''}
                 </motion.div>
               ),
             )}
@@ -180,7 +183,7 @@ export default function Hangman() {
               <RefreshCw /> New word
             </Button>
             {!over && (
-              <Button size="sm" variant="secondary" onClick={() => setGuessed(new Set([...guessed, ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter((l) => !letters.has(l)).slice(0, MAX_WRONG)]))}>
+              <Button size="sm" variant="secondary" onClick={() => setRevealed(true)}>
                 <Eye /> Reveal
               </Button>
             )}
@@ -188,7 +191,7 @@ export default function Hangman() {
         </div>
       </div>
 
-      <OnScreenKeyboard onKey={guess} statuses={statuses} disabled={over} showEnter={false} />
+      <OnScreenKeyboard onKey={guess} statuses={statuses} disabled={over} showEnter={false} lockGuessed />
     </div>
   )
 }

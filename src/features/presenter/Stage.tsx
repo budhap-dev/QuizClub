@@ -70,6 +70,10 @@ export function Stage({ preview }: StageProps) {
     } else store.prev()
   }, [preview, store])
 
+  // The option the host tapped on this question, if any; shown as right or wrong on reveal.
+  const [picked, setPicked] = useState<number | null>(null)
+  useEffect(() => setPicked(null), [question?.id])
+
   const reveal = useCallback(() => {
     if (!question || question.type === 'slide' || revealed) return
     sfx.reveal()
@@ -77,7 +81,28 @@ export function Stage({ preview }: StageProps) {
     party.burst(0.5, 0.4)
   }, [question, revealed, setPhase])
 
+  /** Tapping an answer locks it in: reveal, and mark the tap right or wrong. */
+  const pick = useCallback(
+    (i: number) => {
+      if (!question || revealed || (question.type !== 'mcq' && question.type !== 'truefalse')) return
+      const right = question.type === 'mcq' ? i === question.correctIndex : (i === 0) === question.answer
+      setPicked(i)
+      setPhase('revealed')
+      if (right) {
+        sfx.correct()
+        party.burst(0.5, 0.4)
+      } else sfx.wrong()
+    },
+    [question, revealed, setPhase],
+  )
+
   const timer = useCountdown(question?.timeLimit ?? 0, reveal)
+
+  // Once the answer is showing, the countdown is over: no more ticks or time-up buzzer.
+  useEffect(() => {
+    if (revealed) timer.pause()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [revealed])
 
   // Reset timer whenever the question changes.
   useEffect(() => {
@@ -113,7 +138,7 @@ export function Stage({ preview }: StageProps) {
           break
         case 't':
         case 'T':
-          timer.toggle()
+          if (phase === 'question') timer.toggle()
           break
         case 's':
         case 'S':
@@ -217,8 +242,9 @@ export function Stage({ preview }: StageProps) {
               question={question}
               revealed={revealed}
               timer={{ total: question.timeLimit ?? 0, remaining: timer.remaining, running: timer.running }}
-              onToggleTimer={timer.toggle}
-              onOption={() => reveal()}
+              onToggleTimer={revealed ? undefined : timer.toggle}
+              picked={picked}
+              onOption={pick}
             />
           </motion.div>
         )}
