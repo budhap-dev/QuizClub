@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Gamepad2, MonitorPlay, PenLine, Play, Sparkles, type LucideIcon } from 'lucide-react'
+import { ArrowRight, BookOpen, Gamepad2, MonitorPlay, PenLine, Play, type LucideIcon } from 'lucide-react'
 import { Card } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 
 const tiles: { to: string; Icon: LucideIcon; title: string; text: string; color: string }[] = [
   { to: '/play', Icon: MonitorPlay, title: 'Present a quiz', text: 'Pick a quiz, add teams and go live on the big screen.', color: 'var(--color-pink)' },
-  { to: '/create/ai', Icon: Sparkles, title: 'AI quiz generator', text: 'Describe a topic and get a ready-to-play quiz in seconds.', color: 'var(--color-purple)' },
+  { to: '/quizzes/bank', Icon: BookOpen, title: 'Quiz bank', text: 'Ready-made quizzes across 18 areas, searchable by topic and level.', color: 'var(--color-purple)' },
   { to: '/create/manual', Icon: PenLine, title: 'Manual quiz maker', text: 'Slides, multiple choice, true/false and timed questions.', color: 'var(--color-cyan)' },
   { to: '/games', Icon: Gamepad2, title: 'Party games', text: 'Cows & Bulls, Hangman, Wordle and more for between rounds.', color: 'var(--color-lime)' },
 ]
@@ -24,7 +24,7 @@ export function Home() {
     <div className="py-8 md:py-14">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10 md:mb-12 max-w-2xl mx-auto">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-fg/12 bg-fg/6 px-3 py-1 text-xs font-medium text-fg/70 mb-5">
-          <Sparkles size={13} className="text-purple" />
+          <MonitorPlay size={13} className="text-purple" />
           Built for the big screen
         </span>
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.08]">

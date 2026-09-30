@@ -2,7 +2,7 @@
  * Deployment self-check: which optional services this deployment can see.
  * Reports presence and variable *names* only — never values — so it is safe to expose.
  *
- *   GET /api/health → { ok, env, commit, region, node, features: { ai, vault }, customEnv: string[] }
+ *   GET /api/health → { ok, env, commit, region, node, features: { vault }, customEnv: string[] }
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
@@ -19,7 +19,6 @@ export default function handler(_req: VercelRequest, res: VercelResponse) {
     region: process.env.VERCEL_REGION ?? null,
     node: process.version,
     features: {
-      ai: Boolean(process.env.ANTHROPIC_API_KEY),
       vault: Boolean((process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL) && (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN)),
     },
     // Value lengths only: enough to tell "set" from "present but empty" without exposing anything.

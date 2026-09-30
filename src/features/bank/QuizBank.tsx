@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { BookOpen, Check, ChevronDown, Copy, Eye, Loader2, Play, Search, Sparkles, X } from 'lucide-react'
+import { BookOpen, Check, ChevronDown, Copy, Eye, Loader2, PenLine, Play, Search, X } from 'lucide-react'
 import { Button, Card, LEVELS, LevelBadge, LevelSelect, Modal, PageHeader } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -175,8 +175,8 @@ export function QuizBank() {
             <Button variant="secondary" onClick={() => setParams({}, { replace: true })}>
               Clear filters
             </Button>
-            <Button onClick={() => navigate('/create/ai')}>
-              <Sparkles /> Generate one with AI
+            <Button onClick={() => navigate('/create/manual')}>
+              <PenLine /> Make your own
             </Button>
           </div>
         </Card>
@@ -227,8 +227,8 @@ export function QuizBank() {
       {quizzes && (
         <p className="text-center text-sm text-fg/45 mt-8">
           Can't find a topic?{' '}
-          <Link to="/create/ai" className="underline underline-offset-4 hover:text-fg">
-            Generate a quiz with AI
+          <Link to="/create/manual" className="underline underline-offset-4 hover:text-fg">
+            Make your own quiz
           </Link>
         </p>
       )}

@@ -11,7 +11,6 @@
     "check:bank": "node scripts/check-bank.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.128.0",
     "canvas-confetti": "^1.9.3",
     "framer-motion": "^11.11.0",
     "lucide-react": "^0.548.0",

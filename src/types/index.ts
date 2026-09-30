@@ -60,6 +60,7 @@ export interface TimedQuestion extends QuestionBase {
 
 export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQuestion
 
+/** 'ai' remains for quizzes saved while the AI generator existed. */
 export type QuizSource = 'manual' | 'ai' | 'library'
 
 export type Difficulty = 'easy' | 'medium' | 'hard'
@@ -105,19 +106,3 @@ export interface Session {
   startedAt: number
 }
 
-export interface AiQuizRequest {
-  topic: string
-  category: QuizCategory
-  difficulty: Difficulty | 'mixed'
-  count: number
-  types: QuestionType[]
-  audience: 'kids' | 'adults' | 'mixed'
-  language?: string
-}
-
-export interface AiQuizResponse {
-  title: string
-  description: string
-  emoji: string
-  questions: Question[]
-}
