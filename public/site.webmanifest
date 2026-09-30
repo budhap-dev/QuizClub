@@ -1,7 +1,7 @@
 {
   "name": "QuizClub",
   "short_name": "QuizClub",
-  "description": "Host quiz nights and party games on the big screen.",
+  "description": "Run quizzes and games on the big screen, in class, at work or with friends.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

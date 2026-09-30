@@ -1,6 +1,6 @@
 # 🎉 QuizClub
 
-A colourful quiz-night app with a clean, presentable look, built for the big screen. Present quizzes to a room, keep score for teams, and fill the gaps with party games.
+A colourful quiz app for classrooms, offices and parties, with a clean, presentable look, built for the big screen. Present quizzes to a room, keep score for teams, and fill the gaps with party games.
 
 ## Features
 
