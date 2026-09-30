@@ -1,0 +1,85 @@
+{
+  "area": "history",
+  "quizzes": [
+    {
+      "slug": "ancient-worlds",
+      "title": "Ancient Worlds",
+      "emoji": "🏛️",
+      "difficulty": "easy",
+      "tags": ["ancient", "egypt", "rome", "greece"],
+      "description": "Pharaohs, emperors and lost cities from the dawn of civilisation.",
+      "questions": [
+        { "type": "mcq", "q": "Which river was central to the civilisation of ancient Egypt?", "options": ["Nile", "Tigris", "Indus", "Yangtze"], "answer": 0, "note": "The Nile's yearly floods left fertile silt that made farming possible in the desert." },
+        { "type": "tf", "q": "Julius Caesar was the first Roman emperor.", "answer": false, "note": "Augustus (Octavian) was the first emperor, from 27 BC; Caesar was a dictator." },
+        { "type": "mcq", "q": "The Great Wall was built mainly to defend which country's northern frontiers?", "options": ["Japan", "China", "Mongolia", "Korea"], "answer": 1, "note": "Most of the wall standing today was built during the Ming dynasty." },
+        { "type": "timed", "q": "Which Macedonian king, once tutored by Aristotle, conquered the Persian Empire?", "answer": "Alexander", "note": "Accept Alexander the Great or Alexander III of Macedon." },
+        { "type": "mcq", "q": "Which civilisation built the mountain city of Machu Picchu?", "options": ["Aztec", "Maya", "Inca", "Olmec"], "answer": 2, "note": "It was built in the 15th century, probably for the Inca emperor Pachacuti." },
+        { "type": "mcq", "q": "Where were the ancient Olympic Games held?", "options": ["Athens", "Sparta", "Delphi", "Olympia"], "answer": 3, "note": "They were held in honour of Zeus, traditionally from 776 BC." },
+        { "type": "tf", "q": "The pyramids at Giza were built as tombs for Egyptian pharaohs.", "answer": true, "note": "The Great Pyramid was built for the pharaoh Khufu around 2560 BC." },
+        { "type": "mcq", "q": "In which city is the Colosseum located?", "options": ["Athens", "Rome", "Alexandria", "Carthage"], "answer": 1, "note": "It opened in AD 80 and could hold around 50,000 spectators." },
+        { "type": "timed", "q": "Which Egyptian boy king's nearly intact tomb was discovered by Howard Carter in 1922?", "answer": "Tutankhamun", "note": "Accept Tutankhamen or King Tut." },
+        { "type": "mcq", "q": "Cuneiform writing was developed by which ancient people of Mesopotamia?", "options": ["Sumerians", "Persians", "Hittites", "Phoenicians"], "answer": 0, "note": "Cuneiform means wedge-shaped, from the marks pressed into wet clay tablets." }
+      ]
+    },
+    {
+      "slug": "knights-kings-castles",
+      "title": "Knights, Kings & Castles",
+      "emoji": "🏰",
+      "difficulty": "medium",
+      "tags": ["medieval", "europe", "empires"],
+      "description": "Battles, plagues and empires from the Middle Ages.",
+      "questions": [
+        { "type": "mcq", "q": "In which year did the Battle of Hastings take place?", "options": ["1066", "1215", "1087", "1415"], "answer": 0, "note": "William of Normandy defeated King Harold II and became King of England." },
+        { "type": "mcq", "q": "Which famous charter did King John of England seal in 1215?", "options": ["Domesday Book", "Magna Carta", "Bill of Rights", "Act of Union"], "answer": 1, "note": "It was sealed at Runnymede, beside the River Thames near Windsor." },
+        { "type": "tf", "q": "The Black Death swept through Europe in the 14th century.", "answer": true, "note": "It peaked between 1347 and 1351 and killed perhaps a third of Europe's people." },
+        { "type": "timed", "q": "Which leader founded the Mongol Empire in 1206?", "answer": "Genghis Khan", "note": "Also spelled Chinggis Khan; his birth name was Temüjin." },
+        { "type": "mcq", "q": "Which city was the capital of the Byzantine Empire?", "options": ["Rome", "Athens", "Constantinople", "Antioch"], "answer": 2, "note": "Today it is Istanbul; it fell to the Ottoman Turks in 1453." },
+        { "type": "mcq", "q": "In which year was Charlemagne crowned Emperor by the Pope?", "options": ["732", "800", "843", "962"], "answer": 1, "note": "Pope Leo III crowned him in Rome on Christmas Day." },
+        { "type": "tf", "q": "Joan of Arc fought on the English side in the Hundred Years' War.", "answer": false, "note": "She fought for France and was burned at the stake in Rouen in 1431." },
+        { "type": "mcq", "q": "Which traveller described his journey to the court of Kublai Khan in China?", "options": ["Ibn Battuta", "Vasco da Gama", "Zheng He", "Marco Polo"], "answer": 3, "note": "The Venetian merchant dictated his story while held prisoner in Genoa." },
+        { "type": "timed", "q": "Which Norse explorer reached North America around the year 1000?", "answer": "Leif Erikson", "note": "Accept Leif Ericson or Leif Eriksson; he was the son of Erik the Red." },
+        { "type": "mcq", "q": "Which royal house came to power in England after the Wars of the Roses?", "options": ["Stuart", "Plantagenet", "Windsor", "Tudor"], "answer": 3, "note": "Henry VII founded it after winning the Battle of Bosworth in 1485." }
+      ]
+    },
+    {
+      "slug": "world-wars",
+      "title": "The World at War",
+      "emoji": "🪖",
+      "difficulty": "medium",
+      "tags": ["world war i", "world war ii", "20th century"],
+      "description": "Key moments from the two world wars of the 20th century.",
+      "questions": [
+        { "type": "mcq", "q": "Which archduke's assassination in Sarajevo in 1914 triggered World War I?", "options": ["Maximilian", "Franz Ferdinand", "Rudolf", "Leopold"], "answer": 1, "note": "He was shot by Gavrilo Princip on 28 June 1914." },
+        { "type": "tf", "q": "The Treaty of Versailles was signed in 1919.", "answer": true, "note": "It was signed on 28 June 1919, five years to the day after the Sarajevo killing." },
+        { "type": "mcq", "q": "In which year did World War II begin in Europe?", "options": ["1936", "1938", "1939", "1941"], "answer": 2, "note": "Germany invaded Poland on 1 September 1939." },
+        { "type": "mcq", "q": "Which US naval base in Hawaii was attacked by Japan on 7 December 1941?", "options": ["San Diego", "Norfolk", "Guantanamo Bay", "Pearl Harbor"], "answer": 3, "note": "The attack brought the United States into the war." },
+        { "type": "timed", "q": "What was the code name for the Allied invasion of Normandy in 1944?", "answer": "Overlord", "note": "Accept Operation Overlord; the D-Day landings began on 6 June 1944." },
+        { "type": "mcq", "q": "Which British prime minister led the country through most of World War II?", "options": ["Neville Chamberlain", "Clement Attlee", "Winston Churchill", "Anthony Eden"], "answer": 2, "note": "He took over from Chamberlain in May 1940." },
+        { "type": "tf", "q": "The Battle of Stalingrad ended in a German victory.", "answer": false, "note": "The Soviets won in February 1943, a turning point on the Eastern Front." },
+        { "type": "mcq", "q": "On which city was the first atomic bomb used in war dropped?", "options": ["Hiroshima", "Nagasaki", "Tokyo", "Osaka"], "answer": 0, "note": "It was dropped on 6 August 1945; Nagasaki followed on 9 August." },
+        { "type": "timed", "q": "What was the name of the German cipher machine whose codes were broken at Bletchley Park?", "answer": "Enigma", "note": "Alan Turing played a key role in breaking its codes." },
+        { "type": "mcq", "q": "Which 1916 battle saw nearly 60,000 British casualties on its first day?", "options": ["Verdun", "Ypres", "Passchendaele", "Somme"], "answer": 3, "note": "1 July 1916 remains the bloodiest day in British Army history." }
+      ]
+    },
+    {
+      "slug": "revolutions-and-leaders",
+      "title": "Revolutions & Leaders",
+      "emoji": "👑",
+      "difficulty": "hard",
+      "tags": ["modern history", "revolutions", "leaders"],
+      "description": "Kings, liberators and statesmen who reshaped the modern world.",
+      "questions": [
+        { "type": "mcq", "q": "Which French king was executed by guillotine in 1793?", "options": ["Louis XIV", "Louis XV", "Louis XVI", "Louis XVIII"], "answer": 2, "note": "His queen, Marie Antoinette, was executed nine months later." },
+        { "type": "tf", "q": "Mao Zedong proclaimed the People's Republic of China in 1949.", "answer": true, "note": "He made the proclamation in Beijing's Tiananmen Square on 1 October 1949." },
+        { "type": "mcq", "q": "Who became the world's first female prime minister, in 1960?", "options": ["Sirimavo Bandaranaike", "Indira Gandhi", "Golda Meir", "Margaret Thatcher"], "answer": 0, "note": "She led Ceylon, now Sri Lanka." },
+        { "type": "mcq", "q": "The Battle of Waterloo, Napoleon's final defeat, was fought in which present-day country?", "options": ["France", "Belgium", "Netherlands", "Germany"], "answer": 1, "note": "Wellington and Blücher defeated Napoleon there on 18 June 1815." },
+        { "type": "timed", "q": "Which Egyptian president nationalised the Suez Canal in 1956?", "answer": "Nasser", "note": "Accept Gamal Abdel Nasser; the move sparked the Suez Crisis." },
+        { "type": "mcq", "q": "The Meiji Restoration of 1868 took place in which country?", "options": ["China", "Korea", "Thailand", "Japan"], "answer": 3, "note": "It restored imperial rule and launched rapid modernisation." },
+        { "type": "tf", "q": "Mahatma Gandhi became independent India's first prime minister.", "answer": false, "note": "Gandhi never held office; Jawaharlal Nehru was India's first prime minister." },
+        { "type": "mcq", "q": "Who led Cuba after its 1959 revolution?", "options": ["Che Guevara", "Fulgencio Batista", "Fidel Castro", "Raúl Castro"], "answer": 2, "note": "Fidel Castro led Cuba for nearly fifty years before handing power to his brother Raúl." },
+        { "type": "timed", "q": "Which South American liberator is the country of Bolivia named after?", "answer": "Simón Bolívar", "note": "Accept Bolívar or Bolivar; he was born in Caracas, Venezuela, in 1783." },
+        { "type": "mcq", "q": "Who led the first Soviet government after the October Revolution of 1917?", "options": ["Vladimir Lenin", "Joseph Stalin", "Leon Trotsky", "Alexander Kerensky"], "answer": 0, "note": "Kerensky led the Provisional Government that the Bolsheviks overthrew." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "area": "general",
+  "quizzes": [
+    {
+      "slug": "science-and-nature",
+      "title": "Nature's Basics",
+      "emoji": "🔬",
+      "difficulty": "easy",
+      "tags": ["science", "nature", "space", "body"],
+      "description": "Warm-up questions on plants, planets, animals and the human body.",
+      "questions": [
+        { "type": "mcq", "q": "What is H₂O more commonly known as?", "options": ["Water", "Salt", "Hydrogen peroxide", "Oxygen"], "answer": 0, "note": "Each water molecule has two hydrogen atoms and one oxygen atom." },
+        { "type": "tf", "q": "A spider has eight legs.", "answer": true, "note": "Spiders are arachnids, not insects, which have six legs." },
+        { "type": "mcq", "q": "Which planet is known as the Red Planet?", "options": ["Venus", "Mars", "Jupiter", "Mercury"], "answer": 1, "note": "Iron oxide, basically rust, in its dust gives Mars its colour." },
+        { "type": "timed", "q": "What is the largest planet in our Solar System?", "answer": "Jupiter", "note": "More than 1,300 Earths could fit inside Jupiter." },
+        { "type": "mcq", "q": "How many bones are there in the adult human body?", "options": ["186", "196", "206", "216"], "answer": 2, "note": "Babies are born with around 300 bones, many of which fuse as they grow." },
+        { "type": "mcq", "q": "What is the chemical symbol for gold?", "options": ["Ag", "Gd", "Go", "Au"], "answer": 3, "note": "Au comes from aurum, the Latin word for gold." },
+        { "type": "tf", "q": "Sound travels faster than light.", "answer": false, "note": "Light is far faster, which is why you see lightning before you hear thunder." },
+        { "type": "mcq", "q": "Which of these is the hardest natural material?", "options": ["Diamond", "Quartz", "Topaz", "Iron"], "answer": 0, "note": "Diamond tops the Mohs hardness scale at 10." },
+        { "type": "timed", "q": "At sea level, water boils at how many degrees Celsius?", "answer": "100", "note": "That is 212 degrees Fahrenheit." },
+        { "type": "mcq", "q": "Which vitamin does your skin make when it is in sunlight?", "options": ["Vitamin A", "Vitamin D", "Vitamin C", "Vitamin K"], "answer": 1, "note": "Vitamin D helps the body absorb calcium for strong bones." }
+      ]
+    },
+    {
+      "slug": "art-and-literature",
+      "title": "Pages & Paintings",
+      "emoji": "🎨",
+      "difficulty": "medium",
+      "tags": ["art", "books", "authors", "painting"],
+      "description": "Famous novels, playwrights and masterpieces from the world of art and books.",
+      "questions": [
+        { "type": "mcq", "q": "Who wrote the novel 'Don Quixote'?", "options": ["Lope de Vega", "Federico García Lorca", "Miguel de Cervantes", "Gabriel García Márquez"], "answer": 2, "note": "Published in two parts, in 1605 and 1615; it is often called the first modern novel." },
+        { "type": "mcq", "q": "Who wrote the novel Pride and Prejudice?", "options": ["Charlotte Brontë", "George Eliot", "Emily Brontë", "Jane Austen"], "answer": 3, "note": "It was first published in 1813." },
+        { "type": "tf", "q": "The Odyssey is an ancient Greek epic poem attributed to Homer.", "answer": true, "note": "It follows Odysseus on his long journey home after the Trojan War." },
+        { "type": "mcq", "q": "Which museum is home to the Mona Lisa?", "options": ["The Louvre", "The Prado", "The Uffizi", "The Hermitage"], "answer": 0, "note": "The Louvre in Paris is the world's most visited art museum." },
+        { "type": "timed", "q": "Which author created the Belgian detective Hercule Poirot?", "answer": "Agatha Christie", "note": "Accept Christie; Poirot debuted in The Mysterious Affair at Styles." },
+        { "type": "mcq", "q": "Who wrote the novel Nineteen Eighty-Four?", "options": ["Aldous Huxley", "George Orwell", "Ray Bradbury", "H. G. Wells"], "answer": 1, "note": "It gave us the phrase Big Brother is watching you." },
+        { "type": "tf", "q": "The ceiling of the Sistine Chapel was painted by Raphael.", "answer": false, "note": "It was Michelangelo, who painted it between 1508 and 1512." },
+        { "type": "mcq", "q": "Which Shakespeare play contains the line \"To be, or not to be\"?", "options": ["Macbeth", "Othello", "Hamlet", "King Lear"], "answer": 2, "note": "Prince Hamlet speaks it in Act 3." },
+        { "type": "timed", "q": "Which Spanish artist co-founded Cubism and painted Guernica?", "answer": "Pablo Picasso", "note": "Accept Picasso; he developed Cubism with Georges Braque." },
+        { "type": "mcq", "q": "Who wrote The Old Man and the Sea?", "options": ["John Steinbeck", "F. Scott Fitzgerald", "Mark Twain", "Ernest Hemingway"], "answer": 3, "note": "It won the Pulitzer Prize for Fiction in 1953." }
+      ]
+    },
+    {
+      "slug": "inventions-and-discoveries",
+      "title": "Eureka Moments",
+      "emoji": "💡",
+      "difficulty": "medium",
+      "tags": ["inventions", "science", "scientists"],
+      "description": "The minds and breakthroughs behind the inventions that changed the world.",
+      "questions": [
+        { "type": "mcq", "q": "Who discovered penicillin in 1928?", "options": ["Louis Pasteur", "Alexander Fleming", "Joseph Lister", "Edward Jenner"], "answer": 1, "note": "He noticed mould killing bacteria on a dish left out in his lab." },
+        { "type": "mcq", "q": "Which scientist is famous for the equation E = mc²?", "options": ["Albert Einstein", "Isaac Newton", "Niels Bohr", "Max Planck"], "answer": 0, "note": "It appeared in 1905, the year Einstein published four landmark papers." },
+        { "type": "tf", "q": "The Wright brothers made their first powered aeroplane flight in 1903.", "answer": true, "note": "The first flight, near Kitty Hawk, lasted just 12 seconds." },
+        { "type": "timed", "q": "Which English scientist set out the three laws of motion?", "answer": "Isaac Newton", "note": "Accept Newton; the laws appeared in his Principia in 1687." },
+        { "type": "mcq", "q": "Which scientist discovered the elements radium and polonium?", "options": ["Rosalind Franklin", "Lise Meitner", "Dorothy Hodgkin", "Marie Curie"], "answer": 3, "note": "She was the first person to win Nobel Prizes in two different sciences." },
+        { "type": "mcq", "q": "Johannes Gutenberg is famous for developing which invention?", "options": ["Telescope", "Steam engine", "Printing press", "Compass"], "answer": 2, "note": "His movable-type press in Mainz dates from around 1440." },
+        { "type": "tf", "q": "Alexander Graham Bell invented the radio.", "answer": false, "note": "Bell is known for the telephone; Guglielmo Marconi pioneered radio." },
+        { "type": "mcq", "q": "Who wrote On the Origin of Species, setting out evolution by natural selection?", "options": ["Gregor Mendel", "Charles Darwin", "Louis Pasteur", "Carl Linnaeus"], "answer": 1, "note": "It was published in 1859." },
+        { "type": "timed", "q": "Which system of raised dots lets blind people read by touch?", "answer": "Braille", "note": "Louis Braille developed it in the 1820s, while he was still a teenager." },
+        { "type": "mcq", "q": "Which instrument did Galileo turn to the night sky in 1609?", "options": ["Telescope", "Microscope", "Barometer", "Pendulum clock"], "answer": 0, "note": "With it he discovered four moons of Jupiter in 1610." }
+      ]
+    },
+    {
+      "slug": "world-history",
+      "title": "Turning Points",
+      "emoji": "🏛️",
+      "difficulty": "hard",
+      "tags": ["history", "empires", "wars"],
+      "description": "Empires, treaties and pioneers that shaped world history.",
+      "questions": [
+        { "type": "mcq", "q": "In which year did the Berlin Wall fall?", "options": ["1986", "1988", "1991", "1989"], "answer": 3, "note": "It fell on 9 November 1989." },
+        { "type": "tf", "q": "The Hundred Years' War lasted exactly 100 years.", "answer": false, "note": "It ran from 1337 to 1453, which is 116 years." },
+        { "type": "mcq", "q": "Which Wonder of the Ancient World stood in the city of Alexandria?", "options": ["Hanging Gardens", "Colossus", "Pharos lighthouse", "Temple of Artemis"], "answer": 2, "note": "The lighthouse stood on the island of Pharos, giving the word for lighthouse in several languages." },
+        { "type": "timed", "q": "Who was the first Roman emperor?", "answer": "Augustus", "note": "Accept Octavian, his name before he became emperor in 27 BC." },
+        { "type": "mcq", "q": "Which empire was ruled from Constantinople until the city fell in 1453?", "options": ["Ottoman Empire", "Byzantine Empire", "Holy Roman Empire", "Persian Empire"], "answer": 1, "note": "The Ottomans captured the city and later made it their capital." },
+        { "type": "mcq", "q": "Which treaty, signed in 1919, formally ended the First World War with Germany?", "options": ["Treaty of Versailles", "Treaty of Paris", "Treaty of Utrecht", "Treaty of Ghent"], "answer": 0, "note": "It was signed in the Hall of Mirrors at the Palace of Versailles." },
+        { "type": "tf", "q": "Magellan's expedition made the first voyage around the globe, but Magellan himself died on the way.", "answer": true, "note": "He was killed in the Philippines in 1521; Elcano completed the voyage in 1522." },
+        { "type": "mcq", "q": "Who was the first woman to fly solo across the Atlantic Ocean?", "options": ["Bessie Coleman", "Amy Johnson", "Harriet Quimby", "Amelia Earhart"], "answer": 3, "note": "She made the flight in 1932, landing in Northern Ireland." },
+        { "type": "timed", "q": "Which queen ruled England from 1558 to 1603?", "answer": "Elizabeth I", "note": "Accept Elizabeth; her reign is known as the Elizabethan era." },
+        { "type": "mcq", "q": "In which year was the Magna Carta sealed by King John?", "options": ["1066", "1415", "1215", "1314"], "answer": 2, "note": "It was sealed at Runnymede, beside the River Thames." }
+      ]
+    }
+  ]
+}

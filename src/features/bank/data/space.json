@@ -1,0 +1,85 @@
+{
+  "area": "space",
+  "quizzes": [
+    {
+      "slug": "our-solar-system",
+      "title": "Planet Parade",
+      "emoji": "🪐",
+      "difficulty": "easy",
+      "tags": ["planets", "solar system"],
+      "description": "A quick lap around the Sun and the eight planets that orbit it.",
+      "questions": [
+        { "type": "mcq", "q": "Which planet is closest to the Sun?", "options": ["Mercury", "Venus", "Mars", "Earth"], "answer": 0, "note": "Mercury zips around the Sun once every 88 Earth days." },
+        { "type": "tf", "q": "Jupiter is the largest planet in our solar system.", "answer": true, "note": "More than 1,000 Earths could fit inside Jupiter." },
+        { "type": "mcq", "q": "What do we call a rock from space that lands on Earth?", "options": ["Comet", "Asteroid", "Meteorite", "Nebula"], "answer": 2, "note": "While it is still burning up in the sky, it is called a meteor." },
+        { "type": "timed", "q": "Which planet is best known for its bright, wide rings?", "answer": "Saturn", "note": "All four giant planets have rings, but Saturn's are by far the easiest to see." },
+        { "type": "mcq", "q": "Which is the hottest planet in our solar system?", "options": ["Mercury", "Venus", "Mars", "Jupiter"], "answer": 1, "note": "Venus's thick carbon dioxide atmosphere traps heat, making it hotter than Mercury." },
+        { "type": "mcq", "q": "How many planets are there in our solar system?", "options": ["7", "9", "10", "8"], "answer": 3, "note": "Pluto was reclassified as a dwarf planet in 2006, leaving eight." },
+        { "type": "tf", "q": "Pluto is officially classified as a planet.", "answer": false, "note": "Since 2006 Pluto has been classed as a dwarf planet." },
+        { "type": "mcq", "q": "Which planet spins on its side, tilted by almost 98 degrees?", "options": ["Neptune", "Saturn", "Uranus", "Mercury"], "answer": 2, "note": "Scientists think a huge collision long ago knocked Uranus over." },
+        { "type": "timed", "q": "Which planet has a giant storm called the Great Red Spot?", "answer": "Jupiter", "note": "Astronomers have been watching this enormous storm since at least the 1800s." },
+        { "type": "mcq", "q": "Which planet is farthest from the Sun?", "options": ["Neptune", "Uranus", "Saturn", "Jupiter"], "answer": 0, "note": "Neptune takes about 165 Earth years to orbit the Sun once." }
+      ]
+    },
+    {
+      "slug": "missions-and-astronauts",
+      "title": "One Small Step",
+      "emoji": "🚀",
+      "difficulty": "medium",
+      "tags": ["missions", "astronauts", "space race"],
+      "description": "The launches, landings and pioneers of human spaceflight.",
+      "questions": [
+        { "type": "mcq", "q": "Who became the first human in space in 1961?", "options": ["Neil Armstrong", "Yuri Gagarin", "Alan Shepard", "John Glenn"], "answer": 1, "note": "Gagarin orbited Earth once aboard Vostok 1 on 12 April 1961." },
+        { "type": "tf", "q": "Neil Armstrong and Buzz Aldrin walked on the Moon during Apollo 11.", "answer": true, "note": "Armstrong stepped out first, followed by Aldrin about 20 minutes later." },
+        { "type": "mcq", "q": "In which year did Apollo 11 land on the Moon?", "options": ["1965", "1967", "1972", "1969"], "answer": 3, "note": "The landing took place on 20 July 1969." },
+        { "type": "timed", "q": "Who became the first woman in space, in 1963?", "answer": "Valentina Tereshkova", "note": "Accept \"Tereshkova\"; she flew solo aboard Vostok 6." },
+        { "type": "mcq", "q": "What was the first artificial satellite, launched in 1957?", "options": ["Sputnik 1", "Explorer 1", "Vostok 1", "Luna 1"], "answer": 0, "note": "Sputnik 1 was about the size of a beach ball and beeped radio signals back to Earth." },
+        { "type": "tf", "q": "The Hubble Space Telescope was launched in the 1970s.", "answer": false, "note": "Hubble was launched by the Space Shuttle in 1990." },
+        { "type": "mcq", "q": "Which Apollo mission aborted its Moon landing after an oxygen tank exploded?", "options": ["Apollo 8", "Apollo 11", "Apollo 13", "Apollo 15"], "answer": 2, "note": "The crew looped around the Moon and returned safely to Earth." },
+        { "type": "mcq", "q": "Which dog became the first animal to orbit Earth, in 1957?", "options": ["Belka", "Strelka", "Zvezdochka", "Laika"], "answer": 3, "note": "Laika flew aboard Sputnik 2, just a month after Sputnik 1." },
+        { "type": "timed", "q": "Which Apollo 11 astronaut stayed in lunar orbit while the others walked on the Moon?", "answer": "Michael Collins", "note": "Accept \"Collins\"; he piloted the command module Columbia." },
+        { "type": "mcq", "q": "Which reusable NASA spacecraft carried crews into orbit from 1981 to 2011?", "options": ["Soyuz", "Space Shuttle", "Gemini", "Skylab"], "answer": 1, "note": "The Shuttle fleet flew 135 missions in total." }
+      ]
+    },
+    {
+      "slug": "stars-and-galaxies",
+      "title": "Starry, Starry Night",
+      "emoji": "🌌",
+      "difficulty": "medium",
+      "tags": ["stars", "galaxies", "constellations"],
+      "description": "From our own Sun to distant galaxies across the night sky.",
+      "questions": [
+        { "type": "mcq", "q": "What type of star is our Sun?", "options": ["Red giant", "White dwarf", "Yellow dwarf", "Neutron star"], "answer": 2, "note": "In about 5 billion years the Sun is expected to swell into a red giant." },
+        { "type": "timed", "q": "What is the name of the galaxy that contains our solar system?", "answer": "Milky Way", "note": "It is a spiral galaxy with hundreds of billions of stars." },
+        { "type": "mcq", "q": "What is the nearest star to the Sun?", "options": ["Sirius", "Proxima Centauri", "Betelgeuse", "Polaris"], "answer": 1, "note": "Its light takes a little over four years to reach us." },
+        { "type": "tf", "q": "Light from the Sun takes about 8 minutes to reach Earth.", "answer": true, "note": "So when you look at the Sun, you see it as it was about 8 minutes ago." },
+        { "type": "mcq", "q": "Apart from the Sun, which is the brightest star in the night sky?", "options": ["Sirius", "Vega", "Arcturus", "Rigel"], "answer": 0, "note": "Sirius is nicknamed the Dog Star and sits in the constellation Canis Major." },
+        { "type": "mcq", "q": "Which spiral galaxy, about 2.5 million light-years away, can be seen with the naked eye?", "options": ["Whirlpool", "Sombrero", "Pinwheel", "Andromeda"], "answer": 3, "note": "It is one of the most distant things you can see without a telescope." },
+        { "type": "tf", "q": "The Sun is made mostly of iron.", "answer": false, "note": "The Sun is almost entirely hydrogen and helium." },
+        { "type": "mcq", "q": "What is the huge explosion of a star at the end of its life called?", "options": ["Nebula", "Quasar", "Pulsar", "Supernova"], "answer": 3, "note": "A supernova can briefly outshine an entire galaxy." },
+        { "type": "timed", "q": "Polaris is better known by what two-word name?", "answer": "North Star", "note": "Accept \"Pole Star\"; it sits almost directly above Earth's North Pole." },
+        { "type": "mcq", "q": "Which constellation contains the stars Betelgeuse and Rigel?", "options": ["Orion", "Ursa Major", "Cassiopeia", "Scorpius"], "answer": 0, "note": "Orion is named after a hunter from Greek mythology." }
+      ]
+    },
+    {
+      "slug": "astronomy-deep-dive",
+      "title": "Deep Space Challenge",
+      "emoji": "🔭",
+      "difficulty": "hard",
+      "tags": ["astronomy", "moons", "history"],
+      "description": "Moons, black holes and the astronomers who mapped the heavens.",
+      "questions": [
+        { "type": "mcq", "q": "Which astronomer published a Sun-centred model of the solar system in 1543?", "options": ["Claudius Ptolemy", "Nicolaus Copernicus", "Tycho Brahe", "Johannes Kepler"], "answer": 1, "note": "His book was published in the year he died." },
+        { "type": "tf", "q": "A light-year is a unit of time.", "answer": false, "note": "It is a distance: how far light travels in a year, about 9.5 trillion km." },
+        { "type": "mcq", "q": "What is the giant Martian volcano, about 2.5 times the height of Everest?", "options": ["Olympus Mons", "Valles Marineris", "Hellas Planitia", "Gale Crater"], "answer": 0, "note": "Its base is roughly 600 km across." },
+        { "type": "timed", "q": "Which astronomer, born in 1564, discovered Jupiter's four largest moons?", "answer": "Galileo", "note": "Accept \"Galileo Galilei\"; he spotted the moons in 1610." },
+        { "type": "mcq", "q": "What is the boundary around a black hole beyond which nothing can escape?", "options": ["Accretion disc", "Singularity", "Event horizon", "Photon sphere"], "answer": 2, "note": "Not even light can escape once it crosses the event horizon." },
+        { "type": "mcq", "q": "What is the largest moon in our solar system?", "options": ["Titan", "Europa", "Callisto", "Ganymede"], "answer": 3, "note": "Jupiter's moon Ganymede is even bigger than the planet Mercury." },
+        { "type": "tf", "q": "Venus spins in the opposite direction to most of the planets.", "answer": true, "note": "On Venus the Sun rises in the west and sets in the east." },
+        { "type": "mcq", "q": "Which moon of Saturn has a thick atmosphere and lakes of liquid methane?", "options": ["Enceladus", "Titan", "Mimas", "Rhea"], "answer": 1, "note": "The Huygens probe landed on Titan in 2005." },
+        { "type": "timed", "q": "Which spacecraft, launched in 1977, was the first to reach interstellar space?", "answer": "Voyager 1", "note": "It crossed into interstellar space in 2012; its twin Voyager 2 followed in 2018." },
+        { "type": "mcq", "q": "In which region beyond Neptune does the dwarf planet Pluto orbit?", "options": ["Asteroid belt", "Oort Cloud", "Kuiper Belt", "Van Allen belts"], "answer": 2, "note": "The Kuiper Belt is home to countless icy bodies left over from the solar system's birth." }
+      ]
+    }
+  ]
+}

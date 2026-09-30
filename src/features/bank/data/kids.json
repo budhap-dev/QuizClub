@@ -1,0 +1,85 @@
+{
+  "area": "kids",
+  "quizzes": [
+    {
+      "slug": "animal-friends",
+      "title": "Animal Friends",
+      "emoji": "🐾",
+      "difficulty": "easy",
+      "tags": ["animals", "nature"],
+      "description": "Fun questions about creatures big and small.",
+      "questions": [
+        { "type": "mcq", "q": "What is the biggest animal on Earth?", "options": ["Blue whale", "Elephant", "Giraffe", "Great white shark"], "answer": 0, "note": "A blue whale can be longer than two school buses." },
+        { "type": "tf", "q": "A baby cat is called a kitten.", "answer": true, "note": "Kittens open their eyes when they are about a week old." },
+        { "type": "mcq", "q": "A caterpillar grows up to become which of these?", "options": ["Beetle", "Butterfly", "Bee", "Ladybird"], "answer": 1, "note": "Some caterpillars become moths instead of butterflies." },
+        { "type": "mcq", "q": "Which animal is called the \"King of the Jungle\"?", "options": ["Tiger", "Elephant", "Lion", "Gorilla"], "answer": 2, "note": "Lions actually live on grasslands called savannahs, not in jungles." },
+        { "type": "timed", "q": "What is a baby frog called?", "answer": "Tadpole", "note": "Tadpoles live in water and breathe through gills at first." },
+        { "type": "mcq", "q": "How many legs does an insect have?", "options": ["4", "8", "10", "6"], "answer": 3, "note": "Ants, bees and ladybirds all have six legs." },
+        { "type": "tf", "q": "Penguins can fly.", "answer": false, "note": "Penguins can't fly, but they are brilliant swimmers." },
+        { "type": "mcq", "q": "Which animal carries its baby in a pouch?", "options": ["Kangaroo", "Zebra", "Panda", "Camel"], "answer": 0, "note": "A baby kangaroo is called a joey." },
+        { "type": "mcq", "q": "What do giant pandas mostly eat?", "options": ["Fish", "Bamboo", "Grass", "Honey"], "answer": 1, "note": "A panda can spend around half the day eating bamboo." },
+        { "type": "timed", "q": "What is the fastest land animal?", "answer": "Cheetah", "note": "A cheetah can sprint about as fast as a car on a motorway." }
+      ]
+    },
+    {
+      "slug": "colours-and-shapes",
+      "title": "Colours & Shapes",
+      "emoji": "🎨",
+      "difficulty": "easy",
+      "tags": ["colours", "shapes", "maths"],
+      "description": "Mix colours and count sides in this bright and simple round.",
+      "questions": [
+        { "type": "mcq", "q": "How many sides does a triangle have?", "options": ["2", "4", "3", "5"], "answer": 2, "note": "\"Tri\" means three, like in tricycle." },
+        { "type": "timed", "q": "What shape is round like a coin and has no corners?", "answer": "Circle", "note": "Wheels, plates and pizzas are circles too." },
+        { "type": "mcq", "q": "What colour do you get when you mix blue and yellow?", "options": ["Purple", "Orange", "Brown", "Green"], "answer": 3, "note": "Red, yellow and blue are called the primary colours in painting." },
+        { "type": "tf", "q": "A square has four equal sides.", "answer": true, "note": "A square also has four corners that are all the same." },
+        { "type": "mcq", "q": "What colour do you get when you mix red and white?", "options": ["Pink", "Grey", "Orange", "Purple"], "answer": 0, "note": "Adding more white makes the pink lighter." },
+        { "type": "mcq", "q": "How many sides does a hexagon have?", "options": ["5", "6", "7", "8"], "answer": 1, "note": "Bees build their honeycombs out of hexagons." },
+        { "type": "tf", "q": "A rainbow has ten colours.", "answer": false, "note": "A rainbow has seven: red, orange, yellow, green, blue, indigo and violet." },
+        { "type": "mcq", "q": "In many countries, what shape is a stop sign?", "options": ["Circle", "Triangle", "Octagon", "Square"], "answer": 2, "note": "An octagon has eight sides, like an octopus has eight arms." },
+        { "type": "timed", "q": "What colour do you get when you mix red and blue?", "answer": "Purple", "note": "Also accept \"violet\"." },
+        { "type": "mcq", "q": "Which shape has five sides?", "options": ["Hexagon", "Octagon", "Rectangle", "Pentagon"], "answer": 3, "note": "A famous building in the USA called the Pentagon is shaped like one." }
+      ]
+    },
+    {
+      "slug": "science-sparks",
+      "title": "Science Sparks",
+      "emoji": "🔬",
+      "difficulty": "easy",
+      "tags": ["science", "space", "body"],
+      "description": "Easy questions about space, nature and how things work.",
+      "questions": [
+        { "type": "tf", "q": "Water turns into ice at 0 degrees Celsius.", "answer": true, "note": "That's the same as 32 degrees Fahrenheit." },
+        { "type": "mcq", "q": "What is the closest star to Earth?", "options": ["The Sun", "The North Star", "Sirius", "Alpha Centauri"], "answer": 0, "note": "The Sun is a star, just much closer to us than the others." },
+        { "type": "mcq", "q": "What do plants use to make their own food?", "options": ["Moonlight", "Sunlight", "Sand", "Wind"], "answer": 1, "note": "Plants also need water and air to make food from sunlight." },
+        { "type": "timed", "q": "Which planet do we live on?", "answer": "Earth", "note": "Earth is the only planet we know of that has living things." },
+        { "type": "mcq", "q": "What do we call a scientist who studies stars and planets?", "options": ["Chemist", "Doctor", "Astronomer", "Builder"], "answer": 2, "note": "Astronomers use telescopes to look far out into space." },
+        { "type": "mcq", "q": "Which gas do we need to breathe in to stay alive?", "options": ["Helium", "Carbon dioxide", "Hydrogen", "Oxygen"], "answer": 3, "note": "Plants give off oxygen, which is one reason they are so important." },
+        { "type": "mcq", "q": "What pulls things down to the ground when you drop them?", "options": ["Gravity", "Magnetism", "Wind", "Electricity"], "answer": 0, "note": "Gravity also keeps the Moon going around the Earth." },
+        { "type": "tf", "q": "The Moon makes its own light.", "answer": false, "note": "Moonlight is really sunlight bouncing off the Moon." },
+        { "type": "timed", "q": "Which of your five senses do you use your nose for?", "answer": "Smell", "note": "The five senses are sight, hearing, smell, taste and touch." },
+        { "type": "mcq", "q": "Which tool helps you see tiny things up close?", "options": ["Telescope", "Magnifying glass", "Periscope", "Compass"], "answer": 1, "note": "A magnifying glass is a curved lens that makes things look bigger." }
+      ]
+    },
+    {
+      "slug": "once-upon-a-time",
+      "title": "Once Upon a Time",
+      "emoji": "🏰",
+      "difficulty": "easy",
+      "tags": ["fairy tales", "cartoons", "stories"],
+      "description": "Famous fairy tales and much-loved cartoon characters.",
+      "questions": [
+        { "type": "mcq", "q": "What did Cinderella leave behind at the ball?", "options": ["A red cape", "A gold crown", "A glass slipper", "A pearl necklace"], "answer": 2, "note": "The prince used the slipper to find her again." },
+        { "type": "tf", "q": "In \"Goldilocks and the Three Bears\", Goldilocks eats the bears' porridge.", "answer": true, "note": "She likes Baby Bear's porridge best because it's just right." },
+        { "type": "mcq", "q": "What is the name of Mickey Mouse's girlfriend?", "options": ["Daisy", "Clarabelle", "Wendy", "Minnie"], "answer": 3, "note": "Minnie first appeared alongside Mickey in 1928." },
+        { "type": "timed", "q": "Which fairy tale girl let down her long hair from a tall tower?", "answer": "Rapunzel", "note": "The prince climbed up her hair to reach her." },
+        { "type": "mcq", "q": "Who was Little Red Riding Hood going to visit?", "options": ["Her grandmother", "Her aunt", "Her teacher", "The king"], "answer": 0, "note": "The big bad wolf got to Grandma's house first." },
+        { "type": "mcq", "q": "How many dwarfs lived with Snow White?", "options": ["Five", "Seven", "Six", "Eight"], "answer": 1, "note": "In the Disney film, the dwarfs include Happy, Sleepy and Grumpy." },
+        { "type": "tf", "q": "In \"Jack and the Beanstalk\", Jack swaps his cow for a bag of gold.", "answer": false, "note": "Jack swaps the cow for some magic beans." },
+        { "type": "mcq", "q": "In \"The Three Little Pigs\", which house could the wolf not blow down?", "options": ["The straw house", "The stick house", "The brick house", "The tree house"], "answer": 2, "note": "The third little pig worked hardest and built the strongest house." },
+        { "type": "timed", "q": "What is the name of Peter Pan's fairy friend?", "answer": "Tinker Bell", "note": "Also accept \"Tinkerbell\"." },
+        { "type": "mcq", "q": "What kind of animal is Winnie-the-Pooh?", "options": ["A pig", "A rabbit", "A donkey", "A bear"], "answer": 3, "note": "His friends include Piglet, Rabbit and Eeyore the donkey." }
+      ]
+    }
+  ]
+}

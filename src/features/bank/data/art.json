@@ -1,0 +1,85 @@
+{
+  "area": "art",
+  "quizzes": [
+    {
+      "slug": "masterpiece-moments",
+      "title": "Masterpiece Moments",
+      "emoji": "🎨",
+      "difficulty": "easy",
+      "tags": ["paintings", "artists", "museums"],
+      "description": "The world's most famous paintings and the artists who made them.",
+      "questions": [
+        { "type": "mcq", "q": "Who painted the Mona Lisa?", "options": ["Leonardo da Vinci", "Michelangelo", "Raphael", "Titian"], "answer": 0, "note": "It is thought to portray Lisa Gherardini, a woman from Florence." },
+        { "type": "mcq", "q": "Which artist painted \"The Starry Night\"?", "options": ["Claude Monet", "Vincent van Gogh", "Paul Cézanne", "Edvard Munch"], "answer": 1, "note": "He painted it in 1889 while staying at an asylum in Saint-Rémy." },
+        { "type": "tf", "q": "Michelangelo painted the ceiling of the Sistine Chapel.", "answer": true, "note": "He worked on the ceiling from 1508 to 1512." },
+        { "type": "mcq", "q": "Which artist painted \"The Scream\"?", "options": ["Gustav Klimt", "Salvador Dalí", "Edvard Munch", "Egon Schiele"], "answer": 2, "note": "The Norwegian artist made several versions, the first in 1893." },
+        { "type": "timed", "q": "Which Spanish artist co-founded Cubism with Georges Braque?", "answer": "Picasso", "note": "Accept Pablo Picasso." },
+        { "type": "mcq", "q": "Salvador Dalí's melting clocks appear in which painting?", "options": ["Guernica", "The Kiss", "The Son of Man", "The Persistence of Memory"], "answer": 3, "note": "Painted in 1931, it hangs at MoMA in New York." },
+        { "type": "tf", "q": "The Mona Lisa is displayed in the British Museum in London.", "answer": false, "note": "It hangs in the Louvre in Paris, behind protective glass." },
+        { "type": "mcq", "q": "Which Dutch artist painted \"Girl with a Pearl Earring\"?", "options": ["Johannes Vermeer", "Rembrandt", "Frans Hals", "Jan Steen"], "answer": 0, "note": "Painted around 1665, it hangs in the Mauritshuis in The Hague." },
+        { "type": "timed", "q": "Which French Impressionist painted a famous series of water lilies in his garden?", "answer": "Monet", "note": "Accept Claude Monet; the garden was at his home in Giverny." },
+        { "type": "mcq", "q": "Which Renaissance artist painted \"The Birth of Venus\"?", "options": ["Raphael", "Sandro Botticelli", "Caravaggio", "Titian"], "answer": 1, "note": "It hangs in the Uffizi Gallery in Florence." }
+      ]
+    },
+    {
+      "slug": "wonders-of-architecture",
+      "title": "Wonders of Architecture",
+      "emoji": "🗼",
+      "difficulty": "medium",
+      "tags": ["architecture", "landmarks", "buildings"],
+      "description": "Famous buildings, landmarks and the minds that designed them.",
+      "questions": [
+        { "type": "mcq", "q": "Which Mughal emperor built the Taj Mahal?", "options": ["Akbar", "Shah Jahan", "Aurangzeb", "Babur"], "answer": 1, "note": "He built it as a mausoleum for his wife Mumtaz Mahal." },
+        { "type": "tf", "q": "The Eiffel Tower was built for the 1889 World's Fair in Paris.", "answer": true, "note": "It was the world's tallest man-made structure until 1930." },
+        { "type": "mcq", "q": "Which architect designed the Sagrada Família in Barcelona?", "options": ["Le Corbusier", "Frank Gehry", "Antoni Gaudí", "Oscar Niemeyer"], "answer": 2, "note": "Construction began in 1882 and is still continuing." },
+        { "type": "mcq", "q": "Who designed the Sydney Opera House?", "options": ["Frank Lloyd Wright", "Alvar Aalto", "Zaha Hadid", "Jørn Utzon"], "answer": 3, "note": "The Danish architect's building opened in 1973." },
+        { "type": "timed", "q": "Which temple complex in Cambodia is the largest religious monument in the world?", "answer": "Angkor Wat", "note": "Built in the 12th century, it appears on Cambodia's national flag." },
+        { "type": "mcq", "q": "Which famous house by Frank Lloyd Wright is built over a waterfall?", "options": ["Villa Savoye", "Fallingwater", "Glass House", "Farnsworth House"], "answer": 1, "note": "It was built in rural Pennsylvania in the late 1930s." },
+        { "type": "tf", "q": "The Parthenon in Athens was dedicated to the god Zeus.", "answer": false, "note": "It was dedicated to Athena, the patron goddess of Athens." },
+        { "type": "mcq", "q": "Petra, the ancient city carved into rose-red rock, is in which country?", "options": ["Jordan", "Egypt", "Syria", "Lebanon"], "answer": 0, "note": "It was the capital of the Nabataean kingdom." },
+        { "type": "timed", "q": "In which city does St Basil's Cathedral, with its colourful onion domes, stand?", "answer": "Moscow", "note": "It stands on Red Square and was completed in 1561." },
+        { "type": "mcq", "q": "Which Istanbul landmark has served as a church, a mosque and a museum?", "options": ["Blue Mosque", "Topkapi Palace", "Hagia Sophia", "Süleymaniye Mosque"], "answer": 2, "note": "Completed in AD 537, it was turned back into a mosque in 2020." }
+      ]
+    },
+    {
+      "slug": "dance-and-traditions",
+      "title": "Dance & Traditions",
+      "emoji": "💃",
+      "difficulty": "medium",
+      "tags": ["dance", "festivals", "world cultures"],
+      "description": "Dances, festivals and cultural traditions from around the globe.",
+      "questions": [
+        { "type": "mcq", "q": "Which country is the tango most closely associated with?", "options": ["Brazil", "Spain", "Argentina", "Mexico"], "answer": 2, "note": "It emerged in Buenos Aires and Montevideo in the late 1800s." },
+        { "type": "tf", "q": "Flamenco is a traditional art form from Spain.", "answer": true, "note": "It is linked above all with Andalusia and was listed by UNESCO in 2010." },
+        { "type": "mcq", "q": "Kathakali, known for its elaborate face paint, comes from which Indian state?", "options": ["Tamil Nadu", "Kerala", "Odisha", "Manipur"], "answer": 1, "note": "Performers can take hours to apply the green-faced make-up of the heroic characters." },
+        { "type": "timed", "q": "What is the Japanese art of paper folding called?", "answer": "Origami", "note": "The word comes from ori (folding) and kami (paper)." },
+        { "type": "mcq", "q": "Which dance do New Zealand's All Blacks perform before rugby matches?", "options": ["Hula", "Cibi", "Siva Tau", "Haka"], "answer": 3, "note": "The haka is a traditional Māori ceremonial dance." },
+        { "type": "mcq", "q": "Which composer wrote the music for the ballet \"Swan Lake\"?", "options": ["Pyotr Tchaikovsky", "Igor Stravinsky", "Sergei Prokofiev", "Sergei Rachmaninoff"], "answer": 0, "note": "It premiered at Moscow's Bolshoi Theatre in 1877." },
+        { "type": "tf", "q": "The samba dance originated in Argentina.", "answer": false, "note": "Samba comes from Brazil and is the heartbeat of Rio's Carnival." },
+        { "type": "mcq", "q": "Which Japanese theatre form is known for stylised acting and bold make-up?", "options": ["Noh", "Bunraku", "Kabuki", "Kyogen"], "answer": 2, "note": "Noh performers wear masks, and Bunraku uses large puppets." },
+        { "type": "timed", "q": "Which Irish dance show began as the interval act at Eurovision 1994?", "answer": "Riverdance", "note": "The contest was held in Dublin that year." },
+        { "type": "mcq", "q": "The Hindu festival Diwali is widely known as the festival of what?", "options": ["Colours", "Lights", "Harvest", "Kites"], "answer": 1, "note": "Holi is the festival of colours; at Diwali, clay lamps called diyas are lit." }
+      ]
+    },
+    {
+      "slug": "brushstrokes-and-movements",
+      "title": "Brushstrokes & Movements",
+      "emoji": "🖌️",
+      "difficulty": "hard",
+      "tags": ["artists", "art movements", "sculpture"],
+      "description": "Deeper cuts on great artists, sculptors and art movements.",
+      "questions": [
+        { "type": "mcq", "q": "Who painted \"The Night Watch\"?", "options": ["Johannes Vermeer", "Peter Paul Rubens", "Anthony van Dyck", "Rembrandt"], "answer": 3, "note": "Completed in 1642, it is the star of Amsterdam's Rijksmuseum." },
+        { "type": "tf", "q": "André Breton wrote the first Surrealist Manifesto in 1924.", "answer": true, "note": "Salvador Dalí and René Magritte became the movement's best-known painters." },
+        { "type": "mcq", "q": "Who painted \"The Garden of Earthly Delights\"?", "options": ["Hieronymus Bosch", "Pieter Bruegel the Elder", "Jan van Eyck", "Albrecht Dürer"], "answer": 0, "note": "The triptych hangs in the Prado Museum in Madrid." },
+        { "type": "timed", "q": "Which Japanese artist created the woodblock print \"The Great Wave off Kanagawa\"?", "answer": "Hokusai", "note": "Accept Katsushika Hokusai; the print dates from the early 1830s." },
+        { "type": "mcq", "q": "Which Dutch painter is famous for grids of black lines and blocks of primary colour?", "options": ["Paul Klee", "Mark Rothko", "Joan Miró", "Piet Mondrian"], "answer": 3, "note": "Many of these works are simply titled Composition." },
+        { "type": "mcq", "q": "Which Austrian painter created \"The Kiss\", decorated with gold leaf?", "options": ["Egon Schiele", "Oskar Kokoschka", "Gustav Klimt", "Koloman Moser"], "answer": 2, "note": "Painted in 1907–1908, it hangs in the Belvedere in Vienna." },
+        { "type": "tf", "q": "Michelangelo's statue of David is cast in bronze.", "answer": false, "note": "It was carved from a single block of marble between 1501 and 1504." },
+        { "type": "mcq", "q": "Which sculptor created \"The Thinker\"?", "options": ["Auguste Rodin", "Donatello", "Antonio Canova", "Henry Moore"], "answer": 0, "note": "It was first conceived as part of his great bronze doors, The Gates of Hell." },
+        { "type": "timed", "q": "Which Mexican muralist was married to the painter Frida Kahlo?", "answer": "Diego Rivera", "note": "Accept Rivera; the couple first married in 1929." },
+        { "type": "mcq", "q": "Kazimir Malevich's \"Black Square\" is a landmark of which art movement?", "options": ["Constructivism", "Futurism", "Vorticism", "Suprematism"], "answer": 3, "note": "Malevich first exhibited it in 1915 in Petrograd." }
+      ]
+    }
+  ]
+}

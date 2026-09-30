@@ -1,0 +1,85 @@
+{
+  "area": "mythology",
+  "quizzes": [
+    {
+      "slug": "olympus-and-beyond",
+      "title": "Olympus & Beyond",
+      "emoji": "⚡",
+      "difficulty": "easy",
+      "tags": ["greek", "roman", "gods", "heroes"],
+      "description": "Gods, monsters and heroes from Greek and Roman myth.",
+      "questions": [
+        { "type": "mcq", "q": "Who is the king of the gods in Greek mythology?", "options": ["Zeus", "Poseidon", "Hades", "Apollo"], "answer": 0, "note": "He ruled from Mount Olympus and hurled thunderbolts." },
+        { "type": "tf", "q": "In Roman mythology, Mars is the god of war.", "answer": true, "note": "His Greek equivalent is Ares, and the month of March is named after him." },
+        { "type": "mcq", "q": "In Greek myth, what was the Gorgon Medusa's hair made of?", "options": ["Fire", "Snakes", "Seaweed", "Gold"], "answer": 1, "note": "Anyone who looked directly at her was turned to stone." },
+        { "type": "mcq", "q": "Which Greek hero could only be wounded in his heel?", "options": ["Heracles", "Perseus", "Achilles", "Odysseus"], "answer": 2, "note": "His mother Thetis dipped him in the River Styx, holding him by the heel." },
+        { "type": "timed", "q": "Which Greek god of the sea carries a trident?", "answer": "Poseidon", "note": "His Roman counterpart is Neptune." },
+        { "type": "mcq", "q": "Who opened a jar, often called a box, that released evils into the world?", "options": ["Persephone", "Athena", "Helen", "Pandora"], "answer": 3, "note": "Only hope remained inside when the lid was closed." },
+        { "type": "tf", "q": "Aphrodite is the Greek goddess of wisdom.", "answer": false, "note": "Athena is the goddess of wisdom; Aphrodite is the goddess of love and beauty." },
+        { "type": "mcq", "q": "The Roman god Cupid is equivalent to which Greek god?", "options": ["Eros", "Hermes", "Dionysus", "Hephaestus"], "answer": 0, "note": "His arrows made gods and mortals fall in love." },
+        { "type": "timed", "q": "Which hero of Greek myth performed the Twelve Labours?", "answer": "Heracles", "note": "Hercules is the Roman form of his name; accept either." },
+        { "type": "mcq", "q": "What hollow wooden figure did the Greeks use to get inside the city of Troy?", "options": ["Bull", "Horse", "Lion", "Eagle"], "answer": 1, "note": "The trick is credited to the cunning hero Odysseus." }
+      ]
+    },
+    {
+      "slug": "tales-from-asgard",
+      "title": "Tales from Asgard",
+      "emoji": "🔨",
+      "difficulty": "medium",
+      "tags": ["norse", "vikings", "gods"],
+      "description": "Hammers, wolves and world trees from Norse mythology.",
+      "questions": [
+        { "type": "mcq", "q": "What is the name of Thor's hammer?", "options": ["Gungnir", "Mjölnir", "Gram", "Draupnir"], "answer": 1, "note": "It was forged by dwarves; Gungnir is Odin's spear." },
+        { "type": "tf", "q": "Odin gave up one of his eyes to drink from Mimir's well.", "answer": true, "note": "The water of the well granted him great wisdom." },
+        { "type": "mcq", "q": "What is the name of the great world tree in Norse mythology?", "options": ["Yggdrasil", "Bifröst", "Valhalla", "Midgard"], "answer": 0, "note": "Its branches and roots connect the nine worlds." },
+        { "type": "timed", "q": "Which Norse trickster god is the father of the giant wolf Fenrir?", "answer": "Loki", "note": "His other children include the world serpent Jörmungandr and Hel." },
+        { "type": "mcq", "q": "What is the name of the rainbow bridge that leads to Asgard?", "options": ["Valhalla", "Jotunheim", "Bifröst", "Niflheim"], "answer": 2, "note": "It connects Asgard with Midgard, the world of humans." },
+        { "type": "mcq", "q": "What is the name of the doom of the gods, the final battle in Norse myth?", "options": ["Fimbulwinter", "Ginnungagap", "Muspelheim", "Ragnarök"], "answer": 3, "note": "In the battle, Odin is swallowed by the wolf Fenrir." },
+        { "type": "tf", "q": "The goddess Freyja rides in a chariot pulled by two goats.", "answer": false, "note": "Freyja's chariot is drawn by cats; it is Thor's chariot that goats pull." },
+        { "type": "mcq", "q": "Odin's ravens Huginn and Muninn stand for what?", "options": ["Thought and memory", "Sun and moon", "War and peace", "Life and death"], "answer": 0, "note": "They fly across the world each day and report back to Odin." },
+        { "type": "timed", "q": "Which Norse god lost his hand in the jaws of the wolf Fenrir?", "answer": "Tyr", "note": "Also spelled Týr; Tuesday is named after him." },
+        { "type": "mcq", "q": "Which Norse god is the ever-watchful guardian of the rainbow bridge?", "options": ["Bragi", "Baldur", "Njord", "Heimdall"], "answer": 3, "note": "He will blow the horn Gjallarhorn to announce Ragnarök." }
+      ]
+    },
+    {
+      "slug": "gods-of-the-nile",
+      "title": "Gods of the Nile",
+      "emoji": "☀️",
+      "difficulty": "medium",
+      "tags": ["egyptian", "gods", "afterlife"],
+      "description": "Sun gods, jackals and the journey to the afterlife in ancient Egypt.",
+      "questions": [
+        { "type": "mcq", "q": "Which Egyptian god is usually shown with the head of a jackal?", "options": ["Horus", "Thoth", "Anubis", "Sobek"], "answer": 2, "note": "He watched over mummification and guarded the dead." },
+        { "type": "timed", "q": "Who was the ancient Egyptian sun god, said to sail across the sky in a boat each day?", "answer": "Ra", "note": "Also spelled Re; he was often merged with Amun as Amun-Ra." },
+        { "type": "mcq", "q": "Which Egyptian god was killed by his brother Set and became ruler of the underworld?", "options": ["Osiris", "Horus", "Ptah", "Amun"], "answer": 0, "note": "His wife Isis gathered his scattered body and restored him." },
+        { "type": "tf", "q": "The Egyptian god Sobek was shown with the head of a hippopotamus.", "answer": false, "note": "Sobek had a crocodile's head; Taweret was the hippo goddess." },
+        { "type": "mcq", "q": "In Egyptian myth, the god Horus is the son of which goddess?", "options": ["Hathor", "Nut", "Bastet", "Isis"], "answer": 3, "note": "Horus avenged his father Osiris by battling Set." },
+        { "type": "mcq", "q": "Which Egyptian goddess was usually shown as a cat or a cat-headed woman?", "options": ["Hathor", "Bastet", "Nut", "Maat"], "answer": 1, "note": "Her cult centre was the city of Bubastis in the Nile Delta." },
+        { "type": "tf", "q": "In Egyptian belief, a dead person's heart was weighed against the feather of Maat.", "answer": true, "note": "A heart heavier than the feather was devoured by the monster Ammit." },
+        { "type": "mcq", "q": "Which sky goddess was said to swallow the sun each evening and give birth to it each morning?", "options": ["Isis", "Tefnut", "Hathor", "Nut"], "answer": 3, "note": "Her star-covered body arches over her brother Geb, the earth god." },
+        { "type": "timed", "q": "Which ibis-headed Egyptian god was the god of writing and wisdom?", "answer": "Thoth", "note": "He was said to have invented hieroglyphic writing." },
+        { "type": "mcq", "q": "In ancient Egypt, the scarab beetle was a symbol of what?", "options": ["War", "The harvest", "The rising sun", "The Nile flood"], "answer": 2, "note": "The god Khepri was pictured as a scarab rolling the sun across the sky." }
+      ]
+    },
+    {
+      "slug": "epics-of-india",
+      "title": "Epics of India",
+      "emoji": "🏹",
+      "difficulty": "hard",
+      "tags": ["ramayana", "mahabharata", "hindu", "epics"],
+      "description": "Heroes, battles and exiles from the Ramayana and the Mahabharata.",
+      "questions": [
+        { "type": "mcq", "q": "Who is traditionally credited with composing the Sanskrit Ramayana?", "options": ["Vyasa", "Valmiki", "Tulsidas", "Kalidasa"], "answer": 1, "note": "He is honoured as the Adi Kavi, the first poet." },
+        { "type": "tf", "q": "The Bhagavad Gita is part of the Mahabharata.", "answer": true, "note": "It has 700 verses and is set on the battlefield of Kurukshetra." },
+        { "type": "mcq", "q": "Who was the eldest of King Dhritarashtra's hundred sons in the Mahabharata?", "options": ["Dushasana", "Vikarna", "Duryodhana", "Shakuni"], "answer": 2, "note": "His rivalry with the Pandavas led to the Kurukshetra war." },
+        { "type": "timed", "q": "Which demon king of Lanka abducted Sita in the Ramayana?", "answer": "Ravana", "note": "He is usually depicted with ten heads." },
+        { "type": "mcq", "q": "Who was the mother of the Pandavas Yudhishthira, Bhima and Arjuna?", "options": ["Kunti", "Gandhari", "Draupadi", "Madri"], "answer": 0, "note": "Madri was the mother of the twins Nakula and Sahadeva." },
+        { "type": "mcq", "q": "In the Ramayana, which vulture king was mortally wounded trying to stop Ravana?", "options": ["Garuda", "Sampati", "Aruna", "Jatayu"], "answer": 3, "note": "Before dying, he told Rama which way Ravana had taken Sita." },
+        { "type": "tf", "q": "The Kauravas won the Kurukshetra war in the Mahabharata.", "answer": false, "note": "The Pandavas won the 18-day war." },
+        { "type": "mcq", "q": "Which of Rama's brothers went with him into exile in the forest?", "options": ["Bharata", "Lakshmana", "Shatrughna", "Vibhishana"], "answer": 1, "note": "Bharata ruled in Rama's name, placing Rama's sandals on the throne." },
+        { "type": "timed", "q": "To which Pandava warrior did Krishna deliver the teachings of the Bhagavad Gita?", "answer": "Arjuna", "note": "Krishna served as his charioteer during the war." },
+        { "type": "mcq", "q": "Which city was Rama's capital in the Ramayana?", "options": ["Hastinapura", "Indraprastha", "Ayodhya", "Mathura"], "answer": 2, "note": "Ayodhya stands on the banks of the Sarayu river in northern India." }
+      ]
+    }
+  ]
+}

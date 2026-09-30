@@ -1,0 +1,445 @@
+{
+  "area": "literature",
+  "quizzes": [
+    {
+      "slug": "storybook-favourites",
+      "title": "Storybook Favourites",
+      "emoji": "🧸",
+      "difficulty": "easy",
+      "tags": [
+        "children",
+        "classics",
+        "characters"
+      ],
+      "description": "Much-loved children's books and the unforgettable characters inside them.",
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Who wrote 'Alice's Adventures in Wonderland'?",
+          "options": [
+            "Lewis Carroll",
+            "Roald Dahl",
+            "J. M. Barrie",
+            "Kenneth Grahame"
+          ],
+          "answer": 0,
+          "note": "Lewis Carroll was the pen name of Charles Lutwidge Dodgson, an Oxford mathematician."
+        },
+        {
+          "type": "tf",
+          "q": "Winnie-the-Pooh was created by A. A. Milne.",
+          "answer": true,
+          "note": "Pooh was based on Christopher Robin Milne's teddy, named after a London Zoo bear called Winnipeg."
+        },
+        {
+          "type": "mcq",
+          "q": "In Roald Dahl's famous book, what is the name of the chocolate factory owner?",
+          "options": [
+            "Augustus Gloop",
+            "Willy Wonka",
+            "Mr Twit",
+            "Charlie Bucket"
+          ],
+          "answer": 1,
+          "note": "Charlie and the Chocolate Factory was published in 1964."
+        },
+        {
+          "type": "timed",
+          "q": "What is the name of J. M. Barrie's boy who never grows up?",
+          "answer": "Peter Pan",
+          "note": "Barrie gave the rights to Peter Pan to Great Ormond Street Hospital in 1929."
+        },
+        {
+          "type": "mcq",
+          "q": "What kind of animal is Aslan in The Chronicles of Narnia?",
+          "options": [
+            "Bear",
+            "Eagle",
+            "Lion",
+            "Wolf"
+          ],
+          "answer": 2,
+          "note": "Narnia's author, C. S. Lewis, was a close friend of J. R. R. Tolkien."
+        },
+        {
+          "type": "mcq",
+          "q": "Who wrote and illustrated 'The Very Hungry Caterpillar'?",
+          "options": [
+            "Dr. Seuss",
+            "Maurice Sendak",
+            "Julia Donaldson",
+            "Eric Carle"
+          ],
+          "answer": 3,
+          "note": "The Very Hungry Caterpillar was first published in 1969."
+        },
+        {
+          "type": "tf",
+          "q": "Harry Potter's pet owl is called Crookshanks.",
+          "answer": false,
+          "note": "Harry's owl is Hedwig; Crookshanks is Hermione's cat."
+        },
+        {
+          "type": "mcq",
+          "q": "Which Dr. Seuss character stole Christmas?",
+          "options": [
+            "The Grinch",
+            "The Lorax",
+            "Sam-I-Am",
+            "Horton"
+          ],
+          "answer": 0,
+          "note": "How the Grinch Stole Christmas! was published in 1957."
+        },
+        {
+          "type": "timed",
+          "q": "Which bear from 'darkest Peru' lives with the Brown family in London?",
+          "answer": "Paddington",
+          "note": "Michael Bond's first Paddington book came out in 1958."
+        },
+        {
+          "type": "mcq",
+          "q": "What happens to Pinocchio's nose when he tells a lie?",
+          "options": [
+            "It turns red",
+            "It grows longer",
+            "It falls off",
+            "It starts to itch"
+          ],
+          "answer": 1,
+          "note": "Carlo Collodi's Italian story was first serialised between 1881 and 1883."
+        }
+      ]
+    },
+    {
+      "slug": "famous-faces-of-fiction",
+      "title": "Famous Faces of Fiction",
+      "emoji": "🕵️",
+      "difficulty": "medium",
+      "tags": [
+        "characters",
+        "novels",
+        "classics"
+      ],
+      "description": "Detectives, villains and heroes from the classic novels everyone has heard of.",
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Agatha Christie's detective Hercule Poirot comes from which country?",
+          "options": [
+            "France",
+            "Switzerland",
+            "Luxembourg",
+            "Belgium"
+          ],
+          "answer": 3,
+          "note": "Poirot first appeared in The Mysterious Affair at Styles."
+        },
+        {
+          "type": "tf",
+          "q": "Sherlock Holmes's loyal friend and chronicler is Dr Watson.",
+          "answer": true,
+          "note": "Holmes and Watson first appeared in A Study in Scarlet in 1887."
+        },
+        {
+          "type": "mcq",
+          "q": "In Jane Austen's 'Pride and Prejudice', whom does Elizabeth Bennet marry?",
+          "options": [
+            "Mr Darcy",
+            "Mr Bingley",
+            "Mr Wickham",
+            "Mr Collins"
+          ],
+          "answer": 0,
+          "note": "Mr Darcy's first name is Fitzwilliam."
+        },
+        {
+          "type": "mcq",
+          "q": "Who is the narrator of 'The Great Gatsby'?",
+          "options": [
+            "Tom Buchanan",
+            "Nick Carraway",
+            "Jay Gatsby",
+            "George Wilson"
+          ],
+          "answer": 1,
+          "note": "F. Scott Fitzgerald published The Great Gatsby in 1925."
+        },
+        {
+          "type": "timed",
+          "q": "In Robert Louis Stevenson's novella, what is the surname of Dr Jekyll's evil alter ego?",
+          "answer": "Hyde",
+          "note": "Accept 'Mr Hyde'; the story was published in 1886."
+        },
+        {
+          "type": "mcq",
+          "q": "In Dickens's 'A Christmas Carol', what is Scrooge's first name?",
+          "options": [
+            "Jacob",
+            "Bob",
+            "Ebenezer",
+            "Fezziwig"
+          ],
+          "answer": 2,
+          "note": "Jacob Marley was Scrooge's late business partner; Bob Cratchit was his clerk."
+        },
+        {
+          "type": "tf",
+          "q": "In Mary Shelley's novel, Frankenstein is the name of the monster.",
+          "answer": false,
+          "note": "Victor Frankenstein is the scientist; his creature is never given a name."
+        },
+        {
+          "type": "mcq",
+          "q": "Which author created the lawyer Atticus Finch?",
+          "options": [
+            "John Steinbeck",
+            "Mark Twain",
+            "William Faulkner",
+            "Harper Lee"
+          ],
+          "answer": 3,
+          "note": "Atticus is the father of Scout in To Kill a Mockingbird (1960)."
+        },
+        {
+          "type": "timed",
+          "q": "What is the name of the dragon Bilbo Baggins faces in 'The Hobbit'?",
+          "answer": "Smaug",
+          "note": "Smaug guarded the treasure of the Lonely Mountain, Erebor."
+        },
+        {
+          "type": "mcq",
+          "q": "In 'Treasure Island', what is the name of the one-legged ship's cook?",
+          "options": [
+            "Captain Flint",
+            "Billy Bones",
+            "Long John Silver",
+            "Blind Pew"
+          ],
+          "answer": 2,
+          "note": "Stevenson's Treasure Island was published as a book in 1883."
+        }
+      ]
+    },
+    {
+      "slug": "indian-literary-greats",
+      "title": "Indian Literary Greats",
+      "emoji": "🪷",
+      "difficulty": "medium",
+      "tags": [
+        "india",
+        "authors",
+        "poetry"
+      ],
+      "description": "Epics, poets and prize-winning novelists from India's rich literary tradition.",
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "In which year did Rabindranath Tagore win the Nobel Prize in Literature?",
+          "options": [
+            "1901",
+            "1913",
+            "1921",
+            "1930"
+          ],
+          "answer": 1,
+          "note": "He was the first non-European to win the Nobel Prize in Literature."
+        },
+        {
+          "type": "mcq",
+          "q": "What is the name of R. K. Narayan's fictional South Indian town?",
+          "options": [
+            "Malgudi",
+            "Shivapur",
+            "Ranipur",
+            "Kanthapura"
+          ],
+          "answer": 0,
+          "note": "Malgudi first appeared in Narayan's debut novel, Swami and Friends (1935)."
+        },
+        {
+          "type": "tf",
+          "q": "Arundhati Roy won the Booker Prize for 'The God of Small Things'.",
+          "answer": true,
+          "note": "She won in 1997 with her debut novel."
+        },
+        {
+          "type": "mcq",
+          "q": "Who wrote the novel 'Midnight's Children'?",
+          "options": [
+            "Vikram Seth",
+            "Amitav Ghosh",
+            "Salman Rushdie",
+            "Rohinton Mistry"
+          ],
+          "answer": 2,
+          "note": "It won the Booker Prize in 1981 and was later named the 'Booker of Bookers'."
+        },
+        {
+          "type": "timed",
+          "q": "Which author, long based in Mussoorie, wrote 'The Blue Umbrella' and 'Rusty' stories?",
+          "answer": "Ruskin Bond",
+          "note": "Accept 'Bond'; he has lived in Landour, Mussoorie, for decades."
+        },
+        {
+          "type": "mcq",
+          "q": "Who wrote 'Vande Mataram', India's national song?",
+          "options": [
+            "Rabindranath Tagore",
+            "Subramania Bharati",
+            "Sarojini Naidu",
+            "Bankim Chandra Chattopadhyay"
+          ],
+          "answer": 3,
+          "note": "It appeared in his 1882 novel Anandamath."
+        },
+        {
+          "type": "mcq",
+          "q": "Which poet was known as the 'Nightingale of India'?",
+          "options": [
+            "Kamala Das",
+            "Sarojini Naidu",
+            "Toru Dutt",
+            "Mahadevi Varma"
+          ],
+          "answer": 1,
+          "note": "Sarojini Naidu later became India's first woman state governor."
+        },
+        {
+          "type": "tf",
+          "q": "Vikram Seth's 'A Suitable Boy' is a short novella of under 100 pages.",
+          "answer": false,
+          "note": "At about 1,350 pages, it is one of the longest single-volume novels in English."
+        },
+        {
+          "type": "timed",
+          "q": "Which Hindi writer, author of 'Godaan', is often called 'Upanyas Samrat'?",
+          "answer": "Munshi Premchand",
+          "note": "Accept 'Premchand'; his real name was Dhanpat Rai Srivastava."
+        },
+        {
+          "type": "mcq",
+          "q": "Which classical poet wrote the Sanskrit play 'Abhijnanashakuntalam'?",
+          "options": [
+            "Bhasa",
+            "Banabhatta",
+            "Bharavi",
+            "Kalidasa"
+          ],
+          "answer": 3,
+          "note": "The play tells the love story of King Dushyanta and Shakuntala."
+        }
+      ]
+    },
+    {
+      "slug": "first-lines-and-famous-verses",
+      "title": "First Lines & Famous Verses",
+      "emoji": "📜",
+      "difficulty": "hard",
+      "tags": [
+        "opening lines",
+        "poetry",
+        "classics"
+      ],
+      "description": "Name the novel from its opening line and the poet from their most famous verse.",
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "'Mother died today. Or maybe yesterday; I can't be sure.' opens which novel?",
+          "options": [
+            "The Trial",
+            "The Stranger",
+            "Nausea",
+            "The Plague"
+          ],
+          "answer": 1,
+          "note": "Albert Camus's L'Étranger (1942) is also published in English as The Outsider."
+        },
+        {
+          "type": "mcq",
+          "q": "'Call me Ishmael.' is the opening line of which novel?",
+          "options": [
+            "Moby-Dick",
+            "Robinson Crusoe",
+            "Treasure Island",
+            "Billy Budd"
+          ],
+          "answer": 0,
+          "note": "Herman Melville's Moby-Dick was published in 1851."
+        },
+        {
+          "type": "tf",
+          "q": "'It is a truth universally acknowledged…' is the first line of Jane Austen's 'Emma'.",
+          "answer": false,
+          "note": "That famous line opens Pride and Prejudice (1813)."
+        },
+        {
+          "type": "mcq",
+          "q": "Who wrote the poem 'The Road Not Taken'?",
+          "options": [
+            "Walt Whitman",
+            "Emily Dickinson",
+            "Robert Frost",
+            "Carl Sandburg"
+          ],
+          "answer": 2,
+          "note": "It was partly inspired by Frost's country walks with the poet Edward Thomas."
+        },
+        {
+          "type": "timed",
+          "q": "Which poet wrote 'I wandered lonely as a cloud', the poem about daffodils?",
+          "answer": "Wordsworth",
+          "note": "Accept 'William Wordsworth'; the poem was first published in 1807."
+        },
+        {
+          "type": "mcq",
+          "q": "'Happy families are all alike; every unhappy family is unhappy in its own way' opens which novel?",
+          "options": [
+            "War and Peace",
+            "Crime and Punishment",
+            "Anna Karenina",
+            "Fathers and Sons"
+          ],
+          "answer": 2,
+          "note": "Leo Tolstoy's Anna Karenina was published in book form in 1878."
+        },
+        {
+          "type": "mcq",
+          "q": "'Shall I compare thee to a summer's day?' opens Shakespeare's sonnet number…",
+          "options": [
+            "18",
+            "29",
+            "116",
+            "130"
+          ],
+          "answer": 0,
+          "note": "Shakespeare's sonnets were published as a collection in 1609."
+        },
+        {
+          "type": "timed",
+          "q": "'It was a bright cold day in April, and the clocks were striking thirteen' opens which novel?",
+          "answer": "1984",
+          "note": "Accept 'Nineteen Eighty-Four'; George Orwell published it in 1949."
+        },
+        {
+          "type": "tf",
+          "q": "'The Raven', with its refrain 'Nevermore', was written by Edgar Allan Poe.",
+          "answer": true,
+          "note": "Poe published The Raven in 1845."
+        },
+        {
+          "type": "mcq",
+          "q": "Which poet wrote 'Do not go gentle into that good night'?",
+          "options": [
+            "W. H. Auden",
+            "Ted Hughes",
+            "Seamus Heaney",
+            "Dylan Thomas"
+          ],
+          "answer": 3,
+          "note": "Dylan Thomas wrote it for his dying father."
+        }
+      ]
+    }
+  ]
+}

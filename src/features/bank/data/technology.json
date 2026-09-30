@@ -1,0 +1,85 @@
+{
+  "area": "technology",
+  "quizzes": [
+    {
+      "slug": "tech-acronyms",
+      "title": "Alphabet Soup",
+      "emoji": "🔤",
+      "difficulty": "easy",
+      "tags": ["acronyms", "computers", "internet"],
+      "description": "Crack the letters behind the tech words we use every day.",
+      "questions": [
+        { "type": "mcq", "q": "What does \"CPU\" stand for?", "options": ["Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Core Processing Unit"], "answer": 0, "note": "The CPU is often called the brain of the computer." },
+        { "type": "tf", "q": "RAM stands for Random Access Memory.", "answer": true, "note": "RAM is short-term memory that is cleared when the power goes off." },
+        { "type": "mcq", "q": "In web addresses, what does \"HTTP\" stand for?", "options": ["High Tech Transfer Process", "HyperText Transfer Protocol", "HyperText Transmission Program", "Home Tool Transfer Protocol"], "answer": 1, "note": "The extra \"S\" in HTTPS stands for Secure." },
+        { "type": "timed", "q": "What does the \"U\" in USB stand for?", "answer": "Universal", "note": "USB is short for Universal Serial Bus." },
+        { "type": "mcq", "q": "What does \"URL\" stand for?", "options": ["Universal Resource Link", "Unified Routing Label", "Uniform Resource Locator", "User Reference Locator"], "answer": 2, "note": "A URL is simply the address of a page or file on the web." },
+        { "type": "mcq", "q": "What does \"PDF\" stand for?", "options": ["Printed Document File", "Public Data Format", "Personal Document Folder", "Portable Document Format"], "answer": 3, "note": "Adobe introduced the PDF format in 1993." },
+        { "type": "tf", "q": "In email, \"CC\" stands for \"Computer Copy\".", "answer": false, "note": "CC means carbon copy, from the days of typewriters and carbon paper." },
+        { "type": "mcq", "q": "What does \"LED\" stand for?", "options": ["Light-Emitting Diode", "Low Energy Display", "Laser-Emitting Device", "Liquid Electronic Display"], "answer": 0, "note": "LEDs use far less energy than old filament light bulbs." },
+        { "type": "timed", "q": "The \"www\" at the start of web addresses stands for \"World Wide ___\" what?", "answer": "Web", "note": "Tim Berners-Lee came up with the name World Wide Web." },
+        { "type": "mcq", "q": "What does \"SIM\" in \"SIM card\" stand for?", "options": ["Secure Internet Module", "Subscriber Identity Module", "System Integrated Memory", "Signal Input Mode"], "answer": 1, "note": "The SIM card identifies your phone to the mobile network." }
+      ]
+    },
+    {
+      "slug": "tech-titans",
+      "title": "Tech Titans",
+      "emoji": "🏢",
+      "difficulty": "medium",
+      "tags": ["companies", "founders", "business"],
+      "description": "The famous companies behind our gadgets and the people who started them.",
+      "questions": [
+        { "type": "mcq", "q": "In which year was Apple founded?", "options": ["1972", "1980", "1976", "1984"], "answer": 2, "note": "Steve Jobs, Steve Wozniak and Ronald Wayne founded Apple on 1 April 1976." },
+        { "type": "tf", "q": "Google was founded by Larry Page and Sergey Brin while they were PhD students at Stanford.", "answer": true, "note": "Their search engine was first called BackRub." },
+        { "type": "mcq", "q": "Who co-founded Microsoft with Bill Gates?", "options": ["Steve Ballmer", "Steve Wozniak", "Larry Ellison", "Paul Allen"], "answer": 3, "note": "Gates and Allen were school friends from Seattle." },
+        { "type": "timed", "q": "Which company, founded by Jeff Bezos in 1994, began as an online bookstore?", "answer": "Amazon", "note": "Bezos first named the company Cadabra." },
+        { "type": "mcq", "q": "Mark Zuckerberg launched Facebook in 2004 from which university?", "options": ["Harvard", "Yale", "Stanford", "MIT"], "answer": 0, "note": "It started as \"TheFacebook\", open only to Harvard students at first." },
+        { "type": "tf", "q": "Samsung is a company from Japan.", "answer": false, "note": "Samsung is South Korean; it was founded in Daegu in 1938 as a trading company." },
+        { "type": "mcq", "q": "Which Japanese company created the PlayStation games console?", "options": ["Nintendo", "Sony", "Sega", "Panasonic"], "answer": 1, "note": "The first PlayStation went on sale in Japan in December 1994." },
+        { "type": "mcq", "q": "Larry Ellison co-founded which software giant?", "options": ["IBM", "Intel", "Oracle", "Cisco"], "answer": 2, "note": "Oracle was founded in 1977 under the name Software Development Laboratories." },
+        { "type": "timed", "q": "Which Finnish company was once the world's biggest mobile phone maker, famous for the 3310?", "answer": "Nokia", "note": "The Nokia 3310 came out in 2000 and is famous for being almost indestructible." },
+        { "type": "mcq", "q": "A Palo Alto garage called the \"birthplace of Silicon Valley\" is where which company began in 1939?", "options": ["Apple", "Intel", "IBM", "Hewlett-Packard"], "answer": 3, "note": "Bill Hewlett and David Packard started HP there with just a few hundred dollars." }
+      ]
+    },
+    {
+      "slug": "web-beginnings",
+      "title": "Web Beginnings",
+      "emoji": "🌐",
+      "difficulty": "medium",
+      "tags": ["internet", "web", "history"],
+      "description": "How the internet and the World Wide Web came to be.",
+      "questions": [
+        { "type": "mcq", "q": "Which 1993 web browser first made the web popular with pictures?", "options": ["Mosaic", "Netscape", "Internet Explorer", "Opera"], "answer": 0, "note": "Mosaic showed images alongside text on the same page; Netscape followed in 1994." },
+        { "type": "timed", "q": "At which European research lab did Tim Berners-Lee invent the World Wide Web?", "answer": "CERN", "note": "CERN sits near Geneva, on the border of Switzerland and France." },
+        { "type": "mcq", "q": "What was the name of the US military-funded network that became the forerunner of the internet?", "options": ["BITNET", "ARPANET", "USENET", "JANET"], "answer": 1, "note": "The first ARPANET message in 1969 was meant to say LOGIN but crashed after LO." },
+        { "type": "tf", "q": "Ray Tomlinson was the first person to use the @ symbol in email addresses.", "answer": true, "note": "Tomlinson sent the first email between two computers on a network in 1971." },
+        { "type": "mcq", "q": "What was the first .com domain name ever registered?", "options": ["apple.com", "ibm.com", "symbolics.com", "google.com"], "answer": 2, "note": "symbolics.com was registered on 15 March 1985 by a computer maker." },
+        { "type": "mcq", "q": "The first video ever uploaded to YouTube, in 2005, shows what?", "options": ["A cat playing piano", "A skateboarding dog", "A birthday party", "Elephants at a zoo"], "answer": 3, "note": "It's called \"Me at the zoo\" and stars co-founder Jawed Karim." },
+        { "type": "tf", "q": "Wikipedia was launched in 1991.", "answer": false, "note": "Wikipedia launched on 15 January 2001." },
+        { "type": "mcq", "q": "What does the \"e\" in \"email\" stand for?", "options": ["Electronic", "Easy", "Express", "External"], "answer": 0, "note": "Email is short for electronic mail." },
+        { "type": "timed", "q": "What word for junk email comes from a Monty Python sketch about a café?", "answer": "Spam", "note": "In the sketch, almost every dish on the menu contains Spam." },
+        { "type": "mcq", "q": "Stanford students Jerry Yang and David Filo created which famous web directory?", "options": ["AltaVista", "Yahoo!", "Lycos", "Excite"], "answer": 1, "note": "It began as \"Jerry and David's Guide to the World Wide Web\"." }
+      ]
+    },
+    {
+      "slug": "computing-pioneers",
+      "title": "Computing Pioneers",
+      "emoji": "🧮",
+      "difficulty": "hard",
+      "tags": ["history", "computers", "inventors"],
+      "description": "The machines, minds and milestones that built modern computing.",
+      "questions": [
+        { "type": "mcq", "q": "Who is often called the first computer programmer, for her notes on Babbage's Analytical Engine?", "options": ["Grace Hopper", "Hedy Lamarr", "Ada Lovelace", "Mary Somerville"], "answer": 2, "note": "Her 1843 notes included a method for calculating Bernoulli numbers." },
+        { "type": "timed", "q": "What is the name of the test, proposed by Alan Turing in 1950, of whether a machine can pass as human in conversation?", "answer": "Turing test", "note": "Also accept \"the imitation game\", Turing's own name for it." },
+        { "type": "mcq", "q": "Which electronic computer was unveiled at the University of Pennsylvania in 1946?", "options": ["UNIVAC", "Colossus", "EDSAC", "ENIAC"], "answer": 3, "note": "ENIAC weighed around 27 tonnes and filled a large room." },
+        { "type": "tf", "q": "A real moth was once found stuck in the Harvard Mark II computer and taped into its logbook.", "answer": true, "note": "The 1947 log entry reads: \"First actual case of bug being found.\"" },
+        { "type": "mcq", "q": "Which programming language did Guido van Rossum create?", "options": ["Python", "Java", "Ruby", "Perl"], "answer": 0, "note": "It's named after Monty Python's Flying Circus, not the snake." },
+        { "type": "timed", "q": "Which company built Deep Blue, the computer that beat chess champion Garry Kasparov in 1997?", "answer": "IBM", "note": "It was the first time a computer beat a reigning world champion in a match." },
+        { "type": "mcq", "q": "Who created the Linux kernel in 1991?", "options": ["Richard Stallman", "Linus Torvalds", "Dennis Ritchie", "Ken Thompson"], "answer": 1, "note": "He was a 21-year-old student at the University of Helsinki at the time." },
+        { "type": "tf", "q": "The C programming language was created at Microsoft.", "answer": false, "note": "Dennis Ritchie developed C at Bell Labs in the early 1970s." },
+        { "type": "mcq", "q": "Charles Babbage began designing which mechanical calculating machine in the 1820s?", "options": ["Jacquard Loom", "Pascaline", "Difference Engine", "Turing Machine"], "answer": 2, "note": "London's Science Museum finally built a working one from his plans in 1991." },
+        { "type": "mcq", "q": "What was Intel's first commercially available microprocessor, released in 1971?", "options": ["Intel 8080", "Intel 8086", "Intel 286", "Intel 4004"], "answer": 3, "note": "The 4004 was designed for a Japanese calculator company called Busicom." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "area": "music",
+  "quizzes": [
+    {
+      "slug": "instruments-and-basics",
+      "title": "Instrument Safari",
+      "emoji": "🎹",
+      "difficulty": "easy",
+      "tags": ["instruments", "music theory", "basics"],
+      "description": "Strings, keys, drums and the building blocks of music.",
+      "questions": [
+        { "type": "mcq", "q": "How many keys does a standard modern piano have?", "options": ["88", "76", "92", "64"], "answer": 0, "note": "52 of the keys are white and 36 are black." },
+        { "type": "tf", "q": "The sitar is a string instrument.", "answer": true, "note": "Besides its playing strings, a sitar has sympathetic strings that resonate on their own." },
+        { "type": "mcq", "q": "The trumpet belongs to which family of instruments?", "options": ["Woodwind", "Brass", "Percussion", "Strings"], "answer": 1, "note": "Brass players make their sound by buzzing their lips into the mouthpiece." },
+        { "type": "mcq", "q": "How many strings does a standard acoustic guitar have?", "options": ["4", "5", "6", "7"], "answer": 2, "note": "Standard tuning, from the lowest string, is E, A, D, G, B, E." },
+        { "type": "timed", "q": "How many lines make up a standard musical staff (stave)?", "answer": "Five", "note": "Accept '5'; notes sit on the lines and in the four spaces between them." },
+        { "type": "mcq", "q": "Which of these is a woodwind instrument?", "options": ["Trombone", "Tuba", "Cello", "Clarinet"], "answer": 3, "note": "The clarinet uses a single reed clamped to its mouthpiece." },
+        { "type": "mcq", "q": "In sheet music, what does the Italian marking 'forte' mean?", "options": ["Loud", "Soft", "Fast", "Slow"], "answer": 0, "note": "The piano's full name, pianoforte, literally means 'soft-loud'." },
+        { "type": "tf", "q": "A standard violin has six strings.", "answer": false, "note": "False: it has four strings, tuned G, D, A and E." },
+        { "type": "timed", "q": "Which pair of Indian hand drums was made world-famous by Ustad Zakir Hussain?", "answer": "Tabla", "note": "The smaller drum is called the dayan and the larger one the bayan." },
+        { "type": "mcq", "q": "How many basic notes are in the Indian sargam, Sa Re Ga Ma Pa Dha Ni?", "options": ["5", "7", "8", "12"], "answer": 1, "note": "These seven swaras match the seven notes of the Western do-re-mi scale." }
+      ]
+    },
+    {
+      "slug": "classical-music",
+      "title": "Classical Crescendo",
+      "emoji": "🎻",
+      "difficulty": "medium",
+      "tags": ["classical", "indian classical", "composers"],
+      "description": "Great composers of the West and maestros of Indian classical music.",
+      "questions": [
+        { "type": "mcq", "q": "Which composer wrote the 'Moonlight Sonata'?", "options": ["Mozart", "Chopin", "Beethoven", "Bach"], "answer": 2, "note": "The 'Moonlight' nickname came from a critic after Beethoven's death." },
+        { "type": "mcq", "q": "Pandit Ravi Shankar was a world-famous master of which instrument?", "options": ["Sarod", "Veena", "Santoor", "Sitar"], "answer": 3, "note": "He taught the sitar to George Harrison of The Beatles." },
+        { "type": "timed", "q": "Which Austrian child prodigy composed the opera 'The Magic Flute'?", "answer": "Mozart", "note": "Accept 'Wolfgang Amadeus Mozart'; he wrote it in 1791, the year he died." },
+        { "type": "tf", "q": "Antonio Vivaldi composed 'The Four Seasons'.", "answer": true, "note": "Each of its four violin concertos depicts one season of the year." },
+        { "type": "mcq", "q": "What are the two main traditions of Indian classical music?", "options": ["Hindustani and Carnatic", "Ghazal and Qawwali", "Bhajan and Kirtan", "Thumri and Dadra"], "answer": 0, "note": "Hindustani music is rooted in North India and Carnatic music in the South." },
+        { "type": "mcq", "q": "Ustad Bismillah Khan, a Bharat Ratna recipient, was a master of which instrument?", "options": ["Sarangi", "Shehnai", "Flute", "Sitar"], "answer": 1, "note": "He received the Bharat Ratna, India's highest civilian honour, in 2001." },
+        { "type": "tf", "q": "Johann Sebastian Bach was born in Italy.", "answer": false, "note": "False: Bach was born in Eisenach, Germany, in 1685." },
+        { "type": "mcq", "q": "Which composer wrote the 'Messiah', with its famous 'Hallelujah' chorus?", "options": ["Bach", "Haydn", "Handel", "Vivaldi"], "answer": 2, "note": "Handel wrote it in about three weeks in 1741." },
+        { "type": "timed", "q": "Pandit Hariprasad Chaurasia is a legend of which instrument?", "answer": "Flute", "note": "Accept 'bansuri', the Indian bamboo flute." },
+        { "type": "mcq", "q": "In Indian classical music, what does the word 'tala' refer to?", "options": ["A melodic scale", "The opening improvisation", "A drone instrument", "A rhythmic cycle"], "answer": 3, "note": "Teentaal, one of the most common talas, has 16 beats." }
+      ]
+    },
+    {
+      "slug": "rock-and-pop",
+      "title": "Rock & Pop Legends",
+      "emoji": "🎸",
+      "difficulty": "medium",
+      "tags": ["rock", "pop", "bands", "history"],
+      "description": "The bands, voices and moments that shaped rock and pop history.",
+      "questions": [
+        { "type": "mcq", "q": "Which English city were The Beatles from?", "options": ["Liverpool", "Manchester", "London", "Birmingham"], "answer": 0, "note": "They played hundreds of early shows at Liverpool's Cavern Club." },
+        { "type": "timed", "q": "Which singer is known as the 'King of Pop'?", "answer": "Michael Jackson", "note": "His 1982 album 'Thriller' featured 'Billie Jean' and 'Beat It'." },
+        { "type": "mcq", "q": "Who was the lead singer of Queen?", "options": ["Mick Jagger", "Freddie Mercury", "Robert Plant", "Roger Daltrey"], "answer": 1, "note": "Mercury was born Farrokh Bulsara in Zanzibar to a Parsi family." },
+        { "type": "tf", "q": "Queen released 'Bohemian Rhapsody' in 1975.", "answer": true, "note": "The six-minute song has no repeating chorus." },
+        { "type": "mcq", "q": "Which band released the album 'The Dark Side of the Moon' in 1973?", "options": ["Led Zeppelin", "The Who", "Pink Floyd", "Genesis"], "answer": 2, "note": "Its prism-and-rainbow cover is one of the most famous in rock." },
+        { "type": "mcq", "q": "Elvis Presley is famously known as the 'King of' what?", "options": ["Soul", "Blues", "Country", "Rock and Roll"], "answer": 3, "note": "His Memphis home, Graceland, is now a museum." },
+        { "type": "tf", "q": "Eddie Vedder was the lead singer of Nirvana.", "answer": false, "note": "False: Kurt Cobain fronted Nirvana; Vedder is best known as Pearl Jam's singer." },
+        { "type": "mcq", "q": "Which Swedish group won the 1974 Eurovision Song Contest with 'Waterloo'?", "options": ["ABBA", "Roxette", "Ace of Base", "Europe"], "answer": 0, "note": "ABBA's name comes from the first letters of its four members' names." },
+        { "type": "timed", "q": "Which Jamaican reggae legend sang 'No Woman, No Cry' with the Wailers?", "answer": "Bob Marley", "note": "Accept 'Marley'; the song first appeared on the 1974 album Natty Dread." },
+        { "type": "mcq", "q": "Which 1969 music festival in New York state became a symbol of the counterculture era?", "options": ["Coachella", "Woodstock", "Glastonbury", "Lollapalooza"], "answer": 1, "note": "Jimi Hendrix closed the festival with his take on 'The Star-Spangled Banner'." }
+      ]
+    },
+    {
+      "slug": "bollywood-music",
+      "title": "Bollywood Sur Sangam",
+      "emoji": "🎤",
+      "difficulty": "hard",
+      "tags": ["bollywood", "film songs", "composers", "singers"],
+      "description": "Playback legends, composers and lyricists behind classic Hindi film songs.",
+      "questions": [
+        { "type": "mcq", "q": "Which composer won two Oscars for 'Slumdog Millionaire' (2008)?", "options": ["Shankar Mahadevan", "Pritam", "A. R. Rahman", "Vishal Bhardwaj"], "answer": 2, "note": "He won for Best Original Score and for the song 'Jai Ho'." },
+        { "type": "tf", "q": "R. D. Burman was the son of composer S. D. Burman.", "answer": true, "note": "R. D. Burman was affectionately known as 'Pancham Da'." },
+        { "type": "mcq", "q": "Which legendary playback singer is Lata Mangeshkar's younger sister?", "options": ["Kavita Krishnamurthy", "Alka Yagnik", "Shreya Ghoshal", "Asha Bhosle"], "answer": 3, "note": "Asha Bhosle was married to composer R. D. Burman." },
+        { "type": "timed", "q": "Which lyricist wrote the words for both 'Jai Ho' and 'Chaiyya Chaiyya'?", "answer": "Gulzar", "note": "Gulzar shared the Best Original Song Oscar for 'Jai Ho' with A. R. Rahman." },
+        { "type": "mcq", "q": "Who sang 'Mere Sapnon Ki Rani' from 'Aradhana' (1969)?", "options": ["Kishore Kumar", "Mohammed Rafi", "Mukesh", "Manna Dey"], "answer": 0, "note": "It was filmed on Rajesh Khanna in a jeep racing beside the Darjeeling toy train." },
+        { "type": "mcq", "q": "'Ae Mere Watan Ke Logon' was written to honour soldiers who died in which war?", "options": ["1965 India–Pakistan war", "1962 India–China war", "1971 India–Pakistan war", "1999 Kargil war"], "answer": 1, "note": "Lata Mangeshkar's 1963 performance famously moved Prime Minister Nehru to tears." },
+        { "type": "tf", "q": "A. R. Rahman composed the music for 'Sholay' (1975).", "answer": false, "note": "False: R. D. Burman scored Sholay, long before Rahman's 1992 debut, Roja." },
+        { "type": "mcq", "q": "Which composer duo created the music for Raj Kapoor's 'Bobby' (1973)?", "options": ["Shankar–Jaikishan", "Kalyanji–Anandji", "Laxmikant–Pyarelal", "Jatin–Lalit"], "answer": 2, "note": "Laxmikant–Pyarelal also scored Amar Akbar Anthony and Ek Duje Ke Liye." },
+        { "type": "timed", "q": "Which composer brothers created the songs of 'Dilwale Dulhania Le Jayenge' (1995)?", "answer": "Jatin–Lalit", "note": "Accept 'Jatin and Lalit' or 'Jatin–Lalit Pandit'." },
+        { "type": "mcq", "q": "The hit song 'Kajra Re' (2005) features in which film?", "options": ["Dhoom", "Salaam Namaste", "Kal Ho Naa Ho", "Bunty Aur Babli"], "answer": 3, "note": "Shankar–Ehsaan–Loy composed it, and Aishwarya Rai danced with both Bachchans." }
+      ]
+    }
+  ]
+}

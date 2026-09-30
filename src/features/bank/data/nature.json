@@ -1,0 +1,85 @@
+{
+  "area": "nature",
+  "quizzes": [
+    {
+      "slug": "animal-kingdom",
+      "title": "Wild Things",
+      "emoji": "🦁",
+      "difficulty": "easy",
+      "tags": ["animals", "wildlife", "mammals"],
+      "description": "Giants, speedsters and curious creatures from around the animal kingdom.",
+      "questions": [
+        { "type": "mcq", "q": "What is the largest animal alive today?", "options": ["African elephant", "Blue whale", "Whale shark", "Sperm whale"], "answer": 1, "note": "Blue whales can grow to around 30 metres long." },
+        { "type": "mcq", "q": "Which animal is called the 'ship of the desert'?", "options": ["Camel", "Horse", "Elephant", "Yak"], "answer": 0, "note": "Camels can go days without water and cross soft sand on wide, padded feet." },
+        { "type": "tf", "q": "A spider is a type of insect.", "answer": false, "note": "Spiders are arachnids: they have eight legs, while insects have six." },
+        { "type": "timed", "q": "What is a baby kangaroo called?", "answer": "Joey", "note": "A newborn joey is about the size of a jelly bean." },
+        { "type": "mcq", "q": "Which is the only mammal that can truly fly?", "options": ["Flying squirrel", "Sugar glider", "Bat", "Colugo"], "answer": 2, "note": "Flying squirrels, sugar gliders and colugos only glide; bats flap their wings." },
+        { "type": "mcq", "q": "Which is the tallest animal in the world?", "options": ["African elephant", "Ostrich", "Moose", "Giraffe"], "answer": 3, "note": "Despite its long neck, a giraffe has seven neck bones, the same as humans." },
+        { "type": "tf", "q": "Dolphins are mammals.", "answer": true, "note": "Dolphins breathe air and feed their young on milk." },
+        { "type": "mcq", "q": "What is a group of lions called?", "options": ["Pack", "Herd", "Pride", "Flock"], "answer": 2, "note": "Lions are the only big cats that regularly live in groups." },
+        { "type": "timed", "q": "Which black-and-white bear from China eats mostly bamboo?", "answer": "Giant panda", "note": "Accept \"panda\"; a giant panda can spend over half the day eating." },
+        { "type": "mcq", "q": "What is the largest living bird?", "options": ["Ostrich", "Emu", "Albatross", "Condor"], "answer": 0, "note": "Ostriches can't fly, but they lay the largest eggs of any living bird." }
+      ]
+    },
+    {
+      "slug": "plant-power",
+      "title": "Flower Power",
+      "emoji": "🌱",
+      "difficulty": "medium",
+      "tags": ["plants", "flowers", "botany"],
+      "description": "How plants eat, drink, breathe and grow.",
+      "questions": [
+        { "type": "mcq", "q": "Which gas do plants take in from the air for photosynthesis?", "options": ["Oxygen", "Nitrogen", "Helium", "Carbon dioxide"], "answer": 3, "note": "Plants combine carbon dioxide and water, using sunlight, to make sugar." },
+        { "type": "tf", "q": "Plants release oxygen during photosynthesis.", "answer": true, "note": "Much of the oxygen we breathe was made by plants and ocean algae." },
+        { "type": "mcq", "q": "What green pigment lets plants capture energy from sunlight?", "options": ["Carotene", "Chlorophyll", "Melanin", "Haemoglobin"], "answer": 1, "note": "Leaves change colour in autumn as chlorophyll breaks down." },
+        { "type": "timed", "q": "Which part of a plant takes up water and anchors it in the soil?", "answer": "Roots", "note": "Accept \"root\"." },
+        { "type": "mcq", "q": "What are the tiny pores on a leaf that let gases in and out called?", "options": ["Stomata", "Xylem", "Phloem", "Cuticle"], "answer": 0, "note": "Stomata can open and close to control how much water the plant loses." },
+        { "type": "mcq", "q": "What sugary liquid do bees collect from flowers to make honey?", "options": ["Pollen", "Sap", "Nectar", "Resin"], "answer": 2, "note": "Bees also carry pollen between flowers, which helps plants reproduce." },
+        { "type": "tf", "q": "Mushrooms are a type of plant.", "answer": false, "note": "Mushrooms are fungi, a separate kingdom of life from plants." },
+        { "type": "mcq", "q": "Which part of a flower develops into the fruit?", "options": ["Petal", "Stamen", "Sepal", "Ovary"], "answer": 3, "note": "That's why tomatoes and cucumbers count as fruits to a botanist." },
+        { "type": "timed", "q": "What is the loss of water vapour from a plant's leaves called?", "answer": "Transpiration", "note": "Transpiration helps pull water up from the roots to the leaves." },
+        { "type": "mcq", "q": "What kind of plant is a Venus flytrap?", "options": ["Aquatic plant", "Carnivorous plant", "Parasitic plant", "Climbing plant"], "answer": 1, "note": "Its trap snaps shut when trigger hairs inside are touched twice in quick succession." }
+      ]
+    },
+    {
+      "slug": "wild-weather",
+      "title": "Wild Weather",
+      "emoji": "⛈️",
+      "difficulty": "medium",
+      "tags": ["weather", "storms", "clouds"],
+      "description": "Clouds, storms and the instruments that help us forecast them.",
+      "questions": [
+        { "type": "mcq", "q": "Which instrument measures air pressure?", "options": ["Barometer", "Thermometer", "Rain gauge", "Hygrometer"], "answer": 0, "note": "Falling air pressure often means stormy weather is on the way." },
+        { "type": "tf", "q": "A bolt of lightning is hotter than the surface of the Sun.", "answer": true, "note": "Lightning can reach about 27,000 °C, roughly five times hotter than the Sun's surface." },
+        { "type": "mcq", "q": "What is a hurricane called when it forms in the northwest Pacific Ocean?", "options": ["Tornado", "Typhoon", "Monsoon", "Blizzard"], "answer": 1, "note": "In the Indian Ocean and around Australia, the same storms are called cyclones." },
+        { "type": "timed", "q": "What instrument measures wind speed?", "answer": "Anemometer", "note": "Most anemometers use spinning cups that turn faster as the wind picks up." },
+        { "type": "mcq", "q": "Which tall, towering type of cloud produces thunderstorms?", "options": ["Cirrus", "Stratus", "Altostratus", "Cumulonimbus"], "answer": 3, "note": "Cumulonimbus clouds can tower more than 10 km into the sky." },
+        { "type": "mcq", "q": "Which scale rates tornadoes by the damage they cause?", "options": ["Richter scale", "Saffir-Simpson scale", "Fujita scale", "Mohs scale"], "answer": 2, "note": "It is named after Japanese-American meteorologist Ted Fujita." },
+        { "type": "tf", "q": "Snowflakes usually have eight sides or points.", "answer": false, "note": "Snowflakes have six sides because of the way water molecules bond as they freeze." },
+        { "type": "mcq", "q": "What is the calm centre of a hurricane called?", "options": ["Eye", "Wall", "Core", "Funnel"], "answer": 0, "note": "The strongest winds swirl in the eyewall that surrounds the eye." },
+        { "type": "timed", "q": "What are the balls of ice that fall from thunderstorm clouds called?", "answer": "Hail", "note": "Accept \"hailstones\"." },
+        { "type": "mcq", "q": "Which colour is on the outer edge of a primary rainbow?", "options": ["Violet", "Blue", "Yellow", "Red"], "answer": 3, "note": "Violet sits on the inside edge of the arc." }
+      ]
+    },
+    {
+      "slug": "habitats-and-ecosystems",
+      "title": "Planet Earth Explorer",
+      "emoji": "🌍",
+      "difficulty": "hard",
+      "tags": ["habitats", "ecosystems", "environment", "oceans"],
+      "description": "Reefs, deserts, forests and the science of how ecosystems work.",
+      "questions": [
+        { "type": "mcq", "q": "What is the world's largest coral reef system?", "options": ["Belize Barrier Reef", "Red Sea Coral Reef", "Great Barrier Reef", "Florida Reef"], "answer": 2, "note": "It lies off the coast of Queensland, Australia, and can be seen from space." },
+        { "type": "tf", "q": "Most of the Amazon rainforest lies within Brazil.", "answer": true, "note": "Around 60% of the Amazon is in Brazil, with the rest spread across eight other countries and territories." },
+        { "type": "mcq", "q": "What is the largest hot desert in the world?", "options": ["Arabian", "Sahara", "Gobi", "Kalahari"], "answer": 1, "note": "Counting cold deserts too, Antarctica is the largest desert of all." },
+        { "type": "timed", "q": "What word describes a species found naturally in only one place on Earth?", "answer": "Endemic", "note": "Lemurs, for example, are endemic to Madagascar." },
+        { "type": "mcq", "q": "What is ground that stays frozen all year round called?", "options": ["Permafrost", "Tundra", "Bedrock", "Glacier"], "answer": 0, "note": "Permafrost can store huge amounts of carbon that is released as it thaws." },
+        { "type": "mcq", "q": "What is another name for the boreal forest?", "options": ["Savanna", "Steppe", "Tundra", "Taiga"], "answer": 3, "note": "The taiga stretches across Canada, Scandinavia and Russia." },
+        { "type": "tf", "q": "Coral is a type of plant.", "answer": false, "note": "Corals are animals, related to jellyfish and sea anemones." },
+        { "type": "mcq", "q": "What is the term for a species' role and position within its ecosystem?", "options": ["Biome", "Niche", "Habitat", "Population"], "answer": 1, "note": "Two species competing for exactly the same niche rarely coexist for long." },
+        { "type": "timed", "q": "What is the name of the deepest known point in the ocean, in the Mariana Trench?", "answer": "Challenger Deep", "note": "It is nearly 11 km deep, deeper than Mount Everest is tall." },
+        { "type": "mcq", "q": "What process turns nitrogen gas from the air into a form plants can use?", "options": ["Photosynthesis", "Decomposition", "Nitrogen fixation", "Transpiration"], "answer": 2, "note": "Bacteria in the root nodules of peas and beans are famous nitrogen fixers." }
+      ]
+    }
+  ]
+}

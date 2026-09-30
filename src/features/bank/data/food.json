@@ -1,0 +1,85 @@
+{
+  "area": "food",
+  "quizzes": [
+    {
+      "slug": "world-dishes",
+      "title": "Around the World in Dishes",
+      "emoji": "🌍",
+      "difficulty": "easy",
+      "tags": ["cuisines", "countries", "dishes"],
+      "description": "Match famous dishes to the countries that made them famous.",
+      "questions": [
+        { "type": "mcq", "q": "Sushi is a famous part of which country's cuisine?", "options": ["Japan", "China", "Korea", "Thailand"], "answer": 0, "note": "Sushi is really about the vinegared rice; raw fish alone is called sashimi." },
+        { "type": "mcq", "q": "Paella is a famous rice dish from which country?", "options": ["Italy", "Spain", "Portugal", "Mexico"], "answer": 1, "note": "Paella comes from the Valencia region on Spain's east coast." },
+        { "type": "tf", "q": "Fish and chips is a classic takeaway meal from Italy.", "answer": false, "note": "It's a British classic; fish and chip shops have been around since the 1860s." },
+        { "type": "timed", "q": "Which Italian city is known as the birthplace of pizza?", "answer": "Naples", "note": "Pizza Margherita is said to be named after Queen Margherita, who visited Naples in 1889." },
+        { "type": "mcq", "q": "Haggis is the national dish of which country?", "options": ["Ireland", "Wales", "Scotland", "England"], "answer": 2, "note": "Haggis is traditionally eaten on Burns Night, 25 January." },
+        { "type": "tf", "q": "Kimchi is a spicy fermented vegetable dish from Korea.", "answer": true, "note": "It's most often made with napa cabbage." },
+        { "type": "mcq", "q": "What is the main ingredient of hummus?", "options": ["Lentils", "Kidney beans", "Green peas", "Chickpeas"], "answer": 3, "note": "The chickpeas are blended with tahini, lemon juice and garlic." },
+        { "type": "mcq", "q": "Pho, a noodle soup, is the best-known dish of which country?", "options": ["Vietnam", "Thailand", "Cambodia", "Japan"], "answer": 0, "note": "Pho is usually made with rice noodles in a beef or chicken broth." },
+        { "type": "timed", "q": "Which country is famous for baguettes, crêpes and Camembert cheese?", "answer": "France", "note": "French baguettes were added to UNESCO's cultural heritage list in 2022." },
+        { "type": "mcq", "q": "Dim sum comes from the cuisine of which country?", "options": ["Japan", "China", "Thailand", "India"], "answer": 1, "note": "Dim sum is traditionally enjoyed with tea, a meal called yum cha." }
+      ]
+    },
+    {
+      "slug": "spice-route",
+      "title": "Spice Route",
+      "emoji": "🌶️",
+      "difficulty": "medium",
+      "tags": ["indian", "spices", "dishes"],
+      "description": "Test your knowledge of Indian cooking and the spices that flavour it.",
+      "questions": [
+        { "type": "mcq", "q": "Which spice gives many curries their bright yellow colour?", "options": ["Cumin", "Coriander", "Turmeric", "Cardamom"], "answer": 2, "note": "Turmeric is called haldi in Hindi." },
+        { "type": "tf", "q": "Paneer is a type of fresh cheese.", "answer": true, "note": "Unlike most cheeses, paneer holds its shape and doesn't melt when heated." },
+        { "type": "mcq", "q": "Which spice, made from the stigmas of a crocus flower, is the most expensive by weight?", "options": ["Vanilla", "Cardamom", "Cinnamon", "Saffron"], "answer": 3, "note": "It takes well over 100,000 crocus flowers to make one kilogram." },
+        { "type": "mcq", "q": "Traditional idli and dosa batter is made from rice and what?", "options": ["Urad dal", "Wheat flour", "Maize flour", "Oats"], "answer": 0, "note": "Urad dal is also known as black gram." },
+        { "type": "timed", "q": "Which spice, called elaichi in Hindi, is known as the \"queen of spices\"?", "answer": "Cardamom", "note": "Also accept \"elaichi\"; black pepper is called the king of spices." },
+        { "type": "mcq", "q": "Rogan josh is a signature dish of which region's cuisine?", "options": ["Punjab", "Kashmir", "Goa", "Kerala"], "answer": 1, "note": "Rogan josh is a rich red curry, usually made with lamb or mutton." },
+        { "type": "tf", "q": "Vindaloo comes from the Indian state of Punjab.", "answer": false, "note": "Vindaloo is from Goa and grew out of a Portuguese dish of meat in wine and garlic." },
+        { "type": "mcq", "q": "What is ghee?", "options": ["A lentil stew", "Sweetened yogurt", "Clarified butter", "A type of flatbread"], "answer": 2, "note": "Ghee is butter simmered until the water cooks off and the milk solids are removed." },
+        { "type": "timed", "q": "What yogurt-based drink, often made with mango, is popular across India?", "answer": "Lassi", "note": "Lassi can be sweet or salty and is a Punjabi favourite." },
+        { "type": "mcq", "q": "Which spice seeds are called jeera in Hindi?", "options": ["Mustard", "Fennel", "Fenugreek", "Cumin"], "answer": 3, "note": "Jeera rice is simply rice cooked with cumin seeds." }
+      ]
+    },
+    {
+      "slug": "food-origins",
+      "title": "Where Food Began",
+      "emoji": "🥔",
+      "difficulty": "medium",
+      "tags": ["origins", "ingredients", "history"],
+      "description": "Where everyday ingredients come from and how they grow.",
+      "questions": [
+        { "type": "mcq", "q": "Where were potatoes first grown as a crop?", "options": ["The Andes in South America", "Ireland", "Central Asia", "East Africa"], "answer": 0, "note": "Potatoes only reached Europe in the 16th century, brought by the Spanish." },
+        { "type": "tf", "q": "Peanuts grow on trees.", "answer": false, "note": "Peanuts are legumes that develop underground, which is why they're also called groundnuts." },
+        { "type": "mcq", "q": "Chocolate is made from the beans of which plant?", "options": ["Coffee", "Cacao", "Vanilla", "Carob"], "answer": 1, "note": "The Maya and Aztecs drank chocolate as a bitter, often spicy drink." },
+        { "type": "timed", "q": "In which country did tea drinking begin?", "answer": "China", "note": "Legend credits Emperor Shennong with discovering tea around 2737 BC." },
+        { "type": "mcq", "q": "Which spice comes from the inner bark of a tree?", "options": ["Nutmeg", "Cloves", "Cinnamon", "Black pepper"], "answer": 2, "note": "Cloves are dried flower buds, and nutmeg is a seed." },
+        { "type": "mcq", "q": "Vanilla comes from the pods of which kind of plant?", "options": ["A palm", "A lily", "A cactus", "An orchid"], "answer": 3, "note": "Vanilla is native to Mexico, where the Totonac people first grew it." },
+        { "type": "tf", "q": "A cashew nut grows on the outside of a fruit called the cashew apple.", "answer": true, "note": "The shell contains an irritating oil, which is why cashews are sold already shelled." },
+        { "type": "mcq", "q": "Traditional Greek feta cheese is made mainly from which milk?", "options": ["Sheep's milk", "Cow's milk", "Buffalo milk", "Camel milk"], "answer": 0, "note": "By EU rules, feta must be at least 70% sheep's milk, with the rest goat's milk." },
+        { "type": "timed", "q": "Which fruit, native to Mexico, is the main ingredient in guacamole?", "answer": "Avocado", "note": "The word avocado comes from the Aztec word ahuacatl." },
+        { "type": "mcq", "q": "Where did chilli peppers originally come from?", "options": ["India", "The Americas", "Thailand", "China"], "answer": 1, "note": "Chillies reached India with Portuguese traders in the 1500s." }
+      ]
+    },
+    {
+      "slug": "drinks-around-the-world",
+      "title": "Drinks Cabinet",
+      "emoji": "🍵",
+      "difficulty": "hard",
+      "tags": ["drinks", "tea", "coffee"],
+      "description": "Teas, coffees and other drinks from every corner of the globe.",
+      "questions": [
+        { "type": "mcq", "q": "Earl Grey tea is flavoured with oil from which citrus fruit?", "options": ["Lemon", "Yuzu", "Bergamot", "Lime"], "answer": 2, "note": "Bergamot is a fragrant citrus grown mainly in southern Italy." },
+        { "type": "tf", "q": "Coca-Cola was invented by a pharmacist.", "answer": true, "note": "John Pemberton created it in Atlanta in 1886." },
+        { "type": "mcq", "q": "Matcha is a powdered form of which drink?", "options": ["Coffee", "Cocoa", "Barley tea", "Green tea"], "answer": 3, "note": "Matcha is central to the Japanese tea ceremony." },
+        { "type": "mcq", "q": "Rooibos, or \"red bush\" tea, comes from which country?", "options": ["South Africa", "Kenya", "Morocco", "Sri Lanka"], "answer": 0, "note": "Rooibos is naturally caffeine-free." },
+        { "type": "timed", "q": "Which Italian coffee is espresso topped with steamed milk and a thick layer of milk foam?", "answer": "Cappuccino", "note": "It's named after the colour of the robes worn by Capuchin friars." },
+        { "type": "mcq", "q": "Japanese sake is brewed from which grain?", "options": ["Barley", "Rice", "Wheat", "Millet"], "answer": 1, "note": "Sake is often called rice wine, but it's brewed more like beer." },
+        { "type": "tf", "q": "Horchata, a sweet drink popular in Spain and Mexico, is made from pineapples.", "answer": false, "note": "Spanish horchata uses tiger nuts, while Mexican horchata is usually made with rice." },
+        { "type": "mcq", "q": "Which drink is made by fermenting sweet tea with a culture of bacteria and yeast?", "options": ["Kefir", "Kvass", "Kombucha", "Lassi"], "answer": 2, "note": "The rubbery culture is nicknamed a SCOBY." },
+        { "type": "timed", "q": "Which South American drink is sipped through a metal straw called a bombilla?", "answer": "Mate", "note": "Also accept \"yerba mate\"; it's brewed from the leaves of a kind of holly." },
+        { "type": "mcq", "q": "Darjeeling tea is grown in which Indian state?", "options": ["Assam", "Sikkim", "Himachal Pradesh", "West Bengal"], "answer": 3, "note": "Darjeeling tea was the first product in India to get a Geographical Indication tag." }
+      ]
+    }
+  ]
+}

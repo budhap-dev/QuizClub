@@ -94,6 +94,7 @@ function normalise(raw: RawAiQuiz, req: AiQuizRequest): Quiz {
     category: req.category,
     emoji: (raw.emoji ?? '✨').trim().slice(0, 4) || '✨',
     source: 'ai',
+    difficulty: req.difficulty === 'mixed' ? undefined : req.difficulty,
     questions,
     createdAt: now,
     updatedAt: now,

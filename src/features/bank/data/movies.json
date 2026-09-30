@@ -1,0 +1,85 @@
+{
+  "area": "movies",
+  "quizzes": [
+    {
+      "slug": "bollywood-blockbusters",
+      "title": "Bollywood Blockbusters",
+      "emoji": "🎬",
+      "difficulty": "easy",
+      "tags": ["bollywood", "hindi cinema", "classics"],
+      "description": "Iconic heroes, villains and dialogues from Hindi cinema's biggest hits.",
+      "questions": [
+        { "type": "mcq", "q": "Who played Raj in 'Dilwale Dulhania Le Jayenge' (1995)?", "options": ["Shah Rukh Khan", "Salman Khan", "Aamir Khan", "Saif Ali Khan"], "answer": 0, "note": "DDLJ ran at Mumbai's Maratha Mandir cinema for over 1,000 weeks." },
+        { "type": "mcq", "q": "What is the name of the dacoit villain in 'Sholay' (1975)?", "options": ["Dr. Dang", "Gabbar Singh", "Shakaal", "Kancha Cheena"], "answer": 1, "note": "Amjad Khan played Gabbar, and 'Kitne aadmi the?' is still quoted everywhere." },
+        { "type": "tf", "q": "'3 Idiots' (2009) was directed by Rajkumar Hirani.", "answer": true, "note": "It was loosely based on Chetan Bhagat's novel 'Five Point Someone'." },
+        { "type": "mcq", "q": "Which film has the famous line 'Mogambo khush hua'?", "options": ["Karan Arjun", "Don", "Mr. India", "Deewaar"], "answer": 2, "note": "Amrish Puri played Mogambo in the 1987 hit Mr. India." },
+        { "type": "timed", "q": "Which legendary Bollywood actor is popularly called 'Big B'?", "answer": "Amitabh Bachchan", "note": "Accept 'Amitabh'; he made his film debut in Saat Hindustani (1969)." },
+        { "type": "mcq", "q": "Aamir Khan's 'Lagaan' (2001) builds up to a big match in which sport?", "options": ["Hockey", "Football", "Kabaddi", "Cricket"], "answer": 3, "note": "Lagaan was nominated for the Oscar for Best Foreign Language Film." },
+        { "type": "tf", "q": "'Dangal' (2016) tells the story of a family of boxers.", "answer": false, "note": "False: it follows wrestler Mahavir Singh Phogat and his daughters Geeta and Babita." },
+        { "type": "mcq", "q": "Who played Mastani in 'Bajirao Mastani' (2015)?", "options": ["Deepika Padukone", "Priyanka Chopra", "Katrina Kaif", "Kareena Kapoor"], "answer": 0, "note": "Priyanka Chopra played Kashibai, and Ranveer Singh played Bajirao." },
+        { "type": "timed", "q": "In 'Sholay', what is the name of the chatty tonga driver played by Hema Malini?", "answer": "Basanti", "note": "Her faithful horse in the film is called Dhanno." },
+        { "type": "mcq", "q": "Which 2001 Karan Johar film starred Amitabh, Jaya, Shah Rukh, Kajol, Hrithik and Kareena?", "options": ["Kuch Kuch Hota Hai", "Kabhi Khushi Kabhie Gham", "Mohabbatein", "Kal Ho Naa Ho"], "answer": 1, "note": "Fans usually shorten the title to K3G." }
+      ]
+    },
+    {
+      "slug": "hollywood-classics",
+      "title": "Hollywood Golden Reels",
+      "emoji": "🎞️",
+      "difficulty": "medium",
+      "tags": ["hollywood", "classics", "oscars"],
+      "description": "Legendary directors, stars and lines from Hollywood's greatest films.",
+      "questions": [
+        { "type": "mcq", "q": "Who directed the thriller 'Psycho' (1960)?", "options": ["Stanley Kubrick", "Orson Welles", "Alfred Hitchcock", "Billy Wilder"], "answer": 2, "note": "Surprisingly, Hitchcock never won a competitive Oscar for Best Director." },
+        { "type": "timed", "q": "In 'Casablanca' (1942), what is the first name of Humphrey Bogart's character?", "answer": "Rick", "note": "Accept 'Rick Blaine'; he runs Rick's Café Américain." },
+        { "type": "mcq", "q": "Which 1939 film won the Academy Award for Best Picture?", "options": ["The Wizard of Oz", "Casablanca", "Citizen Kane", "Gone with the Wind"], "answer": 3, "note": "Hattie McDaniel became the first Black actor to win an Oscar for this film." },
+        { "type": "tf", "q": "Orson Welles directed, co-wrote and starred in 'Citizen Kane' (1941).", "answer": true, "note": "Welles was just 25 years old when he made it." },
+        { "type": "mcq", "q": "Which actor played Don Vito Corleone in 'The Godfather' (1972)?", "options": ["Marlon Brando", "Al Pacino", "Robert De Niro", "James Caan"], "answer": 0, "note": "De Niro played the young Vito in Part II; both actors won Oscars for the role." },
+        { "type": "mcq", "q": "The line 'You talkin' to me?' comes from which 1976 Martin Scorsese film?", "options": ["Raging Bull", "Taxi Driver", "Goodfellas", "Mean Streets"], "answer": 1, "note": "Robert De Niro delivers the famous line to his own reflection in a mirror." },
+        { "type": "tf", "q": "'Titanic' (1997) was directed by Steven Spielberg.", "answer": false, "note": "False: James Cameron directed it, and it won 11 Oscars." },
+        { "type": "mcq", "q": "Who starred as Holly Golightly in 'Breakfast at Tiffany's' (1961)?", "options": ["Marilyn Monroe", "Grace Kelly", "Audrey Hepburn", "Elizabeth Taylor"], "answer": 2, "note": "Her little black dress was designed by Hubert de Givenchy." },
+        { "type": "timed", "q": "Which director made 'Jaws' (1975), 'E.T.' and 'Jurassic Park'?", "answer": "Steven Spielberg", "note": "Accept 'Spielberg'; Jaws is often called the first summer blockbuster." },
+        { "type": "mcq", "q": "Which Best Picture winner has the line 'My mama always said life was like a box of chocolates'?", "options": ["Pulp Fiction", "The Shawshank Redemption", "Four Weddings and a Funeral", "Forrest Gump"], "answer": 3, "note": "Tom Hanks won back-to-back Best Actor Oscars for Philadelphia and Forrest Gump." }
+      ]
+    },
+    {
+      "slug": "animated-films",
+      "title": "Animation Station",
+      "emoji": "🎨",
+      "difficulty": "medium",
+      "tags": ["animation", "disney", "pixar", "ghibli"],
+      "description": "From Disney's first feature to Pixar and Studio Ghibli favourites.",
+      "questions": [
+        { "type": "mcq", "q": "What was Pixar's first full-length feature film, released in 1995?", "options": ["Toy Story", "A Bug's Life", "Monsters, Inc.", "Finding Nemo"], "answer": 0, "note": "It was the first feature film made entirely with computer animation." },
+        { "type": "tf", "q": "'Snow White and the Seven Dwarfs' (1937) was Disney's first full-length animated feature.", "answer": true, "note": "Sceptics nicknamed it 'Disney's Folly' before it became a huge hit." },
+        { "type": "mcq", "q": "In 'The Lion King' (1994), what is the name of Simba's villainous uncle?", "options": ["Mufasa", "Scar", "Rafiki", "Zazu"], "answer": 1, "note": "Jeremy Irons voiced Scar in the original film." },
+        { "type": "timed", "q": "What is the name of the talking snowman in Disney's 'Frozen' (2013)?", "answer": "Olaf", "note": "Josh Gad voiced Olaf, who famously loves warm hugs." },
+        { "type": "mcq", "q": "Which Japanese studio made the Oscar-winning 'Spirited Away' (2001)?", "options": ["Toei Animation", "Pixar", "Studio Ghibli", "DreamWorks"], "answer": 2, "note": "Hayao Miyazaki directed it, and it won Best Animated Feature in 2003." },
+        { "type": "mcq", "q": "Which film won the first ever Oscar for Best Animated Feature?", "options": ["Monsters, Inc.", "Toy Story 2", "Spirited Away", "Shrek"], "answer": 3, "note": "Shrek beat Monsters, Inc. and Jimmy Neutron at the 2002 ceremony." },
+        { "type": "tf", "q": "'The Incredibles' (2004) was made by DreamWorks Animation.", "answer": false, "note": "False: it's a Pixar film, written and directed by Brad Bird." },
+        { "type": "mcq", "q": "In Pixar's 'Ratatouille' (2007), Remy the rat dreams of cooking in which city?", "options": ["Paris", "Lyon", "Rome", "Marseille"], "answer": 0, "note": "Remy's hero is the late celebrity chef Auguste Gusteau." },
+        { "type": "timed", "q": "What is the name of the cowboy doll voiced by Tom Hanks in 'Toy Story'?", "answer": "Woody", "note": "His space-ranger rival, Buzz Lightyear, was voiced by Tim Allen." },
+        { "type": "mcq", "q": "What is the name of the panda who becomes the Dragon Warrior in 'Kung Fu Panda'?", "options": ["Shifu", "Po", "Tai Lung", "Oogway"], "answer": 1, "note": "Jack Black voices Po in the DreamWorks series." }
+      ]
+    },
+    {
+      "slug": "tv-series",
+      "title": "Binge-Worthy TV",
+      "emoji": "📺",
+      "difficulty": "hard",
+      "tags": ["tv", "web series", "drama", "sitcoms"],
+      "description": "Crime dramas, sitcoms and web series that kept the world watching.",
+      "questions": [
+        { "type": "mcq", "q": "In 'Game of Thrones', on which continent do the Seven Kingdoms lie?", "options": ["Essos", "Middle-earth", "Westeros", "Tamriel"], "answer": 2, "note": "The series (2011–2019) was based on George R. R. Martin's novels." },
+        { "type": "timed", "q": "What alias does chemistry teacher Walter White use in 'Breaking Bad'?", "answer": "Heisenberg", "note": "The name nods to the physicist Werner Heisenberg." },
+        { "type": "mcq", "q": "In 'Stranger Things', what is the dark alternate dimension called?", "options": ["The Nether", "The Void", "The Shadowlands", "The Upside Down"], "answer": 3, "note": "The show is set in the fictional town of Hawkins, Indiana." },
+        { "type": "tf", "q": "The US sitcom 'The Office' is a remake of a British series co-created by Ricky Gervais.", "answer": true, "note": "The original UK version ran for just two series and two Christmas specials." },
+        { "type": "mcq", "q": "Who played the title role in the BBC series 'Sherlock' (2010–2017)?", "options": ["Benedict Cumberbatch", "Martin Freeman", "Tom Hiddleston", "Matt Smith"], "answer": 0, "note": "Martin Freeman co-starred as Dr John Watson." },
+        { "type": "mcq", "q": "In which Indian web series does Pankaj Tripathi play the crime boss Kaleen Bhaiya?", "options": ["Sacred Games", "Mirzapur", "Paatal Lok", "The Family Man"], "answer": 1, "note": "Mirzapur premiered on Amazon Prime Video in 2018." },
+        { "type": "tf", "q": "'The Simpsons' is set in the fictional town of Shelbyville.", "answer": false, "note": "False: the family lives in Springfield; Shelbyville is its rival town." },
+        { "type": "mcq", "q": "Which series follows the Shelby crime family in Birmingham after the First World War?", "options": ["Boardwalk Empire", "The Sopranos", "Peaky Blinders", "Ozark"], "answer": 2, "note": "Cillian Murphy starred as gang leader Thomas Shelby." },
+        { "type": "timed", "q": "In 'Friends', what is the shared surname of siblings Ross and Monica?", "answer": "Geller", "note": "David Schwimmer played Ross and Courteney Cox played Monica." },
+        { "type": "mcq", "q": "Which US channel originally aired 'The Sopranos' (1999–2007)?", "options": ["AMC", "NBC", "Showtime", "HBO"], "answer": 3, "note": "James Gandolfini starred as New Jersey mob boss Tony Soprano." }
+      ]
+    }
+  ]
+}

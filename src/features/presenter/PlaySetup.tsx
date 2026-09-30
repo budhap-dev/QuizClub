@@ -1,16 +1,17 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { Eye, MonitorPlay, Play, Plus } from 'lucide-react'
-import { Button, Card, EmojiPicker, Modal, PageHeader, TeamChip } from '@/components'
+import { Eye, Loader2, MonitorPlay, Play, Plus, Search } from 'lucide-react'
+import { Button, Card, EmojiPicker, LevelBadge, LevelSelect, Modal, PageHeader, TeamChip } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { cn, TEAM_COLORS } from '@/utils'
-import type { Quiz, QuizSource } from '@/types'
+import type { Difficulty, Quiz, QuizSource } from '@/types'
 import { PACKS } from '@/features/library/packs'
 import { makeQuiz } from '@/features/library/helpers'
+import { searchBank, toQuiz, useBank } from '@/features/bank/bank'
 
-type Tab = 'library' | QuizSource
+type Tab = 'library' | 'bank' | QuizSource
 
 const StepTitle = ({ n, children }: { n: number; children: React.ReactNode }) => (
   <h2 className="text-lg font-semibold flex items-center gap-2.5">
@@ -29,8 +30,13 @@ export function PlaySetup() {
   const [count, setCount] = useState(10)
   const [newTeam, setNewTeam] = useState('')
   const [editing, setEditing] = useState<string | null>(null)
+  const [bankQuery, setBankQuery] = useState('')
+  const [bankPick, setBankPick] = useState<string | null>(null)
+  const [level, setLevel] = useState<Difficulty | undefined>()
+  const bank = useBank()
+  const bankHits = useMemo(() => (bank.quizzes ? searchBank(bank.quizzes, { query: bankQuery, difficulty: level }) : []), [bank.quizzes, bankQuery, level])
 
-  const savedByTab = useMemo(() => saved.filter((q) => q.source === tab), [saved, tab])
+  const savedByTab = useMemo(() => saved.filter((q) => q.source === tab && (!level || q.difficulty === level)), [saved, tab, level])
   const editingTeam = teams.find((t) => t.id === editing)
 
   const chooseLibrary = (packId: string) => {
@@ -46,6 +52,7 @@ export function PlaySetup() {
 
   const tabs: { id: Tab; label: string }[] = [
     { id: 'library', label: 'Built-in' },
+    { id: 'bank', label: 'Quiz bank' },
     { id: 'ai', label: 'AI quizzes' },
     { id: 'manual', label: 'My quizzes' },
   ]
@@ -68,6 +75,7 @@ export function PlaySetup() {
                   onClick={() => {
                     setTab(t.id)
                     setSelected(null)
+                    setBankPick(null)
                   }}
                   className={cn('px-3 py-1.5 rounded-md text-sm font-medium transition-colors', tab === t.id ? 'bg-fg/12 text-fg' : 'text-fg/60 hover:text-fg')}
                 >
@@ -76,6 +84,9 @@ export function PlaySetup() {
               ))}
             </div>
           </div>
+
+          {/* Built-in packs mix levels, so the level filter applies to the bank and saved quizzes. */}
+          {tab !== 'library' && <LevelSelect label="Level" noneLabel="All levels" noneShort="All" value={level} onChange={setLevel} className="mb-3" />}
 
           {tab === 'library' && (
             <>
@@ -111,9 +122,63 @@ export function PlaySetup() {
             </>
           )}
 
-          {tab !== 'library' && (
+          {tab === 'bank' && (
+            <>
+              <div className="relative mb-3">
+                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-fg/45 pointer-events-none" />
+                <input
+                  type="search"
+                  className="input !pl-9"
+                  placeholder="Search the quiz bank…"
+                  value={bankQuery}
+                  onChange={(e) => setBankQuery(e.target.value)}
+                  aria-label="Search the quiz bank"
+                />
+              </div>
+              {!bank.quizzes ? (
+                <div className="py-10 flex justify-center" role="status" aria-label="Loading">
+                  <Loader2 className="animate-spin text-fg/50" size={24} />
+                </div>
+              ) : (
+                <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
+                  {bankHits.length === 0 && <div className="col-span-full text-center py-10 text-fg/60 text-sm">{bankQuery ? `No quizzes match "${bankQuery}".` : 'No quizzes at this level.'}</div>}
+                  {bankHits.map(({ quiz: b }) => {
+                    const active = bankPick === b.id
+                    return (
+                      <button
+                        key={b.id}
+                        onClick={() => {
+                          setBankPick(b.id)
+                          setSelected(toQuiz(b))
+                        }}
+                        aria-pressed={active}
+                        className={cn('text-left rounded-xl p-3 border transition-colors flex gap-3 items-start', active ? 'bg-fg/12' : 'bg-fg/5 hover:bg-fg/10 border-transparent')}
+                        style={active ? { borderColor: b.area.color } : undefined}
+                      >
+                        <span className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0" style={{ background: `color-mix(in srgb, ${b.area.color} 18%, transparent)` }}>
+                          {b.emoji}
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block font-semibold text-sm truncate">{b.title}</span>
+                          <span className="flex items-center gap-1.5 flex-wrap text-xs text-fg/60 mt-1">
+                            <LevelBadge level={b.difficulty} />
+                            {b.area.label}
+                          </span>
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+            </>
+          )}
+
+          {(tab === 'ai' || tab === 'manual') && (
             <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
-              {savedByTab.length === 0 && (
+              {savedByTab.length === 0 && level && saved.some((q) => q.source === tab) && (
+                <div className="col-span-full text-center py-10 text-fg/60 text-sm">No {tab === 'ai' ? 'AI-generated' : 'manual'} quizzes at this level.</div>
+              )}
+              {!saved.some((q) => q.source === tab) && (
                 <div className="col-span-full text-center py-10 text-fg/60 text-sm">
                   No {tab === 'ai' ? 'AI-generated' : 'manual'} quizzes yet.{' '}
                   <button className="underline underline-offset-4 hover:text-fg" onClick={() => navigate(tab === 'ai' ? '/create/ai' : '/create/manual')}>
@@ -133,7 +198,10 @@ export function PlaySetup() {
                     <span className="w-10 h-10 rounded-lg bg-fg/8 flex items-center justify-center text-xl shrink-0">{q.emoji}</span>
                     <span className="min-w-0">
                       <span className="block font-semibold text-sm truncate">{q.title}</span>
-                      <span className="block text-xs text-fg/60 mt-0.5">{q.questions.length} questions</span>
+                      <span className="flex items-center gap-1.5 flex-wrap text-xs text-fg/60 mt-1">
+                        {q.difficulty && <LevelBadge level={q.difficulty} />}
+                        {q.questions.length} questions
+                      </span>
                     </span>
                   </button>
                 )

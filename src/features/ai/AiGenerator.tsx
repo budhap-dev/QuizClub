@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { Bot, Loader2, Pencil, Play, RefreshCw, Save, Sparkles, X } from 'lucide-react'
-import { Button, Card, PageHeader } from '@/components'
+import { Button, Card, LevelBadge, PageHeader } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -123,12 +123,12 @@ export function AiGenerator() {
 
           <div className="grid grid-cols-2 gap-3 mb-4">
             <label className="block">
-              <span className="text-sm text-fg/70">Difficulty</span>
+              <span className="text-sm text-fg/70">Level</span>
               <select className="input mt-1" value={form.difficulty} onChange={(e) => set('difficulty', e.target.value as AiQuizRequest['difficulty'])}>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
-                <option value="mixed">Mixed</option>
+                <option value="mixed">Mixed levels</option>
               </select>
             </label>
             <label className="block">
@@ -217,7 +217,10 @@ export function AiGenerator() {
                   <div className="w-11 h-11 rounded-xl bg-fg/8 flex items-center justify-center text-2xl shrink-0">{result.emoji}</div>
                   <div className="flex-1 min-w-0">
                     <input className="input font-semibold !py-1.5" value={result.title} onChange={(e) => setResult({ ...result, title: e.target.value })} />
-                    <p className="text-sm text-fg/60 mt-1">{result.description}</p>
+                    <p className="text-sm text-fg/60 mt-1">
+                      {result.difficulty && <LevelBadge level={result.difficulty} className="mr-2 align-middle" />}
+                      {result.description}
+                    </p>
                   </div>
                 </div>
                 <div className="space-y-1.5 max-h-[46vh] overflow-y-auto pr-1 mb-4">
