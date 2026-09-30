@@ -1,18 +1,21 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Gamepad2, Home, Library, Play, Settings, Volume2, VolumeX } from 'lucide-react'
+import { Volume2, VolumeX } from 'lucide-react'
 import { Logo, ThemeButton } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
 import { VaultBadge } from '@/features/vault/VaultBadge'
 import { cn } from '@/utils'
+import { FloatingMenu } from './FloatingMenu'
+import { NAV, isActive } from './nav'
 
-const nav = [
-  { to: '/', label: 'Home', Icon: Home },
-  { to: '/quizzes', label: 'Quizzes', Icon: Library },
-  { to: '/play', label: 'Play', Icon: Play },
-  { to: '/games', label: 'Games', Icon: Gamepad2 },
-  { to: '/settings', label: 'Settings', Icon: Settings },
-]
+const Brand = () => (
+  <Link to="/" className="flex items-center gap-2.5 whitespace-nowrap" aria-label="QuizClub home">
+    <Logo />
+    <span className="font-display font-semibold text-lg tracking-tight">
+      <span className="text-gradient">Quiz</span>Club
+    </span>
+  </Link>
+)
 
 export function Layout() {
   const { pathname } = useLocation()
@@ -21,17 +24,19 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <nav className="sticky top-0 z-40 px-4 py-3">
-        <div className="max-w-6xl mx-auto glass rounded-2xl pl-3 pr-2 py-1.5 flex items-center gap-1 overflow-x-auto no-scrollbar">
-          {/* Phones get the mark only so the five nav icons plus vault/theme/mute still fit in the pill. */}
-          <Link to="/" className="flex items-center gap-2.5 mr-auto pr-2 whitespace-nowrap" aria-label="QuizClub home">
-            <Logo />
-            <span className="font-display font-semibold text-lg tracking-tight hidden sm:inline">
-              <span className="text-gradient">Quiz</span>Club
-            </span>
-          </Link>
-          {nav.map(({ to, label, Icon }) => {
-            const active = to === '/' ? pathname === '/' : pathname.startsWith(to)
+      {/* Phones: just the brand at the top; navigation lives in the floating menu. */}
+      <header className="md:hidden px-4 pt-4 pb-1">
+        <Brand />
+      </header>
+
+      {/* Tablets and up: sticky top bar on a near-opaque surface so content doesn't show through. */}
+      <nav className="hidden md:block sticky top-0 z-40 px-4 py-3 bg-linear-to-b from-ink from-40% via-ink/70 to-transparent" aria-label="Main">
+        <div className="max-w-6xl mx-auto nav-surface rounded-2xl pl-3 pr-2 py-1.5 flex items-center gap-1">
+          <div className="mr-auto pr-2">
+            <Brand />
+          </div>
+          {NAV.map(({ to, label, Icon }) => {
+            const active = isActive(to, pathname)
             return (
               <Link
                 key={to}
@@ -46,11 +51,11 @@ export function Layout() {
                   <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-lg bg-fg/12" transition={{ type: 'spring', stiffness: 500, damping: 35 }} />
                 )}
                 <Icon size={16} className="relative shrink-0" />
-                <span className="relative hidden md:inline">{label}</span>
+                <span className="relative">{label}</span>
               </Link>
             )
           })}
-          <span className="w-px h-6 bg-fg/12 mx-1 shrink-0 hidden sm:block" aria-hidden />
+          <span className="w-px h-6 bg-fg/12 mx-1 shrink-0" aria-hidden />
           <VaultBadge />
           <ThemeButton />
           <button
@@ -64,12 +69,17 @@ export function Layout() {
           </button>
         </div>
       </nav>
+
+      <div className="md:hidden">
+        <FloatingMenu />
+      </div>
+
       <motion.main
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
         transition={{ duration: 0.2 }}
-        className="flex-1 w-full max-w-6xl mx-auto px-4 pb-16 pt-2"
+        className="flex-1 w-full max-w-6xl mx-auto px-4 pb-28 md:pb-16 pt-2"
       >
         <Outlet />
       </motion.main>
