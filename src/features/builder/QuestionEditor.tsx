@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Check, Plus, Upload, X } from 'lucide-react'
-import { Button } from '@/components'
+import { Button, alertDialog } from '@/components'
 import type { McqQuestion, Question, QuestionType } from '@/types'
 import { cn, OPTION_LABELS } from '@/utils'
 
@@ -47,7 +47,7 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
   const onImageFile = async (file?: File) => {
     if (!file) return
     if (file.size > 1_500_000) {
-      alert('Please use an image under 1.5 MB (or paste a URL instead).')
+      void alertDialog({ title: 'Image too large', message: 'Use an image under 1.5 MB, or paste an image URL instead.' })
       return
     }
     patch({ imageUrl: await fileToDataUrl(file) })

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Eye, RefreshCw } from 'lucide-react'
-import { Button, Card, party } from '@/components'
+import { Button, Card, alertDialog, party } from '@/components'
 import { cn, pick } from '@/utils'
 import { sfx } from '@/utils/sounds'
 import { AwardBar } from '../AwardBar'
@@ -106,7 +106,7 @@ export default function Wordle() {
 
   const setCustomSecret = () => {
     const w = custom.toUpperCase().replace(/[^A-Z]/g, '')
-    if (w.length !== 5) return alert('Enter a 5-letter word.')
+    if (w.length !== 5) return void alertDialog({ title: 'Word must be 5 letters', message: 'Enter a 5-letter word to use as the secret.' })
     reset(w)
   }
 

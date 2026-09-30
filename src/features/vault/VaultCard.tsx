@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Cloud, Eye, EyeOff, KeyRound, Loader2, Lock, LockOpen, RefreshCw, Trash2 } from 'lucide-react'
-import { Button, Card } from '@/components'
+import { Button, Card, confirmDialog } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { cn } from '@/utils'
 import { useVaultStore, type VaultStatus } from './vaultStore'
@@ -148,8 +148,14 @@ export function VaultCard({ className }: { className?: string }) {
                 size="sm"
                 variant="ghost"
                 className="text-fg/60 hover:text-red"
-                onClick={() => {
-                  if (confirm('Delete the cloud copy of your library? Quizzes on this device are kept.')) void deleteVault()
+                onClick={async () => {
+                  const ok = await confirmDialog({
+                    title: 'Delete the cloud copy?',
+                    message: 'Your library is removed from the server and this device is locked. Quizzes on this device are kept. Lock your other devices first, or they will upload their copy again.',
+                    confirmLabel: 'Delete cloud copy',
+                    tone: 'danger',
+                  })
+                  if (ok) void deleteVault()
                 }}
               >
                 <Trash2 /> Delete cloud copy

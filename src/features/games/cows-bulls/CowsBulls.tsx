@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Delete, Eye, HelpCircle, RefreshCw } from 'lucide-react'
-import { Button, Card, party } from '@/components'
+import { Button, Card, alertDialog, party } from '@/components'
 import { cn, shuffle } from '@/utils'
 import { sfx } from '@/utils/sounds'
 import { AwardBar } from '../AwardBar'
@@ -86,7 +86,7 @@ export default function CowsBulls() {
 
   const setCustomSecret = () => {
     if (!/^\d{4}$/.test(custom) || new Set(custom).size !== 4) {
-      alert('Enter 4 different digits.')
+      void alertDialog({ title: 'Invalid secret number', message: 'Enter 4 different digits, for example 4071.' })
       return
     }
     reset(custom)

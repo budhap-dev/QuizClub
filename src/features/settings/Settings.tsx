@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Download, Settings as SettingsIcon, Upload } from 'lucide-react'
-import { Button, Card, PageHeader, ThemePicker } from '@/components'
+import { Button, Card, PageHeader, ThemePicker, alertDialog, confirmDialog } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -21,9 +21,9 @@ export function Settings() {
     try {
       const data = await readJsonFile<Quiz[] | Quiz>(file)
       const n = importMany(Array.isArray(data) ? data : [data])
-      alert(`Imported ${n} quiz${n === 1 ? '' : 'zes'}.`)
+      void alertDialog({ title: 'Import complete', message: `Imported ${n} quiz${n === 1 ? '' : 'zes'}.` })
     } catch {
-      alert('That file is not a valid QuizClub export.')
+      void alertDialog({ title: 'Import failed', message: 'That file is not a valid QuizClub export.', tone: 'danger' })
     }
   }
 
@@ -88,13 +88,19 @@ export function Settings() {
         <Card>
           <h2 className="text-lg font-semibold mb-4">Reset</h2>
           <div className="flex flex-wrap gap-2">
-            <Button variant="secondary" className="text-red" onClick={() => confirm('Remove all teams?') && clearTeams()}>
+            <Button variant="secondary" className="text-red" onClick={async () => (await confirmDialog({ title: 'Remove all teams?', message: 'Every team and player is removed, along with their scores.', confirmLabel: 'Remove teams', tone: 'danger' })) && clearTeams()}>
               Clear teams
             </Button>
             <Button
               variant="danger"
-              onClick={() => {
-                if (confirm('Delete ALL saved quizzes? This cannot be undone.')) clearAll()
+              onClick={async () => {
+                const ok = await confirmDialog({
+                  title: 'Delete all quizzes?',
+                  message: `All ${quizzes.length} saved ${quizzes.length === 1 ? 'quiz is' : 'quizzes are'} removed from this device, and from your other devices if the cloud vault is unlocked. This cannot be undone.`,
+                  confirmLabel: 'Delete all',
+                  tone: 'danger',
+                })
+                if (ok) clearAll()
               }}
             >
               Delete all quizzes

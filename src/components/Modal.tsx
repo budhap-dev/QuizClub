@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useId } from 'react'
 import { X } from 'lucide-react'
 import { cn } from '@/utils'
 
@@ -9,9 +9,13 @@ interface ModalProps {
   title?: string
   children: React.ReactNode
   className?: string
+  role?: 'dialog' | 'alertdialog'
+  /** id of the element that names the dialog; defaults to the title heading. */
+  labelledBy?: string
 }
 
-export function Modal({ open, onClose, title, children, className }: ModalProps) {
+export function Modal({ open, onClose, title, children, className, role = 'dialog', labelledBy }: ModalProps) {
+  const titleId = useId()
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
@@ -31,6 +35,9 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
         >
           <motion.div
             onClick={(e) => e.stopPropagation()}
+            role={role}
+            aria-modal="true"
+            aria-labelledby={labelledBy ?? (title ? titleId : undefined)}
             initial={{ y: 24, opacity: 0, scale: 0.98 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 24, opacity: 0, scale: 0.98 }}
@@ -42,7 +49,9 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
           >
             {title && (
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold">{title}</h2>
+                <h2 id={titleId} className="text-lg font-semibold">
+                  {title}
+                </h2>
                 <button
                   onClick={onClose}
                   className="w-8 h-8 -mr-1 rounded-lg flex items-center justify-center text-fg/60 hover:text-fg hover:bg-fg/10 transition-colors"
