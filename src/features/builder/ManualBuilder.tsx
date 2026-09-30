@@ -38,6 +38,7 @@ function issues(q: Question): string | null {
   if (q.type === 'mcq') {
     if (q.options.some((o) => !o.trim())) return 'Empty option'
     if (q.options.length < 2) return 'Need at least 2 options'
+    if (!(q.correctIndex >= 0 && q.correctIndex < q.options.length)) return 'Mark the correct answer'
   }
   if (q.type === 'timed' && !q.answer.trim()) return 'Missing answer'
   return null

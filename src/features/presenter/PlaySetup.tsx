@@ -39,9 +39,16 @@ export function PlaySetup() {
   const savedByTab = useMemo(() => saved.filter((q) => q.source === tab && (!level || q.difficulty === level)), [saved, tab, level])
   const editingTeam = teams.find((t) => t.id === editing)
 
-  const chooseLibrary = (packId: string) => {
+  const [packPick, setPackPick] = useState<string | null>(null)
+  const chooseLibrary = (packId: string, n = count) => {
     const pack = PACKS.find((p) => p.id === packId)!
-    setSelected(makeQuiz(pack, Math.min(count, pack.poolSize)))
+    setPackPick(packId)
+    setSelected(makeQuiz(pack, Math.min(n, pack.poolSize)))
+  }
+  const changeCount = (n: number) => {
+    setCount(n)
+    // Rebuild the chosen pack so the new count is what gets presented.
+    if (packPick) chooseLibrary(packPick, n)
   }
 
   const go = () => {
@@ -76,6 +83,7 @@ export function PlaySetup() {
                     setTab(t.id)
                     setSelected(null)
                     setBankPick(null)
+                    setPackPick(null)
                   }}
                   className={cn('px-3 py-1.5 rounded-md text-sm font-medium transition-colors', tab === t.id ? 'bg-fg/12 text-fg' : 'text-fg/60 hover:text-fg')}
                 >
@@ -92,12 +100,12 @@ export function PlaySetup() {
             <>
               <label className="flex items-center gap-3 mb-4 text-sm text-fg/70">
                 Questions per round
-                <input type="range" min={5} max={30} step={5} value={count} onChange={(e) => setCount(+e.target.value)} className="accent-purple flex-1" />
+                <input type="range" min={5} max={30} step={5} value={count} onChange={(e) => changeCount(+e.target.value)} className="accent-purple flex-1" />
                 <span className="font-semibold text-fg w-8 text-right tabular-nums">{count}</span>
               </label>
               <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
                 {PACKS.map((p) => {
-                  const active = selected?.title === p.title
+                  const active = packPick === p.id && !!selected
                   return (
                     <button
                       key={p.id}

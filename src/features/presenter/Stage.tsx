@@ -98,6 +98,12 @@ export function Stage({ preview }: StageProps) {
 
   const timer = useCountdown(question?.timeLimit ?? 0, reveal)
 
+  // Once the answer is showing, the countdown is over: no more ticks or time-up buzzer.
+  useEffect(() => {
+    if (revealed) timer.pause()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [revealed])
+
   // Reset timer whenever the question changes.
   useEffect(() => {
     timer.reset(question?.timeLimit ?? 0)
@@ -132,7 +138,7 @@ export function Stage({ preview }: StageProps) {
           break
         case 't':
         case 'T':
-          timer.toggle()
+          if (phase === 'question') timer.toggle()
           break
         case 's':
         case 'S':
@@ -236,7 +242,7 @@ export function Stage({ preview }: StageProps) {
               question={question}
               revealed={revealed}
               timer={{ total: question.timeLimit ?? 0, remaining: timer.remaining, running: timer.running }}
-              onToggleTimer={timer.toggle}
+              onToggleTimer={revealed ? undefined : timer.toggle}
               picked={picked}
               onOption={pick}
             />

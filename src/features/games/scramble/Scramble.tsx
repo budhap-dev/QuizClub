@@ -18,10 +18,10 @@ const CATEGORIES = [...Object.keys(WORDS), 'Random']
 const TIMES = [15, 30, 60]
 
 function scramble(word: string): string {
-  const letters = word.replace(/ /g, '').split('')
-  let out = word
+  const plain = word.replace(/ /g, '')
+  let out = plain
   let guard = 0
-  while (out === word && guard++ < 20) out = shuffle(letters).join('')
+  while (out === plain && guard++ < 20) out = shuffle(plain.split('')).join('')
   return out
 }
 

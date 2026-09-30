@@ -175,8 +175,11 @@ function McqOptions({ q, onChange }: { q: McqQuestion; onChange: (q: Question) =
   const removeAt = (i: number) => {
     if (q.options.length <= 2) return
     const options = q.options.filter((_, j) => j !== i)
-    const correctIndex = q.correctIndex === i ? 0 : q.correctIndex > i ? q.correctIndex - 1 : q.correctIndex
-    onChange({ ...q, options, correctIndex })
+    // Deleting the correct option leaves none marked (-1) rather than silently promoting option A.
+    const correctIndex = q.correctIndex === i ? -1 : q.correctIndex > i ? q.correctIndex - 1 : q.correctIndex
+    // Option images are stored by position, so they shift with their options.
+    const optionImages = q.optionImages && Array.from({ length: q.options.length }, (_, j) => q.optionImages?.[j]).filter((_, j) => j !== i)
+    onChange({ ...q, options, correctIndex, optionImages })
   }
 
   return (

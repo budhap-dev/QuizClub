@@ -9,6 +9,8 @@ interface OnScreenKeyboardProps {
   statuses?: Record<string, KeyStatus>
   disabled?: boolean
   showEnter?: boolean
+  /** Disable every key that already has a status (Hangman). Wordle keeps them pressable, like a physical keyboard. */
+  lockGuessed?: boolean
 }
 
 const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
@@ -20,12 +22,12 @@ const statusClass: Record<KeyStatus, string> = {
   used: 'bg-fg/4 text-fg/30 border-transparent',
 }
 
-export function OnScreenKeyboard({ onKey, statuses = {}, disabled, showEnter = true }: OnScreenKeyboardProps) {
+export function OnScreenKeyboard({ onKey, statuses = {}, disabled, showEnter = true, lockGuessed = false }: OnScreenKeyboardProps) {
   const Key = ({ k, wide, label }: { k: string; wide?: boolean; label?: React.ReactNode }) => (
     <motion.button
       type="button"
       whileTap={{ scale: 0.94 }}
-      disabled={disabled || statuses[k] === 'absent' || statuses[k] === 'used'}
+      disabled={disabled || (lockGuessed && !!statuses[k])}
       onClick={() => onKey(k)}
       aria-label={typeof label === 'string' ? undefined : k}
       className={cn(

@@ -65,7 +65,7 @@ export default function Wordle() {
   const submit = useCallback(() => {
     if (over) return
     if (current.length < 5) return flash('Not enough letters')
-    if (strict && !WORDS.includes(current)) return flash('Not in word list')
+    if (strict && current !== secret && !WORDS.includes(current)) return flash('Not in word list')
     const next = [...rows, current]
     setRows(next)
     setCurrent('')
