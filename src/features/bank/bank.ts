@@ -4,7 +4,7 @@
  */
 import { useEffect, useState } from 'react'
 import type { Difficulty, Question, Quiz, QuizCategory, QuizSource } from '@/types'
-import { uid } from '@/utils'
+import { shuffle, uid } from '@/utils'
 import { mcq, slide, tf, timed } from '@/features/library/helpers'
 
 export type { Difficulty }
@@ -197,6 +197,78 @@ export function toQuiz(b: BankQuiz, source: QuizSource = 'library'): Quiz {
     source,
     difficulty: b.difficulty,
     questions: [slide(b.title, b.description), ...b.questions.map((q) => buildQuestion(q, points)).filter((q): q is Question => q !== null)],
+    createdAt: now,
+    updatedAt: now,
+  }
+}
+
+export interface MixOptions {
+  /** Area ids to draw from; empty means every area except Kids. */
+  areas: string[]
+  level?: Difficulty
+  count: number
+}
+
+/** One question chosen for a mix, with the bank quiz it came from (for its area and points). */
+export interface MixPick {
+  question: RawBankQuestion
+  from: BankQuiz
+}
+
+const mixAreas = (areas: string[]) => (areas.length ? areas : AREAS.filter((a) => a.id !== 'kids').map((a) => a.id))
+
+/** Every question a mix with these settings could draw from, without repeats. */
+export function mixPool(quizzes: BankQuiz[], { areas, level }: Omit<MixOptions, 'count'>): MixPick[] {
+  const wanted = new Set(mixAreas(areas))
+  const seen = new Set<string>()
+  const pool: MixPick[] = []
+  for (const from of quizzes) {
+    if (!wanted.has(from.area.id) || (level && from.difficulty !== level)) continue
+    for (const question of from.questions) {
+      const key = normalise(question.q)
+      if (seen.has(key)) continue
+      seen.add(key)
+      pool.push({ question, from })
+    }
+  }
+  return pool
+}
+
+/** Draw `count` questions, taking turns between areas so no single area crowds out the rest. */
+export function pickMix(quizzes: BankQuiz[], options: MixOptions): MixPick[] {
+  const byArea = new Map<string, MixPick[]>()
+  for (const p of mixPool(quizzes, options)) byArea.set(p.from.area.id, [...(byArea.get(p.from.area.id) ?? []), p])
+  const queues = shuffle([...byArea.values()].map((q) => shuffle(q)))
+  const picks: MixPick[] = []
+  while (picks.length < options.count && queues.some((q) => q.length)) {
+    for (const q of queues) {
+      const p = q.pop()
+      if (p && picks.length < options.count) picks.push(p)
+    }
+  }
+  return shuffle(picks)
+}
+
+const listAreas = (labels: string[]) =>
+  labels.length <= 3 ? labels.join(labels.length === 3 ? ', ' : ' and ').replace(/, ([^,]+)$/, ' and $1') : `${labels.length} areas`
+
+/** Turn picked questions into a playable quiz; each keeps the points of the level it came from. */
+export function mixToQuiz(picks: MixPick[], { areas, level }: Omit<MixOptions, 'count'>, source: QuizSource = 'library'): Quiz {
+  const now = Date.now()
+  const chosen = mixAreas(areas).map(areaById).filter((a): a is Area => !!a)
+  const single = chosen.length === 1 ? chosen[0] : undefined
+  const title = single ? `${single.label} Mix` : 'Random Mix'
+  const levelWord = level ? `${level} ` : ''
+  const description = `${picks.length} ${levelWord}questions from ${areas.length ? listAreas(chosen.map((a) => a.label)) : 'across the quiz bank'}.`
+  return {
+    id: uid(source === 'library' ? 'lib' : 'quiz'),
+    title,
+    description,
+    category: single?.category ?? 'general',
+    emoji: '🎲',
+    source,
+    difficulty: level,
+    questions: [slide(title, description), ...picks.map((p) => buildQuestion(p.question, POINTS[p.from.difficulty])).filter((q): q is Question => q !== null)],
     createdAt: now,
     updatedAt: now,
   }

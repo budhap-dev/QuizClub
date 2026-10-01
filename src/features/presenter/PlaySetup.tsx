@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { Eye, Loader2, MonitorPlay, Play, Plus, Search } from 'lucide-react'
+import { Dices, Eye, Loader2, MonitorPlay, Play, Plus, Search } from 'lucide-react'
 import { Button, Card, EmojiPicker, LevelBadge, LevelSelect, Modal, PageHeader, TeamChip } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -10,6 +10,7 @@ import type { Difficulty, Quiz } from '@/types'
 import { PACKS } from '@/features/library/packs'
 import { makeQuiz } from '@/features/library/helpers'
 import { searchBank, toQuiz, useBank } from '@/features/bank/bank'
+import { MixSheet } from '@/features/bank/MixSheet'
 
 type Tab = 'library' | 'bank' | 'mine'
 
@@ -33,6 +34,7 @@ export function PlaySetup() {
   const [bankQuery, setBankQuery] = useState('')
   const [bankPick, setBankPick] = useState<string | null>(null)
   const [level, setLevel] = useState<Difficulty | undefined>()
+  const [mixing, setMixing] = useState(false)
   const bank = useBank()
   const bankHits = useMemo(() => (bank.quizzes ? searchBank(bank.quizzes, { query: bankQuery, difficulty: level }) : []), [bank.quizzes, bankQuery, level])
 
@@ -150,6 +152,24 @@ export function PlaySetup() {
                 </div>
               ) : (
                 <div className="grid sm:grid-cols-2 gap-2.5 max-h-[26rem] overflow-y-auto pr-1">
+                  <button
+                    onClick={() => setMixing(true)}
+                    aria-pressed={bankPick === 'mix'}
+                    className={cn(
+                      'text-left rounded-xl p-3 border border-dashed transition-colors flex gap-3 items-start',
+                      bankPick === 'mix' ? 'bg-fg/12 border-purple' : 'bg-fg/5 hover:bg-fg/10 border-fg/20',
+                    )}
+                  >
+                    <span className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-purple" style={{ background: 'color-mix(in srgb, var(--color-purple) 18%, transparent)' }}>
+                      <Dices size={20} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-semibold text-sm truncate">{bankPick === 'mix' && selected ? selected.title : 'Random mix'}</span>
+                      <span className="block text-xs text-fg/60 mt-1 line-clamp-2">
+                        {bankPick === 'mix' && selected ? `${selected.questions.length - 1} questions · tap to change` : 'Pick areas, a level and a length'}
+                      </span>
+                    </span>
+                  </button>
                   {bankHits.length === 0 && <div className="col-span-full text-center py-10 text-fg/60 text-sm">{bankQuery ? `No quizzes match "${bankQuery}".` : 'No quizzes at this level.'}</div>}
                   {bankHits.map(({ quiz: b }) => {
                     const active = bankPick === b.id
@@ -280,6 +300,18 @@ export function PlaySetup() {
           </Card>
         </div>
       </div>
+
+      <MixSheet
+        open={mixing}
+        onClose={() => setMixing(false)}
+        initial={{ level }}
+        presentLabel="Use this mix"
+        onPresent={(q) => {
+          setBankPick('mix')
+          setSelected(q)
+          setMixing(false)
+        }}
+      />
 
       <Modal open={!!editingTeam} onClose={() => setEditing(null)} title="Edit team">
         {editingTeam && (
