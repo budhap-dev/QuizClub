@@ -12,6 +12,7 @@ import { QuestionView } from './QuestionView'
 import { Scoreboard } from './Scoreboard'
 import { Podium } from './Podium'
 import { HostDrawer } from './HostDrawer'
+import { awardPrompt } from './HostPanels'
 import { useCountdown } from './useCountdown'
 import { openHostScreen, useStageLink, type HostCommand } from './hostLink'
 
@@ -320,7 +321,9 @@ export function Stage({ preview }: StageProps) {
             exit={{ y: 24, opacity: 0 }}
             className="px-4 pb-1 flex flex-wrap items-center justify-center gap-2 shrink-0"
           >
-            <span className="text-fg/60 text-sm mr-2">Who got it? (+{question.points})</span>
+            <span className="text-fg/60 text-sm mr-2">
+              {awardPrompt(question)} (+{question.points})
+            </span>
             {teams.map((t) => (
               <TeamChip key={t.id} team={t} onClick={() => awardTeam(t)} active={awarded.has(t.id)} />
             ))}

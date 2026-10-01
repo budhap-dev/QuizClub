@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion, type TargetAndTransition, type Variants } from 'framer-motion'
-import { Check, Lightbulb, X } from 'lucide-react'
-import type { Question } from '@/types'
+import { Check, Lightbulb, Ruler, X } from 'lucide-react'
+import type { OrderQuestion, Question } from '@/types'
 import { cn, OPTION_COLORS, OPTION_LABELS } from '@/utils'
 import { TimerRing } from '@/components'
+import { formatNumberAnswer, orderAnswer, orderTiles } from './questionText'
 
 interface QuestionViewProps {
   question: Question
@@ -291,7 +292,82 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
         </AnimatePresence>
       )}
 
+      {q.type === 'number' && (
+        <AnimatePresence mode="wait">
+          {revealed ? (
+            <motion.div
+              key="answer"
+              initial={{ opacity: 0, scale: 0.9, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+              className="bg-brand text-on-accent rounded-2xl px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(1rem,4vh,2.5rem)] font-display font-semibold text-[clamp(1.75rem,7vh,4rem)] text-center stage-text shadow-xl shrink-0 tabular-nums"
+            >
+              {formatNumberAnswer(q)}
+            </motion.div>
+          ) : (
+            <motion.div key="guess" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3 text-[clamp(1.1rem,3.5vh,2rem)] text-fg/60 font-display text-center shrink-0">
+              <Ruler className="w-[1.1em] h-[1.1em] text-cyan shrink-0" />
+              Closest guess wins{q.unit && <span className="text-fg/45">· answer in {q.unit}</span>}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
+
+      {q.type === 'order' && <OrderView q={q} revealed={revealed} />}
+
       {revealed && q.type !== 'slide' && <AnswerPanel q={q} picked={picked} />}
+    </div>
+  )
+}
+
+const endsCaption = (ends?: [string, string]) =>
+  ends?.[0] && ends?.[1] ? `${ends[0]} → ${ends[1]}` : ends?.[0] ? `${ends[0]} first` : ends?.[1] ? `${ends[1]} last` : 'Put these in the right order'
+
+/** Shuffled, lettered tiles that slide into the right order on reveal. */
+function OrderView({ q, revealed }: { q: OrderQuestion; revealed: boolean }) {
+  const tiles = orderTiles(q)
+  const shown = revealed ? [...tiles].sort((a, b) => a.rank - b.rank) : tiles
+  return (
+    <div className="w-full max-w-3xl shrink-0 flex flex-col items-center gap-[clamp(0.375rem,1.2vh,0.75rem)]">
+      <div className="text-[clamp(0.95rem,2.6vh,1.5rem)] text-fg/60 font-display stage-text">{endsCaption(q.ends)}</div>
+      <div className="w-full flex flex-col gap-[clamp(0.375rem,1.2vh,0.75rem)]">
+        {shown.map((t, i) => {
+          const color = OPTION_COLORS[tiles.indexOf(t) % OPTION_COLORS.length]
+          return (
+            <motion.div
+              key={q.id + t.letter}
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ layout: { type: 'spring', stiffness: 220, damping: 26, delay: revealed ? i * 0.06 : 0 }, delay: revealed ? 0 : 0.3 + i * 0.08 }}
+              className="rounded-2xl border px-[clamp(0.75rem,2vw,1.25rem)] py-[clamp(0.375rem,1.4vh,0.875rem)] flex items-center gap-[clamp(0.5rem,1.5vw,1rem)]"
+              style={revealed ? { background: 'color-mix(in srgb, var(--color-mint) 16%, transparent)', borderColor: 'color-mix(in srgb, var(--color-mint) 50%, transparent)' } : tileStyle(color, false)}
+            >
+              {revealed && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="font-display font-semibold tabular-nums text-ink bg-mint rounded-full w-[clamp(1.75rem,4.5vh,2.5rem)] h-[clamp(1.75rem,4.5vh,2.5rem)] flex items-center justify-center shrink-0 text-[clamp(0.95rem,2.6vh,1.4rem)]"
+                >
+                  {t.rank + 1}
+                </motion.span>
+              )}
+              <span
+                className="font-display font-semibold text-ink rounded-xl w-[clamp(2rem,5.5vh,3rem)] h-[clamp(2rem,5.5vh,3rem)] flex items-center justify-center shrink-0 text-[clamp(1rem,3vh,1.75rem)]"
+                style={{ background: color }}
+              >
+                {t.letter}
+              </span>
+              <span className="font-display font-medium text-[clamp(1.05rem,3vh,1.8rem)] leading-tight stage-text">{t.text}</span>
+            </motion.div>
+          )
+        })}
+      </div>
+      {revealed && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.5 } }} className="text-[clamp(1rem,2.8vh,1.6rem)] font-display font-semibold tracking-wide stage-text">
+          {orderAnswer(q)}
+        </motion.div>
+      )}
     </div>
   )
 }
