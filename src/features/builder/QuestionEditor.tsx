@@ -1,7 +1,7 @@
 import { useRef } from 'react'
-import { Check, Plus, Upload, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, Check, Plus, Upload, X } from 'lucide-react'
 import { Button, alertDialog } from '@/components'
-import type { McqQuestion, Question, QuestionType } from '@/types'
+import type { McqQuestion, OrderQuestion, Question, QuestionType } from '@/types'
 import { cn, OPTION_LABELS } from '@/utils'
 
 interface QuestionEditorProps {
@@ -14,7 +14,12 @@ const TYPES: { id: QuestionType; label: string }[] = [
   { id: 'mcq', label: 'Multiple choice' },
   { id: 'truefalse', label: 'True / False' },
   { id: 'timed', label: 'Timed answer' },
+  { id: 'number', label: 'Closest number' },
+  { id: 'order', label: 'Put in order' },
 ]
+
+/** Most items an order question can have (one letter each, A–F). */
+export const MAX_ORDER_ITEMS = 6
 
 /** Convert a question to another type while keeping shared fields. */
 export function convertType(q: Question, type: QuestionType): Question {
@@ -28,6 +33,10 @@ export function convertType(q: Question, type: QuestionType): Question {
       return { ...base, type, answer: true }
     case 'timed':
       return { ...base, type, answer: '', timeLimit: q.timeLimit || 30 }
+    case 'number':
+      return { ...base, type, answer: NaN }
+    case 'order':
+      return { ...base, type, items: ['', '', '', ''] }
   }
 }
 
@@ -142,6 +151,28 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
         </label>
       )}
 
+      {q.type === 'number' && (
+        <div className="grid grid-cols-[1fr_8rem] gap-3">
+          <label className="block">
+            <span className="text-sm text-fg/70">Answer (the closest guess wins)</span>
+            <input
+              type="number"
+              step="any"
+              className="input mt-1"
+              value={Number.isFinite(q.answer) ? q.answer : ''}
+              onChange={(e) => patch({ answer: e.target.value === '' ? NaN : +e.target.value } as Partial<Question>)}
+              placeholder="8849"
+            />
+          </label>
+          <label className="block">
+            <span className="text-sm text-fg/70">Unit</span>
+            <input className="input mt-1" value={q.unit ?? ''} onChange={(e) => patch({ unit: e.target.value || undefined } as Partial<Question>)} placeholder="m" maxLength={16} />
+          </label>
+        </div>
+      )}
+
+      {q.type === 'order' && <OrderItems q={q} onChange={onChange} />}
+
       {/* Shared settings */}
       {q.type !== 'slide' && (
         <div className="grid grid-cols-2 gap-3">
@@ -232,6 +263,66 @@ function McqOptions({ q, onChange }: { q: McqQuestion; onChange: (q: Question) =
           <Plus /> Add option
         </Button>
       )}
+    </div>
+  )
+}
+
+function OrderItems({ q, onChange }: { q: OrderQuestion; onChange: (q: Question) => void }) {
+  const set = (items: string[]) => onChange({ ...q, items })
+  const move = (i: number, by: number) => {
+    const items = [...q.items]
+    ;[items[i], items[i + by]] = [items[i + by], items[i]]
+    set(items)
+  }
+  const setEnd = (i: 0 | 1, v: string) => {
+    const ends: [string, string] = [q.ends?.[0] ?? '', q.ends?.[1] ?? '']
+    ends[i] = v
+    onChange({ ...q, ends: ends[0] || ends[1] ? ends : undefined })
+  }
+
+  return (
+    <div>
+      <span className="text-sm text-fg/70">Items in the correct order. The stage shuffles them, then slides them into place on reveal.</span>
+      <div className="space-y-2 mt-1">
+        {q.items.map((item, i) => (
+          <div key={i} className="flex gap-2 items-center">
+            <span className="w-8 text-center text-sm font-semibold text-fg/50 tabular-nums shrink-0">{i + 1}</span>
+            <input className="input" value={item} onChange={(e) => set(q.items.map((x, j) => (j === i ? e.target.value : x)))} placeholder={`Item ${i + 1}`} />
+            <div className="flex shrink-0">
+              <button type="button" onClick={() => move(i, -1)} disabled={i === 0} className="w-7 h-8 rounded-md flex items-center justify-center text-fg/50 hover:text-fg hover:bg-fg/8 disabled:opacity-30" aria-label="Move up">
+                <ArrowUp size={14} />
+              </button>
+              <button type="button" onClick={() => move(i, 1)} disabled={i === q.items.length - 1} className="w-7 h-8 rounded-md flex items-center justify-center text-fg/50 hover:text-fg hover:bg-fg/8 disabled:opacity-30" aria-label="Move down">
+                <ArrowDown size={14} />
+              </button>
+              <button
+                type="button"
+                onClick={() => set(q.items.filter((_, j) => j !== i))}
+                disabled={q.items.length <= 3}
+                className="w-8 h-8 rounded-md flex items-center justify-center text-fg/40 hover:text-red hover:bg-fg/8 disabled:opacity-30 disabled:hover:text-fg/40"
+                aria-label="Remove item"
+              >
+                <X size={14} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+      {q.items.length < MAX_ORDER_ITEMS && (
+        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => set([...q.items, ''])}>
+          <Plus /> Add item
+        </Button>
+      )}
+      <div className="grid grid-cols-2 gap-3 mt-3">
+        <label className="block">
+          <span className="text-sm text-fg/70">First means (optional)</span>
+          <input className="input mt-1" value={q.ends?.[0] ?? ''} onChange={(e) => setEnd(0, e.target.value)} placeholder="Oldest" maxLength={24} />
+        </label>
+        <label className="block">
+          <span className="text-sm text-fg/70">Last means (optional)</span>
+          <input className="input mt-1" value={q.ends?.[1] ?? ''} onChange={(e) => setEnd(1, e.target.value)} placeholder="Newest" maxLength={24} />
+        </label>
+      </div>
     </div>
   )
 }

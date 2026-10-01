@@ -5,6 +5,7 @@ import { useSessionStore } from '@/store/sessionStore'
 import { useSettingsStore } from '@/store/settingsStore'
 import type { Question } from '@/types'
 import { OPTION_LABELS } from '@/utils'
+import { formatNumberAnswer, orderAnswer, orderTiles } from './questionText'
 
 export function answerText(q?: Question): string {
   if (!q) return ''
@@ -15,6 +16,10 @@ export function answerText(q?: Question): string {
       return q.answer ? 'TRUE' : 'FALSE'
     case 'timed':
       return q.answer
+    case 'number':
+      return formatNumberAnswer(q)
+    case 'order':
+      return orderAnswer(q)
     default:
       return '—'
   }
@@ -24,6 +29,9 @@ const Label = ({ children, className }: { children: React.ReactNode; className?:
   <div className={`text-[11px] uppercase tracking-wider text-fg/50 font-medium ${className ?? ''}`}>{children}</div>
 )
 
+/** Prompt for the award buttons: the nearest guess wins a number question. */
+export const awardPrompt = (q: Question) => (q.type === 'number' ? 'Who was closest?' : 'Who got it?')
+
 /** The answer and the quiz master's notes for one question. */
 export function AnswerCard({ question }: { question: Question }) {
   if (question.type === 'slide') return null
@@ -31,6 +39,18 @@ export function AnswerCard({ question }: { question: Question }) {
     <div className="glass rounded-xl p-4">
       <Label>Answer</Label>
       <div className="font-display font-semibold text-lg text-lime">{answerText(question)}</div>
+      {question.type === 'order' && (
+        <ol className="mt-1.5 space-y-0.5 text-sm text-fg/80">
+          {orderTiles(question)
+            .sort((a, b) => a.rank - b.rank)
+            .map((t) => (
+              <li key={t.letter}>
+                <span className="tabular-nums text-fg/50">{t.rank + 1}.</span> <b className="text-fg">{t.letter}</b> {t.text}
+              </li>
+            ))}
+        </ol>
+      )}
+      {question.type === 'number' && <div className="text-xs text-fg/50 mt-0.5">Award the closest guess.</div>}
       {question.hostNote && (
         <>
           <Label className="mt-3">Note</Label>

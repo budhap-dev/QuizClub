@@ -1,4 +1,4 @@
-export type QuestionType = 'slide' | 'mcq' | 'truefalse' | 'timed'
+export type QuestionType = 'slide' | 'mcq' | 'truefalse' | 'timed' | 'number' | 'order'
 
 export type QuizCategory =
   | 'general'
@@ -58,7 +58,24 @@ export interface TimedQuestion extends QuestionBase {
   timeLimit: number
 }
 
-export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQuestion
+/** Closest guess wins: teams write a number, the host awards whoever was nearest. */
+export interface NumberQuestion extends QuestionBase {
+  type: 'number'
+  answer: number
+  /** Shown after the number, e.g. "m", "km" or "years". */
+  unit?: string
+}
+
+/** Put the items in order. The stage shows them shuffled and lettered, then slides them into place. */
+export interface OrderQuestion extends QuestionBase {
+  type: 'order'
+  /** Items in the correct order. */
+  items: string[]
+  /** Optional labels for the two ends, e.g. ["Oldest", "Newest"]. */
+  ends?: [string, string]
+}
+
+export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQuestion | NumberQuestion | OrderQuestion
 
 /** 'ai' remains for quizzes saved while the AI generator existed. */
 export type QuizSource = 'manual' | 'ai' | 'library'

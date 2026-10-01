@@ -25,7 +25,7 @@ const CATEGORIES: { id: QuizCategory; label: string }[] = [
   { id: 'logos', label: 'Logos' },
 ]
 
-const TYPE_LABEL: Record<Question['type'], string> = { slide: 'Slide', mcq: 'MCQ', truefalse: 'T / F', timed: 'Timed' }
+const TYPE_LABEL: Record<Question['type'], string> = { slide: 'Slide', mcq: 'MCQ', truefalse: 'T / F', timed: 'Timed', number: 'Number', order: 'Order' }
 
 function blankQuiz(): Quiz {
   const now = Date.now()
@@ -41,6 +41,11 @@ function issues(q: Question): string | null {
     if (!(q.correctIndex >= 0 && q.correctIndex < q.options.length)) return 'Mark the correct answer'
   }
   if (q.type === 'timed' && !q.answer.trim()) return 'Missing answer'
+  if (q.type === 'number' && !Number.isFinite(q.answer)) return 'Missing answer'
+  if (q.type === 'order') {
+    if (q.items.length < 3) return 'Need at least 3 items'
+    if (q.items.some((i) => !i.trim())) return 'Empty item'
+  }
   return null
 }
 
@@ -218,6 +223,12 @@ export function ManualBuilder() {
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('timed')}>
               <Plus /> Timed
+            </Button>
+            <Button size="sm" variant="secondary" onClick={() => addQuestion('number')}>
+              <Plus /> Number
+            </Button>
+            <Button size="sm" variant="secondary" onClick={() => addQuestion('order')}>
+              <Plus /> Order
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('slide')}>
               <Plus /> Slide

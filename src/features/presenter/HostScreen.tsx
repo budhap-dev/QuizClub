@@ -3,7 +3,7 @@ import { Button, TeamChip } from '@/components'
 import { useSessionStore } from '@/store/sessionStore'
 import type { Question, StagePhase } from '@/types'
 import { cn, formatTime, OPTION_COLORS, OPTION_LABELS } from '@/utils'
-import { AnswerCard, ScorePanel } from './HostPanels'
+import { AnswerCard, awardPrompt, ScorePanel } from './HostPanels'
 import { useHostLink } from './hostLink'
 
 const PHASE_LABEL: Record<StagePhase, string> = { question: 'Question on screen', revealed: 'Answer showing', scoreboard: 'Scoreboard showing', podium: 'Results showing' }
@@ -140,7 +140,7 @@ export function HostScreen() {
         {/* Who got it */}
         {revealed && question.type !== 'slide' && teams.length > 0 && (
           <section>
-            <h2 className="font-semibold mb-2">Who got it? <span className="text-fg/50 font-normal">+{question.points}</span></h2>
+            <h2 className="font-semibold mb-2">{awardPrompt(question)} <span className="text-fg/50 font-normal">+{question.points}</span></h2>
             <div className="flex flex-wrap gap-2">
               {teams.map((t) => (
                 <TeamChip key={t.id} team={t} showScore={false} active={awarded.has(t.id)} onClick={off || awarded.has(t.id) ? undefined : () => send({ cmd: 'award', teamId: t.id })} />
