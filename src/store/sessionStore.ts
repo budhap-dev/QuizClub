@@ -113,3 +113,10 @@ export const useSessionStore = create<SessionState>()(
     { name: 'quizclub.session' },
   ),
 )
+
+// Keep windows in step: when another window (such as the host screen) saves the session, load it here too.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'quizclub.session') void useSessionStore.persist.rehydrate()
+  })
+}

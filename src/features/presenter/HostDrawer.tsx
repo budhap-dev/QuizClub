@@ -1,11 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Minus, Plus, SlidersHorizontal, Undo2, X } from 'lucide-react'
-import { Button } from '@/components'
+import { SlidersHorizontal, X } from 'lucide-react'
 import { useSessionStore } from '@/store/sessionStore'
-import { useSettingsStore } from '@/store/settingsStore'
 import type { Question } from '@/types'
 import { sfx } from '@/utils/sounds'
-import { OPTION_LABELS } from '@/utils'
+import { AnswerCard, ScorePanel } from './HostPanels'
 
 interface HostDrawerProps {
   open: boolean
@@ -14,32 +12,14 @@ interface HostDrawerProps {
   preview?: boolean
 }
 
-function answerText(q?: Question): string {
-  if (!q) return ''
-  switch (q.type) {
-    case 'mcq':
-      return `${OPTION_LABELS[q.correctIndex]} · ${q.options[q.correctIndex]}`
-    case 'truefalse':
-      return q.answer ? 'TRUE' : 'FALSE'
-    case 'timed':
-      return q.answer
-    default:
-      return '—'
-  }
-}
-
 const Kbd = ({ children }: { children: React.ReactNode }) => (
   <kbd className="bg-fg/10 border border-fg/10 px-1.5 py-0.5 rounded font-sans text-[11px]">{children}</kbd>
 )
 
 /** Slide-out control panel for the quiz master: answers, notes and +/- scoring. */
 export function HostDrawer({ open, onClose, question, preview }: HostDrawerProps) {
-  const teams = useSessionStore((s) => s.teams)
   const award = useSessionStore((s) => s.award)
   const undo = useSessionStore((s) => s.undo)
-  const history = useSessionStore((s) => s.session?.history ?? [])
-  const step = useSettingsStore((s) => s.scoreStep)
-  const setStep = useSettingsStore((s) => s.setScoreStep)
 
   const bump = (teamId: string, delta: number) => {
     if (preview) return
@@ -73,58 +53,12 @@ export function HostDrawer({ open, onClose, question, preview }: HostDrawerProps
             </div>
 
             {question && question.type !== 'slide' && (
-              <div className="glass rounded-xl p-4 mb-4">
-                <div className="text-[11px] uppercase tracking-wider text-fg/50 font-medium">Answer</div>
-                <div className="font-display font-semibold text-lg text-lime">{answerText(question)}</div>
-                {question.hostNote && (
-                  <>
-                    <div className="text-[11px] uppercase tracking-wider text-fg/50 font-medium mt-3">Note</div>
-                    <div className="text-fg/80 text-sm">{question.hostNote}</div>
-                  </>
-                )}
-                {question.explanation && (
-                  <>
-                    <div className="text-[11px] uppercase tracking-wider text-fg/50 font-medium mt-3">Shown after the reveal</div>
-                    <div className="text-fg/80 text-sm">{question.explanation}</div>
-                  </>
-                )}
+              <div className="mb-4">
+                <AnswerCard question={question} />
               </div>
             )}
 
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold">Scores</h3>
-              <label className="text-sm text-fg/60 flex items-center gap-2">
-                step
-                <input type="number" min={1} className="input !w-20 !py-1 !px-2 text-center" value={step} onChange={(e) => setStep(Math.max(1, +e.target.value))} />
-              </label>
-            </div>
-
-            {teams.length === 0 && <p className="text-fg/50 text-sm">No teams. Add them in Play setup.</p>}
-            <div className="space-y-2">
-              {[...teams]
-                .sort((a, b) => b.score - a.score)
-                .map((t) => (
-                  <motion.div key={t.id} layout className="flex items-center gap-2 glass rounded-xl p-2 pl-3">
-                    <span className="text-xl">{t.emoji}</span>
-                    <span className="flex-1 font-medium truncate text-sm">{t.name}</span>
-                    <span className="font-display font-semibold text-lg tabular-nums w-12 text-right" style={{ color: t.color }}>
-                      {t.score}
-                    </span>
-                    <Button size="sm" variant="secondary" silent onClick={() => bump(t.id, -step)} disabled={preview} aria-label="Subtract points" className="px-2">
-                      <Minus />
-                    </Button>
-                    <Button size="sm" variant="success" silent onClick={() => bump(t.id, step)} disabled={preview} aria-label="Add points" className="px-2">
-                      <Plus />
-                    </Button>
-                  </motion.div>
-                ))}
-            </div>
-
-            <div className="mt-4 flex gap-2">
-              <Button size="sm" variant="secondary" onClick={undo} disabled={preview || history.length === 0}>
-                <Undo2 /> Undo last ({history.length})
-              </Button>
-            </div>
+            <ScorePanel onBump={bump} onUndo={undo} disabled={preview} />
 
             <div className="mt-6 text-xs text-fg/45 space-y-1.5">
               <div>
