@@ -1,0 +1,105 @@
+{
+  "area": "funny",
+  "quizzes": [
+    {
+      "slug": "dad-jokes",
+      "title": "Dad Joke Showdown",
+      "emoji": "🤡",
+      "difficulty": "easy",
+      "tags": ["jokes", "puns", "riddles", "groaners"],
+      "description": "Classic groan-worthy punchlines. Points for the right answer, extra respect for the loudest groan.",
+      "questions": [
+        { "type": "mcq", "q": "What do you call a fish with no eyes?", "options": ["A blind fish", "A fsh", "A shellfish", "A sea snail"], "answer": 1, "note": "Take the i's out of fish and you're left with a fsh." },
+        { "type": "mcq", "q": "Why don't skeletons fight each other?", "options": ["They're too bony", "They can't see", "They don't have the guts", "They're always tired"], "answer": 2, "note": "No guts, no glory, and no fights either." },
+        { "type": "mcq", "q": "What do you call a bear with no teeth?", "options": ["A gummy bear", "A teddy bear", "A bare bear", "A soft bear"], "answer": 0, "note": "Gummy: no teeth, all gums." },
+        { "type": "mcq", "q": "Why did the scarecrow win an award?", "options": ["He was a straw-dinary talent", "He scared the judges", "He worked all night", "He was outstanding in his field"], "answer": 3, "note": "He stands in a field, and he's outstanding; that's the whole joke." },
+        { "type": "tf", "q": "The answer to 'What do you call a sleeping bull?' is 'a cowboy'.", "answer": false, "note": "It's a bulldozer: a bull that dozes." },
+        { "type": "mcq", "q": "What do you call a dinosaur that's fast asleep?", "options": ["A T-wrecks", "A dino-snore", "A sleepy-saurus", "A bronto-bed"], "answer": 1, "note": "Dinosaur, dino-snore; say it out loud for full effect." },
+        { "type": "mcq", "q": "What do you call a cow with no legs?", "options": ["Ground beef", "A sitting duck", "Steak tartare", "A moo-ver"], "answer": 0, "note": "It's on the ground, and it's beef." },
+        { "type": "tf", "q": "The answer to 'Why can't a bicycle stand up on its own?' is 'because it's two-tired'.", "answer": true, "note": "Two tyres, too tired." },
+        { "type": "timed", "q": "What did the ocean say to the beach?", "answer": "Nothing, it just waved", "note": "Accept any answer with \"waved\"; waves are how the sea says hello." },
+        { "type": "timed", "q": "What do you call a big pile of cats?", "answer": "A meowntain", "note": "Accept \"meowtain\" or anything close; a mountain of meows." }
+      ]
+    },
+    {
+      "slug": "animal-antics",
+      "title": "Animal Antics",
+      "emoji": "🐧",
+      "difficulty": "easy",
+      "tags": ["animals", "weird facts", "nature", "silly"],
+      "description": "Cube-shaped poo, hand-holding otters and pebble proposals: the animal kingdom is ridiculous.",
+      "questions": [
+        { "type": "mcq", "q": "What shape is wombat poo?", "options": ["Round", "Star-shaped", "Flat", "Cube-shaped"], "answer": 3, "note": "Wombats leave cube-shaped droppings, which don't roll away from the rocks they use to mark territory." },
+        { "type": "mcq", "q": "Which animal often holds paws while sleeping so it doesn't drift away?", "options": ["Penguin", "Sea otter", "Beaver", "Walrus"], "answer": 1, "note": "Sea otters float on their backs and hold on to each other or wrap themselves in kelp." },
+        { "type": "mcq", "q": "Why are flamingos pink?", "options": ["Sunburn", "They're born pink", "Pigments in their food", "Blushing"], "answer": 2, "note": "Pigments in the algae and brine shrimp they eat turn them pink; chicks hatch grey." },
+        { "type": "tf", "q": "A group of flamingos is called a 'flamboyance'.", "answer": true, "note": "Fitting for a bird that stands on one leg in bright pink." },
+        { "type": "mcq", "q": "What is a baby puffin called?", "options": ["A puffling", "A pufflet", "A muffin", "A puffkin"], "answer": 0, "note": "Pufflings hatch in burrows and stay hidden for about six weeks." },
+        { "type": "mcq", "q": "Which bird can fly backwards?", "options": ["Parrot", "Kingfisher", "Swallow", "Hummingbird"], "answer": 3, "note": "Hummingbirds can hover, fly backwards and even briefly upside down." },
+        { "type": "mcq", "q": "Which animal has fingerprints so like ours they could confuse a crime scene?", "options": ["Chimpanzee", "Koala", "Raccoon", "Sloth"], "answer": 1, "note": "Koala fingerprints have loops and whorls that look very like human ones." },
+        { "type": "tf", "q": "An octopus has three hearts.", "answer": true, "note": "Two pump blood through the gills and one through the rest of the body; its blood is blue too." },
+        { "type": "timed", "q": "Which slow, plant-eating sea mammal is nicknamed the 'sea cow'?", "answer": "Manatee", "note": "Also accept dugong; sailors may have mistaken them for mermaids." },
+        { "type": "timed", "q": "Which bird do gentoo males 'propose' to by offering a pebble?", "answer": "Penguin", "note": "Gentoo and Adélie penguins use pebbles to build nests, so a good stone is a serious gift." }
+      ]
+    },
+    {
+      "slug": "weird-but-true",
+      "title": "Weird but True",
+      "emoji": "🤯",
+      "difficulty": "medium",
+      "tags": ["weird facts", "trivia", "surprising", "science"],
+      "description": "Unicorns, radioactive bananas and a war that ended before lunch. All of it true.",
+      "questions": [
+        { "type": "mcq", "q": "What colour is a polar bear's skin?", "options": ["White", "Pink", "Black", "Grey"], "answer": 2, "note": "Black skin soaks up heat; the fur is see-through, not white." },
+        { "type": "mcq", "q": "What is the national animal of Scotland?", "options": ["Red deer", "Unicorn", "Golden eagle", "Highland cow"], "answer": 1, "note": "The unicorn has been a Scottish royal symbol for centuries and still appears on the royal coat of arms." },
+        { "type": "tf", "q": "Bananas are very slightly radioactive.", "answer": true, "note": "They contain potassium, a tiny part of which is radioactive potassium-40; perfectly safe to eat." },
+        { "type": "mcq", "q": "Which country has more ancient pyramids than Egypt?", "options": ["Mexico", "Peru", "China", "Sudan"], "answer": 3, "note": "Sudan has around 200 Nubian pyramids, smaller and steeper than Egypt's." },
+        { "type": "mcq", "q": "The designer of which snack's tube had some of his ashes buried in one?", "options": ["Pringles", "Toblerone", "Smarties", "Oreo"], "answer": 0, "note": "Fredric Baur designed the Pringles can, and his family honoured his wish in 2008." },
+        { "type": "mcq", "q": "Roughly how long did the Anglo-Zanzibar War of 1896, the shortest war on record, last?", "options": ["Six hours", "Two days", "About 40 minutes", "One week"], "answer": 2, "note": "Estimates range from 38 to 45 minutes." },
+        { "type": "tf", "q": "Honey found in ancient Egyptian tombs was still edible thousands of years later.", "answer": true, "note": "Honey is so low in water and so acidic that microbes can't grow in it." },
+        { "type": "mcq", "q": "On which planet is a day longer than its year?", "options": ["Mercury", "Venus", "Mars", "Neptune"], "answer": 1, "note": "Venus takes about 243 Earth days to spin once but only about 225 to orbit the Sun." },
+        { "type": "timed", "q": "What is the small dot over a lowercase i or j called?", "answer": "Tittle", "note": "Every i and j you have ever written has a tittle." },
+        { "type": "timed", "q": "What's the name for the plastic tip on the end of a shoelace?", "answer": "Aglet", "note": "Aglets stop laces fraying and make them easier to thread." }
+      ]
+    },
+    {
+      "slug": "silly-history",
+      "title": "Silly History",
+      "emoji": "🏛️",
+      "difficulty": "medium",
+      "tags": ["history", "weird history", "funny", "events"],
+      "description": "Wars lost to birds, a flood of syrup and a town that couldn't stop dancing.",
+      "questions": [
+        { "type": "mcq", "q": "In 1932 Australia's army fought a 'war' against which animal, and lost?", "options": ["Kangaroos", "Rabbits", "Emus", "Cane toads"], "answer": 2, "note": "Soldiers with machine guns couldn't stop the fast, scattering emus from eating the wheat crops." },
+        { "type": "mcq", "q": "In the 1830s, tomato ketchup was sold in America as a…", "options": ["Medicine", "Hair dye", "Paint", "Perfume"], "answer": 0, "note": "Tomato pills and extracts were sold as cures for indigestion and more." },
+        { "type": "mcq", "q": "In industrial Britain, who woke workers by tapping on windows with a long pole?", "options": ["Lamplighter", "Town crier", "Chimney sweep", "Knocker-upper"], "answer": 3, "note": "Knocker-uppers were paid a few pence a week to be the alarm clock." },
+        { "type": "mcq", "q": "In 1518, people in Strasbourg couldn't stop doing what for weeks?", "options": ["Laughing", "Dancing", "Sneezing", "Singing"], "answer": 1, "note": "The 'dancing plague' drew in dozens of people, perhaps hundreds; nobody knows exactly why." },
+        { "type": "mcq", "q": "In 1919, a wave of molasses flooded the streets of which city?", "options": ["Chicago", "New York", "Boston", "London"], "answer": 2, "note": "A huge tank burst and a sticky wave several metres high swept through the North End." },
+        { "type": "tf", "q": "Cleopatra lived closer in time to the Moon landing than to the building of the Great Pyramid.", "answer": true, "note": "The Great Pyramid is about 2,500 years older than her; the Moon landing came about 2,000 years after." },
+        { "type": "mcq", "q": "Before rubber erasers, what did people often use to rub out pencil marks?", "options": ["Bread", "Cheese", "Soap", "Leaves"], "answer": 0, "note": "Balled-up bread crumbs did the job until rubber took over in the 1770s." },
+        { "type": "tf", "q": "The Roman emperor Vespasian put a tax on collecting urine from public toilets.", "answer": true, "note": "Urine was used for laundry and tanning; 'pecunia non olet', money doesn't stink." },
+        { "type": "timed", "q": "Which 18th-century earl lent his name to a lunchtime favourite?", "answer": "Sandwich", "note": "Accept \"Earl of Sandwich\"; John Montagu supposedly wanted food he could eat without leaving his cards." },
+        { "type": "timed", "q": "Which stretchy one-piece garment is named after French acrobat Jules?", "answer": "Leotard", "note": "Jules Léotard, the original 'daring young man on the flying trapeze', made it popular." }
+      ]
+    },
+    {
+      "slug": "oddities-and-odd-words",
+      "title": "Oddities & Odd Words",
+      "emoji": "🧐",
+      "difficulty": "hard",
+      "tags": ["words", "weird facts", "language", "trivia"],
+      "description": "Petrichor, philtrums and a fear of long words. A tricky one for the know-it-alls.",
+      "questions": [
+        { "type": "mcq", "q": "Which letter doesn't appear in the name of any US state?", "options": ["J", "Q", "Z", "X"], "answer": 1, "note": "J is in New Jersey, Z in Arizona and X in Texas, but no state has a Q." },
+        { "type": "mcq", "q": "What is 'petrichor'?", "options": ["Fear of stones", "A fossilised bird", "The smell of rain on dry ground", "A wet petrol stain"], "answer": 2, "note": "The earthy smell comes partly from oils released by plants and a chemical made by soil bacteria." },
+        { "type": "mcq", "q": "A group of which birds is called a 'parliament'?", "options": ["Owls", "Crows", "Pigeons", "Geese"], "answer": 0, "note": "A group of crows, meanwhile, is a 'murder'." },
+        { "type": "mcq", "q": "Which cartoonist coined 'anatidaephobia', the fear that a duck is watching you?", "options": ["Charles Schulz", "Bill Watterson", "Jim Davis", "Gary Larson"], "answer": 3, "note": "It comes from a 'Far Side' cartoon; it isn't a real medical condition." },
+        { "type": "mcq", "q": "What is the name of the moustached mascot of the board game Monopoly?", "options": ["Sir Cashalot", "Rich Uncle Pennybags", "Lord Moneybags", "Mr Bigwallet"], "answer": 1, "note": "He's now officially called Mr. Monopoly." },
+        { "type": "mcq", "q": "What does someone with 'hippopotomonstrosesquippedaliophobia' fear?", "options": ["Hippos", "Tall people", "Monsters", "Long words"], "answer": 3, "note": "Making the name that long is either a joke or very cruel." },
+        { "type": "tf", "q": "The Eiffel Tower can grow more than 10 cm taller on a hot summer day.", "answer": true, "note": "Its iron expands in the heat; the top can rise by up to about 15 cm." },
+        { "type": "tf", "q": "A sloth can hold its breath longer than a dolphin.", "answer": true, "note": "By slowing its heart, a sloth can last about 40 minutes underwater; dolphins usually surface every few minutes." },
+        { "type": "timed", "q": "Apart from 'hash' or 'pound', what is the # symbol called?", "answer": "Octothorpe", "note": "Accept \"octothorp\"; the name was made up at Bell Labs in the 1960s." },
+        { "type": "timed", "q": "What is the groove between your nose and your upper lip called?", "answer": "Philtrum", "note": "Most people can't name it, but everyone has one." }
+      ]
+    }
+  ]
+}

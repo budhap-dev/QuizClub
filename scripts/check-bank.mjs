@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const DIR = new URL('../src/features/bank/data/', import.meta.url).pathname
-const AREAS = ['general', 'geography', 'india', 'history', 'science', 'space', 'nature', 'literature', 'words', 'maths', 'movies', 'music', 'sports', 'technology', 'food', 'mythology', 'art', 'kids']
+const AREAS = ['general', 'geography', 'india', 'history', 'science', 'space', 'nature', 'literature', 'words', 'maths', 'movies', 'music', 'sports', 'technology', 'food', 'mythology', 'art', 'funny', 'kids']
 const errors = []
 const warnings = []
 const seen = new Map()
