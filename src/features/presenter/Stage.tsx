@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Check, ChevronLeft, ChevronRight, Eye, Maximize2, MonitorOff, Pause, SlidersHorizontal, Timer, Trophy, X } from 'lucide-react'
+import { Check, ChevronLeft, ChevronRight, Eye, Maximize2, MonitorOff, MonitorSmartphone, Pause, SlidersHorizontal, Timer, Trophy, X } from 'lucide-react'
 import { Button, TeamChip, ThemeButton, confirmDialog, party } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
@@ -13,6 +13,7 @@ import { Scoreboard } from './Scoreboard'
 import { Podium } from './Podium'
 import { HostDrawer } from './HostDrawer'
 import { useCountdown } from './useCountdown'
+import { openHostScreen, useStageLink, type HostCommand } from './hostLink'
 
 interface StageProps {
   preview?: boolean
@@ -142,7 +143,7 @@ export function Stage({ preview }: StageProps) {
           break
         case 's':
         case 'S':
-          setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')
+          if (phase !== 'podium') setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')
           break
         case 'f':
         case 'F':
@@ -167,6 +168,50 @@ export function Stage({ preview }: StageProps) {
     sfx.correct()
     setAwarded((s) => new Set(s).add(t.id))
   }
+
+  const toggleScores = () => setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')
+  const forward = () => (phase === 'scoreboard' ? setPhase('question') : next())
+
+  // The host screen sees what the stage sees and drives it with the same actions as the buttons below.
+  const link = useStageLink(
+    preview || !quiz || !question
+      ? null
+      : {
+          quizId: quiz.id,
+          index,
+          phase,
+          timer: { total: question.timeLimit ?? 0, remaining: timer.remaining, running: timer.running },
+          picked,
+          awarded: [...awarded],
+        },
+    (c: HostCommand) => {
+      switch (c.cmd) {
+        case 'next':
+          return forward()
+        case 'prev':
+          return prev()
+        case 'reveal':
+          return reveal()
+        case 'timer':
+          return phase === 'question' && !revealed && timer.toggle()
+        case 'scores':
+          return phase !== 'podium' && toggleScores()
+        case 'pick':
+          return pick(c.option)
+        case 'award': {
+          const t = teams.find((x) => x.id === c.teamId)
+          return revealed && t && awardTeam(t)
+        }
+        case 'bump':
+          store.award(c.teamId, c.delta, 'manual')
+          return c.delta > 0 ? sfx.point() : sfx.minus()
+        case 'undo':
+          return store.undo()
+      }
+    },
+  )
+  // With a host screen connected, the big screen shows only what the room should see.
+  const hostLive = link.connected
 
   const progress = useMemo(() => (total ? ((index + 1) / total) * 100 : 0), [index, total])
 
@@ -217,6 +262,22 @@ export function Stage({ preview }: StageProps) {
         </div>
         <div className="ml-auto font-medium tabular-nums text-fg/60 whitespace-nowrap">{phase === 'podium' ? 'Results' : `${index + 1} / ${total}`}</div>
         {preview && <span className="chip bg-sun/20 text-sun">Preview</span>}
+        {!preview && link.supported && (
+          <button
+            onClick={openHostScreen}
+            className={cn(topButton, 'hidden sm:flex', hostLive && 'text-mint')}
+            title={hostLive ? 'Host screen connected; click to bring it forward' : 'Open the quiz master controls in a second window'}
+          >
+            <MonitorSmartphone size={16} />
+            {hostLive ? (
+              <>
+                <span className="w-1.5 h-1.5 rounded-full bg-mint" aria-hidden /> Host connected
+              </>
+            ) : (
+              'Host screen'
+            )}
+          </button>
+        )}
         <ThemeButton className="glass" />
         <button onClick={toggleFullscreen} className={cn(topButton, 'hidden sm:flex px-2.5')} title="Fullscreen (F)" aria-label="Fullscreen">
           <Maximize2 size={16} />
@@ -252,7 +313,7 @@ export function Stage({ preview }: StageProps) {
 
       {/* Award strip: appears after reveal */}
       <AnimatePresence>
-        {revealed && teams.length > 0 && question.type !== 'slide' && (
+        {revealed && !hostLive && teams.length > 0 && question.type !== 'slide' && (
           <motion.div
             initial={{ y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -267,8 +328,8 @@ export function Stage({ preview }: StageProps) {
         )}
       </AnimatePresence>
 
-      {/* Bottom controls */}
-      <div className="px-3 md:px-5 py-2.5 flex items-center gap-2 flex-wrap justify-center shrink-0">
+      {/* Bottom controls (the host screen has its own) */}
+      <div className={cn('px-3 md:px-5 py-2.5 flex items-center gap-2 flex-wrap justify-center shrink-0', hostLive && 'hidden')}>
         <Button variant="secondary" onClick={prev} disabled={index === 0 && phase !== 'podium'}>
           <ChevronLeft /> Back
         </Button>
@@ -291,7 +352,7 @@ export function Stage({ preview }: StageProps) {
           </Button>
         )}
         {phase !== 'podium' && (
-          <Button variant="secondary" onClick={() => setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')} className={cn(phase === 'scoreboard' && 'ring-2 ring-fg/60')}>
+          <Button variant="secondary" onClick={toggleScores} className={cn(phase === 'scoreboard' && 'ring-2 ring-fg/60')}>
             <Trophy /> Scores
           </Button>
         )}
@@ -300,7 +361,7 @@ export function Stage({ preview }: StageProps) {
             <Check /> Finish
           </Button>
         ) : (
-          <Button onClick={() => (phase === 'scoreboard' ? setPhase('question') : next())} variant="primary">
+          <Button onClick={forward} variant="primary">
             {index >= total - 1 && phase !== 'scoreboard' ? 'Results' : 'Next'} <ChevronRight />
           </Button>
         )}

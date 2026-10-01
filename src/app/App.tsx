@@ -11,6 +11,7 @@ const QuizBank = lazy(() => import('@/features/bank/QuizBank').then((m) => ({ de
 const MyQuizzes = lazy(() => import('@/features/library/MyQuizzes').then((m) => ({ default: m.MyQuizzes })))
 const PlaySetup = lazy(() => import('@/features/presenter/PlaySetup').then((m) => ({ default: m.PlaySetup })))
 const Stage = lazy(() => import('@/features/presenter/Stage').then((m) => ({ default: m.Stage })))
+const HostScreen = lazy(() => import('@/features/presenter/HostScreen').then((m) => ({ default: m.HostScreen })))
 const Games = lazy(() => import('@/features/games/Games').then((m) => ({ default: m.Games })))
 const GamePage = lazy(() => import('@/features/games/GamePage').then((m) => ({ default: m.GamePage })))
 const Settings = lazy(() => import('@/features/settings/Settings').then((m) => ({ default: m.Settings })))
@@ -43,6 +44,7 @@ export default function App() {
             </Route>
             {/* Stage is full-bleed, no layout chrome */}
             <Route path="play/stage" element={<Stage />} />
+            <Route path="play/host" element={<HostScreen />} />
             <Route path="preview/:id" element={<Stage preview />} />
             {/* Unknown or retired addresses (e.g. the old /create/ai) go home instead of a blank page. */}
             <Route path="*" element={<Navigate to="/" replace />} />

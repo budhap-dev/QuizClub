@@ -5,6 +5,7 @@ A colourful quiz app for classrooms, offices and parties, with a clean, presenta
 ## Features
 
 - **Presenter mode** — full-screen stage with animated questions, countdown timer, reveal, live scoreboard and a confetti podium. Keyboard shortcuts: `→` next, `←` back, `Space` reveal, `T` timer, `S` scoreboard, `F` fullscreen, `H` quiz-master panel.
+- **Host screen** — open the quiz master's controls in a second window (the button in the stage's top bar) and put the stage on the TV. The host window shows the answer, notes, what's up next, the timer, Reveal/Next/Scores, who-got-it buttons and +/− scoring; the big screen hides its own controls while it's linked. The windows talk over `BroadcastChannel` (same browser, no server), and the stage remains the only one that changes the game.
 - **Teams & scoring** — add teams or individual players, tap who got it right after each reveal, or use the +/− panel with undo.
 - **Manual quiz maker** — slides, multiple choice, true/false and timed questions with images, points, timers and host notes. Drag to reorder, preview before saving.
 - **Quiz bank** — 72 ready-made quizzes (720 questions) across 18 areas (general knowledge, geography, India, history, science, space, nature, literature, words, maths, movies, music, sports, technology, food, mythology, art, kids). Search titles, tags and question text, filter by area and level, view every answer, then present as-is or copy to My Quizzes to edit. Also pickable from Play setup.
