@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { BookOpen, Check, ChevronDown, Copy, Eye, Loader2, PenLine, Play, Search, X } from 'lucide-react'
+import { BookOpen, Check, ChevronDown, Copy, Dices, Eye, Loader2, PenLine, Play, Search, X } from 'lucide-react'
 import { Button, Card, LEVELS, LevelBadge, LevelSelect, Modal, PageHeader } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { cn } from '@/utils'
+import type { Quiz } from '@/types'
 import { QuizzesTabs } from '@/features/library/QuizzesTabs'
 import { AREAS, searchBank, toQuiz, useBank, type BankQuiz } from './bank'
 import { BankQuizSheet } from './BankQuizSheet'
+import { MixSheet } from './MixSheet'
 
 export function QuizBank() {
   const navigate = useNavigate()
@@ -18,6 +20,7 @@ export function QuizBank() {
   const [params, setParams] = useSearchParams()
   const [viewing, setViewing] = useState<BankQuiz | null>(null)
   const [pickingArea, setPickingArea] = useState(false)
+  const [mixing, setMixing] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
 
   // Search and filters live in the URL so Back returns to the same results.
@@ -65,14 +68,15 @@ export function QuizBank() {
   const current = areas.find((a) => a.id === area)
   const filtered = !!(query || area || level)
 
-  const present = (b: BankQuiz) => {
-    start(toQuiz(b))
-    navigate('/play/stage')
-  }
-  const copy = (b: BankQuiz) => {
-    const q = toQuiz(b, 'manual')
+  const present = (b: BankQuiz) => presentQuiz(toQuiz(b))
+  const copy = (b: BankQuiz) => edit(toQuiz(b, 'manual'))
+  const edit = (q: Quiz) => {
     upsert(q)
     navigate(`/create/manual/${q.id}`)
+  }
+  const presentQuiz = (q: Quiz) => {
+    start(q)
+    navigate('/play/stage')
   }
 
   const chip = (active: boolean) =>
@@ -146,6 +150,9 @@ export function QuizBank() {
       </div>
       <div className="flex items-center gap-x-3 gap-y-2 flex-wrap mb-5">
         <LevelSelect label="Level" noneLabel="All levels" noneShort="All" value={level} onChange={(l) => setParam('level', l)} counts={quizzes ? levelCounts : undefined} />
+        <Button size="sm" variant="secondary" onClick={() => setMixing(true)} disabled={!quizzes} title="Build a fresh quiz from questions across the bank">
+          <Dices /> Random mix
+        </Button>
         {quizzes && (
           <span className="text-sm text-fg/50 ml-auto" aria-live="polite">
             {hits.length} {hits.length === 1 ? 'quiz' : 'quizzes'}
@@ -267,6 +274,7 @@ export function QuizBank() {
         </div>
       </Modal>
 
+      <MixSheet open={mixing} onClose={() => setMixing(false)} initial={{ area, level }} onPresent={presentQuiz} onCopy={edit} />
       <BankQuizSheet quiz={viewing} onClose={() => setViewing(null)} onPresent={present} onCopy={copy} />
     </div>
   )
