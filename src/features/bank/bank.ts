@@ -59,6 +59,7 @@ export const AREAS: Area[] = [
   { id: 'food', label: 'Food & Drink', color: 'var(--color-orange)', category: 'custom' },
   { id: 'mythology', label: 'Mythology', color: 'var(--color-purple)', category: 'history' },
   { id: 'art', label: 'Art & Culture', color: 'var(--color-pink)', category: 'custom' },
+  { id: 'funny', label: 'Funny & Weird', color: 'var(--color-orange)', category: 'general' },
   { id: 'kids', label: 'Kids', color: 'var(--color-sun)', category: 'general' },
 ]
 

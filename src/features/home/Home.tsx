@@ -7,7 +7,7 @@ import { useSessionStore } from '@/store/sessionStore'
 
 const tiles: { to: string; Icon: LucideIcon; title: string; text: string; color: string }[] = [
   { to: '/play', Icon: MonitorPlay, title: 'Present a quiz', text: 'Pick a quiz, add teams and go live on the big screen.', color: 'var(--color-pink)' },
-  { to: '/quizzes/bank', Icon: BookOpen, title: 'Quiz bank', text: 'Ready-made quizzes across 18 areas, searchable by topic and level.', color: 'var(--color-purple)' },
+  { to: '/quizzes/bank', Icon: BookOpen, title: 'Quiz bank', text: 'Ready-made quizzes across 19 areas, searchable by topic and level.', color: 'var(--color-purple)' },
   { to: '/create/manual', Icon: PenLine, title: 'Manual quiz maker', text: 'Slides, multiple choice, true/false and timed questions.', color: 'var(--color-cyan)' },
   { to: '/games', Icon: Gamepad2, title: 'Party games', text: 'Cows & Bulls, Hangman, Wordle and more for between rounds.', color: 'var(--color-lime)' },
 ]
