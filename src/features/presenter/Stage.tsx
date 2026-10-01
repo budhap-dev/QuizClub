@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Check, ChevronLeft, ChevronRight, Eye, Maximize2, MonitorOff, MonitorSmartphone, Pause, SlidersHorizontal, Timer, Trophy, X } from 'lucide-react'
-import { Button, TeamChip, ThemeButton, confirmDialog, party } from '@/components'
+import { Button, ThemeButton, confirmDialog, party } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import type { Quiz, StagePhase, Team } from '@/types'
@@ -12,7 +12,8 @@ import { QuestionView } from './QuestionView'
 import { Scoreboard } from './Scoreboard'
 import { Podium } from './Podium'
 import { HostDrawer } from './HostDrawer'
-import { awardPrompt } from './HostPanels'
+import { AwardChip, awardPrompt } from './HostPanels'
+import { useAudioClip } from './useAudioClip'
 import { useCountdown } from './useCountdown'
 import { openHostScreen, useStageLink, type HostCommand } from './hostLink'
 
@@ -45,7 +46,8 @@ export function Stage({ preview }: StageProps) {
   const total = quiz?.questions.length ?? 0
   const revealed = phase === 'revealed'
   const [drawer, setDrawer] = useState(false)
-  const [awarded, setAwarded] = useState<Set<string>>(new Set())
+  // Team ids given this question's points; a team can appear more than once on a "name them all" question.
+  const [awarded, setAwarded] = useState<string[]>([])
 
   const setPhase = useCallback(
     (p: StagePhase) => (preview ? setLocalPhase(p) : store.setPhase(p)),
@@ -54,7 +56,7 @@ export function Stage({ preview }: StageProps) {
 
   const next = useCallback(() => {
     sfx.swoosh()
-    setAwarded(new Set())
+    setAwarded([])
     if (preview) {
       if (localIndex >= total - 1) setLocalPhase('podium')
       else {
@@ -65,7 +67,7 @@ export function Stage({ preview }: StageProps) {
   }, [preview, localIndex, total, store])
 
   const prev = useCallback(() => {
-    setAwarded(new Set())
+    setAwarded([])
     if (preview) {
       setLocalIndex((i) => Math.max(0, i - 1))
       setLocalPhase('question')
@@ -74,10 +76,17 @@ export function Stage({ preview }: StageProps) {
 
   // The option the host tapped on this question, if any; shown as right or wrong on reveal.
   const [picked, setPicked] = useState<number | null>(null)
-  useEffect(() => setPicked(null), [question?.id])
+  // Answers of a "name them all" question uncovered so far.
+  const [uncovered, setUncovered] = useState<number[]>([])
+  useEffect(() => {
+    setPicked(null)
+    setUncovered([])
+  }, [question?.id])
+  const audio = useAudioClip(question?.audioUrl)
 
   const reveal = useCallback(() => {
     if (!question || question.type === 'slide' || revealed) return
+    if (question.type === 'list') setUncovered(question.answers.map((_, i) => i))
     sfx.reveal()
     setPhase('revealed')
     party.burst(0.5, 0.4)
@@ -86,6 +95,17 @@ export function Stage({ preview }: StageProps) {
   /** Tapping an answer locks it in: reveal, and mark the tap right or wrong. */
   const pick = useCallback(
     (i: number) => {
+      if (question?.type === 'list') {
+        // Uncover one answer; uncovering the last one reveals the question.
+        if (revealed || uncovered.includes(i)) return
+        const next = [...uncovered, i]
+        setUncovered(next)
+        if (next.length >= question.answers.length) {
+          setPhase('revealed')
+          party.burst(0.5, 0.4)
+        }
+        return sfx.point()
+      }
       if (!question || revealed || (question.type !== 'mcq' && question.type !== 'truefalse')) return
       const right = question.type === 'mcq' ? i === question.correctIndex : (i === 0) === question.answer
       setPicked(i)
@@ -95,7 +115,7 @@ export function Stage({ preview }: StageProps) {
         party.burst(0.5, 0.4)
       } else sfx.wrong()
     },
-    [question, revealed, setPhase],
+    [question, revealed, setPhase, uncovered],
   )
 
   const timer = useCountdown(question?.timeLimit ?? 0, reveal)
@@ -150,6 +170,10 @@ export function Stage({ preview }: StageProps) {
         case 'F':
           toggleFullscreen()
           break
+        case 'p':
+        case 'P':
+          audio?.toggle()
+          break
         case 'h':
         case 'H':
           setDrawer((d) => !d)
@@ -161,13 +185,14 @@ export function Stage({ preview }: StageProps) {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [next, prev, reveal, phase, setPhase, timer])
+  }, [next, prev, reveal, phase, setPhase, timer, audio])
 
   const awardTeam = (t: Team) => {
-    if (preview || !question || awarded.has(t.id)) return
+    // One award per team, except "name them all", which scores once per answer named.
+    if (preview || !question || (question.type !== 'list' && awarded.includes(t.id))) return
     store.award(t.id, question.points, 'correct')
     sfx.correct()
-    setAwarded((s) => new Set(s).add(t.id))
+    setAwarded((s) => [...s, t.id])
   }
 
   const toggleScores = () => setPhase(phase === 'scoreboard' ? 'question' : 'scoreboard')
@@ -183,7 +208,9 @@ export function Stage({ preview }: StageProps) {
           phase,
           timer: { total: question.timeLimit ?? 0, remaining: timer.remaining, running: timer.running },
           picked,
-          awarded: [...awarded],
+          awarded,
+          uncovered,
+          audio: audio ? audio.playing : null,
         },
     (c: HostCommand) => {
       switch (c.cmd) {
@@ -208,6 +235,8 @@ export function Stage({ preview }: StageProps) {
           return c.delta > 0 ? sfx.point() : sfx.minus()
         case 'undo':
           return store.undo()
+        case 'audio':
+          return audio?.toggle()
       }
     },
   )
@@ -306,6 +335,8 @@ export function Stage({ preview }: StageProps) {
               timer={{ total: question.timeLimit ?? 0, remaining: timer.remaining, running: timer.running }}
               onToggleTimer={revealed ? undefined : timer.toggle}
               picked={picked}
+              uncovered={uncovered}
+              audio={audio}
               onOption={pick}
             />
           </motion.div>
@@ -325,7 +356,7 @@ export function Stage({ preview }: StageProps) {
               {awardPrompt(question)} (+{question.points})
             </span>
             {teams.map((t) => (
-              <TeamChip key={t.id} team={t} onClick={() => awardTeam(t)} active={awarded.has(t.id)} />
+              <AwardChip key={t.id} team={t} count={awarded.filter((id) => id === t.id).length} onClick={() => awardTeam(t)} showScore />
             ))}
           </motion.div>
         )}

@@ -19,8 +19,12 @@ export interface StageState {
   timer: { total: number; remaining: number; running: boolean }
   /** The answer the host locked in on this question, if any. */
   picked: number | null
-  /** Teams already given this question's points. */
+  /** Teams already given this question's points (repeats on "name them all"). */
   awarded: string[]
+  /** "Name them all" answers uncovered so far. */
+  uncovered: number[]
+  /** Whether the question's sound clip is playing; null when it has none. */
+  audio: boolean | null
 }
 
 export type HostCommand =
@@ -33,6 +37,7 @@ export type HostCommand =
   | { cmd: 'award'; teamId: string }
   | { cmd: 'bump'; teamId: string; delta: number }
   | { cmd: 'undo' }
+  | { cmd: 'audio' }
 
 type Message = { type: 'state'; state: StageState } | { type: 'ping' } | { type: 'bye' } | ({ type: 'command' } & HostCommand)
 

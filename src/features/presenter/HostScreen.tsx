@@ -1,9 +1,9 @@
-import { Check, ChevronLeft, ChevronRight, Eye, MonitorOff, MonitorSmartphone, Pause, Timer, Trophy } from 'lucide-react'
-import { Button, TeamChip } from '@/components'
+import { Check, ChevronLeft, ChevronRight, Eye, MonitorOff, MonitorSmartphone, Pause, Play, Timer, Trophy } from 'lucide-react'
+import { Button } from '@/components'
 import { useSessionStore } from '@/store/sessionStore'
 import type { Question, StagePhase } from '@/types'
 import { cn, formatTime, OPTION_COLORS, OPTION_LABELS } from '@/utils'
-import { AnswerCard, awardPrompt, ScorePanel } from './HostPanels'
+import { AnswerCard, AwardChip, awardPrompt, ScorePanel } from './HostPanels'
 import { useHostLink } from './hostLink'
 
 const PHASE_LABEL: Record<StagePhase, string> = { question: 'Question on screen', revealed: 'Answer showing', scoreboard: 'Scoreboard showing', podium: 'Results showing' }
@@ -37,7 +37,8 @@ export function HostScreen() {
   const upNext = quiz?.questions[index + 1]
   const total = quiz?.questions.length ?? 0
   const revealed = phase === 'revealed'
-  const awarded = new Set(live?.awarded ?? [])
+  const awarded = live?.awarded ?? []
+  const uncovered = live?.uncovered ?? []
   const timer = live?.timer
   const off = !connected
 
@@ -97,11 +98,44 @@ export function HostScreen() {
             <div className="text-xs uppercase tracking-wider text-fg/50 font-medium mb-1">Slide</div>
           ) : (
             <div className="text-xs uppercase tracking-wider text-fg/50 font-medium mb-1">
-              {question.points} points{timed && ` · ${question.timeLimit}s`}
+              {question.points} points{question.type === 'list' && ' per answer'}{timed && ` · ${question.timeLimit}s`}
             </div>
           )}
           <h1 className="text-lg font-semibold leading-snug">{question.text}</h1>
           {question.type === 'slide' && question.body && <p className="text-sm text-fg/65 mt-1 whitespace-pre-line">{question.body}</p>}
+
+          {question.audioUrl && (
+            <Button silent size="sm" variant="secondary" className="mt-3" onClick={() => send({ cmd: 'audio' })} disabled={off}>
+              {live?.audio ? <Pause /> : <Play />} {live?.audio ? 'Pause clip' : 'Play clip on stage'}
+            </Button>
+          )}
+
+          {question.type === 'list' && (
+            <>
+              <div className="grid sm:grid-cols-2 gap-1.5 mt-3">
+                {question.answers.map((a, i) => {
+                  const shown = revealed || uncovered.includes(i)
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      disabled={off || shown}
+                      onClick={() => send({ cmd: 'pick', option: i })}
+                      className={cn(
+                        'flex items-center gap-2.5 rounded-xl border px-3 py-2 text-left text-sm transition-colors enabled:hover:bg-fg/8 disabled:cursor-default',
+                        shown ? 'border-mint/60 bg-mint/10' : 'border-fg/10 bg-fg/4',
+                      )}
+                    >
+                      <span className="w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shrink-0 bg-fg/10 tabular-nums">{i + 1}</span>
+                      <span className="flex-1 min-w-0">{a}</span>
+                      {shown ? <Check size={16} className="text-mint shrink-0" aria-label="On screen" /> : <Eye size={15} className="text-fg/40 shrink-0" aria-label="Uncover" />}
+                    </button>
+                  )
+                })}
+              </div>
+              {!revealed && <p className="text-xs text-fg/45 mt-2">Tap an answer to uncover it on screen when a team names it.</p>}
+            </>
+          )}
 
           {opts.length > 0 && (
             <>
@@ -143,7 +177,12 @@ export function HostScreen() {
             <h2 className="font-semibold mb-2">{awardPrompt(question)} <span className="text-fg/50 font-normal">+{question.points}</span></h2>
             <div className="flex flex-wrap gap-2">
               {teams.map((t) => (
-                <TeamChip key={t.id} team={t} showScore={false} active={awarded.has(t.id)} onClick={off || awarded.has(t.id) ? undefined : () => send({ cmd: 'award', teamId: t.id })} />
+                <AwardChip
+                  key={t.id}
+                  team={t}
+                  count={awarded.filter((id) => id === t.id).length}
+                  onClick={off || (question.type !== 'list' && awarded.includes(t.id)) ? undefined : () => send({ cmd: 'award', teamId: t.id })}
+                />
               ))}
             </div>
           </section>

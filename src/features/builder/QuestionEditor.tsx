@@ -1,7 +1,7 @@
 import { useRef } from 'react'
-import { ArrowDown, ArrowUp, Check, Plus, Upload, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, Check, Music, Plus, Upload, X } from 'lucide-react'
 import { Button, alertDialog } from '@/components'
-import type { McqQuestion, OrderQuestion, Question, QuestionType } from '@/types'
+import type { ListQuestion, McqQuestion, OrderQuestion, Question, QuestionType } from '@/types'
 import { cn, OPTION_LABELS } from '@/utils'
 
 interface QuestionEditorProps {
@@ -16,14 +16,18 @@ const TYPES: { id: QuestionType; label: string }[] = [
   { id: 'timed', label: 'Timed answer' },
   { id: 'number', label: 'Closest number' },
   { id: 'order', label: 'Put in order' },
+  { id: 'list', label: 'Name them all' },
 ]
+
+/** Most answers a "name them all" question can have. */
+export const MAX_LIST_ANSWERS = 12
 
 /** Most items an order question can have (one letter each, A–F). */
 export const MAX_ORDER_ITEMS = 6
 
 /** Convert a question to another type while keeping shared fields. */
 export function convertType(q: Question, type: QuestionType): Question {
-  const base = { id: q.id, text: q.text, imageUrl: q.imageUrl, points: q.points || 10, timeLimit: q.timeLimit, hostNote: q.hostNote, explanation: q.explanation }
+  const base = { id: q.id, text: q.text, imageUrl: q.imageUrl, audioUrl: q.audioUrl, points: q.points || 10, timeLimit: q.timeLimit, hostNote: q.hostNote, explanation: q.explanation }
   switch (type) {
     case 'slide':
       return { ...base, type, points: 0, body: '' }
@@ -37,6 +41,8 @@ export function convertType(q: Question, type: QuestionType): Question {
       return { ...base, type, answer: NaN }
     case 'order':
       return { ...base, type, items: ['', '', '', ''] }
+    case 'list':
+      return { ...base, type, answers: ['', '', ''] }
   }
 }
 
@@ -51,6 +57,7 @@ function fileToDataUrl(file: File): Promise<string> {
 
 export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
   const fileRef = useRef<HTMLInputElement>(null)
+  const audioRef = useRef<HTMLInputElement>(null)
   const patch = (p: Partial<Question>) => onChange({ ...q, ...p } as Question)
 
   const onImageFile = async (file?: File) => {
@@ -60,6 +67,16 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
       return
     }
     patch({ imageUrl: await fileToDataUrl(file) })
+  }
+
+  const onAudioFile = async (file?: File) => {
+    if (!file) return
+    // Uploads live in browser storage (and the cloud vault), so keep clips short.
+    if (file.size > 1_000_000) {
+      void alertDialog({ title: 'Clip too large', message: 'Use a sound clip under 1 MB (about a minute of MP3), or paste a link to the audio file instead.' })
+      return
+    }
+    patch({ audioUrl: await fileToDataUrl(file) })
   }
 
   return (
@@ -106,6 +123,31 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
           </div>
         </div>
         {q.imageUrl && <img src={q.imageUrl} alt="" className="h-20 w-28 object-contain rounded-lg bg-fg/8 border border-fg/10" referrerPolicy="no-referrer" />}
+      </div>
+
+      {/* Sound clip */}
+      <div>
+        <span className="text-sm text-fg/70 flex items-center gap-1.5">
+          <Music size={14} className="text-pink" /> Sound clip (optional, for music and sound rounds)
+        </span>
+        <div className="flex gap-2 mt-1">
+          <input
+            className="input"
+            value={q.audioUrl?.startsWith('data:') ? '(uploaded clip)' : (q.audioUrl ?? '')}
+            onChange={(e) => patch({ audioUrl: e.target.value || undefined })}
+            placeholder="https://…/clip.mp3"
+          />
+          <Button type="button" variant="secondary" size="sm" onClick={() => audioRef.current?.click()} title="Upload a clip" aria-label="Upload sound clip">
+            <Upload />
+          </Button>
+          {q.audioUrl && (
+            <Button type="button" variant="ghost" size="sm" onClick={() => patch({ audioUrl: undefined })} title="Remove clip" aria-label="Remove sound clip">
+              <X />
+            </Button>
+          )}
+          <input ref={audioRef} type="file" accept="audio/*" hidden onChange={(e) => void onAudioFile(e.target.files?.[0])} />
+        </div>
+        {q.audioUrl && <audio src={q.audioUrl} controls preload="none" className="mt-2 w-full h-10" />}
       </div>
 
       {/* Type-specific */}
@@ -173,11 +215,13 @@ export function QuestionEditor({ question: q, onChange }: QuestionEditorProps) {
 
       {q.type === 'order' && <OrderItems q={q} onChange={onChange} />}
 
+      {q.type === 'list' && <ListAnswers q={q} onChange={onChange} />}
+
       {/* Shared settings */}
       {q.type !== 'slide' && (
         <div className="grid grid-cols-2 gap-3">
           <label className="block">
-            <span className="text-sm text-fg/70">Points</span>
+            <span className="text-sm text-fg/70">{q.type === 'list' ? 'Points per answer' : 'Points'}</span>
             <input type="number" min={0} className="input mt-1" value={q.points} onChange={(e) => patch({ points: Math.max(0, +e.target.value) })} />
           </label>
           <label className="block">
@@ -323,6 +367,37 @@ function OrderItems({ q, onChange }: { q: OrderQuestion; onChange: (q: Question)
           <input className="input mt-1" value={q.ends?.[1] ?? ''} onChange={(e) => setEnd(1, e.target.value)} placeholder="Newest" maxLength={24} />
         </label>
       </div>
+    </div>
+  )
+}
+
+function ListAnswers({ q, onChange }: { q: ListQuestion; onChange: (q: Question) => void }) {
+  const set = (answers: string[]) => onChange({ ...q, answers })
+  return (
+    <div>
+      <span className="text-sm text-fg/70">Answers. Each one a team names scores the question's points; on stage you can uncover them one by one.</span>
+      <div className="grid sm:grid-cols-2 gap-2 mt-1">
+        {q.answers.map((a, i) => (
+          <div key={i} className="flex gap-2 items-center">
+            <span className="w-6 text-center text-sm font-semibold text-fg/50 tabular-nums shrink-0">{i + 1}</span>
+            <input className="input" value={a} onChange={(e) => set(q.answers.map((x, j) => (j === i ? e.target.value : x)))} placeholder={`Answer ${i + 1}`} />
+            <button
+              type="button"
+              onClick={() => set(q.answers.filter((_, j) => j !== i))}
+              disabled={q.answers.length <= 2}
+              className="w-8 h-8 rounded-md flex items-center justify-center text-fg/40 hover:text-red hover:bg-fg/8 disabled:opacity-30 disabled:hover:text-fg/40 shrink-0"
+              aria-label="Remove answer"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        ))}
+      </div>
+      {q.answers.length < MAX_LIST_ANSWERS && (
+        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => set([...q.answers, ''])}>
+          <Plus /> Add answer
+        </Button>
+      )}
     </div>
   )
 }
