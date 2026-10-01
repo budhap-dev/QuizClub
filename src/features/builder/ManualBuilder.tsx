@@ -25,7 +25,7 @@ const CATEGORIES: { id: QuizCategory; label: string }[] = [
   { id: 'logos', label: 'Logos' },
 ]
 
-const TYPE_LABEL: Record<Question['type'], string> = { slide: 'Slide', mcq: 'MCQ', truefalse: 'T / F', timed: 'Timed', number: 'Number', order: 'Order' }
+const TYPE_LABEL: Record<Question['type'], string> = { slide: 'Slide', mcq: 'MCQ', truefalse: 'T / F', timed: 'Timed', number: 'Number', order: 'Order', list: 'Name all' }
 
 function blankQuiz(): Quiz {
   const now = Date.now()
@@ -45,6 +45,10 @@ function issues(q: Question): string | null {
   if (q.type === 'order') {
     if (q.items.length < 3) return 'Need at least 3 items'
     if (q.items.some((i) => !i.trim())) return 'Empty item'
+  }
+  if (q.type === 'list') {
+    if (q.answers.length < 2) return 'Need at least 2 answers'
+    if (q.answers.some((a) => !a.trim())) return 'Empty answer'
   }
   return null
 }
@@ -229,6 +233,9 @@ export function ManualBuilder() {
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('order')}>
               <Plus /> Order
+            </Button>
+            <Button size="sm" variant="secondary" onClick={() => addQuestion('list')}>
+              <Plus /> Name all
             </Button>
             <Button size="sm" variant="secondary" onClick={() => addQuestion('slide')}>
               <Plus /> Slide

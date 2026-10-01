@@ -1,4 +1,4 @@
-export type QuestionType = 'slide' | 'mcq' | 'truefalse' | 'timed' | 'number' | 'order'
+export type QuestionType = 'slide' | 'mcq' | 'truefalse' | 'timed' | 'number' | 'order' | 'list'
 
 export type QuizCategory =
   | 'general'
@@ -21,6 +21,8 @@ export interface QuestionBase {
   text: string
   /** Optional image shown with the question. */
   imageUrl?: string
+  /** Optional sound clip (URL or uploaded data URL) the host plays on stage, for music and sound rounds. */
+  audioUrl?: string
   /** Points awarded for a correct answer. Slides ignore this. */
   points: number
   /** Seconds for the countdown. 0/undefined = no timer. */
@@ -75,7 +77,13 @@ export interface OrderQuestion extends QuestionBase {
   ends?: [string, string]
 }
 
-export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQuestion | NumberQuestion | OrderQuestion
+/** Name them all: several answers, each worth `points`. The host can uncover them one at a time. */
+export interface ListQuestion extends QuestionBase {
+  type: 'list'
+  answers: string[]
+}
+
+export type Question = SlideQuestion | McqQuestion | TrueFalseQuestion | TimedQuestion | NumberQuestion | OrderQuestion | ListQuestion
 
 /** 'ai' remains for quizzes saved while the AI generator existed. */
 export type QuizSource = 'manual' | 'ai' | 'library'

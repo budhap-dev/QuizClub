@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion, type TargetAndTransition, type Variants } from 'framer-motion'
-import { Check, Lightbulb, Ruler, X } from 'lucide-react'
-import type { OrderQuestion, Question } from '@/types'
+import { Check, Lightbulb, Pause, Play, Ruler, X } from 'lucide-react'
+import type { ListQuestion, OrderQuestion, Question } from '@/types'
 import { cn, OPTION_COLORS, OPTION_LABELS } from '@/utils'
 import { TimerRing } from '@/components'
 import { formatNumberAnswer, orderAnswer, orderTiles } from './questionText'
+import type { AudioClip } from './useAudioClip'
 
 interface QuestionViewProps {
   question: Question
@@ -14,6 +15,9 @@ interface QuestionViewProps {
   /** Option the host tapped (for true/false, 0 = True, 1 = False). */
   picked?: number | null
   onOption?: (i: number) => void
+  /** "Name them all" answers uncovered so far. */
+  uncovered?: number[]
+  audio?: AudioClip | null
 }
 
 /** Options appear one after another; `i` is the option index. */
@@ -113,7 +117,7 @@ function PanelBody({ q, tone, tapped, right }: { q: Question; tone: string; tapp
  * options always fit the stage height without scrolling. The image is the only
  * flexible item: it takes whatever space is left after the prompt and answers.
  */
-export function QuestionView({ question, revealed, timer, onToggleTimer, picked, onOption }: QuestionViewProps) {
+export function QuestionView({ question, revealed, timer, onToggleTimer, picked, onOption, uncovered = [], audio }: QuestionViewProps) {
   const q = question
   const hasTimer = timer && timer.total > 0 && q.type !== 'slide'
 
@@ -143,6 +147,8 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
         </h1>
         {hasTimer && <div className="hidden md:block w-24 shrink-0" />}
       </motion.div>
+
+      {audio && <AudioButton audio={audio} />}
 
       {/* Image: flexible, fills the remaining height */}
       {q.imageUrl && (
@@ -315,6 +321,8 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
 
       {q.type === 'order' && <OrderView q={q} revealed={revealed} />}
 
+      {q.type === 'list' && <ListView q={q} revealed={revealed} uncovered={uncovered} onUncover={onOption} />}
+
       {revealed && q.type !== 'slide' && <AnswerPanel q={q} picked={picked} />}
     </div>
   )
@@ -368,6 +376,79 @@ function OrderView({ q, revealed }: { q: OrderQuestion; revealed: boolean }) {
           {orderAnswer(q)}
         </motion.div>
       )}
+    </div>
+  )
+}
+
+/** Play/pause for the question's sound clip, with a thin progress bar. P toggles it too. */
+function AudioButton({ audio }: { audio: AudioClip }) {
+  return (
+    <motion.button
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0, transition: { delay: 0.15 } }}
+      onClick={audio.toggle}
+      className="shrink-0 relative overflow-hidden rounded-full border px-[clamp(1rem,3vw,1.75rem)] py-[clamp(0.5rem,1.5vh,0.875rem)] flex items-center gap-3 font-display font-semibold text-[clamp(1rem,2.8vh,1.5rem)] transition-colors hover:brightness-125"
+      style={{ background: 'color-mix(in srgb, var(--color-pink) 16%, transparent)', borderColor: 'color-mix(in srgb, var(--color-pink) 50%, transparent)' }}
+      title="Play / pause the clip (P)"
+    >
+      <span className="rounded-full bg-pink text-on-accent w-[clamp(2rem,5vh,2.75rem)] h-[clamp(2rem,5vh,2.75rem)] flex items-center justify-center shrink-0">
+        {audio.playing ? <Pause className="w-1/2 h-1/2" fill="currentColor" /> : <Play className="w-1/2 h-1/2 translate-x-[1px]" fill="currentColor" />}
+      </span>
+      {audio.playing ? 'Playing…' : audio.progress > 0 && audio.progress < 1 ? 'Resume clip' : 'Play clip'}
+      <span className="absolute left-0 bottom-0 h-[3px] bg-pink transition-[width] duration-200" style={{ width: `${audio.progress * 100}%` }} aria-hidden />
+    </motion.button>
+  )
+}
+
+/** Numbered slots, hidden until the host uncovers them one at a time (or all at once with Reveal). */
+function ListView({ q, revealed, uncovered, onUncover }: { q: ListQuestion; revealed: boolean; uncovered: number[]; onUncover?: (i: number) => void }) {
+  const n = q.answers.length
+  return (
+    <div className="w-full max-w-5xl shrink-0 flex flex-col items-center gap-[clamp(0.375rem,1.2vh,0.75rem)]">
+      <div className="text-[clamp(0.95rem,2.6vh,1.5rem)] text-fg/60 font-display stage-text">
+        {revealed ? `All ${n} answers` : `Name all ${n} · ${uncovered.length} uncovered`}
+      </div>
+      <div className={cn('w-full grid gap-[clamp(0.375rem,1.2vh,0.75rem)]', n > 4 ? 'grid-cols-2' : 'grid-cols-1 max-w-2xl', n > 8 && 'lg:grid-cols-3')}>
+        {q.answers.map((a, i) => {
+          const shown = revealed || uncovered.includes(i)
+          return (
+            <motion.button
+              key={q.id + '-' + i}
+              custom={i}
+              variants={optionAnim}
+              initial="hidden"
+              animate="show"
+              onClick={() => onUncover?.(i)}
+              disabled={shown}
+              className="rounded-2xl border px-[clamp(0.75rem,2vw,1.25rem)] py-[clamp(0.375rem,1.3vh,0.875rem)] flex items-center gap-[clamp(0.5rem,1.5vw,1rem)] text-left transition-colors duration-300 enabled:hover:brightness-125"
+              style={
+                shown
+                  ? { background: 'color-mix(in srgb, var(--color-mint) 16%, transparent)', borderColor: 'color-mix(in srgb, var(--color-mint) 50%, transparent)' }
+                  : { background: 'color-mix(in srgb, var(--color-fg) 5%, transparent)', borderColor: 'color-mix(in srgb, var(--color-fg) 12%, transparent)' }
+              }
+              title={shown ? undefined : 'Uncover this answer'}
+            >
+              <span
+                className={cn(
+                  'font-display font-semibold tabular-nums rounded-full w-[clamp(1.75rem,4.5vh,2.5rem)] h-[clamp(1.75rem,4.5vh,2.5rem)] flex items-center justify-center shrink-0 text-[clamp(0.95rem,2.6vh,1.4rem)]',
+                  shown ? 'bg-mint text-ink' : 'bg-fg/10 text-fg/60',
+                )}
+              >
+                {i + 1}
+              </span>
+              <AnimatePresence mode="wait" initial={false}>
+                {shown ? (
+                  <motion.span key="a" initial={{ opacity: 0, rotateX: 90 }} animate={{ opacity: 1, rotateX: 0 }} className="font-display font-medium text-[clamp(1.05rem,3vh,1.8rem)] leading-tight stage-text">
+                    {a}
+                  </motion.span>
+                ) : (
+                  <motion.span key="q" exit={{ opacity: 0, rotateX: -90 }} className="h-[0.6em] flex-1 max-w-[12rem] rounded-full bg-fg/10 text-[clamp(1.05rem,3vh,1.8rem)]" aria-label="Hidden answer" />
+                )}
+              </AnimatePresence>
+            </motion.button>
+          )
+        })}
+      </div>
     </div>
   )
 }

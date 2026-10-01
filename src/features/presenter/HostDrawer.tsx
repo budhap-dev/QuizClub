@@ -65,7 +65,7 @@ export function HostDrawer({ open, onClose, question, preview }: HostDrawerProps
                 <Kbd>→</Kbd> next · <Kbd>←</Kbd> back
               </div>
               <div>
-                <Kbd>Space</Kbd> reveal · <Kbd>T</Kbd> timer
+                <Kbd>Space</Kbd> reveal · <Kbd>T</Kbd> timer · <Kbd>P</Kbd> sound clip
               </div>
               <div>
                 <Kbd>S</Kbd> scoreboard · <Kbd>F</Kbd> fullscreen · <Kbd>H</Kbd> this panel

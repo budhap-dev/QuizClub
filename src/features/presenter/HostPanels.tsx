@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { Minus, Plus, Undo2 } from 'lucide-react'
-import { Button } from '@/components'
+import { Button, TeamChip } from '@/components'
 import { useSessionStore } from '@/store/sessionStore'
 import { useSettingsStore } from '@/store/settingsStore'
-import type { Question } from '@/types'
+import type { Question, Team } from '@/types'
 import { OPTION_LABELS } from '@/utils'
 import { formatNumberAnswer, orderAnswer, orderTiles } from './questionText'
 
@@ -20,6 +20,8 @@ export function answerText(q?: Question): string {
       return formatNumberAnswer(q)
     case 'order':
       return orderAnswer(q)
+    case 'list':
+      return q.answers.join(' · ')
     default:
       return '—'
   }
@@ -29,8 +31,22 @@ const Label = ({ children, className }: { children: React.ReactNode; className?:
   <div className={`text-[11px] uppercase tracking-wider text-fg/50 font-medium ${className ?? ''}`}>{children}</div>
 )
 
+/** A team's award button; shows how many times it scored when that's more than once. */
+export function AwardChip({ team, count, onClick, showScore = false }: { team: Team; count: number; onClick?: () => void; showScore?: boolean }) {
+  return (
+    <span className="relative inline-flex">
+      <TeamChip team={team} onClick={onClick} active={count > 0} showScore={showScore} />
+      {count > 1 && (
+        <span className="absolute -top-1.5 -right-1.5 min-w-5 h-5 px-1 rounded-full bg-fg text-ink text-[11px] font-bold flex items-center justify-center tabular-nums" aria-label={`${count} answers`}>
+          ×{count}
+        </span>
+      )}
+    </span>
+  )
+}
+
 /** Prompt for the award buttons: the nearest guess wins a number question. */
-export const awardPrompt = (q: Question) => (q.type === 'number' ? 'Who was closest?' : 'Who got it?')
+export const awardPrompt = (q: Question) => (q.type === 'number' ? 'Who was closest?' : q.type === 'list' ? 'Tap a team once per answer named' : 'Who got it?')
 
 /** The answer and the quiz master's notes for one question. */
 export function AnswerCard({ question }: { question: Question }) {
