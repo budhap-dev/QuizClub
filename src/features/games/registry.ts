@@ -58,6 +58,30 @@ export const GAMES: GameMeta[] = [
     description: 'Flip cards and find the matching pairs. Fewest moves wins.',
     component: lazy(() => import('./memory/Memory')),
   },
+  {
+    id: 'picture-reveal',
+    title: 'Picture Reveal',
+    emoji: '🖼️',
+    color: 'var(--color-orange)',
+    description: 'A flag or logo hides under tiles that drop away one by one. Guess early for more points.',
+    component: lazy(() => import('./picture-reveal/PictureReveal')),
+  },
+  {
+    id: 'higher-lower',
+    title: 'Higher or Lower',
+    emoji: '↕️',
+    color: 'var(--color-sun)',
+    description: 'Which came first, which is taller? Keep the streak going, or bank it before you slip.',
+    component: lazy(() => import('./higher-lower/HigherLower')),
+  },
+  {
+    id: 'odd-one-out',
+    title: 'Odd One Out',
+    emoji: '🔍',
+    color: 'var(--color-cyan)',
+    description: "Four things, one doesn't belong. Spot it, then hear why.",
+    component: lazy(() => import('./odd-one-out/OddOneOut')),
+  },
 ]
 
 export const gameById = (id: string) => GAMES.find((g) => g.id === id)

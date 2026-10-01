@@ -205,7 +205,7 @@ export const COUNTRIES: [string, string, string][] = [
 export const flagUrl = (code: string) => `https://flagcdn.com/w640/${code}.png`
 
 /** Countries most people recognise – used at "easy" difficulty and for AI image lookups. */
-const WELL_KNOWN = new Set([
+export const WELL_KNOWN = new Set([
   'au', 'br', 'ca', 'cn', 'fr', 'de', 'in', 'it', 'jp', 'mx', 'nl', 'nz', 'no', 'pt', 'ru', 'za', 'kr', 'es', 'se', 'ch',
   'tr', 'gb', 'us', 'ar', 'eg', 'ie', 'gr', 'dk', 'fi', 'pl', 'th', 'vn', 'sa', 'ae', 'pk', 'bd', 'lk', 'ng', 'ke', 'jm',
 ])
