@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Check, ChevronLeft, ChevronRight, Eye, Maximize2, MonitorOff, MonitorSmartphone, Pause, SlidersHorizontal, Timer, Trophy, X } from 'lucide-react'
-import { Button, ThemeButton, confirmDialog, party } from '@/components'
+import { Check, ChevronLeft, ChevronRight, Eye, Maximize, MonitorOff, MonitorSmartphone, Pause, SlidersHorizontal, Timer, Trophy, X } from 'lucide-react'
+import { Button, LEVEL_LABEL, Logo, SegmentedProgress, ThemeButton, TimerRing, confirmDialog, party } from '@/components'
+import { quizAreaLabel } from '@/features/bank/bank'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import type { Quiz, StagePhase, Team } from '@/types'
 import { sfx } from '@/utils/sounds'
-import { cn } from '@/utils'
+import { cn, tint } from '@/utils'
 import { QuestionView } from './QuestionView'
 import { Scoreboard } from './Scoreboard'
 import { Podium } from './Podium'
 import { HostDrawer } from './HostDrawer'
-import { AwardChip, awardPrompt } from './HostPanels'
+import { awardPrompt } from './HostPanels'
 import { useAudioClip } from './useAudioClip'
 import { useCountdown } from './useCountdown'
 import { openHostScreen, useStageLink, type HostCommand } from './hostLink'
@@ -21,7 +22,56 @@ interface StageProps {
   preview?: boolean
 }
 
-const topButton = 'glass rounded-lg h-9 px-3 flex items-center gap-1.5 text-sm text-fg/80 hover:text-fg hover:bg-fg/12 transition-colors'
+const iconButton = 'w-11 h-11 shrink-0 rounded-xl flex items-center justify-center text-fg bg-fg/6 border border-fg/12 hover:bg-fg/12 transition-colors'
+
+const ordinal = (n: number) => {
+  const rem = n % 100
+  return n + (rem >= 11 && rem <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] ?? 'th')
+}
+
+/** Standard competition ranks (1, 2, 2, 4): tied teams share a place. */
+function rankTeams(teams: Team[]) {
+  const ranks = new Map<string, number>()
+  for (const t of teams) ranks.set(t.id, 1 + teams.filter((o) => o.score > t.score).length)
+  return ranks
+}
+
+interface TeamCardProps {
+  team: Team
+  rank: number
+  leader: boolean
+  /** Points this team has been given on the current question. */
+  gained: number
+  points: number
+  onAward?: () => void
+}
+
+/** A team's place and score in the stage footer; a button that awards the question's points once the answer is out. */
+function TeamCard({ team, rank, leader, gained, points, onAward }: TeamCardProps) {
+  const Tag = onAward ? 'button' : 'div'
+  return (
+    <Tag
+      {...(onAward ? { type: 'button' as const, onClick: onAward, 'aria-label': `Give ${points} points to ${team.name} (now ${team.score})` } : {})}
+      className={cn(
+        'relative flex-[1_1_160px] min-w-0 h-16 px-4 rounded-[14px] border flex items-center gap-3 text-left',
+        !leader && 'bg-fg/4 border-fg/10',
+        onAward && 'cursor-pointer hover:-translate-y-0.5 hover:border-fg/40 transition-[transform,border-color] motion-reduce:hover:translate-y-0',
+      )}
+      style={leader ? tint(team.color) : undefined}
+    >
+      {/* The team colour mixed toward the text colour, so it stays readable on light and dark themes. */}
+      <span className="font-display font-bold text-sm shrink-0" style={{ color: `color-mix(in srgb, ${team.color} 65%, var(--color-fg))` }}>
+        {ordinal(rank)}
+      </span>
+      <span className="font-semibold truncate" title={team.name}>
+        {team.name}
+      </span>
+      <span className="ml-auto font-display font-semibold text-[26px] tabular-nums">{team.score}</span>
+      {/* On the corner, so it never squeezes the name. */}
+      {gained > 0 && <span className="absolute -top-2 -right-1.5 rounded-md px-1.5 py-0.5 bg-mint text-ink text-xs font-bold tabular-nums shadow-sm">+{gained}</span>}
+    </Tag>
+  )
+}
 
 /**
  * Full-screen presenter. In preview mode it plays a saved quiz with local state
@@ -243,7 +293,7 @@ export function Stage({ preview }: StageProps) {
   // With a host screen connected, the big screen shows only what the room should see.
   const hostLive = link.connected
 
-  const progress = useMemo(() => (total ? ((index + 1) / total) * 100 : 0), [index, total])
+  const ranks = useMemo(() => rankTeams(teams), [teams])
 
   if (!quiz || !question) {
     return (
@@ -273,49 +323,78 @@ export function Stage({ preview }: StageProps) {
     }
   }
 
+  const hasTimer = question.type !== 'slide' && (question.timeLimit ?? 0) > 0 && (phase === 'question' || phase === 'revealed')
+  const canAward = revealed && !hostLive && !preview && question.type !== 'slide'
+  const meta = [quizAreaLabel(quiz), quiz.difficulty && LEVEL_LABEL[quiz.difficulty]].filter(Boolean).join(' · ')
+
   return (
     // Locked to the viewport on md+ so a slide never needs scrolling; phones may scroll.
     <div className="min-h-dvh md:h-dvh md:overflow-hidden flex flex-col select-none">
-      {/* Progress bar */}
-      <div className="h-1 bg-fg/10 shrink-0">
-        <motion.div className="h-full bg-brand" animate={{ width: `${progress}%` }} transition={{ duration: 0.5 }} />
-      </div>
-
-      {/* Top bar */}
-      <div className="flex items-center gap-2 px-3 md:px-5 py-2 text-sm shrink-0">
-        <button onClick={exit} className={topButton} title="Exit">
-          <X size={16} /> {preview ? 'Close preview' : 'Exit'}
-        </button>
-        <div className="font-medium text-fg/70 truncate flex items-center gap-2 pl-1">
-          <span>{quiz.emoji}</span>
-          <span className="truncate">{quiz.title}</span>
+      <header className="shrink-0 px-3 md:px-5 lg:px-10 pt-3 md:pt-[clamp(0.75rem,3vh,1.75rem)] flex flex-wrap items-center gap-x-3 md:gap-x-6 gap-y-3">
+        <div className="flex items-center gap-3 min-w-0 flex-1 md:flex-none">
+          <Logo size={36} className="rounded-[10px] shrink-0" />
+          <div className="min-w-0">
+            <div className="font-display font-semibold text-lg leading-tight truncate">{quiz.title}</div>
+            {meta && <div className="text-[13px] text-fg/65 truncate">{meta}</div>}
+          </div>
         </div>
-        <div className="ml-auto font-medium tabular-nums text-fg/60 whitespace-nowrap">{phase === 'podium' ? 'Results' : `${index + 1} / ${total}`}</div>
-        {preview && <span className="chip bg-sun/20 text-sun">Preview</span>}
-        {!preview && link.supported && (
-          <button
-            onClick={openHostScreen}
-            className={cn(topButton, 'hidden sm:flex', hostLive && 'text-mint')}
-            title={hostLive ? 'Host screen connected; click to bring it forward' : 'Open the quiz master controls in a second window'}
-          >
-            <MonitorSmartphone size={16} />
-            {hostLive ? (
-              <>
-                <span className="w-1.5 h-1.5 rounded-full bg-mint" aria-hidden /> Host connected
-              </>
-            ) : (
-              'Host screen'
-            )}
+
+        <div className="order-last md:order-none basis-full md:basis-auto md:flex-[1_1_320px] max-w-[560px] mx-auto flex flex-col gap-2">
+          <div className="flex justify-between gap-3 text-[13px] font-semibold text-fg/75 tabular-nums">
+            <span>{phase === 'podium' ? 'Results' : `Question ${index + 1} of ${total}`}</span>
+            {phase !== 'podium' && question.type !== 'slide' && <span>{question.points} points</span>}
+          </div>
+          <SegmentedProgress total={total} current={phase === 'podium' ? total : index} label={phase === 'podium' ? 'Quiz finished' : undefined} />
+        </div>
+
+        <div className="flex items-center gap-2 md:gap-2.5 ml-auto md:ml-0">
+          {hasTimer && (
+            <button
+              onClick={revealed ? undefined : timer.toggle}
+              className="shrink-0 rounded-full"
+              title="Start / pause timer (T)"
+              aria-label={`${timer.running ? 'Pause' : 'Start'} timer, ${Math.ceil(timer.remaining)} seconds left`}
+            >
+              <TimerRing total={question.timeLimit ?? 0} remaining={timer.remaining} size={56} />
+            </button>
+          )}
+          {preview && (
+            <span className="hidden sm:flex h-8 px-3 rounded-full border text-[13px] font-semibold text-sun items-center" style={tint('var(--color-sun)')}>
+              Preview
+            </span>
+          )}
+          {!preview && link.supported && (
+            <button
+              onClick={openHostScreen}
+              className={cn(iconButton, 'hidden sm:flex w-auto px-3.5 gap-2 text-sm font-medium', hostLive && 'text-mint')}
+              style={hostLive ? tint('var(--color-mint)') : undefined}
+              title={hostLive ? 'Host screen connected; click to bring it forward' : 'Open the quiz master controls in a second window'}
+            >
+              <MonitorSmartphone size={18} />
+              {hostLive ? (
+                <>
+                  <span className="w-1.5 h-1.5 rounded-full bg-mint" aria-hidden /> Host connected
+                </>
+              ) : (
+                'Host screen'
+              )}
+            </button>
+          )}
+          {/* Phones keep the top bar to the essentials so the quiz title still fits. */}
+          <span className="hidden sm:contents">
+            <ThemeButton />
+          </span>
+          <button onClick={() => setDrawer(true)} className={iconButton} title="Quiz master panel (H)" aria-label="Quiz master panel">
+            <SlidersHorizontal size={18} />
           </button>
-        )}
-        <ThemeButton className="glass" />
-        <button onClick={toggleFullscreen} className={cn(topButton, 'hidden sm:flex px-2.5')} title="Fullscreen (F)" aria-label="Fullscreen">
-          <Maximize2 size={16} />
-        </button>
-        <button onClick={() => setDrawer(true)} className={cn(topButton, 'px-2.5')} title="Quiz master panel (H)" aria-label="Quiz master panel">
-          <SlidersHorizontal size={16} />
-        </button>
-      </div>
+          <button onClick={toggleFullscreen} className={cn(iconButton, 'hidden sm:flex')} title="Fullscreen (F)" aria-label="Fullscreen">
+            <Maximize size={18} />
+          </button>
+          <button onClick={exit} className={iconButton} title={preview ? 'Close preview' : 'Exit'} aria-label={preview ? 'Close preview' : 'Exit stage'}>
+            <X size={18} />
+          </button>
+        </div>
+      </header>
 
       {/* Main area */}
       <AnimatePresence mode="wait">
@@ -333,7 +412,6 @@ export function Stage({ preview }: StageProps) {
               question={question}
               revealed={revealed}
               timer={{ total: question.timeLimit ?? 0, remaining: timer.remaining, running: timer.running }}
-              onToggleTimer={revealed ? undefined : timer.toggle}
               picked={picked}
               uncovered={uncovered}
               audio={audio}
@@ -343,63 +421,73 @@ export function Stage({ preview }: StageProps) {
         )}
       </AnimatePresence>
 
-      {/* Award strip: appears after reveal */}
-      <AnimatePresence>
-        {revealed && !hostLive && teams.length > 0 && question.type !== 'slide' && (
-          <motion.div
-            initial={{ y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 24, opacity: 0 }}
-            className="px-4 pb-1 flex flex-wrap items-center justify-center gap-2 shrink-0"
-          >
-            <span className="text-fg/60 text-sm mr-2">
-              {awardPrompt(question)} (+{question.points})
-            </span>
-            {teams.map((t) => (
-              <AwardChip key={t.id} team={t} count={awarded.filter((id) => id === t.id).length} onClick={() => awardTeam(t)} showScore />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Bottom controls (the host screen has its own) */}
-      <div className={cn('px-3 md:px-5 py-2.5 flex items-center gap-2 flex-wrap justify-center shrink-0', hostLive && 'hidden')}>
-        <Button variant="secondary" onClick={prev} disabled={index === 0 && phase !== 'podium'}>
-          <ChevronLeft /> Back
-        </Button>
-        {question.type !== 'slide' && phase === 'question' && (question.timeLimit ?? 0) > 0 && (
-          <Button variant={timer.running ? 'secondary' : 'success'} onClick={timer.toggle}>
-            {timer.running ? (
-              <>
-                <Pause /> Pause
-              </>
-            ) : (
-              <>
-                <Timer /> Start timer
-              </>
-            )}
-          </Button>
-        )}
-        {question.type !== 'slide' && phase === 'question' && (
-          <Button onClick={reveal}>
-            <Eye /> Reveal
-          </Button>
-        )}
-        {phase !== 'podium' && (
-          <Button variant="secondary" onClick={toggleScores} className={cn(phase === 'scoreboard' && 'ring-2 ring-fg/60')}>
-            <Trophy /> Scores
-          </Button>
-        )}
-        {phase === 'podium' ? (
-          <Button onClick={exit} variant="primary">
-            <Check /> Finish
-          </Button>
-        ) : (
-          <Button onClick={forward} variant="primary">
-            {index >= total - 1 && phase !== 'scoreboard' ? 'Results' : 'Next'} <ChevronRight />
-          </Button>
-        )}
-      </div>
+      {/* Team scores and controls. After reveal the team cards award points; with a host screen connected,
+          the controls live there and the big screen only shows the scores. */}
+      {(teams.length > 0 || !hostLive) && (
+        <footer className="shrink-0 mx-3 md:mx-5 lg:mx-10 mb-3 md:mb-[clamp(0.75rem,3vh,1.75rem)] mt-1 pt-[clamp(0.75rem,2.2vh,1.25rem)] border-t border-fg/8 flex flex-wrap items-center gap-3 md:gap-4">
+          {teams.length > 0 && (
+            <div className="flex-[1_1_560px] min-w-0">
+              {canAward && (
+                <div className="text-sm text-fg/60 mb-2">
+                  {awardPrompt(question)} (+{question.points})
+                </div>
+              )}
+              <div className="flex flex-wrap gap-3">
+                {teams.map((t) => (
+                  <TeamCard
+                    key={t.id}
+                    team={t}
+                    rank={ranks.get(t.id) ?? 1}
+                    leader={ranks.get(t.id) === 1 && t.score > 0}
+                    gained={awarded.filter((id) => id === t.id).length * question.points}
+                    onAward={canAward ? () => awardTeam(t) : undefined}
+                    points={question.points}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+          {!hostLive && (
+            <div className="flex flex-wrap items-center justify-end gap-2.5 ml-auto">
+              <Button size="stage" variant="secondary" onClick={prev} disabled={index === 0 && phase !== 'podium'}>
+                <ChevronLeft /> Back
+              </Button>
+              {hasTimer && phase === 'question' && (
+                <Button size="stage" variant={timer.running ? 'secondary' : 'success'} onClick={timer.toggle}>
+                  {timer.running ? (
+                    <>
+                      <Pause /> Pause
+                    </>
+                  ) : (
+                    <>
+                      <Timer /> Start timer
+                    </>
+                  )}
+                </Button>
+              )}
+              {question.type !== 'slide' && phase === 'question' && (
+                <Button size="stage" onClick={reveal}>
+                  <Eye /> Reveal
+                </Button>
+              )}
+              {phase !== 'podium' && (
+                <Button size="stage" variant="secondary" onClick={toggleScores} aria-pressed={phase === 'scoreboard'} className={cn(phase === 'scoreboard' && 'ring-2 ring-fg/60')}>
+                  <Trophy /> Scores
+                </Button>
+              )}
+              {phase === 'podium' ? (
+                <Button size="stage" variant="accent" onClick={exit}>
+                  <Check /> Finish
+                </Button>
+              ) : (
+                <Button size="stage" variant="accent" onClick={forward}>
+                  {phase === 'scoreboard' ? 'Continue' : index >= total - 1 ? 'Results' : 'Next question'} <ChevronRight />
+                </Button>
+              )}
+            </div>
+          )}
+        </footer>
+      )}
 
       <HostDrawer open={drawer} onClose={() => setDrawer(false)} question={question} preview={preview} />
     </div>

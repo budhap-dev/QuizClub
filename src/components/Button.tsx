@@ -3,7 +3,7 @@ import { cn } from '@/utils'
 import { sfx } from '@/utils/sounds'
 
 type Variant = 'primary' | 'accent' | 'secondary' | 'ghost' | 'danger' | 'success'
-type Size = 'sm' | 'md' | 'lg' | 'xl'
+type Size = 'sm' | 'md' | 'lg' | 'xl' | 'stage'
 
 interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
   variant?: Variant
@@ -28,6 +28,8 @@ const sizes: Record<Size, string> = {
   md: 'text-sm px-4 py-2.5 rounded-xl gap-2 [&_svg]:size-4',
   lg: 'text-base px-6 py-3 rounded-xl gap-2 [&_svg]:size-[1.125rem]',
   xl: 'text-lg md:text-xl px-8 py-4 rounded-2xl gap-2.5 [&_svg]:size-5',
+  // Presenter footer: 52px tall so the quiz master can hit it from across the room.
+  stage: 'text-[15px] h-13 px-[18px] rounded-[14px] gap-2 [&_svg]:size-[1.125rem]',
 }
 
 /** Button styling for elements that aren't a <Button>, such as a router <Link> that should look like one. */
