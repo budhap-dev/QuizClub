@@ -11,7 +11,7 @@ interface Props {
   open: boolean
   onClose: () => void
   /** Filters to start from, e.g. the area and level already chosen in the bank. */
-  initial?: { area?: string; level?: Difficulty }
+  initial?: { area?: string; level?: Difficulty; count?: number }
   onPresent: (quiz: Quiz) => void
   /** Label for the main button; Play setup uses it to pick the mix rather than start it. */
   presentLabel?: string
@@ -35,6 +35,7 @@ export function MixSheet({ open, onClose, initial, onPresent, presentLabel = 'Pr
     if (!open) return
     setAreas(initial?.area ? [initial.area] : [])
     setLevel(initial?.level)
+    if (initial?.count) setCount(initial.count)
   }, [open]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const available = useMemo(() => (quizzes ? mixPool(quizzes, { areas, level }).length : 0), [quizzes, areas, level])

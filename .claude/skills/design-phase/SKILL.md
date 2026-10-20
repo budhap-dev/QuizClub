@@ -9,13 +9,13 @@ disable-model-invocation: true
 
 Build phase **$ARGUMENTS** from the table below, and only that phase.
 
-| # | Phase | Brief | Needs | Status |
-|---|-------|-------|-------|--------|
-| 1 | App shell: desktop sidebar, mobile top bar and tab bar, shared primitives | `phases/1-shell.md` | none | done |
-| 2 | Home dashboard | `phases/2-home.md` | 1 | todo |
-| 3 | Presenter stage | `phases/3-stage.md` | 1 | todo |
-| 4 | Host screen | `phases/4-host.md` | 1 | todo |
-| 5 | Quizzes and quiz bank | `phases/5-bank.md` | 1 | todo |
+| #   | Phase                                                                     | Brief               | Needs | Status |
+| --- | ------------------------------------------------------------------------- | ------------------- | ----- | ------ |
+| 1   | App shell: desktop sidebar, mobile top bar and tab bar, shared primitives | `phases/1-shell.md` | none  | done   |
+| 2   | Home dashboard                                                            | `phases/2-home.md`  | 1     | done   |
+| 3   | Presenter stage                                                           | `phases/3-stage.md` | 1     | todo   |
+| 4   | Host screen                                                               | `phases/4-host.md`  | 1     | todo   |
+| 5   | Quizzes and quiz bank                                                     | `phases/5-bank.md`  | 1     | todo   |
 
 No argument, or one not in the table: list the phases with their status and stop.
 
@@ -36,4 +36,4 @@ No argument, or one not in the table: list the phases with their status and stop
 5. Check the result in the browser at 390px and 1440px wide, in **Neon Night** and **Daylight** (one dark theme, one light). Look only at the routes the brief lists.
 6. In this file, set the phase's Status to `done`, in the same commit.
 7. Commit as `design: <what changed> (phase $ARGUMENTS)`, push, then `gh pr create` with a short summary, what you checked, and any gaps.
-8. Give the PR link and stop. Merge (`gh pr merge N --squash --delete-branch`) only after the user says "merge" for that PR.
+8. merge the PR and switch to main branch and keep it updated in local and ask for next phase to run.
