@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, Gamepad2, MonitorPlay, PenLine, Play, type LucideIcon } from 'lucide-react'
+import { ArrowRight, BookOpen, Gamepad2, MonitorPlay, PenLine, Play, Puzzle, type LucideIcon } from 'lucide-react'
 import { Card } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 
-const tiles: { to: string; Icon: LucideIcon; title: string; text: string; color: string }[] = [
+const tiles: { to: string; Icon: LucideIcon; title: string; text: string; color: string; wide?: boolean }[] = [
   { to: '/play', Icon: MonitorPlay, title: 'Present a quiz', text: 'Pick a quiz, add teams and go live on the big screen.', color: 'var(--color-pink)' },
   { to: '/quizzes/bank', Icon: BookOpen, title: 'Quiz bank', text: 'Ready-made quizzes across 19 areas, searchable by topic and level.', color: 'var(--color-purple)' },
   { to: '/create/manual', Icon: PenLine, title: 'Manual quiz maker', text: 'Slides, multiple choice, true/false and timed questions.', color: 'var(--color-cyan)' },
   { to: '/games', Icon: Gamepad2, title: 'Party games', text: 'Cows & Bulls, Hangman, Wordle and more for between rounds.', color: 'var(--color-lime)' },
+  { to: '/puzzles', Icon: Puzzle, title: 'Riddles & puzzles', text: 'Riddles, matchsticks, shape patterns, picture maths, rebuses and spot the difference — easy, medium and hard.', color: 'var(--color-orange)', wide: true },
 ]
 
 const container = { show: { transition: { staggerChildren: 0.06 } } }
@@ -57,8 +58,8 @@ export function Home() {
       )}
 
       <motion.div variants={container} initial="hidden" animate="show" className="grid sm:grid-cols-2 gap-4">
-        {tiles.map(({ to, Icon, title, text, color }) => (
-          <motion.div key={to} variants={item}>
+        {tiles.map(({ to, Icon, title, text, color, wide }) => (
+          <motion.div key={to} variants={item} className={wide ? 'sm:col-span-2' : undefined}>
             <Link to={to} className="block h-full">
               <Card interactive tint={color} className="h-full flex gap-4 items-start">
                 <span
