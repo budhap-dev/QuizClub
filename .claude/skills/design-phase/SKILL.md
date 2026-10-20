@@ -11,7 +11,7 @@ Build phase **$ARGUMENTS** from the table below, and only that phase.
 
 | # | Phase | Brief | Needs | Status |
 |---|-------|-------|-------|--------|
-| 1 | App shell: desktop sidebar, mobile top bar and tab bar, shared primitives | `phases/1-shell.md` | none | todo |
+| 1 | App shell: desktop sidebar, mobile top bar and tab bar, shared primitives | `phases/1-shell.md` | none | done |
 | 2 | Home dashboard | `phases/2-home.md` | 1 | todo |
 | 3 | Presenter stage | `phases/3-stage.md` | 1 | todo |
 | 4 | Host screen | `phases/4-host.md` | 1 | todo |
