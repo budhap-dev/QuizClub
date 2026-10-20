@@ -12,6 +12,7 @@ export type PuzzleType =
   | 'counting'
   | 'rebus'
   | 'spot'
+  | 'story'
 
 /** A cell in a shape-pattern puzzle: a polygon or symbol, a mini grid of shaded squares, or a cluster of dots. */
 export type Glyph =
@@ -67,6 +68,8 @@ export type Figure =
 export interface Puzzle {
   type: PuzzleType
   level: Difficulty
+  /** A short story read out before the question; story puzzles hide the answer in its details. */
+  story?: string
   /** The question as read out to the room. */
   q: string
   figure?: Figure

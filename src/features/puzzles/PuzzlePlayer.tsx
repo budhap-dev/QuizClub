@@ -198,6 +198,11 @@ export function PuzzlePlayer() {
                 {timerOn && <TimerRing total={LEVEL_SECONDS[p.level]} remaining={timer.remaining} size={56} className="ml-auto -mt-1" />}
               </div>
 
+              {p.story && (
+                <p className="stage-text text-lg md:text-2xl leading-relaxed text-fg/85 border-l-4 pl-4 md:pl-5 mb-5 md:mb-6" style={{ borderColor: accent }}>
+                  {p.story}
+                </p>
+              )}
               <h2 className="stage-text text-2xl md:text-4xl font-semibold leading-snug mb-6 md:mb-8">{p.q}</h2>
 
               {p.figure && (

@@ -32,7 +32,7 @@ const tiles: { to: string; Icon: LucideIcon; title: string; text: string; color:
   { to: '/play', Icon: MonitorPlay, title: 'Present a quiz', text: 'Pick a quiz, add teams and go live on the big screen.', color: 'var(--color-pink)' },
   { to: '/create/manual', Icon: PenLine, title: 'Quiz maker', text: 'Slides, multiple choice, true/false, timed and more.', color: 'var(--color-cyan)' },
   { to: '/games', Icon: Gamepad2, title: 'Party games', text: 'Wordle, Hangman, Picture Reveal and more for between rounds.', color: 'var(--color-lime)' },
-  { to: '/puzzles', Icon: Puzzle, title: 'Riddles and puzzles', text: 'Eleven puzzle types, from matchsticks to rebuses.', color: 'var(--color-orange)' },
+  { to: '/puzzles', Icon: Puzzle, title: 'Riddles and puzzles', text: 'Twelve puzzle types, from matchsticks to short-story mysteries.', color: 'var(--color-orange)' },
 ]
 
 const AREA_ICONS: Record<string, LucideIcon> = {
