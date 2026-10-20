@@ -14,6 +14,8 @@ const Stage = lazy(() => import('@/features/presenter/Stage').then((m) => ({ def
 const HostScreen = lazy(() => import('@/features/presenter/HostScreen').then((m) => ({ default: m.HostScreen })))
 const Games = lazy(() => import('@/features/games/Games').then((m) => ({ default: m.Games })))
 const GamePage = lazy(() => import('@/features/games/GamePage').then((m) => ({ default: m.GamePage })))
+const Puzzles = lazy(() => import('@/features/puzzles/Puzzles').then((m) => ({ default: m.Puzzles })))
+const PuzzlePlayer = lazy(() => import('@/features/puzzles/PuzzlePlayer').then((m) => ({ default: m.PuzzlePlayer })))
 const Settings = lazy(() => import('@/features/settings/Settings').then((m) => ({ default: m.Settings })))
 
 function Loading() {
@@ -40,6 +42,8 @@ export default function App() {
               <Route path="play" element={<PlaySetup />} />
               <Route path="games" element={<Games />} />
               <Route path="games/:game" element={<GamePage />} />
+              <Route path="puzzles" element={<Puzzles />} />
+              <Route path="puzzles/:type" element={<PuzzlePlayer />} />
               <Route path="settings" element={<Settings />} />
             </Route>
             {/* Stage is full-bleed, no layout chrome */}

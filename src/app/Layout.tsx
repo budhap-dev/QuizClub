@@ -46,12 +46,15 @@ export function Layout() {
                   active ? 'text-fg' : 'text-fg/60 hover:text-fg',
                 )}
                 aria-current={active ? 'page' : undefined}
+                aria-label={label}
+                title={label}
               >
                 {active && (
                   <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-lg bg-fg/12" transition={{ type: 'spring', stiffness: 500, damping: 35 }} />
                 )}
                 <Icon size={16} className="relative shrink-0" />
-                <span className="relative">{label}</span>
+                {/* Six items don't fit beside the brand on small tablets, so labels appear from lg up. */}
+                <span className="relative hidden lg:inline">{label}</span>
               </Link>
             )
           })}

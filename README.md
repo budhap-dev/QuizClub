@@ -13,6 +13,7 @@ A colourful quiz app for classrooms, offices and parties, with a clean, presenta
 - **Levels** — every quiz can be Easy, Medium or Hard. Bank quizzes come rated, and you set it for your own in the builder. My Quizzes, the bank and Play setup all filter by level.
 - **Built-in library** — Flag Guesser, Logo Quiz, Mental Maths (generated fresh each time), General Knowledge, Geography, Science, Literature, Movies, Sports, Music, History.
 - **Party games** — Cows & Bulls, Hangman, Wordle, Word Scramble, Emoji Riddles, Memory Match, Picture Reveal (a flag or logo under tiles that drop away; earlier guesses score more), Higher or Lower (which came first / which is taller, as a bankable streak) and Odd One Out (four things, one doesn't belong, with the reason). Award points to teams from any game.
+- **Riddles & puzzles** — 122 brain-teasers in eleven types, each rated Easy, Medium or Hard: riddles, lateral thinking, logic, what-comes-next sequences, number puzzles (pyramids, wheels, grids, number triangles), picture maths (emoji equations and balance scales), matchsticks, shape patterns (turning arrows, shaded grids, clocks), count-the-shapes figures, rebus word pictures and spot the difference (tap the changes on either picture). Every diagram is drawn in SVG, so it follows the theme. Play one type or a mixed bag (easiest first), filter by level, give a hint, run a 30/60/90-second timer, reveal the answer with an explanation and award 10/15/20 points to the team that solved it. Keys: `←` `→` move, `Space` reveal, `H` hint, `T` timer.
 - **Cloud vault** — sync your quiz library across devices with no account: pick a passphrase in Settings, and the library is encrypted in the browser (PBKDF2 + AES-GCM) and stored as ciphertext in Upstash Redis via `api/vault.ts`. Enter the same passphrase on another device to pull it down. Deletions carry across (tombstones), the newest edit wins, and the server can't read anything.
 - **Themes** — twelve colour themes: six dark (Neon Night, Deep Ocean, Sunset, Forest, Retro Arcade, Midnight Mono) and six light (Candy Pop, Daylight, Coastal, Sunrise, Lilac, Meadow), switchable from the palette button in the nav or on stage. Palettes live in `src/index.css`; the picker metadata in `src/app/theme.ts`.
 - Fully responsive: presenter on a laptop/TV, quiz-master controls work from a phone.
@@ -63,6 +64,7 @@ src/
     home/               landing page
     library/            built-in question packs + My Quizzes
     presenter/          setup, stage, scoreboard, podium, host drawer
+    puzzles/            riddles & puzzles: data/ (puzzles by type), figures/ (SVG diagrams), player
     settings/
   store/                zustand stores (quizzes, session/teams, settings)
   types/
