@@ -5,13 +5,23 @@ export const LEVELS: Difficulty[] = ['easy', 'medium', 'hard']
 export const LEVEL_LABEL: Record<Difficulty, string> = { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
 export const LEVEL_COLOR: Record<Difficulty, string> = { easy: 'var(--color-mint)', medium: 'var(--color-sun)', hard: 'var(--color-red)' }
 
+const BARS = {
+  md: { heights: [5, 8, 11], width: 3, gap: 2, radius: 1 },
+  // Quiz card header bands.
+  lg: { heights: [8, 12, 16], width: 6, gap: 3, radius: 2 },
+}
+
 /** One, two or three rising bars — readable at a glance and without relying on colour alone. */
-export function LevelBars({ level, className }: { level: Difficulty; className?: string }) {
+export function LevelBars({ level, size = 'md', className }: { level: Difficulty; size?: keyof typeof BARS; className?: string }) {
   const filled = LEVELS.indexOf(level) + 1
+  const { heights, width, gap, radius } = BARS[size]
   return (
-    <span className={cn('inline-flex items-end gap-[2px] h-[11px]', className)} aria-hidden>
-      {[5, 8, 11].map((h, i) => (
-        <span key={h} className="w-[3px] rounded-[1px]" style={{ height: h, background: i < filled ? LEVEL_COLOR[level] : 'color-mix(in srgb, var(--color-fg) 20%, transparent)' }} />
+    <span className={cn('inline-flex items-end', className)} style={{ gap, height: heights[2] }} aria-hidden>
+      {heights.map((h, i) => (
+        <span
+          key={h}
+          style={{ width, height: h, borderRadius: radius, background: i < filled ? LEVEL_COLOR[level] : 'color-mix(in srgb, var(--color-fg) 20%, transparent)' }}
+        />
       ))}
     </span>
   )
@@ -44,12 +54,12 @@ interface LevelSelectProps {
 export function LevelSelect({ value, onChange, noneLabel, noneShort, counts, label, className }: LevelSelectProps) {
   const item = (active: boolean) =>
     cn(
-      'flex-1 sm:flex-none px-2 sm:px-3 py-1.5 rounded-md text-[0.8125rem] sm:text-sm font-medium transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap',
-      active ? 'bg-fg/12 text-fg' : 'text-fg/60 hover:text-fg',
+      'flex-1 sm:flex-none h-9 px-2 sm:px-3.5 rounded-[9px] text-[13px] transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap',
+      active ? 'bg-fg/14 text-fg font-semibold' : 'text-fg/72 font-medium hover:text-fg',
     )
   const count = (n?: number) => n !== undefined && <span className="text-fg/40 tabular-nums text-xs">{n}</span>
   return (
-    <div className={cn('flex gap-0.5 bg-fg/6 border border-fg/10 rounded-lg p-0.5 w-full sm:w-fit', className)} role="radiogroup" aria-label={label}>
+    <div className={cn('flex gap-0.5 bg-fg/6 border border-fg/10 rounded-xl p-1 w-full sm:w-fit', className)} role="radiogroup" aria-label={label}>
       <button type="button" role="radio" aria-checked={!value} className={item(!value)} onClick={() => onChange(undefined)}>
         {noneShort ? (
           <>

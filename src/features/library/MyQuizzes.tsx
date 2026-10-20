@@ -2,12 +2,12 @@ import { useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { BookOpen, Copy, Download, Eye, Library, PenLine, Pencil, Play, Plus, Trash2, Upload } from 'lucide-react'
-import { Button, Card, LevelBadge, LevelSelect, PageHeader, alertDialog, confirmDialog } from '@/components'
+import { Button, Card, LevelBadge, LevelSelect, alertDialog, confirmDialog } from '@/components'
 import { useQuizStore } from '@/store/quizStore'
 import { useSessionStore } from '@/store/sessionStore'
 import { downloadJson, readJsonFile } from '@/utils'
 import type { Difficulty, Quiz } from '@/types'
-import { QuizzesTabs } from './QuizzesTabs'
+import { QuizzesHeader } from './QuizzesTabs'
 
 export function MyQuizzes() {
   const navigate = useNavigate()
@@ -34,30 +34,27 @@ export function MyQuizzes() {
 
   return (
     <div>
-      <PageHeader
-        title="My Quizzes"
-        icon={<Library />}
-        subtitle={`${quizzes.length} saved`}
+      <QuizzesHeader
         actions={
           <>
-            <Button variant="secondary" size="sm" onClick={() => fileRef.current?.click()}>
-              <Upload /> Import
+            <Button variant="secondary" className="h-11 px-3 md:px-4" onClick={() => fileRef.current?.click()} aria-label="Import quizzes">
+              <Upload /> <span className="hidden md:inline">Import</span>
             </Button>
-            <Button size="sm" onClick={() => navigate('/create/manual')}>
-              <Plus /> New quiz
+            <Button variant="secondary" className="h-11 px-3 md:px-4" onClick={() => navigate('/create/manual')} aria-label="New quiz">
+              <Plus /> <span className="hidden md:inline">New quiz</span>
             </Button>
             <input ref={fileRef} type="file" accept="application/json" hidden onChange={(e) => void onImport(e.target.files?.[0])} />
           </>
         }
       />
-      <QuizzesTabs />
+      {quizzes.length > 0 && <p className="text-[13px] text-fg/65 -mt-1 mb-3.5">{quizzes.length} saved</p>}
 
       {quizzes.length === 0 && (
         <Card className="text-center py-14">
           <div className="w-12 h-12 rounded-xl bg-fg/8 text-fg/50 flex items-center justify-center mx-auto mb-4">
             <Library size={22} />
           </div>
-          <p className="text-fg/70 mb-5">Nothing here yet. Copy one from the quiz bank, build one by hand, or let AI do the heavy lifting.</p>
+          <p className="text-fg/70 mb-5">Nothing here yet. Copy one from the quiz bank or build one by hand.</p>
           <div className="flex gap-2 justify-center flex-wrap">
             <Button onClick={() => navigate('/quizzes/bank')}>
               <BookOpen /> Browse the quiz bank
