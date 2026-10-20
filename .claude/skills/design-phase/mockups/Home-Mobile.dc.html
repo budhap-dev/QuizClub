@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>QuizClub home, mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#12082e}
+a{color:#c4b5fd;text-decoration:none}a:hover{color:#ffffff}
+h1,h2,h3{font-family:Outfit,Inter,system-ui,sans-serif;letter-spacing:-0.01em;margin:0}
+svg.i{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 1240px; position: relative; overflow: hidden; box-sizing: border-box; background: #12082e; color: #ffffff; font-family: Inter, system-ui, sans-serif">
+
+  <!-- Top bar -->
+  <header style="display: flex; align-items: center; gap: 8px; padding: 14px 16px 6px">
+    <a href="#" aria-label="QuizClub home" style="display: flex; align-items: center; gap: 9px; color: #ffffff; margin-right: auto">
+      <span style="width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(120deg, #ff4d8d, #a855f7); display: flex; align-items: center; justify-content: center; font-family: Outfit, sans-serif; font-weight: 700; font-size: 17px; color: #ffffff">Q</span>
+      <span style="font-family: Outfit, sans-serif; font-weight: 600; font-size: 18px"><span style="color: #ff7aa8">Quiz</span>Club</span>
+    </a>
+    <button type="button" aria-label="Search" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); color: #ffffff; display: flex; align-items: center; justify-content: center">
+      <svg class="i" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+    <button type="button" aria-label="Settings and theme" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); color: #ffffff; display: flex; align-items: center; justify-content: center">
+      <svg class="i" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg>
+    </button>
+  </header>
+
+  <main style="padding: 14px 16px 120px; display: flex; flex-direction: column; gap: 26px">
+    <div>
+      <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #c084fc; margin-bottom: 6px">Welcome back</div>
+      <h1 style="font-size: 28px; line-height: 1.12; font-weight: 600">What are we playing tonight?</h1>
+    </div>
+
+    <!-- Resume -->
+    <section style="border-radius: 18px; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.40); padding: 18px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #e9d5ff">
+        <span style="width: 8px; height: 8px; border-radius: 4px; background: #34d399"></span>
+        In progress
+        <span style="margin-left: auto; color: rgba(255,255,255,0.7); font-weight: 500">Q4 of 10</span>
+      </div>
+      <div>
+        <h2 style="font-size: 22px; font-weight: 600">Capital Cities</h2>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px">Geography · 3 teams · Team 1 leads</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 3px" aria-label="3 of 10 questions done">
+        <span style="height: 5px; border-radius: 3px; background: #c084fc"></span>
+        <span style="height: 5px; border-radius: 3px; background: #c084fc"></span>
+        <span style="height: 5px; border-radius: 3px; background: #c084fc"></span>
+        <span style="height: 5px; border-radius: 3px; background: #ff4d8d"></span>
+        <span style="height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14)"></span>
+        <span style="height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14)"></span>
+        <span style="height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14)"></span>
+        <span style="height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14)"></span>
+        <span style="height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14)"></span>
+        <span style="height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14)"></span>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <a href="#" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px; border-radius: 12px; background: #ff4d8d; color: #ffffff; font-weight: 600; font-size: 15px">
+          <svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          Resume
+        </a>
+        <a href="#" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 46px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); color: #ffffff; font-weight: 500; font-size: 15px">Host remote</a>
+      </div>
+    </section>
+
+    <!-- Quick start -->
+    <section style="border-radius: 18px; background: rgba(34,211,238,0.10); border: 1px solid rgba(34,211,238,0.38); padding: 18px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; gap: 12px; align-items: center">
+        <span style="width: 42px; height: 42px; border-radius: 12px; background: rgba(34,211,238,0.18); color: #22d3ee; display: flex; align-items: center; justify-content: center">
+          <svg class="i" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/></svg>
+        </span>
+        <div style="min-width: 0">
+          <h2 style="font-size: 18px; font-weight: 600">Random bank quiz</h2>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px">Mixed from all 19 areas</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 6px" role="group" aria-label="Number of questions">
+        <button type="button" aria-pressed="true" style="flex: 1; height: 44px; border-radius: 11px; background: #22d3ee; color: #0c0522; border: 0; font-weight: 600; font-size: 14px">10</button>
+        <button type="button" aria-pressed="false" style="flex: 1; height: 44px; border-radius: 11px; background: rgba(255,255,255,0.06); color: #ffffff; border: 1px solid rgba(255,255,255,0.14); font-weight: 500; font-size: 14px">20</button>
+        <button type="button" aria-pressed="false" style="flex: 1; height: 44px; border-radius: 11px; background: rgba(255,255,255,0.06); color: #ffffff; border: 1px solid rgba(255,255,255,0.14); font-weight: 500; font-size: 14px">30</button>
+        <a href="#" aria-label="Shuffle and present" style="width: 56px; height: 44px; border-radius: 11px; background: rgba(255,255,255,0.12); color: #ffffff; display: flex; align-items: center; justify-content: center">
+          <svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Create and play -->
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <h2 style="font-size: 17px; font-weight: 600">Create and play</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <a href="#" style="border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #ffffff">
+          <span style="width: 36px; height: 36px; border-radius: 10px; background: rgba(255,77,141,0.16); color: #ff7aa8; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z"/><path d="M12 17v4"/><path d="M8 21h8"/><rect x="2" y="3" width="20" height="14" rx="2"/></svg></span>
+          <span style="font-weight: 600; font-size: 14px">Present a quiz</span>
+        </a>
+        <a href="#" style="border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #ffffff">
+          <span style="width: 36px; height: 36px; border-radius: 10px; background: rgba(34,211,238,0.16); color: #22d3ee; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg></span>
+          <span style="font-weight: 600; font-size: 14px">Quiz maker</span>
+        </a>
+        <a href="#" style="border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #ffffff">
+          <span style="width: 36px; height: 36px; border-radius: 10px; background: rgba(163,230,53,0.16); color: #a3e635; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg></span>
+          <span style="font-weight: 600; font-size: 14px">Party games</span>
+        </a>
+        <a href="#" style="border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #ffffff">
+          <span style="width: 36px; height: 36px; border-radius: 10px; background: rgba(251,146,60,0.16); color: #fb923c; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v1H6a2 2 0 0 0-2 2v3h1a3 3 0 0 1 0 6H4v3a2 2 0 0 0 2 2h3v-1a3 3 0 0 1 6 0v1h3a2 2 0 0 0 2-2v-3h-1a3 3 0 0 1 0-6h1V8a2 2 0 0 0-2-2h-3V5a3 3 0 0 0-3-3z"/></svg></span>
+          <span style="font-weight: 600; font-size: 14px">Puzzles</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Bank rail -->
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <h2 style="font-size: 17px; font-weight: 600">Quiz bank</h2>
+        <a href="#" style="font-size: 14px; font-weight: 500">See all</a>
+      </div>
+      <div style="display: flex; gap: 10px; overflow-x: auto; margin: 0 -16px; padding: 0 16px">
+        <a href="#" style="flex: 0 0 128px; border-radius: 14px; background: rgba(168,85,247,0.10); border: 1px solid rgba(168,85,247,0.32); padding: 12px; display: flex; flex-direction: column; gap: 8px; color: #ffffff">
+          <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c084fc" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          <span style="font-weight: 600; font-size: 13px">General Knowledge</span>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.65)">4 quizzes</span>
+        </a>
+        <a href="#" style="flex: 0 0 128px; border-radius: 14px; background: rgba(34,211,238,0.10); border: 1px solid rgba(34,211,238,0.32); padding: 12px; display: flex; flex-direction: column; gap: 8px; color: #ffffff">
+          <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #22d3ee" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span style="font-weight: 600; font-size: 13px">Geography</span>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.65)">4 quizzes</span>
+        </a>
+        <a href="#" style="flex: 0 0 128px; border-radius: 14px; background: rgba(251,191,36,0.10); border: 1px solid rgba(251,191,36,0.32); padding: 12px; display: flex; flex-direction: column; gap: 8px; color: #ffffff">
+          <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #fbbf24" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+          <span style="font-weight: 600; font-size: 13px">History</span>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.65)">4 quizzes</span>
+        </a>
+        <a href="#" style="flex: 0 0 128px; border-radius: 14px; background: rgba(52,211,153,0.10); border: 1px solid rgba(52,211,153,0.32); padding: 12px; display: flex; flex-direction: column; gap: 8px; color: #ffffff">
+          <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #34d399" aria-hidden="true"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+          <span style="font-weight: 600; font-size: 13px">Science</span>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.65)">4 quizzes</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Library -->
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <h2 style="font-size: 17px; font-weight: 600">Your library</h2>
+        <a href="#" style="font-size: 14px; font-weight: 500">Open</a>
+      </div>
+      <div style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.10); overflow: hidden">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px">
+          <span style="width: 40px; height: 40px; border-radius: 11px; background: rgba(255,77,141,0.16); color: #ff7aa8; display: flex; align-items: center; justify-content: center; font-family: Outfit, sans-serif; font-weight: 700">F</span>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-weight: 600; font-size: 14px">Friday Pub Quiz</div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px">24 questions · 2 days ago</div>
+          </div>
+          <a href="#" aria-label="Present Friday Pub Quiz" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,77,141,0.16); color: #ffb3cc; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg></a>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid rgba(255,255,255,0.08)">
+          <span style="width: 40px; height: 40px; border-radius: 11px; background: rgba(34,211,238,0.16); color: #22d3ee; display: flex; align-items: center; justify-content: center; font-family: Outfit, sans-serif; font-weight: 700">O</span>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-weight: 600; font-size: 14px">Office Trivia Hour</div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px">15 questions · Last week</div>
+          </div>
+          <a href="#" aria-label="Present Office Trivia Hour" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,77,141,0.16); color: #ffb3cc; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom tab bar -->
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px 22px; background: rgba(23,12,61,0.96); border-top: 1px solid rgba(255,255,255,0.10); display: flex; align-items: flex-end; justify-content: space-between">
+    <a href="#" aria-current="page" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px; min-height: 48px; color: #ffffff; font-size: 11px; font-weight: 600">
+      <svg class="i" width="22" height="22" viewBox="0 0 24 24" style="color: #c084fc" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+    <a href="#" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px; min-height: 48px; color: rgba(255,255,255,0.65); font-size: 11px; font-weight: 500">
+      <svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
+      Quizzes
+    </a>
+    <a href="#" aria-label="Present" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; color: #ffffff; font-size: 11px; font-weight: 600">
+      <span style="width: 54px; height: 54px; margin-top: -26px; border-radius: 18px; background: #ff4d8d; border: 4px solid #170c3d; display: flex; align-items: center; justify-content: center">
+        <svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+      </span>
+      Present
+    </a>
+    <a href="#" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px; min-height: 48px; color: rgba(255,255,255,0.65); font-size: 11px; font-weight: 500">
+      <svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+      Games
+    </a>
+    <a href="#" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px; min-height: 48px; color: rgba(255,255,255,0.65); font-size: 11px; font-weight: 500">
+      <svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v1H6a2 2 0 0 0-2 2v3h1a3 3 0 0 1 0 6H4v3a2 2 0 0 0 2 2h3v-1a3 3 0 0 1 6 0v1h3a2 2 0 0 0 2-2v-3h-1a3 3 0 0 1 0-6h1V8a2 2 0 0 0-2-2h-3V5a3 3 0 0 0-3-3z"/></svg>
+      Puzzles
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
