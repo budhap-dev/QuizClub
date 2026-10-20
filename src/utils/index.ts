@@ -92,3 +92,11 @@ export const OPTION_COLORS = [
   'var(--color-sun)',
   'var(--color-mint)',
 ]
+
+/** Tinted surface for cards, chips and badges: `color` mixed into transparency for the fill and the border. */
+export function tint(color: string, bg = 12, border = 40): { background: string; borderColor: string } {
+  return {
+    background: `color-mix(in srgb, ${color} ${bg}%, transparent)`,
+    borderColor: `color-mix(in srgb, ${color} ${border}%, transparent)`,
+  }
+}
