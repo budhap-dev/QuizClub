@@ -15,7 +15,7 @@ Build phase **$ARGUMENTS** from the table below, and only that phase.
 | 2   | Home dashboard                                                            | `phases/2-home.md`  | 1     | done   |
 | 3   | Presenter stage                                                           | `phases/3-stage.md` | 1     | done   |
 | 4   | Host screen                                                               | `phases/4-host.md`  | 1     | done   |
-| 5   | Quizzes and quiz bank                                                     | `phases/5-bank.md`  | 1     | todo   |
+| 5   | Quizzes and quiz bank                                                     | `phases/5-bank.md`  | 1     | done   |
 
 No argument, or one not in the table: list the phases with their status and stop.
 
