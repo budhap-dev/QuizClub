@@ -20,7 +20,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { IconBadge, LEVEL_LABEL, SegmentedProgress, TeamChip, buttonClass } from '@/components'
-import { AREAS } from '@/features/bank/bank'
+import { AREAS, quizAreaLabel } from '@/features/bank/bank'
 import { MixSheet } from '@/features/bank/MixSheet'
 import { openHostScreen } from '@/features/presenter/hostLink'
 import { useQuizStore } from '@/store/quizStore'
@@ -67,9 +67,6 @@ function relativeTime(t: number) {
   return new Date(t).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
-/** Area label for a quiz, when its category maps to exactly one bank area. */
-const areaLabel = (q: Quiz) => (q.category === 'custom' ? undefined : AREAS.find((a) => a.category === q.category)?.label)
-
 function SectionHeader({ title, to, linkText }: { title: string; to: string; linkText: string }) {
   return (
     <div className="flex items-baseline justify-between gap-3 mb-3.5">
@@ -89,7 +86,7 @@ function ResumeCard() {
   const teams = useSessionStore((s) => s.teams)
   const total = quiz.questions.length
   const q = quiz.questions[session.index]
-  const area = areaLabel(quiz)
+  const area = quizAreaLabel(quiz)
   const meta = [area, quiz.difficulty && LEVEL_LABEL[quiz.difficulty], `Question ${session.index + 1} of ${total}`].filter(Boolean).join(' · ')
 
   return (

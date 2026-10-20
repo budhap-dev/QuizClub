@@ -1,17 +1,16 @@
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion, type TargetAndTransition, type Variants } from 'framer-motion'
-import { Check, Lightbulb, Pause, Play, Ruler, X } from 'lucide-react'
-import type { ListQuestion, OrderQuestion, Question } from '@/types'
-import { cn, OPTION_COLORS, OPTION_LABELS } from '@/utils'
-import { TimerRing } from '@/components'
+import { ArrowDownUp, Check, CircleHelp, Lightbulb, ListChecks, ListOrdered, Pause, Play, Ruler, Timer, X, type LucideIcon } from 'lucide-react'
+import type { ListQuestion, OrderQuestion, Question, QuestionType } from '@/types'
+import { cn, OPTION_COLORS, OPTION_LABELS, tint } from '@/utils'
 import { formatNumberAnswer, orderAnswer, orderTiles } from './questionText'
 import type { AudioClip } from './useAudioClip'
 
 interface QuestionViewProps {
   question: Question
   revealed: boolean
+  /** The countdown itself is drawn in the stage's top bar; here it only changes the prompt on timed questions. */
   timer?: { total: number; remaining: number; running: boolean }
-  onToggleTimer?: () => void
   /** Option the host tapped (for true/false, 0 = True, 1 = False). */
   picked?: number | null
   onOption?: (i: number) => void
@@ -41,7 +40,36 @@ const tileStyle = (color: string, correct: boolean, wrong = false) =>
     ? { background: 'var(--color-mint)', borderColor: 'var(--color-fg)' }
     : wrong
       ? { background: 'color-mix(in srgb, var(--color-red) 24%, transparent)', borderColor: 'var(--color-red)' }
-      : { background: `color-mix(in srgb, ${color} 14%, transparent)`, borderColor: `color-mix(in srgb, ${color} 45%, transparent)` }
+      : tint(color, 10, 30)
+
+/**
+ * Text on the solid mint tile. `ink` rather than `on-accent`: ink is always the opposite lightness to mint
+ * (dark on the dark themes' pale mint, pale on the light themes' deep mint), while on-accent is white on Neon.
+ */
+const onMint = 'text-ink'
+
+const TYPE_CHIP: Partial<Record<QuestionType, { label: string; Icon: LucideIcon }>> = {
+  mcq: { label: 'Multiple choice', Icon: ListChecks },
+  truefalse: { label: 'True or false', Icon: CircleHelp },
+  timed: { label: 'Timed answer', Icon: Timer },
+  number: { label: 'Closest number', Icon: Ruler },
+  order: { label: 'Put in order', Icon: ArrowDownUp },
+  list: { label: 'Name them all', Icon: ListOrdered },
+}
+
+function TypeChip({ type }: { type: QuestionType }) {
+  const chip = TYPE_CHIP[type]
+  if (!chip) return null
+  return (
+    <span
+      className="inline-flex items-center gap-2 h-[clamp(1.625rem,3.4vh,2rem)] px-3.5 rounded-full border text-[clamp(0.6875rem,1.4vh,0.8125rem)] font-semibold uppercase tracking-[0.04em] text-cyan"
+      style={tint('var(--color-cyan)')}
+    >
+      <chip.Icon className="w-[1.2em] h-[1.2em]" aria-hidden />
+      {chip.label}
+    </span>
+  )
+}
 
 /** A short side-to-side shake for a wrong pick. */
 const shake = (i: number): TargetAndTransition => ({ ...showAt(i), x: [0, -10, 10, -6, 6, 0], transition: { duration: 0.45 } })
@@ -88,25 +116,25 @@ function PanelBody({ q, tone, tapped, right }: { q: Question; tone: string; tapp
       ref={ref}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0, transition: { delay: 0.35, type: 'spring', stiffness: 260, damping: 26 } }}
-      className="w-full max-w-4xl shrink-0 rounded-2xl border px-[clamp(0.875rem,2vw,1.5rem)] py-[clamp(0.5rem,1.6vh,1rem)] flex items-start gap-[clamp(0.625rem,1.5vw,1rem)]"
-      style={{ background: `color-mix(in srgb, ${tone} 12%, transparent)`, borderColor: `color-mix(in srgb, ${tone} 40%, transparent)` }}
+      className="w-full max-w-[760px] shrink-0 rounded-[14px] border px-[clamp(0.875rem,1.6vw,1.25rem)] py-[clamp(0.5rem,1.5vh,0.875rem)] flex items-start gap-[clamp(0.625rem,1.2vw,0.875rem)]"
+      style={tint(tone, 10, 36)}
       role="status"
       data-testid="answer-panel"
     >
       <span
-        className="shrink-0 rounded-xl w-[clamp(2rem,5vh,2.75rem)] h-[clamp(2rem,5vh,2.75rem)] flex items-center justify-center"
-        style={{ background: `color-mix(in srgb, ${tone} 22%, transparent)`, color: tone }}
+        className="shrink-0 rounded-[10px] w-[clamp(1.75rem,4vh,2.25rem)] h-[clamp(1.75rem,4vh,2.25rem)] flex items-center justify-center"
+        style={{ background: tint(tone, 22).background, color: tone }}
         aria-hidden
       >
         {!tapped ? <Lightbulb className="w-[55%] h-[55%]" /> : right ? <Check className="w-[60%] h-[60%]" strokeWidth={3} /> : <X className="w-[60%] h-[60%]" strokeWidth={3} />}
       </span>
       <div className="min-w-0 flex-1 stage-text">
         {tapped && (
-          <div className="font-display font-semibold text-[clamp(1.05rem,2.8vh,1.6rem)] leading-tight" style={{ color: tone }}>
+          <div className="font-display font-semibold text-[clamp(1.05rem,2.6vh,1.375rem)] leading-tight" style={{ color: tone }}>
             {right ? 'Correct!' : `Not quite — the answer is ${correctText(q)}`}
           </div>
         )}
-        {q.explanation && <p className={cn('text-fg/85 text-[clamp(0.95rem,2.4vh,1.35rem)] leading-snug', tapped && 'mt-0.5')}>{q.explanation}</p>}
+        {q.explanation && <p className={cn('text-fg/88 text-[clamp(0.95rem,2.2vh,1.125rem)] leading-[1.45]', tapped && 'mt-0.5')}>{q.explanation}</p>}
       </div>
     </motion.div>
   )
@@ -117,9 +145,8 @@ function PanelBody({ q, tone, tapped, right }: { q: Question; tone: string; tapp
  * options always fit the stage height without scrolling. The image is the only
  * flexible item: it takes whatever space is left after the prompt and answers.
  */
-export function QuestionView({ question, revealed, timer, onToggleTimer, picked, onOption, uncovered = [], audio }: QuestionViewProps) {
+export function QuestionView({ question, revealed, timer, picked, onOption, uncovered = [], audio }: QuestionViewProps) {
   const q = question
-  const hasTimer = timer && timer.total > 0 && q.type !== 'slide'
 
   return (
     // Scrolls only when it must (phones with the answer panel open); safe centring keeps the top reachable.
@@ -130,22 +157,17 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-        className="w-full shrink-0 flex flex-col md:flex-row items-center gap-3 md:gap-8"
+        className="w-full shrink-0 flex flex-col items-center gap-[clamp(0.5rem,2.2vh,1.25rem)]"
       >
-        {hasTimer && (
-          <button onClick={onToggleTimer} className="order-first md:order-none shrink-0" title="Start / pause timer (T)">
-            <TimerRing total={timer.total} remaining={timer.remaining} size={96} />
-          </button>
-        )}
+        <TypeChip type={q.type} />
         <h1
           className={cn(
-            'stage-text font-display font-semibold tracking-tight text-center flex-1 leading-tight',
-            q.type === 'slide' ? 'text-[clamp(1.75rem,7vh,4.5rem)] text-gradient' : 'text-[clamp(1.35rem,5vh,3.5rem)]',
+            'stage-text font-display font-semibold tracking-tight text-center text-balance leading-[1.08]',
+            q.type === 'slide' ? 'text-[clamp(1.75rem,7vh,4.5rem)] text-gradient' : 'text-[clamp(1.35rem,6vh,4rem)]',
           )}
         >
           {q.text}
         </h1>
-        {hasTimer && <div className="hidden md:block w-24 shrink-0" />}
       </motion.div>
 
       {audio && <AudioButton audio={audio} />}
@@ -181,7 +203,8 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
       )}
 
       {q.type === 'mcq' && (
-        <div className={cn('grid gap-[clamp(0.5rem,1.5vh,1rem)] w-full shrink-0 md:grid-cols-2', q.options.length > 4 && 'lg:grid-cols-3')}>
+        // Four options stay 2×2; three, five or six sit three to a row on wide screens.
+        <div className={cn('grid gap-[clamp(0.5rem,1.6vh,1rem)] w-full shrink-0 md:grid-cols-2', q.options.length % 3 === 0 || q.options.length === 5 ? 'lg:grid-cols-3' : undefined)}>
           {q.options.map((opt, i) => {
             const color = OPTION_COLORS[i % OPTION_COLORS.length]
             const correct = revealed && i === q.correctIndex
@@ -198,30 +221,34 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
                 aria-pressed={picked === i}
                 style={tileStyle(color, correct, wrong)}
                 className={cn(
-                  'relative rounded-2xl px-[clamp(0.75rem,2vw,1.5rem)] py-[clamp(0.5rem,1.8vh,1.25rem)] text-left flex items-center gap-[clamp(0.5rem,1.5vw,1rem)] border transition-all duration-500',
-                  correct ? 'text-ink shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-fg)_25%,transparent)]' : 'text-fg',
+                  'relative min-h-[clamp(3.5rem,10vh,5.75rem)] rounded-[18px] px-[clamp(0.75rem,1.6vw,1.375rem)] py-[clamp(0.375rem,1.2vh,0.75rem)] text-left flex items-center gap-[clamp(0.625rem,1.3vw,1.125rem)] border-2 transition-[background-color,border-color,opacity,filter] duration-500',
+                  correct ? onMint : 'text-fg',
                   !revealed && 'hover:brightness-125',
-                  dim && 'opacity-30 grayscale',
+                  dim && 'opacity-60',
                 )}
               >
                 <span
-                  className={cn(
-                    'font-display font-semibold text-[clamp(1.1rem,3.2vh,2rem)] rounded-xl w-[clamp(2.25rem,6.5vh,3.5rem)] h-[clamp(2.25rem,6.5vh,3.5rem)] flex items-center justify-center shrink-0',
-                    correct ? 'bg-ink/15 text-ink' : 'text-ink',
-                  )}
-                  style={correct ? undefined : { background: wrong ? 'var(--color-red)' : color }}
+                  className="font-display font-bold text-[clamp(1.1rem,3vh,1.5rem)] rounded-[14px] w-[clamp(2.25rem,5.8vh,3.25rem)] h-[clamp(2.25rem,5.8vh,3.25rem)] flex items-center justify-center shrink-0"
+                  style={
+                    correct
+                      ? { background: 'var(--color-ink)', color: 'var(--color-mint)' }
+                      : wrong
+                        ? { background: 'var(--color-red)', color: 'var(--color-on-accent)' }
+                        : { background: tint(color, 24).background, color }
+                  }
                 >
                   {OPTION_LABELS[i]}
                 </span>
                 {q.optionImages?.[i] && <img src={q.optionImages[i]} alt="" className="h-[clamp(3rem,10vh,6rem)] rounded-lg object-contain bg-fg/20" />}
-                <span className="font-display font-medium text-[clamp(1.05rem,3vh,1.8rem)] leading-tight stage-text">{opt}</span>
+                <span className={cn('font-display text-[clamp(1.05rem,3.4vh,1.875rem)] leading-tight stage-text', correct ? 'font-semibold' : 'font-medium')}>{opt}</span>
                 {correct && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="ml-auto shrink-0 rounded-full bg-ink/15 w-[clamp(2rem,5vh,3rem)] h-[clamp(2rem,5vh,3rem)] flex items-center justify-center"
+                    className="ml-auto shrink-0 rounded-full bg-ink text-mint w-[clamp(2rem,4.9vh,2.75rem)] h-[clamp(2rem,4.9vh,2.75rem)] flex items-center justify-center"
+                    aria-label="Correct answer"
                   >
-                    <Check className="w-[60%] h-[60%]" strokeWidth={3} />
+                    <Check className="w-[55%] h-[55%]" strokeWidth={3} />
                   </motion.span>
                 )}
                 {wrong && (
@@ -254,15 +281,15 @@ export function QuestionView({ question, revealed, timer, onToggleTimer, picked,
                 aria-pressed={picked === i}
                 style={tileStyle(color, correct, wrong)}
                 className={cn(
-                  'relative rounded-2xl py-[clamp(1.25rem,6vh,3.5rem)] flex items-center justify-center gap-[clamp(0.5rem,1.5vw,1rem)] font-display font-semibold text-[clamp(1.5rem,5.5vh,3.5rem)] border transition-all duration-500',
-                  correct ? 'text-ink shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-fg)_25%,transparent)] scale-[1.03]' : 'text-fg',
+                  'relative rounded-[18px] py-[clamp(1.25rem,6vh,3.5rem)] flex items-center justify-center gap-[clamp(0.5rem,1.5vw,1rem)] font-display font-semibold text-[clamp(1.5rem,5.5vh,3.5rem)] border-2 transition-[background-color,border-color,opacity,filter] duration-500',
+                  correct ? onMint : 'text-fg',
                   !revealed && 'hover:brightness-125',
-                  dim && 'opacity-30 grayscale',
+                  dim && 'opacity-60',
                 )}
               >
                 <span
-                  className={cn('rounded-full w-[clamp(2rem,5.5vh,3.25rem)] h-[clamp(2rem,5.5vh,3.25rem)] flex items-center justify-center shrink-0', correct ? 'bg-ink/15' : 'text-ink')}
-                  style={correct ? undefined : { background: color }}
+                  className="rounded-[14px] w-[clamp(2.25rem,5.8vh,3.25rem)] h-[clamp(2.25rem,5.8vh,3.25rem)] flex items-center justify-center shrink-0"
+                  style={correct ? { background: 'var(--color-ink)', color: 'var(--color-mint)' } : { background: tint(color, 24).background, color }}
                 >
                   <Icon className="w-[60%] h-[60%]" strokeWidth={3} />
                 </span>

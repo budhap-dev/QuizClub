@@ -65,6 +65,9 @@ export const AREAS: Area[] = [
 
 export const areaById = (id: string) => AREAS.find((a) => a.id === id)
 
+/** Area label for any quiz, from its category; undefined when several areas share that category (`custom`). */
+export const quizAreaLabel = (q: Pick<Quiz, 'category'>) => (q.category === 'custom' ? undefined : AREAS.find((a) => a.category === q.category)?.label)
+
 export interface BankQuiz extends RawBankQuiz {
   /** Stable id: bank:<area>:<slug>. */
   id: string
