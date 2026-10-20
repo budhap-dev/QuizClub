@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quiz bank, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#12082e}
+a{color:#c4b5fd;text-decoration:none}a:hover{color:#ffffff}
+h1,h2,h3{font-family:Outfit,Inter,system-ui,sans-serif;letter-spacing:-0.01em;margin:0}
+svg.i{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="min-height: 1200px; width: 100%; box-sizing: border-box; background: #12082e; color: #ffffff; font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <!-- Sidebar -->
+  <nav aria-label="Main" style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 24px 16px; background: #170c3d; border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 28px">
+    <a href="#" aria-label="QuizClub home" style="display: flex; align-items: center; gap: 10px; padding: 0 8px; color: #ffffff">
+      <span style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(120deg, #ff4d8d, #a855f7); display: flex; align-items: center; justify-content: center; font-family: Outfit, sans-serif; font-weight: 700; font-size: 18px; color: #ffffff">Q</span>
+      <span style="font-family: Outfit, sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.01em"><span style="color: #ff7aa8">Quiz</span>Club</span>
+    </a>
+    <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border-radius: 12px; background: #ff4d8d; color: #ffffff; font-weight: 600; font-size: 15px">
+      <svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z"/><path d="M12 17v4"/><path d="M8 21h8"/><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+      Present a quiz
+    </a>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 10px; border-radius: 10px; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 14px">
+        <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(168,85,247,0.14); color: #c084fc; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        Home
+      </a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 10px; border-radius: 10px; background: rgba(255,255,255,0.09); color: #ffffff; font-weight: 600; font-size: 14px">
+        <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(34,211,238,0.22); color: #22d3ee; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg></span>
+        Quizzes
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 10px; border-radius: 10px; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 14px">
+        <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(255,77,141,0.14); color: #ff7aa8; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg></span>
+        Play
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 10px; border-radius: 10px; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 14px">
+        <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(163,230,53,0.14); color: #a3e635; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg></span>
+        Games
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 10px; border-radius: 10px; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 14px">
+        <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(251,146,60,0.14); color: #fb923c; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v1H6a2 2 0 0 0-2 2v3h1a3 3 0 0 1 0 6H4v3a2 2 0 0 0 2 2h3v-1a3 3 0 0 1 6 0v1h3a2 2 0 0 0 2-2v-3h-1a3 3 0 0 1 0-6h1V8a2 2 0 0 0-2-2h-3V5a3 3 0 0 0-3-3z"/></svg></span>
+        Puzzles
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 10px; border-radius: 10px; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 14px">
+        <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(251,191,36,0.14); color: #fbbf24; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg></span>
+        Settings
+      </a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 56px">
+    <div style="width: 100%; max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+
+      <header style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px">
+        <div style="flex: 1 1 320px; min-width: 0">
+          <h1 style="font-size: 36px; line-height: 1.1; font-weight: 600">Quizzes</h1>
+          <p style="margin: 8px 0 0; font-size: 15px; color: rgba(255,255,255,0.7)">77 ready-made quizzes and 770 questions across 19 areas.</p>
+        </div>
+        <a href="#" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 12px; background: rgba(34,211,238,0.14); border: 1px solid rgba(34,211,238,0.42); color: #a5f3fc; font-weight: 600; font-size: 14px">
+          <svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/></svg>
+          Mix a random quiz
+        </a>
+      </header>
+
+      <!-- Tabs -->
+      <div role="tablist" style="display: flex; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.10)">
+        <button type="button" role="tab" aria-selected="false" style="height: 44px; padding: 0 16px; background: transparent; border: 0; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.65); font-weight: 500; font-size: 15px">My quizzes</button>
+        <button type="button" role="tab" aria-selected="true" style="height: 44px; padding: 0 16px; background: transparent; border: 0; border-bottom: 2px solid #22d3ee; color: #ffffff; font-weight: 600; font-size: 15px">Quiz bank</button>
+        <button type="button" role="tab" aria-selected="false" style="height: 44px; padding: 0 16px; background: transparent; border: 0; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.65); font-weight: 500; font-size: 15px">Picture packs</button>
+      </div>
+
+      <!-- Toolbar -->
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <label style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; height: 46px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.6)">
+          <svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search by topic, e.g. cricket, planets, Bollywood" aria-label="Search the quiz bank" style="flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: #ffffff; font: inherit; font-size: 14px">
+        </label>
+        <div role="group" aria-label="Level" style="display: flex; padding: 4px; gap: 2px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10)">
+          <button type="button" aria-pressed="true" style="height: 36px; padding: 0 14px; border-radius: 9px; background: rgba(255,255,255,0.14); border: 0; color: #ffffff; font-weight: 600; font-size: 13px">All levels</button>
+          <button type="button" aria-pressed="false" style="height: 36px; padding: 0 14px; border-radius: 9px; background: transparent; border: 0; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 13px">Easy</button>
+          <button type="button" aria-pressed="false" style="height: 36px; padding: 0 14px; border-radius: 9px; background: transparent; border: 0; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 13px">Medium</button>
+          <button type="button" aria-pressed="false" style="height: 36px; padding: 0 14px; border-radius: 9px; background: transparent; border: 0; color: rgba(255,255,255,0.72); font-weight: 500; font-size: 13px">Hard</button>
+        </div>
+      </div>
+
+      <!-- Area chips -->
+      <div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Areas">
+        <sc-for list="{{areas}}" as="a" hint-placeholder-count="20">
+          <button type="button" aria-pressed="{{a.pressed}}" style="{{a.style}}">
+            <span style="width: 8px; height: 8px; border-radius: 4px; background: {{a.color}}"></span>
+            {{a.label}}
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="font-size: 13px; color: rgba(255,255,255,0.65)">Showing 9 of 77</div>
+
+      <!-- Results -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px">
+        <sc-for list="{{quizzes}}" as="q" hint-placeholder-count="9">
+          <article style="border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); overflow: hidden; display: flex; flex-direction: column">
+            <div style="{{q.band}}">
+              <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: {{q.color}}">{{q.area}}</span>
+              <span style="display: flex; align-items: center; gap: 3px" aria-label="{{q.levelLabel}}">
+                <sc-for list="{{q.bars}}" as="b" hint-placeholder-count="3">
+                  <span style="width: 6px; height: {{b.h}}; border-radius: 2px; background: {{b.bg}}"></span>
+                </sc-for>
+              </span>
+            </div>
+            <div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+              <h3 style="font-size: 18px; font-weight: 600; line-height: 1.25">{{q.title}}</h3>
+              <p style="margin: 0; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.7); flex: 1">{{q.desc}}</p>
+              <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px">
+                <span style="font-size: 12px; color: rgba(255,255,255,0.65)">{{q.levelLabel}} · 10 questions</span>
+                <button type="button" aria-label="Preview questions" style="margin-left: auto; width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; display: flex; align-items: center; justify-content: center">
+                  <svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <button type="button" style="display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 10px; background: #ff4d8d; border: 0; color: #ffffff; font-weight: 600; font-size: 13px">
+                  <svg class="i" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  Present
+                </button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const C = { purple: '#c084fc', cyan: '#22d3ee', orange: '#fb923c', sun: '#fbbf24', mint: '#34d399', violet: '#a78bfa', lime: '#a3e635', pink: '#ff7aa8', red: '#fb7185' };
+    const areaList = [
+      ['All areas', '#ffffff'], ['General Knowledge', C.purple], ['Geography', C.cyan], ['India', C.orange], ['History', C.sun],
+      ['Science', C.mint], ['Space', C.violet], ['Nature & Animals', C.lime], ['Literature', C.pink], ['Words & Language', C.cyan],
+      ['Maths & Logic', C.mint], ['Movies & TV', C.red], ['Music', C.pink], ['Sports', C.lime], ['Technology', C.cyan],
+      ['Food & Drink', C.orange], ['Mythology', C.purple], ['Art & Culture', C.pink], ['Funny & Weird', C.orange], ['Kids', C.sun]
+    ];
+    const areas = areaList.map(([label, color], i) => ({
+      label, color, pressed: i === 0 ? 'true' : 'false',
+      style: 'display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: 18px; font-size: 13px; font-weight: ' + (i === 0 ? '600' : '500') + '; color: #ffffff; ' +
+        (i === 0 ? 'background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.40)' : 'background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12)')
+    }));
+    const rgb = { [C.cyan]: '34,211,238', [C.sun]: '251,191,36', [C.mint]: '52,211,153', [C.red]: '244,63,94', [C.pink]: '255,77,141', [C.violet]: '167,139,250', [C.orange]: '251,146,60', [C.lime]: '163,230,53' };
+    const levels = { easy: 1, medium: 2, hard: 3 };
+    const raw = [
+      ['Geography', C.cyan, 'Capital Cities', 'easy', 'Match the country to its capital in this friendly world tour.'],
+      ['Geography', C.cyan, 'Peaks & Rivers', 'medium', 'From the Alps to the Amazon, test your knowledge of great rivers and mountains.'],
+      ['History', C.sun, 'Ancient Worlds', 'easy', 'Pharaohs, emperors and lost cities from the dawn of civilisation.'],
+      ['Science', C.mint, 'Body Basics', 'easy', 'A friendly tour of the bones, organs and blood that keep us going.'],
+      ['Movies & TV', C.red, 'Bollywood Blockbusters', 'easy', 'Iconic heroes, villains and dialogues from Hindi cinema’s biggest hits.'],
+      ['Music', C.pink, 'Bollywood Sur Sangam', 'hard', 'Playback legends, composers and lyricists behind classic Hindi film songs.'],
+      ['Space', C.violet, 'One Small Step', 'medium', 'The launches, landings and pioneers of human spaceflight.'],
+      ['Funny & Weird', C.orange, 'Weird but True', 'medium', 'Unicorns, radioactive bananas and a war that ended before lunch. All of it true.'],
+      ['Sports', C.lime, 'Howzat! Cricket Classics', 'easy', 'World Cup glory, legendary players and the basics of the gentleman’s game.']
+    ];
+    const quizzes = raw.map(([area, color, title, level, desc]) => {
+      const n = levels[level];
+      return {
+        area, color, title, desc,
+        levelLabel: level.charAt(0).toUpperCase() + level.slice(1),
+        band: 'display: flex; align-items: center; justify-content: space-between; height: 44px; padding: 0 18px; background: rgba(' + rgb[color] + ',0.12); border-bottom: 1px solid rgba(' + rgb[color] + ',0.30)',
+        bars: [8, 12, 16].map((h, i) => ({ h: h + 'px', bg: i < n ? color : 'rgba(255,255,255,0.18)' }))
+      };
+    });
+    return { areas, quizzes };
+  }
+}
+</script>
+</body>
+</html>
