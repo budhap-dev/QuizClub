@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { MonitorPlay, Search, SlidersHorizontal, Volume2, VolumeX } from 'lucide-react'
 import { IconBadge, Logo, Modal, ThemePicker, buttonClass } from '@/components'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -128,11 +128,15 @@ function TopBar({ pathname }: { pathname: string }) {
   )
 }
 
+/** 13Parbon's tab bar easing: a quick glide that overshoots a touch and settles. */
+const TAB_EASE = [0.34, 1.56, 0.64, 1] as const
+
 function TabBar({ pathname }: { pathname: string }) {
+  const reduce = useReducedMotion()
   return (
     <nav
       aria-label="Main"
-      className="lg:hidden fixed inset-x-0 bottom-0 z-40 flex items-end pt-2 px-3 pb-[max(env(safe-area-inset-bottom),14px)] bg-ink-soft/96 border-t border-fg/10"
+      className="lg:hidden fixed inset-x-0 bottom-0 z-40 flex items-end gap-1 pt-1.5 px-1.5 pb-[max(env(safe-area-inset-bottom),10px)] bg-ink-soft/96 border-t border-fg/10"
     >
       {TABS.map(({ to, label, Icon, color }) => {
         const active = isActive(to, pathname)
@@ -143,19 +147,36 @@ function TabBar({ pathname }: { pathname: string }) {
             to={to}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'flex-1 min-w-0 flex flex-col items-center gap-1 text-[11px] transition-colors',
-              present ? 'font-semibold text-fg' : 'pt-1.5 min-h-12',
-              !present && (active ? 'font-semibold text-fg' : 'font-medium text-fg/65 hover:text-fg'),
+              'relative flex-1 min-w-0 min-h-[52px] rounded-[10px] flex flex-col items-center justify-end gap-0.5 pb-1.5 text-[11px] font-semibold transition-colors duration-150',
+              active || present ? 'text-fg' : 'text-fg/65 hover:text-fg',
             )}
           >
+            {/* One highlight that slides from the tab you were on to the one you tapped, with a mark along its top. */}
+            {active && (
+              <motion.span
+                layoutId="tab-pill"
+                aria-hidden
+                className="absolute inset-0 rounded-[10px] bg-fg/10 shadow-[0_4px_14px_color-mix(in_srgb,var(--color-fg)_12%,transparent)]"
+                transition={reduce ? { duration: 0 } : { duration: 0.55, ease: TAB_EASE }}
+              >
+                <span className="absolute -top-1.5 left-1/2 -ml-3.5 w-7 h-[3px] rounded-b-[3px] transition-colors" style={{ background: color }} />
+              </motion.span>
+            )}
             {present ? (
-              <span className="w-[54px] h-[54px] -mt-[26px] rounded-[18px] bg-pink text-on-accent border-4 border-ink-soft flex items-center justify-center">
+              <span
+                className={cn(
+                  'relative w-[54px] h-[54px] -mt-[30px] mb-0.5 rounded-[18px] bg-pink text-on-accent border-4 border-ink-soft flex items-center justify-center',
+                  active && 'nav-pop',
+                )}
+              >
                 <Icon size={22} />
               </span>
             ) : (
-              <Icon size={22} style={active ? { color } : undefined} />
+              <span className={cn('relative', active && 'nav-pop')} style={{ color: active ? color : undefined }}>
+                <Icon size={22} />
+              </span>
             )}
-            {label}
+            <span className="relative">{label}</span>
           </Link>
         )
       })}
